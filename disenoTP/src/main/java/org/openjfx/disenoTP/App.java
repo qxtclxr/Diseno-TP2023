@@ -13,7 +13,8 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    //private static Scene scene;
+    /*
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -30,7 +31,19 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-
+*/
+    public void start(Stage primaryStage) {
+		try {
+			Parent root = FXMLLoader.load((getClass().getResource("Ingreso Sistema.fxml")));
+			
+			Scene scene = new Scene(root);
+			primaryStage.setTitle("Ingreso al sistema");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
     public static void main(String[] args) {
         launch();
     }
