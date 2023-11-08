@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class AltaPolizaController {
     @FXML
-    private Button searchClientButton;
+    private Button buscarCliente;
     @FXML
     private Button addClientButton;
     @FXML
@@ -18,7 +18,7 @@ public class AltaPolizaController {
 
     @FXML
     private void handleSearchClient(ActionEvent event) {
-        loadScreen("SearchClient.fxml", "Búsqueda de Cliente");
+        loadScreen("buscarCliente.fxml", "buscarCliente");
     }
 
     @FXML
@@ -35,7 +35,7 @@ public class AltaPolizaController {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) searchClientButton.getScene().getWindow();
+            Stage stage = (Stage) buscarCliente.getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle(title);
         } catch (IOException e) {
