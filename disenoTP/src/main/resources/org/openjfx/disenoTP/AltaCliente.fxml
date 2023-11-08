@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="121.0" layoutY="-123.0" prefHeight="701.0" prefWidth="1287.0">
+         <children>
+            <Label layoutX="-100.0" layoutY="141.0" text="Alta Cliente">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Label>
+            <Label layoutX="-58.0" layoutY="269.0" text="Apellido(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="117.0" layoutY="269.0" text="Nombre(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="292.0" layoutY="269.0" text="Tipo de documento(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="468.0" layoutY="269.0" text="Número de documento(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="815.0" layoutY="267.0" text="Sexo(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="634.0" layoutY="328.0" text="Fecha de nacimiento(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField layoutX="-58.0" layoutY="289.0" />
+            <TextField layoutX="117.0" layoutY="289.0" />
+            <ComboBox layoutX="292.0" layoutY="289.0" prefWidth="150.0" />
+            <TextField layoutX="468.0" layoutY="289.0" />
+            <DatePicker layoutX="634.0" layoutY="348.0" prefHeight="25.0" prefWidth="152.0" />
+            <Label layoutX="653.0" layoutY="269.0" text="CUIL(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField layoutX="640.0" layoutY="287.0" />
+            <ComboBox layoutX="815.0" layoutY="287.0" prefWidth="150.0" />
+            <Label layoutX="63.0" layoutY="241.0" />
+            <TextField layoutX="112.0" layoutY="436.0" />
+            <TextField layoutX="291.0" layoutY="436.0" />
+            <TextField layoutX="470.0" layoutY="435.0" />
+            <ComboBox layoutX="644.0" layoutY="437.0" prefWidth="150.0" />
+            <ComboBox layoutX="815.0" layoutY="436.0" prefWidth="150.0" />
+            <ComboBox layoutX="989.0" layoutY="437.0" prefWidth="150.0" />
+            <Label layoutX="115.0" layoutY="416.0" text="Número(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="296.0" layoutY="416.0" text="Piso">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="466.0" layoutY="416.0" text="Depto">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="647.0" layoutY="414.0" text="Pais(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="986.0" layoutY="415.0" text="Localidad(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="821.0" layoutY="413.0" text="Provincia(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox layoutX="-61.0" layoutY="348.0" prefWidth="150.0" />
+            <TextField layoutX="117.0" layoutY="348.0" />
+            <Label layoutX="117.0" layoutY="328.0" text="Correo electrónico(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox layoutX="290.0" layoutY="348.0" prefWidth="150.0" />
+            <Label layoutX="292.0" layoutY="328.0" text="Estado civil(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="462.0" layoutY="328.0" text="Profesion(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField layoutX="462.0" layoutY="348.0" />
+            <Label layoutX="-85.0" layoutY="204.0" opacity="0.75" text="Los campos etiquetados con (*) son obligatorios" />
+            <Label layoutX="427.0" layoutY="240.0" text="Datos personales y tributarios" />
+            <TextField layoutX="-71.0" layoutY="436.0" />
+            <Label layoutX="-55.0" layoutY="327.0" text="Condicion de IVA(*)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="447.0" layoutY="394.0" text="Datos de residencia" />
+            <Button layoutX="1170.0" layoutY="633.0" mnemonicParsing="false" text="Salir" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="59.0" layoutY="289.0" text="Calle(*)">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="58.0" layoutY="365.0" mnemonicParsing="false" text="Dar de alta cliente" />
+      <Button layoutX="36.0" layoutY="513.0" mnemonicParsing="false" text="Volver atras" />
+   </children>
+</AnchorPane>
