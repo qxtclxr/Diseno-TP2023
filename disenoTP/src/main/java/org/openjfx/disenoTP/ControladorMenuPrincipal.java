@@ -21,10 +21,10 @@ public class ControladorMenuPrincipal {
     private AnchorPane panelBase;
 	@FXML
 	void altaPolizaCliqueado(ActionEvent evento) throws IOException{
-		Parent root = FXMLLoader.load((getClass().getResource("MenuPrincipal.fxml")));
+		Parent root = FXMLLoader.load((getClass().getResource("PantallaCuotasYMontoTotal.fxml")));
     	
     	Stage window = (Stage)altaPoliza.getScene().getWindow();
-    	window.setTitle("AltaPoliza");
+    	window.setTitle("Cuotas");
     	window.setScene(new Scene(root));
 	}
 	
