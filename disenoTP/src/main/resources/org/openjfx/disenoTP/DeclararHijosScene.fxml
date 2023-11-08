@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="432.0" prefWidth="768.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="-85.0" layoutY="-152.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 10;">
+         <children>
+            <Label layoutX="112.0" layoutY="164.0" text="Declarar Hijos">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="31.0" layoutY="48.0" opacity="0.75" text="Declarar una cantidad de hijos de entre 18 y 30 años" />
+      <Label layoutX="26.0" layoutY="78.0" text="Fecha de nacimiento">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <DatePicker layoutX="23.0" layoutY="95.0" />
+      <ComboBox layoutX="228.0" layoutY="95.0" prefWidth="150.0" />
+      <Label layoutX="228.0" layoutY="78.0" text="Sexo">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="412.0" layoutY="95.0" prefWidth="150.0" />
+      <Label layoutX="412.0" layoutY="78.0" text="Estado Civil">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="603.0" layoutY="95.0" mnemonicParsing="false" text="Agregar Hijo" />
+      <Label layoutX="18.0" layoutY="128.0" text="Hijos Declarados">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView layoutX="80.0" layoutY="155.0" prefHeight="223.0" prefWidth="596.0">
+        <columns>
+          <TableColumn prefWidth="39.0" />
+          <TableColumn prefWidth="185.0" text="Nombre" />
+            <TableColumn prefWidth="185.0" text="Sexo" />
+            <TableColumn prefWidth="185.0" text="Estado Civil" />
+        </columns>
+      </TableView>
+      <Button layoutX="22.0" layoutY="393.0" mnemonicParsing="false" text="Volver atras" />
+   </children>
+</AnchorPane>
