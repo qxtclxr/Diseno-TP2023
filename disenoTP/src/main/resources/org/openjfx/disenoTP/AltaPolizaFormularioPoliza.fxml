@@ -17,18 +17,17 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Separator layoutY="112.0" prefHeight="10.0" prefWidth="1280.0" />
+            <Separator layoutY="112.0" prefHeight="10.0" prefWidth="1280.0" AnchorPane.topAnchor="112.0" />
             <Text layoutX="14.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alta de pólizas" AnchorPane.topAnchor="42.0">
                <font>
-                  <Font name="Roboto Bold" size="60.0" />
+                  <Font name="Franklin Gothic Demi" size="60.0" />
                </font>
             </Text>
-            <TableView layoutX="14.0" layoutY="171.0" AnchorPane.bottomAnchor="494.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="174.0">
+            <TableView layoutX="14.0" layoutY="171.0" prefHeight="50.0" AnchorPane.bottomAnchor="494.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="174.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Número de cliente" />
                 <TableColumn prefWidth="75.0" text="Apellido" />
@@ -46,17 +45,17 @@
             </TableView>
             <Text layoutX="14.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente seleccionado" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="140.0">
                <font>
-                  <Font name="Roboto Bold" size="20.0" />
+                  <Font name="Franklin Gothic Demi" size="20.0" />
                </font>
             </Text>
             <Text layoutX="145.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese los datos de la póliza" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="251.0">
                <font>
-                  <Font name="Roboto Bold" size="32.0" />
+                  <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <Text fill="RED" layoutX="14.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*) Campo obligatorio">
+            <Text fill="RED" layoutX="14.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*) Campo obligatorio" AnchorPane.topAnchor="288.0">
                <font>
-                  <Font name="Roboto Italic" size="13.0" />
+                  <Font name="Franklin Gothic Medium Italic" size="13.0" />
                </font>
             </Text>
             <ComboBox layoutX="14.0" layoutY="360.0" prefWidth="180.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="357.0" />
@@ -72,29 +71,29 @@
             <TextField layoutX="550.0" layoutY="533.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <Button layoutX="1086.0" layoutY="533.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTRE-LEFT;" text="Declarar hijos">
                <font>
-                  <Font name="Roboto Bold" size="13.0" />
+                  <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
             <VBox layoutX="818.0" layoutY="533.0" prefHeight="151.0" prefWidth="180.0">
                <children>
                   <CheckBox mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Se guarda en garage?">
                      <font>
-                        <Font name="Roboto" size="13.0" />
+                        <Font name="Franklin Gothic Medium" size="13.0" />
                      </font>
                   </CheckBox>
                   <CheckBox mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Tiene alarma?">
                      <font>
-                        <Font name="Roboto" size="13.0" />
+                        <Font name="Franklin Gothic Medium" size="13.0" />
                      </font>
                   </CheckBox>
                   <CheckBox mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee dispositivo de rastreo vehicular?" wrapText="true">
                      <font>
-                        <Font name="Roboto" size="13.0" />
+                        <Font name="Franklin Gothic Medium" size="13.0" />
                      </font>
                   </CheckBox>
                   <CheckBox mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee tuercas en las cuatro ruedas?" wrapText="true">
                      <font>
-                        <Font name="Roboto" size="13.0" />
+                        <Font name="Franklin Gothic Medium" size="13.0" />
                      </font>
                   </CheckBox>
                </children>
@@ -103,12 +102,12 @@
                <children>
                   <Label text="Domicilio de riesgo">
                      <font>
-                        <Font name="Roboto Bold" size="15.0" />
+                        <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>
                   </Label>
                   <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)">
                      <font>
-                        <Font name="Roboto" size="15.0" />
+                        <Font name="Franklin Gothic Medium" size="15.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -120,12 +119,12 @@
                <children>
                   <Label text="Motor">
                      <font>
-                        <Font name="Roboto Bold" size="15.0" />
+                        <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>
                   </Label>
                   <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)">
                      <font>
-                        <Font name="Roboto" size="15.0" />
+                        <Font name="Franklin Gothic Medium" size="15.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -137,12 +136,12 @@
                <children>
                   <Label text="Chasis">
                      <font>
-                        <Font name="Roboto Bold" size="15.0" />
+                        <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>
                   </Label>
                   <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)">
                      <font>
-                        <Font name="Roboto" size="15.0" />
+                        <Font name="Franklin Gothic Medium" size="15.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -154,7 +153,7 @@
                <children>
                   <Label text="Patente del vehiculo">
                      <font>
-                        <Font name="Roboto Bold" size="15.0" />
+                        <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>
                   </Label>
                </children>
@@ -163,7 +162,7 @@
                <children>
                   <Label text="Medidas de seguridad">
                      <font>
-                        <Font name="Roboto Bold" size="15.0" />
+                        <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>
                   </Label>
                </children>
@@ -172,7 +171,7 @@
                <children>
                   <Label text="¿Hijos entre 18 y 30 años?">
                      <font>
-                        <Font name="Roboto Bold" size="15.0" />
+                        <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>
                   </Label>
                </children>
@@ -181,12 +180,12 @@
                <children>
                   <Label prefWidth="157.0" text="Marca, modelo y año del vehiculo" wrapText="true">
                      <font>
-                        <Font name="Roboto Bold" size="15.0" />
+                        <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>
                   </Label>
-                  <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)" wrappingWidth="16.8017578125">
+                  <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)" wrappingWidth="18.8017578125">
                      <font>
-                        <Font name="Roboto" size="15.0" />
+                        <Font name="Franklin Gothic Medium" size="15.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -198,7 +197,7 @@
                <children>
                   <Label text="Suma asegurada">
                      <font>
-                        <Font name="Roboto Bold" size="15.0" />
+                        <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>
                   </Label>
                </children>
@@ -207,12 +206,12 @@
                <children>
                   <Label prefHeight="45.0" prefWidth="158.0" text="Kilometros realizados por año" wrapText="true">
                      <font>
-                        <Font name="Roboto Bold" size="15.0" />
+                        <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>
                   </Label>
                   <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)">
                      <font>
-                        <Font name="Roboto" size="15.0" />
+                        <Font name="Franklin Gothic Medium" size="15.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -224,12 +223,12 @@
                <children>
                   <Label text="Número de siniestros en el último año" wrapText="true">
                      <font>
-                        <Font name="Roboto Bold" size="15.0" />
+                        <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>
                   </Label>
                   <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)">
                      <font>
-                        <Font name="Roboto" size="15.0" />
+                        <Font name="Franklin Gothic Medium" size="15.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="5.0" />
