@@ -1,4 +1,4 @@
-package tp.gui;
+package tp.gui.inicio;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class ControladorIngresoSistema {
+public class IngresoSistemaController {
 	
 	@FXML
 	private Button ingresoProductorButton;

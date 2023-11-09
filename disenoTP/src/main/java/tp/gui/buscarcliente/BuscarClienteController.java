@@ -1,4 +1,4 @@
-package tp.gui;
+package tp.gui.buscarcliente;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class ControladorBuscarCliente {
+public class BuscarClienteController {
 		@FXML
 	    private Button confirmarButton;
 	    @FXML
@@ -20,7 +20,7 @@ public class ControladorBuscarCliente {
 
 	    @FXML
 	    private void handleExit(ActionEvent event) throws IOException {
-	    	Parent root = FXMLLoader.load((getClass().getResource("AltaPolizaPantalla1.fxml")));
+	    	Parent root = FXMLLoader.load((getClass().getResource("../altapoliza/AltaPolizaInicio.fxml")));
 	    	
 	    	Stage window = (Stage)exitButton.getScene().getWindow();
 	    	window.setTitle("Alta de poliza");

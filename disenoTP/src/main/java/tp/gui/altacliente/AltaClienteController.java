@@ -1,4 +1,4 @@
-package tp.gui;
+package tp.gui.altacliente;
 
 public class AltaClienteController {
 

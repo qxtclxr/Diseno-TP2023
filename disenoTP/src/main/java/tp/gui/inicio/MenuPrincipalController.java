@@ -1,4 +1,4 @@
-package tp.gui;
+package tp.gui.inicio;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ControladorMenuPrincipal {
+public class MenuPrincipalController {
 
 	@FXML
 	private Button altaPoliza;
@@ -21,7 +21,7 @@ public class ControladorMenuPrincipal {
     private AnchorPane panelBase;
 	@FXML
 	void altaPolizaCliqueado(ActionEvent evento) throws IOException{
-		Parent root = FXMLLoader.load((getClass().getResource("AltaPolizaPantalla1.fxml")));
+		Parent root = FXMLLoader.load((getClass().getResource("../altapoliza/AltaPolizaInicio.fxml")));
     	
     	Stage window = (Stage)altaPoliza.getScene().getWindow();
     	window.setTitle("Cuotas");

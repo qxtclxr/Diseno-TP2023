@@ -1,4 +1,4 @@
-package tp.gui;
+package tp.gui.altapoliza;
 
 public class DeclararHijosController {
 

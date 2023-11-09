@@ -1,4 +1,4 @@
-package tp.gui;
+package tp.gui.altapoliza;
 
 import java.io.IOException;
 
@@ -10,12 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class ControladorPanelCuotas {
+public class VerCuotasController {
 	@FXML
 	private Button volverAtras;
 	@FXML
 	void volverAtrasCliqueado(ActionEvent evento) throws IOException {
-		Parent root = FXMLLoader.load((getClass().getResource("MenuPrincipal.fxml")));
+		Parent root = FXMLLoader.load((getClass().getResource("../inicio/MenuPrincipal.fxml")));
     	
     	Stage window = (Stage)volverAtras.getScene().getWindow();
     	window.setTitle("MenuPrincipal");

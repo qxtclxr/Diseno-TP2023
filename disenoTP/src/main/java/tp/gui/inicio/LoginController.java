@@ -1,4 +1,4 @@
-package tp.gui;
+package tp.gui.inicio;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class ControladorLogin {
+public class LoginController {
 	@FXML
 	private Button acceder;
 
