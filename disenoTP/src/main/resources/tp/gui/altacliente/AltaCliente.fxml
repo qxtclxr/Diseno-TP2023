@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="680.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.gui.altacliente.AltaClienteController">
    <children>
-      <AnchorPane layoutX="121.0" layoutY="-123.0" prefHeight="680.0" prefWidth="1280.0">
+      <AnchorPane layoutX="121.0" layoutY="-123.0" onMouseClicked="#holaMundo" prefHeight="680.0" prefWidth="1280.0">
          <children>
             <Label layoutX="-100.0" layoutY="141.0" text="Alta Cliente">
                <font>
@@ -131,7 +131,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="58.0" layoutY="365.0" mnemonicParsing="false" text="Dar de alta cliente" />
+      <Button fx:id="darDeAltaCliente" layoutX="58.0" layoutY="365.0" mnemonicParsing="false" onMouseClicked="#holaMundo" text="Dar de alta cliente" />
       <Button layoutX="36.0" layoutY="513.0" mnemonicParsing="false" text="Volver atras" />
       <TextField layoutX="58.0" layoutY="171.0" />
    </children>
