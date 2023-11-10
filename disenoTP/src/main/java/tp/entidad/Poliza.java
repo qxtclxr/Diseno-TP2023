@@ -1,12 +1,13 @@
 package tp.entidad;
 
 import java.time.LocalDateTime;
+import tp.entidad.*;
 
 import jakarta.persistence.*;
 
 
 @Entity
-@Table(name="Poliza")
+@Table(name="poliza")
 
 public class Poliza {
 	
@@ -39,6 +40,11 @@ public class Poliza {
 	@Column(nullable = false)
 	private LocalDateTime fechaEmision;
 	
+	
+	//Relaciones
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Cliente cliente;
 	
 	public Poliza() {
 		

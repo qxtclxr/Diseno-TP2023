@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import tp.dao.PolizaDAO;
+import tp.entidad.Poliza;
 
 public class App extends Application {
     
@@ -17,6 +19,12 @@ public class App extends Application {
 	private static BorderPane mainFrame;
 	
     public static void main(String[] args) {
+    	System.out.println("ho");
+    	/*PolizaDAO p = new PolizaDAO();
+    	
+    	p.saveInstance(new Poliza());
+    	*/
+    	PolizaDAO p = new PolizaDAO();
         launch();
     }
 

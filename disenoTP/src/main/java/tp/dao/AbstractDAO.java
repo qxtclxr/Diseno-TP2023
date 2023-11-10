@@ -16,7 +16,7 @@ public abstract class AbstractDAO<T> implements DAO<T> {
 	
 	@Override
 	public Optional<T> getById(Long id) {
-		return Optional.ofNullable(entityManager.find(clase, id));
+		return Optional.ofNullable(entityManager.find(clase, id)); //ver de cambiar por elsethrow
 	}
 
 	@Override
