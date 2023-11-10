@@ -59,7 +59,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="67.0" layoutY="674.0" mnemonicParsing="false" text="Confirmar" />
+            <Button fx:id="confirmarButton" layoutX="67.0" layoutY="674.0" mnemonicParsing="false" onAction="#confirmarCliqueado" text="Confirmar" />
             <Button fx:id="exitButton" layoutX="175.0" layoutY="674.0" mnemonicParsing="false" onAction="#handleExit" text="Cancelar" />
          </children>
       </AnchorPane>
