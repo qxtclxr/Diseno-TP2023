@@ -1,4 +1,4 @@
-package utiles;
+package tp.util;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

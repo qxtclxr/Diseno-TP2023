@@ -1,14 +1,47 @@
 package tp.entidad;
 
-import java.util.*;
+import java.time.LocalDateTime;
+
+import jakarta.persistence.*;
+
+
+@Entity
+@Table(name="Poliza")
 
 public class Poliza {
-	private String nroPoliza;
-	private float sumaAsegurada;
-	private Date fechaInicio;
-	private Date fechaFin;
-	private Date fechaEmision;
-	private float premio;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="idPoliza")
+	private int idPoliza;
+	
+	@Column(nullable = false, unique = true)
+	private String nroPoliza; ///este puede ser un natural id
+	
+	@Column(nullable = false)
+	private Float sumaAsegurada;
+
+	@Column(nullable = false)
+	private LocalDateTime fechaInicio;
+	
+	@Column(nullable = false)
+	private LocalDateTime fechaFin;
+	
+	@Column(nullable = false)
 	private EstadoPoliza estado;
-	private TipoPoliza tipo;
+	
+	@Column(nullable = false)
+	private Float premio;/// Este hay que chequearlo
+	
+	@Column(nullable = false)
+	private TipoPoliza tipoPoliza;/// Este hay que chequearlo
+	
+	@Column(nullable = false)
+	private LocalDateTime fechaEmision;
+	
+	
+	public Poliza() {
+		
+	}
+	
 }
