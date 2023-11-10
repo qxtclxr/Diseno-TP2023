@@ -43,6 +43,7 @@ public class Poliza {
 	//Relaciones
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_cliente", foreignKey= @ForeignKey(name ="POLIZA_CLIENTE_FK"))
 	private Cliente cliente;
 	
 	public Poliza() {

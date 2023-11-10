@@ -3,6 +3,7 @@ package tp.dao;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
+import tp.dao.*;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;

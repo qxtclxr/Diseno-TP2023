@@ -63,7 +63,7 @@ public class Cliente {
 	
 	//Relaciones
 	
-	@OneToMany
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="cliente",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Poliza> polizas;
 	
 	@OneToOne
@@ -71,7 +71,7 @@ public class Cliente {
 	private Domicilio domicilio;
 	
 	public Cliente(){
-		
+		super();
 	}
 	
 	
