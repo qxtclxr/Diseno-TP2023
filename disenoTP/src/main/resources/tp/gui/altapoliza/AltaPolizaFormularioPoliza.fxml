@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.gui.altapoliza.AltaPolizaFormularioPolizaController">
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="1280.0">
          <children>
@@ -69,7 +69,7 @@
             <TextField layoutX="14.0" layoutY="533.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField layoutX="282.0" layoutY="533.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField layoutX="550.0" layoutY="533.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
-            <Button layoutX="1086.0" layoutY="533.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTRE-LEFT;" text="Declarar hijos">
+            <Button layoutX="1086.0" layoutY="533.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTER-LEFT;" text="Declarar hijos">
                <font>
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
@@ -236,17 +236,17 @@
                   </Text>
                </children>
             </HBox>
-            <Button layoutX="14.0" layoutY="667.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTRE-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar" AnchorPane.topAnchor="643.0">
+            <Button fx:id="confimarButton" layoutX="14.0" layoutY="667.0" mnemonicParsing="false" onAction="#confirmarClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar" AnchorPane.topAnchor="643.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="166.0" layoutY="643.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTRE-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
+            <Button fx:id="atrasButton" layoutX="166.0" layoutY="643.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="1131.0" layoutY="643.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTRE-LEFT; -fx-background-color: CF2A27; -fx-border-color: gray;" text="Salir" textFill="WHITE">
+            <Button fx:id="salirButton" layoutX="1131.0" layoutY="643.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: CF2A27; -fx-border-color: gray;" text="Salir" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

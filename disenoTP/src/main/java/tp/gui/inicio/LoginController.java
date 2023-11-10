@@ -5,7 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import tp.app.App;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -16,10 +19,9 @@ public class LoginController {
 
 	@FXML
 	void accederCliqueado(ActionEvent evento) throws IOException {
-		Parent root = FXMLLoader.load((getClass().getResource("MenuPrincipal.fxml")));
-    	
-    	Stage window = (Stage)acceder.getScene().getWindow();
-    	window.setTitle("Menu principal");
-    	window.setScene(new Scene(root));
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("MenuPrincipal.fxml"));
+		Pane menuPrincipal = loader.load();
+		App.switchScreenTo(menuPrincipal);
 	}
 }

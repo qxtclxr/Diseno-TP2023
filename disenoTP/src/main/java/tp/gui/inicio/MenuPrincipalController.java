@@ -8,8 +8,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import tp.app.App;
 
 public class MenuPrincipalController {
 
@@ -19,13 +22,13 @@ public class MenuPrincipalController {
 	private Button salir;
 	@FXML
     private AnchorPane panelBase;
+	
 	@FXML
 	void altaPolizaCliqueado(ActionEvent evento) throws IOException{
-		Parent root = FXMLLoader.load((getClass().getResource("../altapoliza/AltaPolizaInicio.fxml")));
-    	
-    	Stage window = (Stage)altaPoliza.getScene().getWindow();
-    	window.setTitle("Cuotas");
-    	window.setScene(new Scene(root));
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaInicio.fxml"));
+		SplitPane altaPoliza = loader.load();
+		App.switchScreenTo(altaPoliza);
 	}
 	
 	@FXML

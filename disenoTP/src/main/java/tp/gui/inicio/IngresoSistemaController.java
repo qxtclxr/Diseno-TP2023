@@ -8,7 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import tp.app.App;
 
 public class IngresoSistemaController {
 	
@@ -17,11 +19,10 @@ public class IngresoSistemaController {
 	
 	@FXML
 	void ingresoProductorCliqueado(ActionEvent evento) throws IOException{
-		Parent root = FXMLLoader.load((getClass().getResource("Login.fxml")));
-    	
-    	Stage window = (Stage)ingresoProductorButton.getScene().getWindow();
-    	window.setTitle("Ingrese sus datos de acceso");
-    	window.setScene(new Scene(root));
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("Login.fxml"));
+		AnchorPane login = loader.load();
+		App.switchScreenTo(login);
 	}
 	
 }
