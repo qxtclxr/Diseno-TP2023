@@ -3,7 +3,7 @@ package tp.entidad;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-
+import tp.entidad.*;
 import jakarta.persistence.*;
 
 @Entity

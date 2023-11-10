@@ -19,15 +19,15 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.gui.altapoliza.AltaPolizaFormularioPolizaController">
    <children>
-      <AnchorPane prefHeight="720.0" prefWidth="1280.0">
+      <AnchorPane prefHeight="680.0" prefWidth="1280.0">
          <children>
-            <Separator layoutY="112.0" prefHeight="10.0" prefWidth="1280.0" AnchorPane.topAnchor="112.0" />
-            <Text layoutX="14.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alta de pólizas" AnchorPane.topAnchor="42.0">
+            <Separator layoutY="82.0" prefHeight="10.0" prefWidth="1280.0" AnchorPane.topAnchor="82.0" />
+            <Text layoutX="14.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alta de pólizas" AnchorPane.topAnchor="14.009765625">
                <font>
                   <Font name="Franklin Gothic Demi" size="60.0" />
                </font>
             </Text>
-            <TableView layoutX="14.0" layoutY="171.0" prefHeight="50.0" AnchorPane.bottomAnchor="494.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="174.0">
+            <TableView layoutX="15.0" layoutY="145.0" prefHeight="50.0" prefWidth="1252.0" AnchorPane.bottomAnchor="489.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="145.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Número de cliente" />
                 <TableColumn prefWidth="75.0" text="Apellido" />
@@ -43,38 +43,38 @@
                   <Blend />
                </effect>
             </TableView>
-            <Text layoutX="14.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente seleccionado" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="140.0">
+            <Text layoutX="13.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente seleccionado" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="114.669921875">
                <font>
                   <Font name="Franklin Gothic Demi" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="145.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese los datos de la póliza" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="251.0">
+            <Text layoutX="13.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese los datos de la póliza" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="238.671875">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <Text fill="RED" layoutX="14.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*) Campo obligatorio" AnchorPane.topAnchor="288.0">
+            <Text fill="RED" layoutX="13.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*) Campo obligatorio" AnchorPane.topAnchor="275.08544921875">
                <font>
                   <Font name="Franklin Gothic Medium Italic" size="13.0" />
                </font>
             </Text>
-            <ComboBox layoutX="14.0" layoutY="360.0" prefWidth="180.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="357.0" />
-            <ComboBox layoutX="213.0" layoutY="357.0" prefWidth="180.0" AnchorPane.leftAnchor="282.0" />
-            <ComboBox layoutX="818.0" layoutY="357.0" prefWidth="180.0" AnchorPane.leftAnchor="818.0" />
-            <ComboBox layoutX="1116.0" layoutY="357.0" prefWidth="180.0" AnchorPane.rightAnchor="14.0" />
-            <TextFlow layoutX="550.0" layoutY="357.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" AnchorPane.leftAnchor="550.0" />
-            <ComboBox layoutX="14.0" layoutY="389.0" prefWidth="180.0" AnchorPane.topAnchor="393.0" />
-            <ComboBox layoutX="282.0" layoutY="393.0" prefWidth="180.0" />
-            <ComboBox layoutX="282.0" layoutY="418.0" prefWidth="180.0" AnchorPane.topAnchor="429.0" />
-            <TextField layoutX="14.0" layoutY="533.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
-            <TextField layoutX="282.0" layoutY="533.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
-            <TextField layoutX="550.0" layoutY="533.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
-            <Button layoutX="1086.0" layoutY="533.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTER-LEFT;" text="Declarar hijos">
+            <ComboBox layoutX="13.0" layoutY="345.0" prefWidth="180.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="345.0" />
+            <ComboBox layoutX="281.0" layoutY="345.0" prefWidth="180.0" AnchorPane.leftAnchor="281.0" />
+            <ComboBox layoutX="819.0" layoutY="345.0" prefWidth="180.0" AnchorPane.leftAnchor="819.0" AnchorPane.topAnchor="345.0" />
+            <ComboBox layoutX="1087.0" layoutY="345.0" prefWidth="180.0" AnchorPane.rightAnchor="13.0" />
+            <TextFlow layoutX="549.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" AnchorPane.leftAnchor="549.0" AnchorPane.topAnchor="345.0" />
+            <ComboBox layoutX="13.0" layoutY="381.0" prefWidth="180.0" AnchorPane.topAnchor="381.0" />
+            <ComboBox layoutX="281.0" layoutY="381.0" prefWidth="180.0" />
+            <ComboBox layoutX="281.0" layoutY="417.0" prefWidth="180.0" AnchorPane.topAnchor="417.0" />
+            <TextField layoutX="13.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
+            <TextField layoutX="281.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
+            <TextField layoutX="549.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
+            <Button layoutX="1087.0" layoutY="521.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTER-LEFT;" text="Declarar hijos">
                <font>
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
-            <VBox layoutX="818.0" layoutY="533.0" prefHeight="151.0" prefWidth="180.0">
+            <VBox layoutX="819.0" layoutY="521.0" prefHeight="151.0" prefWidth="180.0">
                <children>
                   <CheckBox mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Se guarda en garage?">
                      <font>
@@ -98,7 +98,7 @@
                   </CheckBox>
                </children>
             </VBox>
-            <HBox layoutX="14.0" layoutY="329.0" prefHeight="19.0" prefWidth="180.0">
+            <HBox layoutX="13.0" layoutY="317.0" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <Label text="Domicilio de riesgo">
                      <font>
@@ -115,7 +115,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox layoutX="14.0" layoutY="502.0" prefHeight="19.0" prefWidth="180.0">
+            <HBox layoutX="13.0" layoutY="490.0" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <Label text="Motor">
                      <font>
@@ -132,7 +132,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox layoutX="282.0" layoutY="502.0" prefHeight="19.0" prefWidth="180.0">
+            <HBox layoutX="281.0" layoutY="490.0" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <Label text="Chasis">
                      <font>
@@ -149,7 +149,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox layoutX="550.0" layoutY="502.0" prefHeight="19.0" prefWidth="180.0">
+            <HBox layoutX="549.0" layoutY="490.0" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <Label text="Patente del vehiculo">
                      <font>
@@ -158,7 +158,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="818.0" layoutY="502.0" prefHeight="19.0" prefWidth="180.0">
+            <HBox layoutX="819.0" layoutY="490.0" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <Label text="Medidas de seguridad">
                      <font>
@@ -167,7 +167,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="1086.0" layoutY="502.0" prefHeight="19.0" prefWidth="180.0">
+            <HBox layoutX="1087.0" layoutY="490.0" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <Label text="¿Hijos entre 18 y 30 años?">
                      <font>
@@ -176,7 +176,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="282.0" layoutY="309.0" prefHeight="40.0" prefWidth="180.0">
+            <HBox layoutX="281.0" layoutY="297.0" prefHeight="40.0" prefWidth="180.0">
                <children>
                   <Label prefWidth="157.0" text="Marca, modelo y año del vehiculo" wrapText="true">
                      <font>
@@ -193,7 +193,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox layoutX="550.0" layoutY="329.0" prefHeight="19.0" prefWidth="180.0">
+            <HBox layoutX="549.0" layoutY="317.0" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <Label text="Suma asegurada">
                      <font>
@@ -202,7 +202,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="818.0" layoutY="309.0" prefHeight="40.0" prefWidth="180.0">
+            <HBox layoutX="819.0" layoutY="297.0" prefHeight="40.0" prefWidth="180.0">
                <children>
                   <Label prefHeight="45.0" prefWidth="158.0" text="Kilometros realizados por año" wrapText="true">
                      <font>
@@ -219,7 +219,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox layoutX="1086.0" layoutY="309.0" prefHeight="40.0" prefWidth="180.0">
+            <HBox layoutX="1087.0" layoutY="297.0" prefHeight="40.0" prefWidth="180.0">
                <children>
                   <Label text="Número de siniestros en el último año" wrapText="true">
                      <font>
@@ -236,17 +236,17 @@
                   </Text>
                </children>
             </HBox>
-            <Button fx:id="confimarButton" layoutX="14.0" layoutY="667.0" mnemonicParsing="false" onAction="#confirmarClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar" AnchorPane.topAnchor="643.0">
+            <Button fx:id="confimarButton" layoutX="13.0" layoutY="635.0" mnemonicParsing="false" onAction="#confirmarClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar" AnchorPane.topAnchor="635.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="atrasButton" layoutX="166.0" layoutY="643.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
+            <Button fx:id="atrasButton" layoutX="168.0" layoutY="635.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="salirButton" layoutX="1131.0" layoutY="643.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: CF2A27; -fx-border-color: gray;" text="Salir" textFill="WHITE">
+            <Button fx:id="salirButton" layoutX="1132.0" layoutY="635.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: CF2A27; -fx-border-color: gray;" text="Salir" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

@@ -2,7 +2,6 @@ package tp.entidad;
 
 import java.time.LocalDateTime;
 import tp.entidad.*;
-
 import jakarta.persistence.*;
 
 
