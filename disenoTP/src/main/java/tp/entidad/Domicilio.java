@@ -1,6 +1,9 @@
 package tp.entidad;
 
 
+import org.hibernate.query.sqm.FetchClauseType;
+import tp.entidad.*;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -32,6 +35,11 @@ public class Domicilio {
 	
 	@OneToOne(mappedBy="domicilio")
 	private Cliente cliente;
+	
+	@ManyToOne(fetch= FetchType.LAZY)
+	@JoinColumn(name="idLocalidad", foreignKey= @ForeignKey(name="FK_localidad_en_domicilio"))
+	private Localidad localidad;
+	//podria faltar un cascade
 	
 	
 	public Domicilio() {

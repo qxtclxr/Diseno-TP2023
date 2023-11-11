@@ -1,6 +1,7 @@
 package tp.entidad;
 
 import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import tp.entidad.*;
@@ -30,6 +31,7 @@ public class Cliente {
 	@Column(nullable = false)
 	private String nombres;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private TipoCliente tipoCliente;
 	
@@ -39,12 +41,14 @@ public class Cliente {
 	@Column(nullable = false)
 	private LocalDateTime fechaNacimiento;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private TipoIVA condicionIVA;
 	
 	@Column(nullable = false)
 	private String correoElectronico;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private EstadoCivil estadoCivil;
 	
@@ -54,6 +58,7 @@ public class Cliente {
 	@Column(nullable = false)
 	private LocalDateTime anioRegistro;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Sexo sexo;
 	

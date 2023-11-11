@@ -1,6 +1,7 @@
 package tp.app;
-
 import java.io.IOException;
+
+
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import tp.dao.PolizaDAO;
 import tp.entidad.Poliza;
+
 
 public class App extends Application {
     
@@ -25,7 +27,7 @@ public class App extends Application {
     	p.saveInstance(new Poliza());
     	*/
     	PolizaDAO p = new PolizaDAO();
-        launch();
+       launch();
     }
 
 	@Override
