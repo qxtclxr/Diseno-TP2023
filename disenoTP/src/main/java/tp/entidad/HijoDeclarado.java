@@ -24,7 +24,7 @@ public class HijoDeclarado {
 	@Column(nullable = false)
 	private EstadoCivil estadoCivil;
 	
-	@Enumerated(EnumType.STRING)
+	
 	@Column(nullable = true)
 	private String documento;
 	
@@ -32,7 +32,7 @@ public class HijoDeclarado {
 	@Column(nullable = true)
 	private TipoDocumento tipoDocumento;
 	
-	@Enumerated(EnumType.STRING)
+	
 	@Column(nullable=false)
 	private LocalDate fechaNacimiento;
 	

@@ -26,7 +26,7 @@ public class App extends Application {
     	
     	p.saveInstance(new Poliza());
     	*/
-    	//PolizaDAO p = new PolizaDAO();
+    	PolizaDAO p = new PolizaDAO();
        launch();
     }
 

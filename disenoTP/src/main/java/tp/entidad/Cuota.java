@@ -45,7 +45,7 @@ public class Cuota {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "id_pago", foreignKey= @ForeignKey(name ="PAGO_EN_CUOTA_FK"))
-	private List<Pago> pagoAsociado;
+	private Pago pagoAsociado;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_poliza", foreignKey= @ForeignKey(name ="POLIZA_EN_CUOTA_FK"))

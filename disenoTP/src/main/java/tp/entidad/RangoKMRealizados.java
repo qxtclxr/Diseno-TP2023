@@ -1,5 +1,7 @@
 package tp.entidad;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import tp.entidad.*;
 
