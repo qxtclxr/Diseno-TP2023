@@ -13,18 +13,20 @@ public class Cobertura {
 	@Column(name="idCobertura")
 	private int idCobertura;
 	
-	@Enumerated(EnumType.STRING)
+	
 	@Column(nullable = false)
-	private TipoCobertura nombre;
+	private String tipoCobertura;
 	
 	@Column
 	private String descripcion;
 	
 	//relaciones
 	
-	
+	@OneToOne
+	@JoinColumn(name="idValorActualPorcentajeCobertura")
 	private PorcentajeCobertura valorActualPorcentajeCobertura;
 	
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PorcentajeCobertura> valoresPasadosPorcentajeCobertura;
 		
 	

@@ -30,9 +30,11 @@ public class Modelo {
 	@JoinColumn(name="idMarca", foreignKey= @ForeignKey(name="FK_marca_en_modelo"))
 	private Marca marca;
 	
-	
+	@OneToOne
+	@JoinColumn(name="idValorActualPorcentajeEstadisticaRobo")
 	private PorcentajeEstadisticaRobo valorActualPorcentajeEstadisticaRobo;
 	
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PorcentajeEstadisticaRobo> valoresPasadosPorcentajeEstadisticaRobo;
 	
 	

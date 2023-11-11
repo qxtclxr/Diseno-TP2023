@@ -21,8 +21,11 @@ public class DescuentoPorUnidad {
 	
 	//relaciones
 	
+	@OneToOne
+	@JoinColumn(name="idValorActualDescPorUnidad")
 	private PorcentajeDescPorUnidad valorActualDescPorUnidad;
 	
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PorcentajeDescPorUnidad> valoresPasadosDescPorUnidad;
 	
 

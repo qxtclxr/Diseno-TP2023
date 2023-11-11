@@ -15,9 +15,11 @@ public class DerechosDeEmision {
 	
 	//relaciones
 	
-	
+	@OneToOne
+	@JoinColumn(name="idValorDerechosDeEmision")
 	private ValorDerechosDeEmision valorActualDerechosDeEmision;
 	
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<ValorDerechosDeEmision> valoresPasadosDerechosDeEmision;
 		
 	

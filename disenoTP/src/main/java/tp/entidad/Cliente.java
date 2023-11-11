@@ -72,7 +72,7 @@ public class Cliente {
 	private List<Poliza> polizas;
 	
 	@OneToOne
-	@JoinColumn
+	@JoinColumn(name="idDomicilio")
 	private Domicilio domicilio;
 	
 	public Cliente(){

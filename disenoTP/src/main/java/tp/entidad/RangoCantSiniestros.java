@@ -23,9 +23,11 @@ public class RangoCantSiniestros {
 	
 	//relaciones
 	
-	
+	@OneToOne
+	@JoinColumn(name="idValorActualPorcentajeCantSiniestros")
 	private PorcentajeCantSiniestros valorActualPorcentajeCantSiniestros;
 	
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PorcentajeCantSiniestros> valoresPasadosPorcentajeCantSiniestros;
 	
 }

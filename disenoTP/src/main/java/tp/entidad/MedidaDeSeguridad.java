@@ -16,9 +16,11 @@ public class MedidaDeSeguridad {
 	
 	//relaciones
 	
-	
+	@OneToOne
+	@JoinColumn(name="idValorActualPorcentajeMedidaDeSeguridad")
 	private PorcentajeMedidaDeSeguridad valorActualPorcentajeMedidaDeSeguridad;
 	
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PorcentajeMedidaDeSeguridad> valoresPasadosPorcentajeMedidaDeSeguridad;
 	
 }

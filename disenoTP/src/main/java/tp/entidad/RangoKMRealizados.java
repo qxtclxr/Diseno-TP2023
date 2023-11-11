@@ -22,8 +22,12 @@ public class RangoKMRealizados {
 	private long hastaKMRealizados;
 	
 	//relaciones
+	@OneToOne
+	@JoinColumn(name="idValorActualPorcentajeKMRealizados")
 	private PorcentajeKMRealizados valorActualPorcentajeKMRealizados;
 	
+	
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PorcentajeKMRealizados> valoresPasadosPorcentajeKMRealizados;
 	
 	
