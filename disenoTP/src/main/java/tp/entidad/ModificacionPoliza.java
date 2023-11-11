@@ -46,8 +46,9 @@ public class ModificacionPoliza {
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HijoDeclaradoModificacion> hijosDeclaradosModificados;
 	
-	
-	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_modificacion"))
+	private Usuario modificadoPor;
 	
 	
 	@PrePersist

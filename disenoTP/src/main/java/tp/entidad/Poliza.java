@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="poliza")
-
 public class Poliza {
 	
 	@Id
@@ -106,6 +105,7 @@ public class Poliza {
 	private List<HijoDeclarado> hijosDeclarados;
 	
 	//ver Como embeberlo
+	@Embedded
 	private Vehiculo vehiculoAsegurado;
 	
 	@OneToMany(fetch= FetchType.LAZY, mappedBy="polizaAsociada",cascade = CascadeType.ALL, orphanRemoval = true)
