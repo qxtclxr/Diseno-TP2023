@@ -2,7 +2,7 @@ package tp.dto;
 
 import tp.entidad.RangoKMRealizados;
 
-public class AjusteKmRealizadosDTO extends NoModificableDTO<RangoKMRealizados>{
+public class RangoKMRealizadosDTO extends NoModificableDTO<RangoKMRealizados>{
 	private String nombre;
 
 	@Override

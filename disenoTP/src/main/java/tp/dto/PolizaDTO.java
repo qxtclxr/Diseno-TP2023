@@ -14,11 +14,13 @@ public class PolizaDTO {
 	private List<CuotaDTO> cuotas;
 	private List<RespuestaSeguridadDTO> respuestasSeguridad;
 	private VehiculoDTO vehiculo;
-	private AjusteKmRealizadosDTO ajusteKmRealizados;
-	private CantidadSiniestrosDTO cantidadSiniestros;
+	private RangoKMRealizadosDTO rangoKMRealizados;
+	private RangoCantSiniestrosDTO cantidadSiniestros;
 	private ClienteDTO cliente;
 	private LocalidadDTO localidad;
 	private CoberturaDTO cobertura;
+	//private DerechosEmision(DTO)? derechos;
+	//private DescuentoPorUnidad(DTO)? descuentos;
 	
 	public float getSumaAsegurada() {
 		return sumaAsegurada;
@@ -68,16 +70,16 @@ public class PolizaDTO {
 	public void setVehiculo(VehiculoDTO vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-	public AjusteKmRealizadosDTO getAjusteKmRealizados() {
-		return ajusteKmRealizados;
+	public RangoKMRealizadosDTO getRangoKMRealizados() {
+		return rangoKMRealizados;
 	}
-	public void setAjusteKmRealizados(AjusteKmRealizadosDTO ajusteKmRealizados) {
-		this.ajusteKmRealizados = ajusteKmRealizados;
+	public void setRangoKMRealizados(RangoKMRealizadosDTO ajusteKmRealizados) {
+		this.rangoKMRealizados = ajusteKmRealizados;
 	}
-	public CantidadSiniestrosDTO getCantidadSiniestros() {
+	public RangoCantSiniestrosDTO getCantidadSiniestros() {
 		return cantidadSiniestros;
 	}
-	public void setCantidadSiniestros(CantidadSiniestrosDTO cantidadSiniestros) {
+	public void setCantidadSiniestros(RangoCantSiniestrosDTO cantidadSiniestros) {
 		this.cantidadSiniestros = cantidadSiniestros;
 	}
 	public ClienteDTO getCliente() {
@@ -91,6 +93,12 @@ public class PolizaDTO {
 	}
 	public void setLocalidad(LocalidadDTO localidad) {
 		this.localidad = localidad;
+	}
+	public CoberturaDTO getCobertura() {
+		return cobertura;
+	}
+	public void setCobertura(CoberturaDTO cobertura) {
+		this.cobertura = cobertura;
 	}
 	
 	

@@ -1,6 +1,13 @@
 package tp.dto;
 
-public class PaisDTO extends NoModificableDTO {
+import tp.entidad.Pais;
+
+public class PaisDTO extends NoModificableDTO<Pais> {
 	
 	private String nombre;
+
+	@Override
+	public String getText() {
+		return this.nombre;
+	}
 }

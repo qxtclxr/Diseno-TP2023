@@ -8,4 +8,35 @@ public class VehiculoDTO {
 	private String patente;
 	private Date año;
 	private ModeloDTO modelo;
+	
+	public String getMotor() {
+		return motor;
+	}
+	public void setMotor(String motor) {
+		this.motor = motor;
+	}
+	public String getChasis() {
+		return chasis;
+	}
+	public void setChasis(String chasis) {
+		this.chasis = chasis;
+	}
+	public String getPatente() {
+		return patente;
+	}
+	public void setPatente(String patente) {
+		this.patente = patente;
+	}
+	public Date getAño() {
+		return año;
+	}
+	public void setAño(Date año) {
+		this.año = año;
+	}
+	public ModeloDTO getModelo() {
+		return modelo;
+	}
+	public void setModelo(ModeloDTO modelo) {
+		this.modelo = modelo;
+	}
 }

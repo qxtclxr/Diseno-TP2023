@@ -1,6 +1,14 @@
 package tp.dto;
 
-public class MarcaDTO extends NoModificableDTO {
+import tp.entidad.Marca;
+
+public class MarcaDTO extends NoModificableDTO<Marca> {
 	private String nombre;
-	private String idMarca;
+	
+	@Override
+	public String getText() {
+		return this.nombre;
+	}
+	
+	
 }
