@@ -20,7 +20,7 @@ public abstract class AbstractDAO<T> implements DAO<T> {
 	private Class<T> clase;
 	
 	@Override
-	public Optional<T> getById(Long id) {
+	public Optional<T> getById(long id) {
 		return Optional.ofNullable(entityManager.find(clase, id)); //ver de cambiar por elsethrow
 	}
 

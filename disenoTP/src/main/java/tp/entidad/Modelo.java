@@ -2,6 +2,7 @@ package tp.entidad;
 
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.*;
 
@@ -40,6 +41,136 @@ public class Modelo {
 	
 	
 	public Modelo() {
-		
+		super();
 	}
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idModelo);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Modelo other = (Modelo) obj;
+		return idModelo == other.idModelo;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Modelo [idModelo=" + idModelo + ", nombre=" + nombre + ", descripcion=" + descripcion
+				+ ", fabricadoDesde=" + fabricadoDesde + ", fabricadoHasta=" + fabricadoHasta + ", marca=" + marca
+				+ ", valorActualPorcentajeEstadisticaRobo=" + valorActualPorcentajeEstadisticaRobo
+				+ ", valoresPasadosPorcentajeEstadisticaRobo=" + valoresPasadosPorcentajeEstadisticaRobo + "]";
+	}
+	//getters and setters
+
+
+	public long getIdModelo() {
+		return idModelo;
+	}
+
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+
+	public LocalTime getFabricadoDesde() {
+		return fabricadoDesde;
+	}
+
+
+
+	public LocalTime getFabricadoHasta() {
+		return fabricadoHasta;
+	}
+
+
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+
+
+	public PorcentajeEstadisticaRobo getValorActualPorcentajeEstadisticaRobo() {
+		return valorActualPorcentajeEstadisticaRobo;
+	}
+
+
+
+	public List<PorcentajeEstadisticaRobo> getValoresPasadosPorcentajeEstadisticaRobo() {
+		return valoresPasadosPorcentajeEstadisticaRobo;
+	}
+
+
+
+	public void setIdModelo(long idModelo) {
+		this.idModelo = idModelo;
+	}
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+
+
+	public void setFabricadoDesde(LocalTime fabricadoDesde) {
+		this.fabricadoDesde = fabricadoDesde;
+	}
+
+
+
+	public void setFabricadoHasta(LocalTime fabricadoHasta) {
+		this.fabricadoHasta = fabricadoHasta;
+	}
+
+
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
+
+
+	public void setValorActualPorcentajeEstadisticaRobo(PorcentajeEstadisticaRobo valorActualPorcentajeEstadisticaRobo) {
+		this.valorActualPorcentajeEstadisticaRobo = valorActualPorcentajeEstadisticaRobo;
+	}
+
+
+
+	public void setValoresPasadosPorcentajeEstadisticaRobo(
+			List<PorcentajeEstadisticaRobo> valoresPasadosPorcentajeEstadisticaRobo) {
+		this.valoresPasadosPorcentajeEstadisticaRobo = valoresPasadosPorcentajeEstadisticaRobo;
+	}
+	
+	
 }
