@@ -5,6 +5,7 @@ import java.util.List;
 
 
 
+
 import java.util.Optional;
 import java.util.function.Consumer;
 import tp.dao.*;
@@ -63,6 +64,9 @@ public abstract class AbstractDAO<T> implements DAO<T> {
 			t.rollback();
 			throw exep;
 		}
+	}
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 }

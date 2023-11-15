@@ -6,4 +6,5 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 	public ClienteDAO() {
 		this.setClase(Cliente.class);
 	}
+	
 }

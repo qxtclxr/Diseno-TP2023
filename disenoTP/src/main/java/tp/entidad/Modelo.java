@@ -26,6 +26,9 @@ public class Modelo {
 	@Column(nullable=false)
 	private LocalTime fabricadoHasta;
 	
+	@Column 
+	private float valor;
+	
 	//relaciones
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="idMarca", foreignKey= @ForeignKey(name="FK_marca_en_modelo"))
@@ -83,9 +86,7 @@ public class Modelo {
 
 
 
-	public String getNombre() {
-		return nombreModelo;
-	}
+
 
 
 
@@ -131,10 +132,7 @@ public class Modelo {
 
 
 
-	public void setNombre(String nombre) {
-		this.nombreModelo = nombre;
-	}
-
+	
 
 
 	public void setDescripcion(String descripcion) {
@@ -171,6 +169,31 @@ public class Modelo {
 			List<PorcentajeEstadisticaRobo> valoresPasadosPorcentajeEstadisticaRobo) {
 		this.valoresPasadosPorcentajeEstadisticaRobo = valoresPasadosPorcentajeEstadisticaRobo;
 	}
+
+
+
+	public String getNombreModelo() {
+		return nombreModelo;
+	}
+
+
+
+	public float getValor() {
+		return valor;
+	}
+
+
+
+	public void setNombreModelo(String nombreModelo) {
+		this.nombreModelo = nombreModelo;
+	}
+
+
+
+	public void setValor(float valor) {
+		this.valor = valor;
+	}
+	
 	
 	
 }
