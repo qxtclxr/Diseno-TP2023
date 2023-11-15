@@ -1,6 +1,7 @@
 package tp.entidad;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import jakarta.persistence.*;
 
@@ -11,8 +12,8 @@ public class PorcentajeMedidaDeSeguridad {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idPorcentajeMedidaDeSeguridad")
-	private int idPorcentajeMedidaDeSeguridad;
+	@Column(name="idPorcMedidaDeSeg")
+	private long idPorcentajeMedidaDeSeguridad;
 	
 	@Column(nullable=false)
 	private Float valorNumerico;
@@ -39,6 +40,66 @@ public class PorcentajeMedidaDeSeguridad {
 	
 	
 	public PorcentajeMedidaDeSeguridad() {
-		
+		super();
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(fechaModificacion, idPorcentajeMedidaDeSeguridad, valorNumerico);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PorcentajeMedidaDeSeguridad other = (PorcentajeMedidaDeSeguridad) obj;
+		return Objects.equals(fechaModificacion, other.fechaModificacion)
+				&& idPorcentajeMedidaDeSeguridad == other.idPorcentajeMedidaDeSeguridad
+				&& Objects.equals(valorNumerico, other.valorNumerico);
+	}
+
+	@Override
+	public String toString() {
+		return "PorcentajeMedidaDeSeguridad [idPorcentajeMedidaDeSeguridad=" + idPorcentajeMedidaDeSeguridad
+				+ ", valorNumerico=" + valorNumerico + ", fechaModificacion=" + fechaModificacion + ", modificadoPor="
+				+ modificadoPor + "]";
+	}
+	//getters and setters
+
+	public long getIdPorcentajeMedidaDeSeguridad() {
+		return idPorcentajeMedidaDeSeguridad;
+	}
+
+	public Float getValorNumerico() {
+		return valorNumerico;
+	}
+
+	public LocalDateTime getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public Usuario getModificadoPor() {
+		return modificadoPor;
+	}
+
+	public void setIdPorcentajeMedidaDeSeguridad(long idPorcentajeMedidaDeSeguridad) {
+		this.idPorcentajeMedidaDeSeguridad = idPorcentajeMedidaDeSeguridad;
+	}
+
+	public void setValorNumerico(Float valorNumerico) {
+		this.valorNumerico = valorNumerico;
+	}
+
+	public void setFechaModificacion(LocalDateTime fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
+	}
+
+	public void setModificadoPor(Usuario modificadoPor) {
+		this.modificadoPor = modificadoPor;
+	}
+	
 }

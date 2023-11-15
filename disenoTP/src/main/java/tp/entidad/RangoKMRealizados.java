@@ -1,6 +1,7 @@
 package tp.entidad;
 
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.*;
 import tp.entidad.*;
@@ -12,14 +13,13 @@ public class RangoKMRealizados {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idRangoKMRealizados")
-	private int idRangoKMRealizados;
+	private long idRangoKMRealizados;
 	
 	
 	@Column(nullable = false)
-	private long desdeKMRealizados;
+	private String concepto;
 	
-	@Column(nullable = false)
-	private long hastaKMRealizados;
+	
 	
 	//relaciones
 	@OneToOne
@@ -29,6 +29,94 @@ public class RangoKMRealizados {
 	
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PorcentajeKMRealizados> valoresPasadosPorcentajeKMRealizados;
+	
+	public RangoKMRealizados() {
+		super();
+	}
+
+	
+
+	
+	//setters and getters
+
+	@Override
+	public String toString() {
+		return "RangoKMRealizados [idRangoKMRealizados=" + idRangoKMRealizados + ", concepto=" + concepto
+				+ ", valorActualPorcentajeKMRealizados=" + valorActualPorcentajeKMRealizados
+				+ ", valoresPasadosPorcentajeKMRealizados=" + valoresPasadosPorcentajeKMRealizados + "]";
+	}
+
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(concepto, idRangoKMRealizados, valorActualPorcentajeKMRealizados,
+				valoresPasadosPorcentajeKMRealizados);
+	}
+
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RangoKMRealizados other = (RangoKMRealizados) obj;
+		return Objects.equals(concepto, other.concepto) && idRangoKMRealizados == other.idRangoKMRealizados
+				&& Objects.equals(valorActualPorcentajeKMRealizados, other.valorActualPorcentajeKMRealizados)
+				&& Objects.equals(valoresPasadosPorcentajeKMRealizados, other.valoresPasadosPorcentajeKMRealizados);
+	}
+
+
+
+
+	public long getIdRangoKMRealizados() {
+		return idRangoKMRealizados;
+	}
+
+	
+
+	public PorcentajeKMRealizados getValorActualPorcentajeKMRealizados() {
+		return valorActualPorcentajeKMRealizados;
+	}
+
+	public List<PorcentajeKMRealizados> getValoresPasadosPorcentajeKMRealizados() {
+		return valoresPasadosPorcentajeKMRealizados;
+	}
+
+	public void setIdRangoKMRealizados(long idRangoKMRealizados) {
+		this.idRangoKMRealizados = idRangoKMRealizados;
+	}
+
+	
+
+	public String getConcepto() {
+		return concepto;
+	}
+
+
+
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+
+
+
+
+	public void setValorActualPorcentajeKMRealizados(PorcentajeKMRealizados valorActualPorcentajeKMRealizados) {
+		this.valorActualPorcentajeKMRealizados = valorActualPorcentajeKMRealizados;
+	}
+
+	public void setValoresPasadosPorcentajeKMRealizados(List<PorcentajeKMRealizados> valoresPasadosPorcentajeKMRealizados) {
+		this.valoresPasadosPorcentajeKMRealizados = valoresPasadosPorcentajeKMRealizados;
+	}
+	
 	
 	
 }

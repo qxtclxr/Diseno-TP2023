@@ -5,6 +5,7 @@ import java.util.List;
 
 
 
+
 import java.util.Optional;
 import java.util.function.Consumer;
 import tp.dao.*;
@@ -20,7 +21,7 @@ public abstract class AbstractDAO<T> implements DAO<T> {
 	private Class<T> clase;
 	
 	@Override
-	public Optional<T> getById(Long id) {
+	public Optional<T> getById(long id) {
 		return Optional.ofNullable(entityManager.find(clase, id)); //ver de cambiar por elsethrow
 	}
 
@@ -63,6 +64,9 @@ public abstract class AbstractDAO<T> implements DAO<T> {
 			t.rollback();
 			throw exep;
 		}
+	}
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 }
