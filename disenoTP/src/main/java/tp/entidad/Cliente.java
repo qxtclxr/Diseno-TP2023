@@ -10,7 +10,7 @@ import tp.entidad.*;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="cliente")
+@Table(name="cliente",uniqueConstraints = {@UniqueConstraint(columnNames={"nroDocumento","sexo"})})
 public class Cliente {
 
 	@Id
@@ -37,7 +37,7 @@ public class Cliente {
 	@Column(nullable = false)
 	private TipoCliente tipoCliente;
 	
-	@Column(nullable = false)
+	@Column(nullable = false,unique=true)
 	private String nroCuil;
 	
 	@Column(nullable = false)

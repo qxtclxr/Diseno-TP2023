@@ -14,8 +14,8 @@ public class Modelo {
 	@Column(name="idModelo")
 	private long idModelo;
 	
-	@Column(nullable=false)
-	private String nombre;
+	@Column(nullable=false, unique=true)
+	private String nombreModelo;
 	
 	@Column(nullable=false)
 	private String descripcion;
@@ -69,7 +69,7 @@ public class Modelo {
 
 	@Override
 	public String toString() {
-		return "Modelo [idModelo=" + idModelo + ", nombre=" + nombre + ", descripcion=" + descripcion
+		return "Modelo [idModelo=" + idModelo + ", nombre=" + nombreModelo + ", descripcion=" + descripcion
 				+ ", fabricadoDesde=" + fabricadoDesde + ", fabricadoHasta=" + fabricadoHasta + ", marca=" + marca
 				+ ", valorActualPorcentajeEstadisticaRobo=" + valorActualPorcentajeEstadisticaRobo
 				+ ", valoresPasadosPorcentajeEstadisticaRobo=" + valoresPasadosPorcentajeEstadisticaRobo + "]";
@@ -84,7 +84,7 @@ public class Modelo {
 
 
 	public String getNombre() {
-		return nombre;
+		return nombreModelo;
 	}
 
 
@@ -132,7 +132,7 @@ public class Modelo {
 
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombreModelo = nombre;
 	}
 
 

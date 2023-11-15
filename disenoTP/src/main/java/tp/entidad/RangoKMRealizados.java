@@ -17,10 +17,9 @@ public class RangoKMRealizados {
 	
 	
 	@Column(nullable = false)
-	private long desdeKMRealizados;
+	private String concepto;
 	
-	@Column(nullable = false)
-	private long hastaKMRealizados;
+	
 	
 	//relaciones
 	@OneToOne
@@ -35,11 +34,29 @@ public class RangoKMRealizados {
 		super();
 	}
 
+	
+
+	
+	//setters and getters
+
+	@Override
+	public String toString() {
+		return "RangoKMRealizados [idRangoKMRealizados=" + idRangoKMRealizados + ", concepto=" + concepto
+				+ ", valorActualPorcentajeKMRealizados=" + valorActualPorcentajeKMRealizados
+				+ ", valoresPasadosPorcentajeKMRealizados=" + valoresPasadosPorcentajeKMRealizados + "]";
+	}
+
+
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(desdeKMRealizados, hastaKMRealizados, idRangoKMRealizados,
-				valorActualPorcentajeKMRealizados, valoresPasadosPorcentajeKMRealizados);
+		return Objects.hash(concepto, idRangoKMRealizados, valorActualPorcentajeKMRealizados,
+				valoresPasadosPorcentajeKMRealizados);
 	}
+
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -50,32 +67,19 @@ public class RangoKMRealizados {
 		if (getClass() != obj.getClass())
 			return false;
 		RangoKMRealizados other = (RangoKMRealizados) obj;
-		return desdeKMRealizados == other.desdeKMRealizados && hastaKMRealizados == other.hastaKMRealizados
-				&& idRangoKMRealizados == other.idRangoKMRealizados
+		return Objects.equals(concepto, other.concepto) && idRangoKMRealizados == other.idRangoKMRealizados
 				&& Objects.equals(valorActualPorcentajeKMRealizados, other.valorActualPorcentajeKMRealizados)
 				&& Objects.equals(valoresPasadosPorcentajeKMRealizados, other.valoresPasadosPorcentajeKMRealizados);
 	}
 
-	@Override
-	public String toString() {
-		return "RangoKMRealizados [idRangoKMRealizados=" + idRangoKMRealizados + ", desdeKMRealizados="
-				+ desdeKMRealizados + ", hastaKMRealizados=" + hastaKMRealizados
-				+ ", valorActualPorcentajeKMRealizados=" + valorActualPorcentajeKMRealizados
-				+ ", valoresPasadosPorcentajeKMRealizados=" + valoresPasadosPorcentajeKMRealizados + "]";
-	}
-	//setters and getters
+
+
 
 	public long getIdRangoKMRealizados() {
 		return idRangoKMRealizados;
 	}
 
-	public long getDesdeKMRealizados() {
-		return desdeKMRealizados;
-	}
-
-	public long getHastaKMRealizados() {
-		return hastaKMRealizados;
-	}
+	
 
 	public PorcentajeKMRealizados getValorActualPorcentajeKMRealizados() {
 		return valorActualPorcentajeKMRealizados;
@@ -89,13 +93,21 @@ public class RangoKMRealizados {
 		this.idRangoKMRealizados = idRangoKMRealizados;
 	}
 
-	public void setDesdeKMRealizados(long desdeKMRealizados) {
-		this.desdeKMRealizados = desdeKMRealizados;
+	
+
+	public String getConcepto() {
+		return concepto;
 	}
 
-	public void setHastaKMRealizados(long hastaKMRealizados) {
-		this.hastaKMRealizados = hastaKMRealizados;
+
+
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
 	}
+
+
+
 
 	public void setValorActualPorcentajeKMRealizados(PorcentajeKMRealizados valorActualPorcentajeKMRealizados) {
 		this.valorActualPorcentajeKMRealizados = valorActualPorcentajeKMRealizados;

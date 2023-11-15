@@ -13,7 +13,7 @@ public class Pais {
 	@Column(name="idPais")
 	private long idPais;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique=true)
 	private String nombre;
 	
 	public Pais() {

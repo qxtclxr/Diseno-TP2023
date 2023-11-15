@@ -13,6 +13,7 @@ public class MedidaDeSeguridad {
 	@Column(name="idMedidaDeSeguridad")
 	private int idMedidaDeSeguridad;
 	
+	@Column(nullable=false,unique=true)
 	private String pregunta;
 	
 	//relaciones

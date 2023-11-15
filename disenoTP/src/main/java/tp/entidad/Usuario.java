@@ -12,6 +12,12 @@ public class Usuario {
 	@Column(name="idUsuario")
 	private long idUsuario;
 	
+	@Column(nullable=false,unique=true)
+	private String nickname;
+	
+	@Column(nullable=false)
+	private String contrasenia;
+	
 	@Column(nullable=false)
 	private String nombre;
 	
@@ -96,6 +102,23 @@ public class Usuario {
 	public void setRolActual(Rol rolActual) {
 		this.rolActual = rolActual;
 	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+	
 	
 	
 	

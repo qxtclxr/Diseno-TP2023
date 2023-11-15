@@ -6,6 +6,9 @@ import java.util.Objects;
 import jakarta.persistence.*;
 @Embeddable
 public class Vehiculo {
+	/*
+	 * Ver unicidad de motor chasis patente
+	 */
 	
 	@Column(nullable=false)
 	private LocalDate anioVehiculo;

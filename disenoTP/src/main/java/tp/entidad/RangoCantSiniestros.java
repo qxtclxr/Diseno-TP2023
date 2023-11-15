@@ -17,10 +17,9 @@ public class RangoCantSiniestros {
 	
 	
 	@Column(nullable = false)
-	private int desdeCantSiniestros;
+	private String concepto;
 	
-	@Column(nullable = false)
-	private int hastaCantSiniestros;
+	
 	
 	//relaciones
 	
@@ -33,11 +32,20 @@ public class RangoCantSiniestros {
 	public RangoCantSiniestros() {
 		super();
 	}
+	
+	@Override
+	public String toString() {
+		return "RangoCantSiniestros [idRangoCantSiniestros=" + idRangoCantSiniestros + ", concepto=" + concepto
+				+ ", valorActualPorcentajeCantSiniestros=" + valorActualPorcentajeCantSiniestros
+				+ ", valoresPasadosPorcentajeCantSiniestros=" + valoresPasadosPorcentajeCantSiniestros + "]";
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(desdeCantSiniestros, hastaCantSiniestros, idRangoCantSiniestros,
-				valorActualPorcentajeCantSiniestros, valoresPasadosPorcentajeCantSiniestros);
+		return Objects.hash(concepto, idRangoCantSiniestros, valorActualPorcentajeCantSiniestros,
+				valoresPasadosPorcentajeCantSiniestros);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -47,28 +55,16 @@ public class RangoCantSiniestros {
 		if (getClass() != obj.getClass())
 			return false;
 		RangoCantSiniestros other = (RangoCantSiniestros) obj;
-		return desdeCantSiniestros == other.desdeCantSiniestros && hastaCantSiniestros == other.hastaCantSiniestros
-				&& idRangoCantSiniestros == other.idRangoCantSiniestros
+		return Objects.equals(concepto, other.concepto) && idRangoCantSiniestros == other.idRangoCantSiniestros
 				&& Objects.equals(valorActualPorcentajeCantSiniestros, other.valorActualPorcentajeCantSiniestros)
 				&& Objects.equals(valoresPasadosPorcentajeCantSiniestros, other.valoresPasadosPorcentajeCantSiniestros);
 	}
-	@Override
-	public String toString() {
-		return "RangoCantSiniestros [idRangoCantSiniestros=" + idRangoCantSiniestros + ", desdeCantSiniestros="
-				+ desdeCantSiniestros + ", hastaCantSiniestros=" + hastaCantSiniestros
-				+ ", valorActualPorcentajeCantSiniestros=" + valorActualPorcentajeCantSiniestros
-				+ ", valoresPasadosPorcentajeCantSiniestros=" + valoresPasadosPorcentajeCantSiniestros + "]";
-	}
+
 	//setters and getters
 	public long getIdRangoCantSiniestros() {
 		return idRangoCantSiniestros;
 	}
-	public int getDesdeCantSiniestros() {
-		return desdeCantSiniestros;
-	}
-	public int getHastaCantSiniestros() {
-		return hastaCantSiniestros;
-	}
+	
 	public PorcentajeCantSiniestros getValorActualPorcentajeCantSiniestros() {
 		return valorActualPorcentajeCantSiniestros;
 	}
@@ -78,12 +74,7 @@ public class RangoCantSiniestros {
 	public void setIdRangoCantSiniestros(long idRangoCantSiniestros) {
 		this.idRangoCantSiniestros = idRangoCantSiniestros;
 	}
-	public void setDesdeCantSiniestros(int desdeCantSiniestros) {
-		this.desdeCantSiniestros = desdeCantSiniestros;
-	}
-	public void setHastaCantSiniestros(int hastaCantSiniestros) {
-		this.hastaCantSiniestros = hastaCantSiniestros;
-	}
+	
 	public void setValorActualPorcentajeCantSiniestros(PorcentajeCantSiniestros valorActualPorcentajeCantSiniestros) {
 		this.valorActualPorcentajeCantSiniestros = valorActualPorcentajeCantSiniestros;
 	}
@@ -91,5 +82,14 @@ public class RangoCantSiniestros {
 			List<PorcentajeCantSiniestros> valoresPasadosPorcentajeCantSiniestros) {
 		this.valoresPasadosPorcentajeCantSiniestros = valoresPasadosPorcentajeCantSiniestros;
 	}
+
+	public String getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+	
 	
 }

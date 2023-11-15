@@ -14,8 +14,8 @@ public class Provincia {
 	private long idProvincia;
 	
 	
-	@Column(nullable = false)
-	private String nombre;
+	@Column(nullable = false,unique=true)
+	private String nombreProvincia;
 	
 	
 	//relaciones
@@ -30,7 +30,7 @@ public class Provincia {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idProvincia, nombre, pais);
+		return Objects.hash(idProvincia, nombreProvincia, pais);
 	}
 
 	@Override
@@ -42,13 +42,13 @@ public class Provincia {
 		if (getClass() != obj.getClass())
 			return false;
 		Provincia other = (Provincia) obj;
-		return idProvincia == other.idProvincia && Objects.equals(nombre, other.nombre)
+		return idProvincia == other.idProvincia && Objects.equals(nombreProvincia, other.nombreProvincia)
 				&& Objects.equals(pais, other.pais);
 	}
 
 	@Override
 	public String toString() {
-		return "Provincia [idProvincia=" + idProvincia + ", nombre=" + nombre + ", pais=" + pais + "]";
+		return "Provincia [idProvincia=" + idProvincia + ", nombre=" + nombreProvincia + ", pais=" + pais + "]";
 	}
 	//getters and setters
 
@@ -57,7 +57,7 @@ public class Provincia {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return nombreProvincia;
 	}
 
 	public Pais getPais() {
@@ -69,7 +69,7 @@ public class Provincia {
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombreProvincia = nombre;
 	}
 
 	public void setPais(Pais pais) {

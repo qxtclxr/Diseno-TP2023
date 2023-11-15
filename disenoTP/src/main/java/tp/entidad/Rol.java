@@ -21,7 +21,7 @@ public class Rol {
 	@Column(nullable=true)
 	private LocalDate fechaBaja;
 	
-	@Column(nullable=false)
+	@Column(nullable=false,unique=true)
 	private String nombreRol;
 	
 	//relaciones

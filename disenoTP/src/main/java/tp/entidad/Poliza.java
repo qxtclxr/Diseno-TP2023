@@ -11,7 +11,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="poliza")
 public class Poliza {
-	
+	/*
+	 * ver la unicidad de patente motor y chasis
+	 * 
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idPoliza")
