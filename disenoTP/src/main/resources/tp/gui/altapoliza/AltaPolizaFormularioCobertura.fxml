@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -19,7 +20,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.gui.altapoliza.AltaPolizaFormularioCoberturaController">
    <children>
-      <AnchorPane prefHeight="680.0" prefWidth="1280.0">
+      <AnchorPane layoutX="7.0" prefHeight="680.0" prefWidth="1280.0">
          <children>
             <Separator layoutY="112.0" prefHeight="10.0" prefWidth="1280.0" AnchorPane.topAnchor="112.0" />
             <Text layoutX="14.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alta de pólizas" AnchorPane.topAnchor="42.0">
@@ -58,7 +59,7 @@
                   <Font name="Franklin Gothic Medium Italic" size="13.0" />
                </font>
             </Text>
-            <Button layoutX="14.0" layoutY="667.0" mnemonicParsing="false" onAction="#confirmarClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar" AnchorPane.topAnchor="643.0">
+            <Button fx:id="confirmar" layoutX="14.0" layoutY="667.0" mnemonicParsing="false" onAction="#confirmarClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar" AnchorPane.topAnchor="643.0">
                <font>
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
@@ -88,6 +89,7 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Label>
+                  <Canvas height="200.0" width="200.0" />
                </children>
             </HBox>
             <HBox layoutX="80.0" layoutY="375.0" prefHeight="20.0" prefWidth="400.0" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="330.0">
@@ -126,7 +128,7 @@
             </HBox>
             <VBox layoutX="14.0" layoutY="350.0" prefHeight="200.0" prefWidth="400.0" spacing="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="358.0">
                <children>
-                  <RadioButton mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Responsabilidad Civil">
+                  <RadioButton fx:id="respCivil" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Responsabilidad Civil">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -137,7 +139,7 @@
                         <ToggleGroup fx:id="tipoDeCobertura" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Responsabilidad Civil + Robo o Incendio Total" toggleGroup="$tipoDeCobertura">
+                  <RadioButton fx:id="respCivilRoboIncendioTotal" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Responsabilidad Civil + Robo o Incendio Total" toggleGroup="$tipoDeCobertura">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -145,7 +147,7 @@
                         <Insets />
                      </opaqueInsets>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Todo Total" toggleGroup="$tipoDeCobertura">
+                  <RadioButton fx:id="todoTotal" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Todo Total" toggleGroup="$tipoDeCobertura">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -153,7 +155,7 @@
                         <Insets />
                      </opaqueInsets>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Terceros Completos" toggleGroup="$tipoDeCobertura">
+                  <RadioButton fx:id="tercerosCompletos" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Terceros Completos" toggleGroup="$tipoDeCobertura">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -161,7 +163,7 @@
                         <Insets />
                      </opaqueInsets>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Todo Riesgo con Franquicia" toggleGroup="$tipoDeCobertura">
+                  <RadioButton fx:id="todoRiesgoConFranquicia" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Todo Riesgo con Franquicia" toggleGroup="$tipoDeCobertura">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -171,8 +173,14 @@
                   </RadioButton>
                </children>
             </VBox>
-            <DatePicker layoutX="440.0" layoutY="358.0" prefHeight="20.0" prefWidth="400.0" AnchorPane.topAnchor="358.0" />
-            <ComboBox layoutX="866.0" layoutY="358.0" prefWidth="400.0" />
+            <DatePicker fx:id="fechaInicioVigencia" layoutX="440.0" layoutY="358.0" prefHeight="20.0" prefWidth="400.0" AnchorPane.topAnchor="358.0" />
+            <ComboBox fx:id="tipoPago" layoutX="866.0" layoutY="358.0" prefWidth="400.0" />
+            <Label fx:id="errorTipoCobertura" layoutX="22.0" layoutY="550.0" text="El campo esta incompleto" textFill="RED" visible="false" />
+            <Label layoutX="440.0" layoutY="383.0" prefHeight="49.0" prefWidth="235.0" wrapText="true" />
+            <Label fx:id="errorFechaInicioVigencia1" layoutX="440.0" layoutY="391.0" text="La fecha debe encontrarse entre:" textFill="RED" visible="false" />
+            <Label fx:id="errorFechaInicioVigencia2" layoutX="440.0" layoutY="408.0" text="-El mes actual" textFill="RED" visible="false" />
+            <Label fx:id="errorFechaInicioVigencia3" layoutX="440.0" layoutY="424.0" text="-Un mes luego del mes actual" textFill="RED" visible="false" />
+            <Label fx:id="errorTipoPago" layoutX="866.0" layoutY="391.0" text="El campo esta incompleto" textFill="RED" visible="false" />
          </children>
       </AnchorPane>
    </children>
