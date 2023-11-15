@@ -9,5 +9,4 @@ public class RangoKMRealizadosDTO extends NoModificableDTO<RangoKMRealizados>{
 	public String getText() {
 		return nombre;
 	}
-	
 }

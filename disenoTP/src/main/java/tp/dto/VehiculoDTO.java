@@ -6,7 +6,7 @@ public class VehiculoDTO {
 	private String motor;
 	private String chasis;
 	private String patente;
-	private Date año;
+	private Integer año;
 	private ModeloDTO modelo;
 	
 	public String getMotor() {
@@ -27,10 +27,10 @@ public class VehiculoDTO {
 	public void setPatente(String patente) {
 		this.patente = patente;
 	}
-	public Date getAño() {
+	public Integer getAño() {
 		return año;
 	}
-	public void setAño(Date año) {
+	public void setAño(Integer año) {
 		this.año = año;
 	}
 	public ModeloDTO getModelo() {

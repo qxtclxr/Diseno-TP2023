@@ -14,9 +14,10 @@ public class GestorCobertura {
 		return objeto;
 	}
 	
-	//TODO
 	public CoberturaDTO getDTO(Cobertura cobertura) {
 		CoberturaDTO dto = new CoberturaDTO();
+		dto.setNombre(cobertura.getNombre());
+		dto.setId(cobertura.getId());
 		return dto;
 	}
 	

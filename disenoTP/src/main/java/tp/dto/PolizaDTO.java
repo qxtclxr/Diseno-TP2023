@@ -14,7 +14,7 @@ public class PolizaDTO {
 	private List<CuotaDTO> cuotas;
 	private List<RespuestaSeguridadDTO> respuestasSeguridad;
 	private VehiculoDTO vehiculo;
-	private RangoKMRealizadosDTO rangoKMRealizados;
+	private RangoKMRealizadosDTO kmRealizados;
 	private RangoCantSiniestrosDTO cantidadSiniestros;
 	private ClienteDTO cliente;
 	private LocalidadDTO localidad;
@@ -70,11 +70,11 @@ public class PolizaDTO {
 	public void setVehiculo(VehiculoDTO vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-	public RangoKMRealizadosDTO getRangoKMRealizados() {
-		return rangoKMRealizados;
+	public RangoKMRealizadosDTO getKmRealizados() {
+		return kmRealizados;
 	}
-	public void setRangoKMRealizados(RangoKMRealizadosDTO ajusteKmRealizados) {
-		this.rangoKMRealizados = ajusteKmRealizados;
+	public void setKmRealizados(RangoKMRealizadosDTO kmRealizados) {
+		this.kmRealizados = kmRealizados;
 	}
 	public RangoCantSiniestrosDTO getCantidadSiniestros() {
 		return cantidadSiniestros;
@@ -100,6 +100,4 @@ public class PolizaDTO {
 	public void setCobertura(CoberturaDTO cobertura) {
 		this.cobertura = cobertura;
 	}
-	
-	
 }

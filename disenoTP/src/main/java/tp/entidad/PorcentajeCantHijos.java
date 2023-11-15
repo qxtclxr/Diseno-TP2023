@@ -19,7 +19,6 @@ public class PorcentajeCantHijos {
 	@Column(nullable=false)
 	private LocalDateTime fechaModificacion;
 	
-	
 	//relaciones
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)

@@ -11,5 +11,8 @@ public class ModeloDTO extends NoModificableDTO<Modelo> {
 		return this.nombre;
 	}
 	
+	public MarcaDTO getMarca() {
+		return this.marca;
+	}
 	
 }

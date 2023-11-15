@@ -27,4 +27,17 @@ public class GestorLocalizacion {
 		Pais objeto = new Pais();// = dao.getPaisById(dto.getId()).orElseThrow(/*TODO*/);
 		return objeto;
 	}
+	
+	public boolean datosObligatoriosPresentes(LocalidadDTO dto) {
+		boolean datosPresentes = dto != null;
+		if(datosPresentes==false) {
+			return false;
+		}
+		datosPresentes &= dto.getProvincia() != null;
+		if(datosPresentes == false) {
+			return false;
+		}
+		datosPresentes &= dto.getProvincia().getPais() != null;
+		return datosPresentes;
+	}
 }
