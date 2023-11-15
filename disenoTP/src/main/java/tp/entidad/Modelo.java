@@ -26,6 +26,7 @@ public class Modelo {
 	@Column(nullable=false)
 	private LocalTime fabricadoHasta;
 	
+	//ver si puede nullearse o no
 	@Column 
 	private float valor;
 	

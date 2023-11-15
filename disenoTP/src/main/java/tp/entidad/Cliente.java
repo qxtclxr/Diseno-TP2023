@@ -66,7 +66,9 @@ public class Cliente {
 	
 	@Column(nullable = false)
 	private LocalDateTime fechaModificacionEstado;
-	
+	///Ver si aca le ponemos nullable o no
+	@Column
+	private int cantSiniestrosCliente;
 	
 	//Relaciones
 	
@@ -257,6 +259,21 @@ public class Cliente {
 	public void setDomicilio(Domicilio domicilio) {
 		this.domicilio = domicilio;
 	}
+
+
+
+
+	public int getCantSiniestrosCliente() {
+		return cantSiniestrosCliente;
+	}
+
+
+
+
+	public void setCantSiniestrosCliente(int cantSiniestrosCliente) {
+		this.cantSiniestrosCliente = cantSiniestrosCliente;
+	}
+	
 	
 	
 	
