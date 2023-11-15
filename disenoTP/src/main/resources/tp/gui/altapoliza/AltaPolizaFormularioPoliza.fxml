@@ -69,7 +69,7 @@
             <TextField layoutX="13.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField layoutX="281.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField layoutX="549.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
-            <Button layoutX="1087.0" layoutY="521.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTER-LEFT;" text="Declarar hijos">
+            <Button fx:id="declararHijos" layoutX="1087.0" layoutY="521.0" mnemonicParsing="false" onAction="#declararHijosClicked" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTER-LEFT;" text="Declarar hijos">
                <font>
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
