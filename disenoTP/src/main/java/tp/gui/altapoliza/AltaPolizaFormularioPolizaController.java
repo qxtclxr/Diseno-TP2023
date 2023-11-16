@@ -1,5 +1,6 @@
 package tp.gui.altapoliza;
 
+import tp.dto.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -7,6 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javafx.scene.Scene;
 
 import javafx.stage.Modality;
@@ -20,6 +24,10 @@ import javafx.scene.layout.AnchorPane;
 import tp.app.App;
 
 public class AltaPolizaFormularioPolizaController {
+	
+	
+	
+	private PolizaDTO poliza = new PolizaDTO();
 	
 	@FXML
 	private Button declararHijos;
@@ -89,6 +97,8 @@ public class AltaPolizaFormularioPolizaController {
 		if(this.validarDatos()) {
 		
 		
+			
+			
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
     	AnchorPane form = loader.load();
@@ -118,7 +128,12 @@ public class AltaPolizaFormularioPolizaController {
 	    ventanaModal.showAndWait();
 	}
 
-	
+	private void setPolizaValuesFormulario() {
+		
+		
+		
+		
+	}
 	
 	private void setErroresFalse() {
 		errorNroDeSiniestrosUltAnio.setVisible(false);
@@ -180,22 +195,54 @@ public class AltaPolizaFormularioPolizaController {
 	
 	
 	private boolean motorFormatoCorrecto(String motor) {
-		//validamos segun formato que nos digan
-		return true;
+
+        // Definir el patrón de la expresión regular para el formato de motor de Ford
+        String patron = "^[A-Z0-9]{10,12}$";
+
+        // Compilar el patrón
+        Pattern pattern = Pattern.compile(patron);
+
+        // Crear un objeto Matcher
+        Matcher matcher = pattern.matcher(motor);
+
+        // Verificar si el número de motor cumple con el formato
+        return matcher.matches();
+		
+		
 		
 	}
 	
 	
 	private boolean chasisFormatoCorrecto(String chasis) {
-		//validamos segun formato que nos digan
-		return true;
-		
+        // Definir el patrón de la expresión regular para el formato de chasis
+        String patron = "^[A-Za-z0-9]{8,17}$";
+
+        // Compilar el patrón
+        Pattern pattern = Pattern.compile(patron);
+
+        // Crear un objeto Matcher
+        Matcher matcher = pattern.matcher(chasis);
+
+        // Verificar si el chasis cumple con el formato
+        return matcher.matches();
 	}
 	
 	
 	private boolean patenteFormatoCorrecto(String patente) {
-		//validamos segun formato que nos digan
-		return true;
+		
+	    // Definir el patrón de la expresión regular para el formato de patente
+        String patron = "^[A-Z]{2,3}\\s?\\d{3}\\s?[A-Z]{0,3}$";
+
+        // Compilar el patrón
+        Pattern pattern = Pattern.compile(patron);
+
+        // Crear un objeto Matcher
+        Matcher matcher = pattern.matcher(patente);
+
+        // Verificar si la patente cumple con el formato
+        return matcher.matches();
+		
+		
 		
 	}
 	
@@ -204,7 +251,8 @@ public class AltaPolizaFormularioPolizaController {
 	@FXML
 	public void initialize( ) {
 		
-		//this.setErroresFalse();
+		
+		this.setErroresFalse();
 		
 		this.setDomicilioRiesgo();
 		
@@ -213,10 +261,10 @@ public class AltaPolizaFormularioPolizaController {
 		this.setContadorHijosDeclarados();
 		
 		
-		ObservableList<String> opKmsRealizadosPorAnio = FXCollections.observableArrayList("op1","op2");
+		ObservableList<String> opKmsRealizadosPorAnio = FXCollections.observableArrayList("Hasta 10000 Km","Hasta 20000 Km", "Hasta 30000 Km","Hasta 40000 Km", "Mas de 40000 Km");
 		kmsRealizadosPorAnio.setItems(opKmsRealizadosPorAnio);
 		
-		ObservableList<String> opNroSiniestrosUltAnio = FXCollections.observableArrayList("op1","op2");
+		ObservableList<String> opNroSiniestrosUltAnio = FXCollections.observableArrayList("Ninguno", "1", "2", "Mas de 2");
 		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
 		
 		

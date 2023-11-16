@@ -252,11 +252,10 @@
                </font>
             </Button>
             <Label fx:id="errorDomicilioRiesgo" layoutX="15.0" layoutY="421.0" text="El campo esta incompleto" textFill="RED" visible="false" />
-            <Label fx:id="errorMarcaModeloAnio" layoutX="281.0" layoutY="450.0" text="El campo esta incompleto" textFill="RED" visible="false" />
+            <Label fx:id="errorMarcaVehiculoAnio" layoutX="281.0" layoutY="450.0" text="El campo esta incompleto" textFill="RED" visible="false" />
             <Label fx:id="errorMotorYaExiste" layoutX="15.0" layoutY="545.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" />
             <Label fx:id="errorChasisYaExiste" layoutX="281.0" layoutY="545.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" />
             <Label fx:id="errorKmsRealizadosPorAnio" layoutX="819.0" layoutY="373.0" text="El campo esta incompleto" textFill="RED" visible="false" />
-            <Label layoutX="1087.0" layoutY="553.0" />
             <Label fx:id="errorFormatoMotor" layoutX="15.0" layoutY="562.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" />
             <Label fx:id="errorFormatoChasis" layoutX="281.0" layoutY="562.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" />
             <Label fx:id="errorFormatoPatente" layoutX="549.0" layoutY="545.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" />
