@@ -4,22 +4,18 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.*;
-import tp.entidad.*;
 
 @Entity
 @Table(name="rangoKMRealizados")
-public class RangoKMRealizados {
+public class RangoKMRealizados implements FactorCaracteristico{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idRangoKMRealizados")
 	private long idRangoKMRealizados;
 	
-	
 	@Column(nullable = false)
 	private String concepto;
-	
-	
 	
 	//relaciones
 	@OneToOne
@@ -34,8 +30,9 @@ public class RangoKMRealizados {
 		super();
 	}
 
-	
-
+	public float getPorcentaje() {
+		return this.valorActualPorcentajeKMRealizados.getValorNumerico();
+	}
 	
 	//setters and getters
 
@@ -71,8 +68,6 @@ public class RangoKMRealizados {
 				&& Objects.equals(valorActualPorcentajeKMRealizados, other.valorActualPorcentajeKMRealizados)
 				&& Objects.equals(valoresPasadosPorcentajeKMRealizados, other.valoresPasadosPorcentajeKMRealizados);
 	}
-
-
 
 
 	public long getIdRangoKMRealizados() {

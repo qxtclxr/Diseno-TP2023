@@ -16,8 +16,8 @@ public class GestorCobertura {
 	
 	public CoberturaDTO getDTO(Cobertura cobertura) {
 		CoberturaDTO dto = new CoberturaDTO();
-		dto.setNombre(cobertura.getNombre());
-		dto.setId(cobertura.getId());
+		dto.setNombre(cobertura.getTipoCobertura());
+		dto.setId(cobertura.getIdCobertura());
 		return dto;
 	}
 	

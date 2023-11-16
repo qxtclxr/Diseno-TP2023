@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="medidaDeSeguridad")
-public class MedidaDeSeguridad {
+public class MedidaDeSeguridad implements FactorCaracteristico{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idMedidaDeSeguridad")
@@ -28,7 +28,12 @@ public class MedidaDeSeguridad {
 	public MedidaDeSeguridad() {
 		super();
 	}
-
+	
+	@Override
+	public float getPorcentaje() {
+		return this.valorActualPorcMedidaDeSeg.getValorNumerico();
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(idMedidaDeSeguridad);

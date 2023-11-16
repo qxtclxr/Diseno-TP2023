@@ -2,11 +2,16 @@ package tp.dto;
 
 public abstract class NoModificableDTO<T> {
 	
-	public Long id;
+	private Long id;
+	
 	public abstract String getText();
 	
 	public Long getId() {
 		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	@Override

@@ -19,6 +19,7 @@ public class PolizaDTO {
 	private ClienteDTO cliente;
 	private LocalidadDTO localidad;
 	private CoberturaDTO cobertura;
+	private float importeTotal;
 	//private DerechosEmision(DTO)? derechos;
 	//private DescuentoPorUnidad(DTO)? descuentos;
 	
@@ -100,4 +101,11 @@ public class PolizaDTO {
 	public void setCobertura(CoberturaDTO cobertura) {
 		this.cobertura = cobertura;
 	}
+	public float getImporteTotal() {
+		return importeTotal;
+	}
+	public void setImporteTotal(float importeTotal) {
+		this.importeTotal = importeTotal;
+	}
+	
 }

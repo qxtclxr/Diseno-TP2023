@@ -8,7 +8,7 @@ import tp.entidad.*;
 
 @Entity
 @Table(name="cobertura")
-public class Cobertura {
+public class Cobertura implements FactorCaracteristico{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idCobertura")
@@ -33,7 +33,11 @@ public class Cobertura {
 	public Cobertura() {
 		super();
 	}
-
+	
+	public float getPorcentaje() {
+		return this.valorActualPorcentajeCobertura.getValorNumerico();
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(idCobertura);

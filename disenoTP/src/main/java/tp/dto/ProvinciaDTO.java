@@ -19,8 +19,13 @@ public class ProvinciaDTO extends NoModificableDTO<Provincia> {
 	public void setPais(PaisDTO pais) {
 		this.pais = pais;
 	}
-	
-	
-	
-	
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+		
 }

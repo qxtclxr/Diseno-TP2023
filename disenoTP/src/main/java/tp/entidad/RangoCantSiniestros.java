@@ -8,7 +8,7 @@ import tp.entidad.*;
 
 @Entity
 @Table(name="rangoCantSiniestros")
-public class RangoCantSiniestros {
+public class RangoCantSiniestros implements FactorCaracteristico{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +18,6 @@ public class RangoCantSiniestros {
 	
 	@Column(nullable = false)
 	private String concepto;
-	
-	
 	
 	//relaciones
 	
@@ -31,6 +29,11 @@ public class RangoCantSiniestros {
 	private List<PorcentajeCantSiniestros> valoresPasadosPorcentajeCantSiniestros;
 	public RangoCantSiniestros() {
 		super();
+	}
+	
+	@Override
+	public float getPorcentaje() {
+		return this.valorActualPorcentajeCantSiniestros.getValorNumerico();
 	}
 	
 	@Override

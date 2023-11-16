@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="modelo")
-public class Modelo {
+public class Modelo implements FactorCaracteristico{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idModelo")
@@ -42,20 +42,18 @@ public class Modelo {
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PorcentajeEstadisticaRobo> valoresPasadosPorcentajeEstadisticaRobo;
 	
-	
-	
 	public Modelo() {
 		super();
 	}
-
-
+	
+	public float getPorcentaje() {
+		return this.valorActualPorcentajeEstadisticaRobo.getValorNumerico();				
+	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(idModelo);
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {

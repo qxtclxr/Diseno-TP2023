@@ -13,18 +13,42 @@ public class GestorRangoCantSiniestros {
 		return objeto;
 	}
 	
-	//TODO
+	public RangoCantSiniestros getRangoCantSiniestros(int cantSiniestros) {
+		RangoCantSiniestrosDAO dao = new RangoCantSiniestrosDAO();
+		RangoCantSiniestros objeto = new RangoCantSiniestros();
+		//VER SI HAY ALGUNA MEJOR MANERA QUE USAR EL CONCEPTO PARA BUSCAR LOS OBJETOS
+		if(cantSiniestros == 0) {
+			objeto = dao.getByConcepto("Ninguno").orElseThrow(/*TODO*/);
+		}else if(cantSiniestros == 1) {
+			objeto = dao.getByConcepto("1").orElseThrow(/*TODO*/);
+		}else if(cantSiniestros == 2) {
+			objeto = dao.getByConcepto("2").orElseThrow(/*TODO*/);
+		}else if(cantSiniestros > 2) {
+			objeto = dao.getByConcepto("Más de 2").orElseThrow(/*TODO*/);
+		}else {
+			throw new NoExisteRangoCantSiniestos;
+		}
+	}
+	
 	public RangoCantSiniestrosDTO getDTO(RangoCantSiniestros siniestros) {
 		RangoCantSiniestrosDTO dto = new RangoCantSiniestrosDTO();
-		dto.setId(siniestros.getId());
-		dto.setNombre(siniestros.getNombre());
+		dto.setId(siniestros.getIdRangoCantSiniestros());
+		dto.setNombre(siniestros.getConcepto());
 		return dto;
 	}
 	
-	public List<RangoCantSiniestrosDTO> getAll(){
+	public List<RangoCantSiniestros> getAll(){
 		RangoCantSiniestrosDAO dao = new RangoCantSiniestrosDAO();
 		List<RangoCantSiniestros> all = dao.getAll();
-		List<RangoCantSiniestrosDTO> allDTOs = all.stream().map(obj -> this.getDTO(obj)).collect(Collectors.toList());
-		return allDTOs;
+		return all;
 	}
+	
+	public List<RangoCantSiniestrosDTO> getAllDTOs(){
+		List<RangoCantSiniestros> all = this.getAll();
+		List<RangoCantSiniestrosDTO> allDtos = all.stream().
+				map(obj -> this.getDTO(obj)).
+				collect(Collectors.toList());
+		return allDtos;
+	}
+	
 }

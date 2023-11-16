@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GestorCuota {
+	
 	public Cuota crearCuota(CuotaDTO dto) {
 		Cuota cuota = new Cuota();
 		cuota.setFechaVencimiento(dto.getFechaVencimiento());
 		cuota.setImporteTotal(dto.getImporteTotal());
 		cuota.setEstado(EstadoCuota.PENDIENTE);
-		cuota.setInteresAsociado(0F);
+		cuota.setInteresAsociadoPorcentual(0F);
 		return cuota;
 	}
 	

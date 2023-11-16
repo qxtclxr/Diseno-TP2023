@@ -1,54 +1,50 @@
 package tp.logica;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
-import tp.dao.LocalizacionDAO;
-import tp.dto.LocalidadDTO;
-import tp.dto.PaisDTO;
-import tp.dto.ProvinciaDTO;
-import tp.entidad.Localidad;
-import tp.entidad.Pais;
-import tp.entidad.Provincia;
+import tp.dao.*;
+import tp.dto.*;
+import tp.entidad.*;
 
 public class GestorLocalizacion {
 	//Puede que el traer localidad te traiga provincia y pais con ella, depende la implementacion.
 	public Localidad getLocalidad(LocalidadDTO dto) {
-		LocalizacionDAO dao = new LocalizacionDAO();
-		Localidad objeto = dao.getLocalidadById(dto.getId()).orElseThrow(/*TODO*/);
+		LocalidadDAO dao = new LocalidadDAO();
+		Localidad objeto = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
 		return objeto;
 	}
 	
 	public Provincia getProvincia(ProvinciaDTO dto) {
-		LocalizacionDAO dao = new LocalizacionDAO();
-		Provincia objeto = dao.getProvinciaById(dto.getId()).orElseThrow(/*TODO*/);
+		ProvinciaDAO dao = new ProvinciaDAO();
+		Provincia objeto = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
 		return objeto;
 	}
 	
 	public Pais getPais(PaisDTO dto) {
-		LocalizacionDAO dao = new LocalizacionDAO();
-		Pais objeto = dao.getPaisById(dto.getId()).orElseThrow(/*TODO*/);
+		PaisDAO dao = new PaisDAO();
+		Pais objeto = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
 		return objeto;
 	}
 	
 	public LocalidadDTO getLocalidadDTO(Localidad entidad) {
 		LocalidadDTO dto = new LocalidadDTO();
-		dto.setId(entidad.getId());
+		dto.setId(entidad.getIdLocalidad());
 		dto.setNombre(entidad.getNombre());
 		dto.setProvincia(this.getProvinciaDTO(entidad.getProvincia()));
+		return dto;
 	}
 	
 	public ProvinciaDTO getProvinciaDTO(Provincia entidad) {
 		ProvinciaDTO dto = new ProvinciaDTO();
-		dto.setId(entidad.getId());
+		dto.setId(entidad.getIdProvincia());
 		dto.setNombre(entidad.getNombre());
 		dto.setPais(this.getPaisDTO(entidad.getPais()));
+		return dto;
 	}
 	
 	public PaisDTO getPaisDTO(Pais entidad) {
 		PaisDTO dto = new PaisDTO();
-		dto.setId(entidad.getId());
+		dto.setId(entidad.getIdPais());
 		dto.setNombre(entidad.getNombre());
 		return dto;
 	}
@@ -63,7 +59,7 @@ public class GestorLocalizacion {
 	}
 	
 	public List<Provincia> getProvinciasByPais(Pais pais) {
-		LocalizacionDAO dao = new LocalizacionDAO();
+		ProvinciaDAO dao = new ProvinciaDAO();
 		List<Provincia> provincias = dao.getProvinciasByPais(pais);
 		return provincias;
 		
@@ -79,7 +75,7 @@ public class GestorLocalizacion {
 	}
 	
 	public List<Localidad> getLocalidadesByProvincia(Provincia provincia){
-		LocalizacionDAO dao = new LocalizacionDAO();
+		LocalidadDAO dao = new LocalidadDAO();
 		List<Localidad> localidades = dao.getLocalidadesByProvincia(provincia);
 		return localidades;
 	}

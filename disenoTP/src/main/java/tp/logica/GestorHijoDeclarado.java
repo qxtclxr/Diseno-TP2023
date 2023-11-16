@@ -2,6 +2,7 @@ package tp.logica;
 
 import tp.dto.HijoDeclaradoDTO;
 import tp.entidad.HijoDeclarado;
+import tp.entidad.PorcentajeCantHijos;
 import tp.dao.HijoDeclaradoDAO;
 
 import java.time.LocalDate;
@@ -35,10 +36,10 @@ public class GestorHijoDeclarado {
 	
 	public boolean fechaDeNacimientoEsValida(HijoDeclaradoDTO dto) {
 		LocalDate now = LocalDate.now();
-		LocalDate fechaNacimiento = dto.getFechaNacimiento().toLocalDate();
+		LocalDate fechaNacimiento = dto.getFechaNacimiento();
 		Period edad = Period.between(fechaNacimiento,now);
 		int añosDeEdad = edad.getYears();
-		return añosDeEdad >= 18 && añosDeEdad <= 30;
+		return añosDeEdad >= HijoDeclaradoDTO.MIN_EDAD && añosDeEdad <= HijoDeclaradoDTO.MAX_EDAD;
 	}
 	
 	public boolean datosObligatoriosPresentes(HijoDeclaradoDTO dto) {
@@ -50,5 +51,11 @@ public class GestorHijoDeclarado {
 		datosPresentes &= dto.getEstadoCivil() != null;
 		datosPresentes &= dto.getFechaNacimiento() != null;
 		return datosPresentes;
+	}
+	
+	public float getPorcentajeCantHijos() {
+		HijoDeclaradoDAO dao = new HijoDeclaradoDAO();
+		PorcentajeCantHijos porcentaje = dao.getPorcentajePorHijoActual();
+		return porcentaje.getValorNumerico();
 	}
 }

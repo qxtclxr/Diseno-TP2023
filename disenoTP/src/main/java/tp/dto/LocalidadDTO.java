@@ -19,4 +19,13 @@ public class LocalidadDTO extends NoModificableDTO<Localidad> {
 	public void setProvincia(ProvinciaDTO provincia) {
 		this.provincia = provincia;
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
 }
