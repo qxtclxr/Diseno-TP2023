@@ -1,5 +1,5 @@
 package tp.entidad;
 
 public enum TipoIVA {
-
+	RESPONSABLE_INSCRIPTO,AUTONOMO,EXCENTO,NO_ALCANZADO,MONOTRIBUTISTA
 }
