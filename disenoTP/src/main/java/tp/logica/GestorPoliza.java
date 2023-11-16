@@ -46,6 +46,10 @@ public class GestorPoliza {
 		return (prima/100) * dto.getSumaAsegurada();
 	}
 	
+	public calcularPremio() {
+		
+	}
+	
 	public Poliza crearPoliza(PolizaDTO dto) {
 		Poliza poliza = new Poliza();
 		
