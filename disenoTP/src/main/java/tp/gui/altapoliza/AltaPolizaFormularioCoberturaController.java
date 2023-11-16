@@ -17,9 +17,11 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import tp.app.App;
+import tp.dto.PolizaDTO;
 
 public class AltaPolizaFormularioCoberturaController {
 	
+	private PolizaDTO poliza;
 	
 	@FXML
 	private Button confirmar;
@@ -49,7 +51,18 @@ public class AltaPolizaFormularioCoberturaController {
 	private Label errorTipoPago;
 	
 	
+	public void setPoliza(PolizaDTO poliza1) {
+		this.poliza = poliza1;
+	}
 	
+	
+	
+	public AltaPolizaFormularioCoberturaController() {
+		super();
+	}
+
+
+
 	@FXML
 	private void confirmarClicked(ActionEvent action) throws IOException {
 		

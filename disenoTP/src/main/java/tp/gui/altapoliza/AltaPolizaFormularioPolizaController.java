@@ -1,6 +1,11 @@
 package tp.gui.altapoliza;
 
+import tp.gui.altapoliza.*;
+import tp.logica.GestorLocalizacion;
 import tp.dto.*;
+import tp.entidad.Localidad;
+import tp.entidad.Pais;
+import tp.entidad.Provincia;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -22,7 +27,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import tp.app.App;
-
+import tp.logica;
+import tp.entidad;
 public class AltaPolizaFormularioPolizaController {
 	
 	
@@ -89,16 +95,12 @@ public class AltaPolizaFormularioPolizaController {
 	
 	
 	
-	
-	
 	@FXML
 	private void confirmarClicked(ActionEvent action) throws IOException {
 		
 		if(this.validarDatos()) {
-		
-		
 			
-			
+		this.setPolizaValuesFormulario();
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
     	AnchorPane form = loader.load();
@@ -108,6 +110,10 @@ public class AltaPolizaFormularioPolizaController {
     	
     	
 	}
+	
+
+	 
+	 
 	@FXML
 	private void declararHijosClicked(ActionEvent action) throws IOException {
 	    // Cargar el archivo FXML
@@ -133,6 +139,7 @@ public class AltaPolizaFormularioPolizaController {
 		
 		
 		
+		
 	}
 	
 	private void setErroresFalse() {
@@ -146,17 +153,24 @@ public class AltaPolizaFormularioPolizaController {
 		errorFormatoPatente.setVisible(false);
 		errorKmsRealizadosPorAnio.setVisible(false);
 	}
-
-	private void setDomicilioRiesgo() {
-		
-	//Traer todo de la base de datos	
-		
-		ObservableList<String> opProvincia = FXCollections.observableArrayList("op1","op2");
+	@FXML
+	private void setProvincia() {
+		GestorLocalizacion g = new GestorLocalizacion();
+		PaisDTO pais = new PaisDTO();
+		pais.setId(Long.valueOf(1));
+		ObservableList<String> opProvincia = FXCollections.observableArrayList(g.getProvinciasByPais(pais).stream().map(ProvinciaDTO::getNombre).toList());
 		provincia.setItems(opProvincia);
-		localidad.setItems(opProvincia);
+	}
+	
+	@FXML
+	private void setLocalidades() {
 		
+		GestorLocalizacion g = new GestorLocalizacion();
+		ProvinciaDTO p = new ProvinciaDTO();
+		p.setNombre(provincia.getValue().toString());
 		
-		
+		ObservableList<String> opLocalidad = FXCollections.observableArrayList(g.getLocalidadesByProvincia(p).stream().map(Localidad::getNombre).toList());
+		localidad.setItems(opLocalidad);
 	}
 	
 	
@@ -248,13 +262,14 @@ public class AltaPolizaFormularioPolizaController {
 	
 	
 	
+	
+	
+	
 	@FXML
 	public void initialize( ) {
 		
 		
 		this.setErroresFalse();
-		
-		this.setDomicilioRiesgo();
 		
 		this.setMarcaVehiculoAnio();
 		

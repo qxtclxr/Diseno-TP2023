@@ -58,7 +58,7 @@
                   <Font name="Franklin Gothic Medium Italic" size="13.0" />
                </font>
             </Text>
-            <ComboBox fx:id="provincia" layoutX="13.0" layoutY="345.0" prefWidth="180.0" promptText="Ingrese una provincia" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="345.0" />
+            <ComboBox fx:id="provincia" layoutX="13.0" layoutY="345.0" onAction="#setProvincia" onMouseClicked="#setProvincia" prefWidth="180.0" promptText="Ingrese una provincia" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="345.0" />
             <ComboBox fx:id="marca" layoutX="281.0" layoutY="345.0" prefWidth="180.0" promptText="Ingrese una marca" AnchorPane.leftAnchor="281.0" />
             <ComboBox fx:id="kmsRealizadosPorAnio" layoutX="819.0" layoutY="345.0" prefWidth="180.0" AnchorPane.leftAnchor="819.0" AnchorPane.topAnchor="345.0" />
             <ComboBox fx:id="nroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="345.0" prefWidth="180.0" AnchorPane.rightAnchor="13.0" />
