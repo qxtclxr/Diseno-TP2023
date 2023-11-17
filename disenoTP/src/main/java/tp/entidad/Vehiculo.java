@@ -23,8 +23,8 @@ public class Vehiculo {
 	private String patente;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idModelo", foreignKey= @ForeignKey(name="FK_vehiculo_en_modelo"))
-	private Modelo tieneModelo;
+	@JoinColumn(name="idAnioModelo",referencedColumnName="idAnioModelo", foreignKey= @ForeignKey(name="FK_anio_vehiculo"))
+	private AnioModelo anioModelo;
 	
 	public Vehiculo() {
 		super();

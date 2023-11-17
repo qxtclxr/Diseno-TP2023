@@ -6,13 +6,13 @@ import java.util.Objects;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="porcentajeCantHijos")
-public class PorcentajeCantHijos {
+@Table(name="porcentajeAjusteHijos")
+public class PorcentajeAjusteHijos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idPorcentajeCantHijos")
-	private long idPorcentajeCantHijos;
+	@Column(name="idPorcentajeAjusteHijos")
+	private long idPorcentajeAjusteHijos;
 	
 	@Column(nullable=false)
 	private Float valorNumerico;
@@ -26,6 +26,10 @@ public class PorcentajeCantHijos {
 	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cant_hijos"))
 	private Usuario modificadoPor;
 	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idRangoAjusteHijos",referencedColumnName="idRangoAjusteHijos" ,foreignKey= @ForeignKey(name="FK_ajuste_en_por_hijos"))
+	private AjusteHijos ajusteAsociado;
+	
 	@PrePersist
 	protected void onCreate() {
 		fechaModificacion=LocalDateTime.now();
@@ -37,7 +41,7 @@ public class PorcentajeCantHijos {
 	  }
 	
 	
-	public PorcentajeCantHijos() {
+	public PorcentajeAjusteHijos() {
 		super();
 	}
 

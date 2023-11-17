@@ -7,31 +7,27 @@ import jakarta.persistence.*;
 import tp.entidad.*;
 
 @Entity
-@Table(name="rangoAjustePorHijo")
-public class RangoAjustePorHijo {
+@Table(name="AjusteHijos")
+public class AjusteHijos {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idRangoAjustePorHijo")
-	private long idRangoAjustePorHijo;
+	@Column(name="idRangoAjusteHijos")
+	private long idRangoAjusteHijos;
 	
 	
-	@Column(nullable = false)
-	private int desdeCantHijos;
-	
-	@Column(nullable = false)
-	private int hastaCantHijos;
+
 	
 	//relaciones
 	
 	@OneToOne
-	@JoinColumn(name="idValorActualPorcentajeCantHijos")
-	private PorcentajeCantHijos valorActualPorcentajeCantHijos;
+	@JoinColumn(name="idValorActualPorcAjusteHijos")
+	private PorcentajeAjusteHijos valorActualPorcentajeCantHijos;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<PorcentajeCantHijos> valoresPasadosPorcentajeCantHijos;
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="ajusteAsociado", cascade = CascadeType.ALL)
+	private List<PorcentajeAjusteHijos> valoresPasadosAjusteHijos;
 	
-	public RangoAjustePorHijo() {
+	public AjusteHijos() {
 		super();
 	}
 

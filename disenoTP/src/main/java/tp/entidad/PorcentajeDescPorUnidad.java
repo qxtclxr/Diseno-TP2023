@@ -23,6 +23,10 @@ public class PorcentajeDescPorUnidad {
 	//relaciones
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idDescuentoPorUnidad",referencedColumnName="idDescuentoPorUnidad" ,foreignKey= @ForeignKey(name="FK_desc_u_porc_u"))
+	private DescuentoPorUnidad descAsociado;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_desc_por_unidad"))
 	private Usuario modificadoPor;
 	

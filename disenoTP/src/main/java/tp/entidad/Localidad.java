@@ -29,7 +29,7 @@ public class Localidad implements FactorCaracteristico{
 	@JoinColumn(name="idValorActualFactorRiesgo")
 	private FactorRiesgoLocalidad valorActualFactorRiesgo;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="localidadAsociada", cascade = CascadeType.ALL)
 	private List<FactorRiesgoLocalidad> valoresPasadosFactorRiesgo;
 	
 	

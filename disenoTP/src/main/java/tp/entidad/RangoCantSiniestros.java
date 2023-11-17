@@ -16,8 +16,8 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 	private long idRangoCantSiniestros;
 	
 	
-	@Column(nullable = false)
-	private String concepto;
+	@Column(nullable = false,unique=true)
+	private int desdeCant;
 	
 	//relaciones
 	
@@ -25,8 +25,9 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 	@JoinColumn(name="idValorActualPorcentajeCantSiniestros")
 	private PorcentajeCantSiniestros valorActualPorcentajeCantSiniestros;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="rangoAsociado", cascade = CascadeType.ALL)
 	private List<PorcentajeCantSiniestros> valoresPasadosPorcentajeCantSiniestros;
+	
 	public RangoCantSiniestros() {
 		super();
 	}

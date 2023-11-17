@@ -26,21 +26,18 @@ public class Modelo implements FactorCaracteristico{
 	@Column(nullable=false)
 	private LocalTime fabricadoHasta;
 	
-	//ver si puede nullearse o no
-	@Column 
-	private float valor;
+
 	
 	//relaciones
+	
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="tieneModelo",cascade = CascadeType.ALL)
+	private List<AnioModelo> aniosFabricacion;
+	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="idMarca", foreignKey= @ForeignKey(name="FK_marca_en_modelo"))
 	private Marca marca;
 	
-	@OneToOne
-	@JoinColumn(name="idValorActualPorcentajeEstadisticaRobo")
-	private PorcentajeEstadisticaRobo valorActualPorcentajeEstadisticaRobo;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<PorcentajeEstadisticaRobo> valoresPasadosPorcentajeEstadisticaRobo;
 	
 	public Modelo() {
 		super();

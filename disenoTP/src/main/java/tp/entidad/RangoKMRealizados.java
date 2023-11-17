@@ -23,7 +23,7 @@ public class RangoKMRealizados implements FactorCaracteristico{
 	private PorcentajeKMRealizados valorActualPorcentajeKMRealizados;
 	
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="rangoAsociado" ,cascade = CascadeType.ALL)
 	private List<PorcentajeKMRealizados> valoresPasadosPorcentajeKMRealizados;
 	
 	public RangoKMRealizados() {

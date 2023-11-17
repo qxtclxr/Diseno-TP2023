@@ -37,10 +37,14 @@ public class ModificacionPoliza {
 	private List<PorcentajeMedidaDeSeguridad> porcMedidasModificadas;
 	
 	//Relaciones simplificadas
-	@Column
-	private int idRangoKMrealizados;
-	@Column
-	private int idRangoCantSiniestros;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="porKMModificado", referencedColumnName="idPorcentajeKMRealizados", foreignKey= @ForeignKey(name="FK_Por_KM_mod"))
+	private PorcentajeKMRealizados porcentajeKMModificado;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="porCantSinModificado", referencedColumnName="idPorcCantSin", foreignKey= @ForeignKey(name="FK_Por_cant_sin_mod"))
+	private PorcentajeCantSiniestros porcentajeModificado;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="porCoberturaModificada", referencedColumnName="idPorcentajeCobertura", foreignKey= @ForeignKey(name="FK_Por_cobertura_mod"))

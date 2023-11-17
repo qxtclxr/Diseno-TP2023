@@ -23,6 +23,9 @@ public class FactorRiesgoLocalidad {
 	
 	
 	//relaciones
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idLocalidad",referencedColumnName="idLocalidad" ,foreignKey= @ForeignKey(name="FK_loc_en_f_riesgo"))
+	private Localidad localidadAsociada;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_factor_riesgo_localidad"))

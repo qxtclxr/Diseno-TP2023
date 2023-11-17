@@ -12,7 +12,7 @@ public class PorcentajeCantSiniestros {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idPorcCantSin")
-	private long idPorcentajeCantSiniestros;
+	private long idPorcCantSin;
 	
 	@Column(nullable=false)
 	private Float valorNumerico;
@@ -22,6 +22,10 @@ public class PorcentajeCantSiniestros {
 	
 	
 	//relaciones
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idRangoCantSiniestros",referencedColumnName="idRangoCantSiniestros" ,foreignKey= @ForeignKey(name="FK_rango_en_cant_siniestros"))
+	private RangoCantSiniestros rangoAsociado;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cant_siniestros"))

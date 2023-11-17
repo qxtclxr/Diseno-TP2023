@@ -12,7 +12,18 @@ import jakarta.persistence.*;
 @Table(name="poliza")
 public class Poliza {
 	/*
-	 * ver la unicidad de patente motor y chasis
+	 *Cambie:
+	Cobertura
+	MedidaDeSeguridad
+	AjusteCantHijos
+	RangoCantSiniestros
+	RangoKMRRealizados
+	DescPorUnidad
+	FactorRiesgo
+	EstadisticaRobo
+	ValorVehiculo
+	
+	
 	 * 
 	 */
 	@Id
@@ -64,35 +75,39 @@ public class Poliza {
 	@JoinColumn(name = "idCliente", referencedColumnName="idCliente" ,foreignKey= @ForeignKey(name ="POLIZA_CLIENTE_FK"))
 	private Cliente cliente;
 	
+	
 	//relaciones // Factores de calculo
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idDomicilioDeRiesgo", foreignKey= @ForeignKey(name="FK_domicilio_de_riesgo_en_poliza"))
-	private Localidad domicilioDeRiesgo;
+	@JoinColumn(name="idFactorRiesgo", referencedColumnName="idFactorRiesgoLocalidad",foreignKey= @ForeignKey(name="FK_factor_riesgo_en_poliza"))
+	private FactorRiesgoLocalidad factorRiesgoLoc;
 	//ver si esta bien este cascade como en caso pago
 	
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idDescuentoPorUnidad", foreignKey= @ForeignKey(name="FK_desc_unidad_en_poliza"))
-	private DescuentoPorUnidad descuentoPorU;
+	@JoinColumn(name="idPorcentajeDescPorUnidad",referencedColumnName="idPorcentajeDescPorUnidad", foreignKey= @ForeignKey(name="FK_porc_unidad_en_poliza"))
+	private PorcentajeDescPorUnidad porcDescuentoPorU;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idRangoCantSiniestros", foreignKey= @ForeignKey(name="FK_rango_cant_siniestros_en_poliza"))
-	private RangoCantSiniestros rangoCantSiniestros;
+	@JoinColumn(name="idPorcCantSin",referencedColumnName="idPorcCantSin", foreignKey= @ForeignKey(name="FK_por_siniestros_en_poliza"))
+	private PorcentajeCantSiniestros porcCantSiniestros;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idRangoKMRealizados", foreignKey= @ForeignKey(name="FK_rango_km_realizados_en_poliza"))
-	private RangoKMRealizados rangoKMRealizados;
+	@JoinColumn(name="idRangoKMRealizados",referencedColumnName="idPorcentajeKMRealizados", foreignKey= @ForeignKey(name="FK_porc_km_realizados_en_poliza"))
+	private PorcentajeKMRealizados porcKMRealizados;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idDerechosDeEmision", foreignKey= @ForeignKey(name="FK_derechos_de_emision_en_poliza"))
-	private DerechosDeEmision derechosDeEmision;
+	@JoinColumn(name="idValorDerechosDeEmision",referencedColumnName="idValorDerechosDeEmision", foreignKey= @ForeignKey(name="FK_valor_derechos_en_poliza"))
+	private ValorDerechosDeEmision valorDerechosDeEmision;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idRangoAjustePorHijo", foreignKey= @ForeignKey(name="FK_rango_ajuste_por_hijo_en_poliza"))
-	private RangoAjustePorHijo rangoAjustePorHijo;
+	@JoinColumn(name="idPorcAjusteHijos", referencedColumnName="idPorcentajeAjusteHijos",foreignKey= @ForeignKey(name="FK_porc_hijo_en_poliza"))
+	private PorcentajeAjusteHijos porcAjustePorHijo;
 	
-	//Medidas y respuestas de seguridad
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name="idPorcEstRobo", referencedColumnName="idPorcentajeEstadisticaRobo",foreignKey= @ForeignKey(name="FK_porc_robo_en_poliza"))
+	private PorcentajeEstadisticaRobo porcEstRobo;
+	
 	//ver el eager de los factores
 	
 	//Este puede traer problemas
@@ -104,7 +119,7 @@ public class Poliza {
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="porCobertura", referencedColumnName="idPorcentajeCobertura", foreignKey= @ForeignKey(name="FK_Por_cobertura_Poliza"))
-	private PorcentajeCobertura cobertura;
+	private PorcentajeCobertura porcCobertura;
 	
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HijoDeclarado> hijosDeclarados;
