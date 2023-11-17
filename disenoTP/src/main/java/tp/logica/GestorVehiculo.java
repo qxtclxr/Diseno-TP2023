@@ -43,13 +43,12 @@ public class GestorVehiculo {
 		vehiculo.setPatente(dto.getPatente());
 		vehiculo.setMotor(dto.getMotor());
 		vehiculo.setChasis(dto.getChasis());
-		vehiculo.setTieneModelo(this.getModelo(dto.getModelo()));
-		vehiculo.setAnioVehiculo(LocalDate.ofYearDay(dto.getAño(), 1));
+		vehiculo.setAñoModelo(this.getAñoModelo(dto.getModelo()));
 		return vehiculo;
 	}
 	
 	public boolean esMayorADiezAños(VehiculoDTO dto) {
-		return (LocalDateTime.now().getYear() - dto.getAño()) > 10;
+		return (LocalDateTime.now().getYear() - dto.getModelo().getAño()) > 10;
 	}
 	
 	public boolean datosObligatoriosPresentes(VehiculoDTO dto) {
@@ -58,8 +57,11 @@ public class GestorVehiculo {
 		if(datosPresentes==false) {
 			return false;
 		}
-		datosPresentes &= dto.getModelo().getMarca() != null;
-		datosPresentes &= dto.getAño() != null;
+		datosPresentes &= dto.getModelo().getModelo() != null;
+		if(datosPresentes==false) {
+			return false;
+		}
+		datosPresentes &= dto.getModelo().getModelo().getMarca() != null;
 		datosPresentes &= dto.getMotor() != null;
 		datosPresentes &= dto.getChasis() != null;
 		return datosPresentes;
@@ -68,6 +70,15 @@ public class GestorVehiculo {
 	public float getValorModelo(ModeloDTO dto) {
 		Modelo modelo = this.getModelo(dto);
 		return modelo.getValor();
+	}
+	
+	public List<AñoModeloDTO> getAñosByModelo(ModeloDTO dto){
+		Modelo modelo = this.getModelo(dto);
+		List<AñoModeloDTO> añoDtos = modelo.getAñosModelo().stream().
+				map(entidad -> this.getAñoModeloDTO(entidad)).
+				collect(Collectors.toList());
+		return añoDtos;
+		
 	}
 	
 	public List<Modelo> getModelosByMarca(Marca marca){
@@ -98,6 +109,12 @@ public class GestorVehiculo {
 		return marcaDtos;
 	}
 	
+	public Marca getAñoModelo(AñoModeloDTO dto) {
+		AñoModeloDAO dao = new AñoModeloDAO();
+		AñoModelo marca = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
+		return marca;
+	}
+	
 	public Modelo getModelo(ModeloDTO dto) {
 		ModeloDAO dao = new ModeloDAO();
 		Modelo modelo = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
@@ -108,6 +125,13 @@ public class GestorVehiculo {
 		MarcaDAO dao = new MarcaDAO();
 		Marca marca = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
 		return marca;
+	}
+	
+	public AñoModeloDTO getAñoModeloDTO(AñoModelo entidad) {
+		AñoModeloDTO dto = new AñoModeloDTO();
+		dto.setAño(entidad.getAño());
+		dto.setValoracion(entidad.getValoracion());
+		dto.setModelo(this.getModelo(entidad.getModelo()));
 	}
 	
 	public ModeloDTO getModeloDTO(Modelo entidad) {
@@ -124,4 +148,6 @@ public class GestorVehiculo {
 		dto.setNombre(entidad.getNombre());
 		return dto;
 	}
+	
+	
 }

@@ -16,15 +16,14 @@ public class GestorRangoCantSiniestros {
 	public RangoCantSiniestros getRangoCantSiniestros(int cantSiniestros) {
 		RangoCantSiniestrosDAO dao = new RangoCantSiniestrosDAO();
 		RangoCantSiniestros objeto = new RangoCantSiniestros();
-		//VER SI HAY ALGUNA MEJOR MANERA QUE USAR EL CONCEPTO PARA BUSCAR LOS OBJETOS
 		if(cantSiniestros == 0) {
-			objeto = dao.getByConcepto("Ninguno").orElseThrow(/*TODO*/);
+			objeto = dao.getByMinimo(0).orElseThrow(/*TODO*/);
 		}else if(cantSiniestros == 1) {
-			objeto = dao.getByConcepto("1").orElseThrow(/*TODO*/);
+			objeto = dao.getByMinimo(1).orElseThrow(/*TODO*/);
 		}else if(cantSiniestros == 2) {
-			objeto = dao.getByConcepto("2").orElseThrow(/*TODO*/);
+			objeto = dao.getByMinimo(2).orElseThrow(/*TODO*/);
 		}else if(cantSiniestros > 2) {
-			objeto = dao.getByConcepto("Más de 2").orElseThrow(/*TODO*/);
+			objeto = dao.getByMinimo(3).orElseThrow(/*TODO*/);
 		}else {
 			throw new NoExisteRangoCantSiniestos;
 		}
