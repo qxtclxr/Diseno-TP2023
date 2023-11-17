@@ -66,6 +66,9 @@ public class Poliza {
 	private long cantKMRealizados;
 	//ver
 	
+	@Column(nullable=false)
+	private float importeTotal;
+	
 	
 	
 	
