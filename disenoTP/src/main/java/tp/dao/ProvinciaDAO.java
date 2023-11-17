@@ -2,6 +2,7 @@ package tp.dao;
 
 import java.util.List;
 
+
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -18,7 +19,7 @@ public class ProvinciaDAO extends AbstractDAO<Provincia> {
 		CriteriaQuery<Provincia> cQuery= cbuild.createQuery(Provincia.class);
 		Root<Provincia> root = cQuery.from(Provincia.class);
 		
-		cQuery.select(root).where(cbuild.equal(root.get("idPais"), p.getIdPais()));
+		cQuery.select(root).where(cbuild.equal(root.get("pais"), p));
 		Query query = this.getEntityManager().createQuery(cQuery);
 		List<Provincia> retorno = query.getResultList();
 		return retorno;

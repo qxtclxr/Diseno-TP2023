@@ -27,7 +27,7 @@ public class Cobertura implements FactorCaracteristico{
 	@JoinColumn(name="idValorActualPorcentajeCobertura")
 	private PorcentajeCobertura valorActualPorcentajeCobertura;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="coberturaAsociada", cascade = CascadeType.ALL)
 	private List<PorcentajeCobertura> valoresPasadosPorcentajeCobertura;
 		
 	public Cobertura() {

@@ -25,7 +25,11 @@ public class PorcentajeEstadisticaRobo {
 	//relaciones
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_estadistica_robo"))
+	@JoinColumn(name="idAnioModelo",referencedColumnName="idAnioModelo" ,foreignKey= @ForeignKey(name="FK_anio_porcentajeRobo"))
+	private AnioModelo anioModeloAsociado;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idUsuario",referencedColumnName="idUsuario",foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_estadistica_robo"))
 	private Usuario modificadoPor;
 	
 	@PrePersist
@@ -43,9 +47,11 @@ public class PorcentajeEstadisticaRobo {
 		super();
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fechaModificacion, idPorcentajeEstadisticaRobo, valorNumerico);
+		return Objects.hash(idPorcentajeEstadisticaRobo);
 	}
 
 	@Override
@@ -57,9 +63,7 @@ public class PorcentajeEstadisticaRobo {
 		if (getClass() != obj.getClass())
 			return false;
 		PorcentajeEstadisticaRobo other = (PorcentajeEstadisticaRobo) obj;
-		return Objects.equals(fechaModificacion, other.fechaModificacion)
-				&& idPorcentajeEstadisticaRobo == other.idPorcentajeEstadisticaRobo
-				&& Objects.equals(valorNumerico, other.valorNumerico);
+		return idPorcentajeEstadisticaRobo == other.idPorcentajeEstadisticaRobo;
 	}
 
 	@Override
@@ -101,5 +105,14 @@ public class PorcentajeEstadisticaRobo {
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
 	}
+
+	public AnioModelo getAnioModeloAsociado() {
+		return anioModeloAsociado;
+	}
+
+	public void setAnioModeloAsociado(AnioModelo anioModeloAsociado) {
+		this.anioModeloAsociado = anioModeloAsociado;
+	}
+	
 	
 }

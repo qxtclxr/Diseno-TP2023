@@ -22,9 +22,12 @@ public class PorcentajeKMRealizados {
 	
 	
 	//relaciones
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idRangoKMRealizados",referencedColumnName="idRangoKMRealizados" ,foreignKey= @ForeignKey(name="FK_rango_en_por_km"))
+	private RangoKMRealizados rangoAsociado;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_KM_realizados"))
+	@JoinColumn(name="idUsuario", referencedColumnName="idUsuario",foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_KM_realizados"))
 	private Usuario modificadoPor;
 	
 	@PrePersist
@@ -42,9 +45,11 @@ public class PorcentajeKMRealizados {
 		super();
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fechaModificacion, idPorcentajeKMRealizados, valorNumerico);
+		return Objects.hash(idPorcentajeKMRealizados);
 	}
 
 	@Override
@@ -56,9 +61,7 @@ public class PorcentajeKMRealizados {
 		if (getClass() != obj.getClass())
 			return false;
 		PorcentajeKMRealizados other = (PorcentajeKMRealizados) obj;
-		return Objects.equals(fechaModificacion, other.fechaModificacion)
-				&& idPorcentajeKMRealizados == other.idPorcentajeKMRealizados
-				&& Float.floatToIntBits(valorNumerico) == Float.floatToIntBits(other.valorNumerico);
+		return idPorcentajeKMRealizados == other.idPorcentajeKMRealizados;
 	}
 
 	@Override
@@ -99,5 +102,14 @@ public class PorcentajeKMRealizados {
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
 	}
+
+	public RangoKMRealizados getRangoAsociado() {
+		return rangoAsociado;
+	}
+
+	public void setRangoAsociado(RangoKMRealizados rangoAsociado) {
+		this.rangoAsociado = rangoAsociado;
+	}
+	
 	
 }

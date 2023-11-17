@@ -21,9 +21,12 @@ public class ValorDerechosDeEmision {
 	
 	
 	//relaciones
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idDerechosDeEmision",referencedColumnName="idDerechosDeEmision" ,foreignKey= @ForeignKey(name="FK_der_en_v_der"))
+	private DerechosDeEmision derechosAsociados;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_derechos_de_emision"))
+	@JoinColumn(name="idUsuario",referencedColumnName="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_derechos_de_emision"))
 	private Usuario modificadoPor;
 	
 	@PrePersist
@@ -41,9 +44,11 @@ public class ValorDerechosDeEmision {
 		super();
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fechaModificacion, idValorDerechosDeEmision, modificadoPor, valorNumerico);
+		return Objects.hash(idValorDerechosDeEmision);
 	}
 
 	@Override
@@ -55,10 +60,7 @@ public class ValorDerechosDeEmision {
 		if (getClass() != obj.getClass())
 			return false;
 		ValorDerechosDeEmision other = (ValorDerechosDeEmision) obj;
-		return Objects.equals(fechaModificacion, other.fechaModificacion)
-				&& idValorDerechosDeEmision == other.idValorDerechosDeEmision
-				&& Objects.equals(modificadoPor, other.modificadoPor)
-				&& Objects.equals(valorNumerico, other.valorNumerico);
+		return idValorDerechosDeEmision == other.idValorDerechosDeEmision;
 	}
 
 	@Override
@@ -99,6 +101,15 @@ public class ValorDerechosDeEmision {
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
 	}
+
+	public DerechosDeEmision getDerechosAsociados() {
+		return derechosAsociados;
+	}
+
+	public void setDerechosAsociados(DerechosDeEmision derechosAsociados) {
+		this.derechosAsociados = derechosAsociados;
+	}
+	
 	
 	
 }

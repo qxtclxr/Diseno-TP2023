@@ -58,40 +58,40 @@
                   <Font name="Franklin Gothic Medium Italic" size="13.0" />
                </font>
             </Text>
-            <ComboBox layoutX="13.0" layoutY="345.0" prefWidth="180.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="345.0" />
-            <ComboBox layoutX="281.0" layoutY="345.0" prefWidth="180.0" AnchorPane.leftAnchor="281.0" />
-            <ComboBox layoutX="819.0" layoutY="345.0" prefWidth="180.0" AnchorPane.leftAnchor="819.0" AnchorPane.topAnchor="345.0" />
-            <ComboBox layoutX="1087.0" layoutY="345.0" prefWidth="180.0" AnchorPane.rightAnchor="13.0" />
+            <ComboBox fx:id="provincia" layoutX="13.0" layoutY="345.0" onAction="#setProvincia" onMouseClicked="#setProvincia" prefWidth="180.0" promptText="Ingrese una provincia" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="345.0" />
+            <ComboBox fx:id="marca" layoutX="281.0" layoutY="345.0" prefWidth="180.0" promptText="Ingrese una marca" AnchorPane.leftAnchor="281.0" />
+            <ComboBox fx:id="kmsRealizadosPorAnio" layoutX="819.0" layoutY="345.0" prefWidth="180.0" AnchorPane.leftAnchor="819.0" AnchorPane.topAnchor="345.0" />
+            <ComboBox fx:id="nroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="345.0" prefWidth="180.0" AnchorPane.rightAnchor="13.0" />
             <TextFlow layoutX="549.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" AnchorPane.leftAnchor="549.0" AnchorPane.topAnchor="345.0" />
-            <ComboBox layoutX="13.0" layoutY="381.0" prefWidth="180.0" AnchorPane.topAnchor="381.0" />
-            <ComboBox layoutX="281.0" layoutY="381.0" prefWidth="180.0" />
-            <ComboBox layoutX="281.0" layoutY="417.0" prefWidth="180.0" AnchorPane.topAnchor="417.0" />
-            <TextField layoutX="13.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
-            <TextField layoutX="281.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
-            <TextField layoutX="549.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
-            <Button layoutX="1087.0" layoutY="521.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTER-LEFT;" text="Declarar hijos">
+            <ComboBox fx:id="localidad" layoutX="13.0" layoutY="381.0" prefWidth="180.0" promptText="Ingrese una localidad" AnchorPane.topAnchor="381.0" />
+            <ComboBox fx:id="vehiculo" layoutX="281.0" layoutY="381.0" prefWidth="180.0" promptText="Ingrese un vehiculo" />
+            <ComboBox fx:id="anio" layoutX="281.0" layoutY="417.0" prefWidth="180.0" promptText="Ingrese un año" AnchorPane.topAnchor="417.0" />
+            <TextField fx:id="motor" layoutX="13.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
+            <TextField fx:id="chasis" layoutX="281.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
+            <TextField fx:id="patente" layoutX="549.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
+            <Button fx:id="declararHijos" layoutX="1087.0" layoutY="521.0" mnemonicParsing="false" onAction="#declararHijosClicked" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTER-LEFT;" text="Declarar hijos">
                <font>
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
             <VBox layoutX="819.0" layoutY="521.0" prefHeight="151.0" prefWidth="180.0">
                <children>
-                  <CheckBox mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Se guarda en garage?">
+                  <CheckBox fx:id="seGuardaEnGarage" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Se guarda en garage?">
                      <font>
                         <Font name="Franklin Gothic Medium" size="13.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Tiene alarma?">
+                  <CheckBox fx:id="tieneAlarma" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Tiene alarma?">
                      <font>
                         <Font name="Franklin Gothic Medium" size="13.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee dispositivo de rastreo vehicular?" wrapText="true">
+                  <CheckBox fx:id="poseeDispositivoRastreo" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee dispositivo de rastreo vehicular?" wrapText="true">
                      <font>
                         <Font name="Franklin Gothic Medium" size="13.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee tuercas en las cuatro ruedas?" wrapText="true">
+                  <CheckBox fx:id="poseeTuercasAntirrobo" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee tuercas antirrobo en las cuatro ruedas?" wrapText="true">
                      <font>
                         <Font name="Franklin Gothic Medium" size="13.0" />
                      </font>
@@ -251,6 +251,16 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
+            <Label fx:id="errorDomicilioRiesgo" layoutX="15.0" layoutY="421.0" text="El campo esta incompleto" textFill="RED" visible="false" />
+            <Label fx:id="errorMarcaVehiculoAnio" layoutX="281.0" layoutY="450.0" text="El campo esta incompleto" textFill="RED" visible="false" />
+            <Label fx:id="errorMotorYaExiste" layoutX="15.0" layoutY="545.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" />
+            <Label fx:id="errorChasisYaExiste" layoutX="281.0" layoutY="545.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" />
+            <Label fx:id="errorKmsRealizadosPorAnio" layoutX="819.0" layoutY="373.0" text="El campo esta incompleto" textFill="RED" visible="false" />
+            <Label fx:id="errorFormatoMotor" layoutX="15.0" layoutY="562.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" />
+            <Label fx:id="errorFormatoChasis" layoutX="281.0" layoutY="562.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" />
+            <Label fx:id="errorFormatoPatente" layoutX="549.0" layoutY="545.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" />
+            <Label fx:id="errorNroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="373.0" text="El campo esta incompleto" textFill="RED" visible="false" />
+            <Label fx:id="contadorHijosDeclarados" layoutX="1093.0" layoutY="553.0" text="Label" />
          </children>
       </AnchorPane>
    </children>

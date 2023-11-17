@@ -23,9 +23,12 @@ public class FactorRiesgoLocalidad {
 	
 	
 	//relaciones
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idLocalidad",referencedColumnName="idLocalidad" ,foreignKey= @ForeignKey(name="FK_loc_en_f_riesgo"))
+	private Localidad localidadAsociada;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_factor_riesgo_localidad"))
+	@JoinColumn(name="idUsuario",referencedColumnName="idUsuario" ,foreignKey= @ForeignKey(name="FK_usuario_en_factor_riesgo_localidad"))
 	private Usuario modificadoPor;
 	
 	@PrePersist
@@ -67,8 +70,17 @@ public class FactorRiesgoLocalidad {
 	}
 	
 	//getters and setters
+	
 	public long getIdFactorRiesgoLocalidad() {
 		return idFactorRiesgoLocalidad;
+	}
+
+	public Localidad getLocalidadAsociada() {
+		return localidadAsociada;
+	}
+
+	public void setLocalidadAsociada(Localidad localidadAsociada) {
+		this.localidadAsociada = localidadAsociada;
 	}
 
 	public Float getValorNumerico() {
