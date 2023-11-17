@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="modelo")
-public class Modelo implements FactorCaracteristico{
+public class Modelo{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idModelo")
@@ -34,7 +34,7 @@ public class Modelo implements FactorCaracteristico{
 	private List<AnioModelo> aniosFabricacion;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idMarca", foreignKey= @ForeignKey(name="FK_marca_en_modelo"))
+	@JoinColumn(name="idMarca", referencedColumnName="idMarca",foreignKey= @ForeignKey(name="FK_marca_en_modelo"))
 	private Marca marca;
 	
 	
@@ -43,9 +43,7 @@ public class Modelo implements FactorCaracteristico{
 		super();
 	}
 	
-	public float getPorcentaje() {
-		return this.valorActualPorcentajeEstadisticaRobo.getValorNumerico();				
-	}
+
 
 	@Override
 	public int hashCode() {
@@ -66,14 +64,15 @@ public class Modelo implements FactorCaracteristico{
 
 
 
+	
+
 	@Override
 	public String toString() {
-		return "Modelo [idModelo=" + idModelo + ", nombre=" + nombreModelo + ", descripcion=" + descripcion
-				+ ", fabricadoDesde=" + fabricadoDesde + ", fabricadoHasta=" + fabricadoHasta + ", marca=" + marca
-				+ ", valorActualPorcentajeEstadisticaRobo=" + valorActualPorcentajeEstadisticaRobo
-				+ ", valoresPasadosPorcentajeEstadisticaRobo=" + valoresPasadosPorcentajeEstadisticaRobo + "]";
+		return "Modelo [idModelo=" + idModelo + ", nombreModelo=" + nombreModelo + ", descripcion=" + descripcion
+				+ ", fabricadoDesde=" + fabricadoDesde + ", fabricadoHasta=" + fabricadoHasta + ", aniosFabricacion="
+				+ aniosFabricacion + ", marca=" + marca + "]";
 	}
-	//getters and setters
+
 
 
 	public long getIdModelo() {
@@ -110,17 +109,7 @@ public class Modelo implements FactorCaracteristico{
 
 
 
-	public PorcentajeEstadisticaRobo getValorActualPorcentajeEstadisticaRobo() {
-		return valorActualPorcentajeEstadisticaRobo;
-	}
-
-
-
-	public List<PorcentajeEstadisticaRobo> getValoresPasadosPorcentajeEstadisticaRobo() {
-		return valoresPasadosPorcentajeEstadisticaRobo;
-	}
-
-
+	
 
 	public void setIdModelo(long idModelo) {
 		this.idModelo = idModelo;
@@ -155,18 +144,7 @@ public class Modelo implements FactorCaracteristico{
 
 
 
-	public void setValorActualPorcentajeEstadisticaRobo(PorcentajeEstadisticaRobo valorActualPorcentajeEstadisticaRobo) {
-		this.valorActualPorcentajeEstadisticaRobo = valorActualPorcentajeEstadisticaRobo;
-	}
-
-
-
-	public void setValoresPasadosPorcentajeEstadisticaRobo(
-			List<PorcentajeEstadisticaRobo> valoresPasadosPorcentajeEstadisticaRobo) {
-		this.valoresPasadosPorcentajeEstadisticaRobo = valoresPasadosPorcentajeEstadisticaRobo;
-	}
-
-
+	
 
 	public String getNombreModelo() {
 		return nombreModelo;
@@ -174,21 +152,30 @@ public class Modelo implements FactorCaracteristico{
 
 
 
-	public float getValor() {
-		return valor;
-	}
-
-
-
+	
 	public void setNombreModelo(String nombreModelo) {
 		this.nombreModelo = nombreModelo;
 	}
 
 
 
-	public void setValor(float valor) {
-		this.valor = valor;
+	public List<AnioModelo> getAniosFabricacion() {
+		return aniosFabricacion;
 	}
+
+
+
+	public void setAniosFabricacion(List<AnioModelo> aniosFabricacion) {
+		this.aniosFabricacion = aniosFabricacion;
+	}
+
+	
+
+
+	
+
+
+
 	
 	
 	

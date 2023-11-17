@@ -38,8 +38,8 @@ public class Domicilio {
 	@OneToOne(mappedBy="domicilio")
 	private Cliente cliente;
 	
-	@ManyToOne(fetch= FetchType.LAZY)
-	@JoinColumn(name="idLocalidad", foreignKey= @ForeignKey(name="FK_localidad_en_domicilio"))
+	@ManyToOne(fetch= FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="idLocalidad", referencedColumnName="idLocalidad",foreignKey= @ForeignKey(name="FK_localidad_en_domicilio"))
 	private Localidad localidad;
 	//podria faltar un cascade
 	

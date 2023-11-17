@@ -39,9 +39,11 @@ public class Rol {
 		super();
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fechaAlta, fechaBaja, idRol, nombreRol, permisos);
+		return Objects.hash(idRol);
 	}
 
 	@Override
@@ -53,9 +55,7 @@ public class Rol {
 		if (getClass() != obj.getClass())
 			return false;
 		Rol other = (Rol) obj;
-		return Objects.equals(fechaAlta, other.fechaAlta) && Objects.equals(fechaBaja, other.fechaBaja)
-				&& idRol == other.idRol && Objects.equals(nombreRol, other.nombreRol)
-				&& Objects.equals(permisos, other.permisos);
+		return idRol == other.idRol;
 	}
 
 	@Override
@@ -104,6 +104,7 @@ public class Rol {
 	public void setPermisos(List<Permiso> permisos) {
 		this.permisos = permisos;
 	}
+	
 	
 	
 	

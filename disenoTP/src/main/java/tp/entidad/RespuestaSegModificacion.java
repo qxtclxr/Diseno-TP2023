@@ -11,7 +11,7 @@ public class RespuestaSegModificacion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idRespuestaSegModificacion")
 	private long idRespuestaSegModificacion;
-	
+	/*
 	@Column(nullable=false)
 	private String idMedida;
 	
@@ -22,10 +22,14 @@ public class RespuestaSegModificacion {
 		super();
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(idMedida, idRespuestaSegModificacion, valorRespuesta);
+		return Objects.hash(idRespuestaSegModificacion);
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -36,10 +40,10 @@ public class RespuestaSegModificacion {
 		if (getClass() != obj.getClass())
 			return false;
 		RespuestaSegModificacion other = (RespuestaSegModificacion) obj;
-		return Objects.equals(idMedida, other.idMedida)
-				&& idRespuestaSegModificacion == other.idRespuestaSegModificacion
-				&& Objects.equals(valorRespuesta, other.valorRespuesta);
+		return idRespuestaSegModificacion == other.idRespuestaSegModificacion;
 	}
+
+
 
 	@Override
 	public String toString() {
@@ -71,6 +75,7 @@ public class RespuestaSegModificacion {
 	public void setValorRespuesta(Boolean valorRespuesta) {
 		this.valorRespuesta = valorRespuesta;
 	}
+	*/
 	
 	
 }

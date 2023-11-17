@@ -160,21 +160,25 @@ public class Poliza {
 
 
 
+	
+	
+	//getters and setters
+
+
 	@Override
 	public String toString() {
 		return "Poliza [idPoliza=" + idPoliza + ", nroPoliza=" + nroPoliza + ", sumaAsegurada=" + sumaAsegurada
 				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + ", premio="
 				+ premio + ", tipoPoliza=" + tipoPoliza + ", fechaEmision=" + fechaEmision + ", cantidadDeSiniestros="
 				+ cantidadDeSiniestros + ", cantKMRealizados=" + cantKMRealizados + ", cliente=" + cliente
-				+ ", domicilioDeRiesgo=" + domicilioDeRiesgo + ", descuentoPorU=" + descuentoPorU
-				+ ", rangoCantSiniestros=" + rangoCantSiniestros + ", rangoKMRealizados=" + rangoKMRealizados
-				+ ", derechosDeEmision=" + derechosDeEmision + ", rangoAjustePorHijo=" + rangoAjustePorHijo
-				+ ", respuestasSeguridad=" + respuestasSeguridad + ", modificaciones=" + modificaciones + ", cobertura="
-				+ cobertura + ", hijosDeclarados=" + hijosDeclarados + ", vehiculoAsegurado=" + vehiculoAsegurado
-				+ ", cuotasAsociadas=" + cuotasAsociadas + "]";
+				+ ", factorRiesgoLoc=" + factorRiesgoLoc + ", porcDescuentoPorU=" + porcDescuentoPorU
+				+ ", porcCantSiniestros=" + porcCantSiniestros + ", porcKMRealizados=" + porcKMRealizados
+				+ ", valorDerechosDeEmision=" + valorDerechosDeEmision + ", porcAjustePorHijo=" + porcAjustePorHijo
+				+ ", porcEstRobo=" + porcEstRobo + ", porcMedidaSeguridad=" + porcMedidaSeguridad + ", modificaciones="
+				+ modificaciones + ", porcCobertura=" + porcCobertura + ", hijosDeclarados=" + hijosDeclarados
+				+ ", vehiculoAsegurado=" + vehiculoAsegurado + ", cuotasAsociadas=" + cuotasAsociadas + "]";
 	}
-	
-	//getters and setters
+
 
 
 	public long getIdPoliza() {
@@ -249,45 +253,7 @@ public class Poliza {
 
 
 
-	public Localidad getDomicilioDeRiesgo() {
-		return domicilioDeRiesgo;
-	}
-
-
-
-	public DescuentoPorUnidad getDescuentoPorU() {
-		return descuentoPorU;
-	}
-
-
-
-	public RangoCantSiniestros getRangoCantSiniestros() {
-		return rangoCantSiniestros;
-	}
-
-
-
-	public RangoKMRealizados getRangoKMRealizados() {
-		return rangoKMRealizados;
-	}
-
-
-
-	public DerechosDeEmision getDerechosDeEmision() {
-		return derechosDeEmision;
-	}
-
-
-
-	public RangoAjustePorHijo getRangoAjustePorHijo() {
-		return rangoAjustePorHijo;
-	}
-
-
-
-	public List<RespuestaSeguridad> getRespuestasSeguridad() {
-		return respuestasSeguridad;
-	}
+	
 
 
 
@@ -391,47 +357,7 @@ public class Poliza {
 
 
 
-	public void setDomicilioDeRiesgo(Localidad domicilioDeRiesgo) {
-		this.domicilioDeRiesgo = domicilioDeRiesgo;
-	}
-
-
-
-	public void setDescuentoPorU(DescuentoPorUnidad descuentoPorU) {
-		this.descuentoPorU = descuentoPorU;
-	}
-
-
-
-	public void setRangoCantSiniestros(RangoCantSiniestros rangoCantSiniestros) {
-		this.rangoCantSiniestros = rangoCantSiniestros;
-	}
-
-
-
-	public void setRangoKMRealizados(RangoKMRealizados rangoKMRealizados) {
-		this.rangoKMRealizados = rangoKMRealizados;
-	}
-
-
-
-	public void setDerechosDeEmision(DerechosDeEmision derechosDeEmision) {
-		this.derechosDeEmision = derechosDeEmision;
-	}
-
-
-
-	public void setRangoAjustePorHijo(RangoAjustePorHijo rangoAjustePorHijo) {
-		this.rangoAjustePorHijo = rangoAjustePorHijo;
-	}
-
-
-
-	public void setRespuestasSeguridad(List<RespuestaSeguridad> respuestasSeguridad) {
-		this.respuestasSeguridad = respuestasSeguridad;
-	}
-
-
+	
 
 	public void setModificaciones(List<ModificacionPoliza> modificaciones) {
 		this.modificaciones = modificaciones;
@@ -442,16 +368,6 @@ public class Poliza {
 	
 
 
-
-	public PorcentajeCobertura getCobertura() {
-		return cobertura;
-	}
-
-
-
-	public void setCobertura(PorcentajeCobertura cobertura) {
-		this.cobertura = cobertura;
-	}
 
 
 
@@ -469,6 +385,114 @@ public class Poliza {
 
 	public void setCuotasAsociadas(List<Cuota> cuotasAsociadas) {
 		this.cuotasAsociadas = cuotasAsociadas;
+	}
+
+
+
+	public FactorRiesgoLocalidad getFactorRiesgoLoc() {
+		return factorRiesgoLoc;
+	}
+
+
+
+	public PorcentajeDescPorUnidad getPorcDescuentoPorU() {
+		return porcDescuentoPorU;
+	}
+
+
+
+	public PorcentajeCantSiniestros getPorcCantSiniestros() {
+		return porcCantSiniestros;
+	}
+
+
+
+	public PorcentajeKMRealizados getPorcKMRealizados() {
+		return porcKMRealizados;
+	}
+
+
+
+	public ValorDerechosDeEmision getValorDerechosDeEmision() {
+		return valorDerechosDeEmision;
+	}
+
+
+
+	public PorcentajeAjusteHijos getPorcAjustePorHijo() {
+		return porcAjustePorHijo;
+	}
+
+
+
+	public PorcentajeEstadisticaRobo getPorcEstRobo() {
+		return porcEstRobo;
+	}
+
+
+
+	public List<PorcentajeMedidaDeSeguridad> getPorcMedidaSeguridad() {
+		return porcMedidaSeguridad;
+	}
+
+
+
+	public PorcentajeCobertura getPorcCobertura() {
+		return porcCobertura;
+	}
+
+
+
+	public void setFactorRiesgoLoc(FactorRiesgoLocalidad factorRiesgoLoc) {
+		this.factorRiesgoLoc = factorRiesgoLoc;
+	}
+
+
+
+	public void setPorcDescuentoPorU(PorcentajeDescPorUnidad porcDescuentoPorU) {
+		this.porcDescuentoPorU = porcDescuentoPorU;
+	}
+
+
+
+	public void setPorcCantSiniestros(PorcentajeCantSiniestros porcCantSiniestros) {
+		this.porcCantSiniestros = porcCantSiniestros;
+	}
+
+
+
+	public void setPorcKMRealizados(PorcentajeKMRealizados porcKMRealizados) {
+		this.porcKMRealizados = porcKMRealizados;
+	}
+
+
+
+	public void setValorDerechosDeEmision(ValorDerechosDeEmision valorDerechosDeEmision) {
+		this.valorDerechosDeEmision = valorDerechosDeEmision;
+	}
+
+
+
+	public void setPorcAjustePorHijo(PorcentajeAjusteHijos porcAjustePorHijo) {
+		this.porcAjustePorHijo = porcAjustePorHijo;
+	}
+
+
+
+	public void setPorcEstRobo(PorcentajeEstadisticaRobo porcEstRobo) {
+		this.porcEstRobo = porcEstRobo;
+	}
+
+
+
+	public void setPorcMedidaSeguridad(List<PorcentajeMedidaDeSeguridad> porcMedidaSeguridad) {
+		this.porcMedidaSeguridad = porcMedidaSeguridad;
+	}
+
+
+
+	public void setPorcCobertura(PorcentajeCobertura porcCobertura) {
+		this.porcCobertura = porcCobertura;
 	}
 	
 	

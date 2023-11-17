@@ -20,7 +20,7 @@ public class DerechosDeEmision {
 	@JoinColumn(name="idValorDerechosDeEmision")
 	private ValorDerechosDeEmision valorActualDerechosDeEmision;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="derechosAsociados", cascade = CascadeType.ALL)
 	private List<ValorDerechosDeEmision> valoresPasadosDerechosDeEmision;
 		
 	public DerechosDeEmision() {
@@ -75,7 +75,7 @@ public class DerechosDeEmision {
 	public void setValoresPasadosDerechosDeEmision(List<ValorDerechosDeEmision> valoresPasadosDerechosDeEmision) {
 		this.valoresPasadosDerechosDeEmision = valoresPasadosDerechosDeEmision;
 	}
-	
+
 	
 	
 	

@@ -1,6 +1,8 @@
 package tp.entidad;
 
 import java.util.List;
+
+
 import java.util.Objects;
 
 import jakarta.persistence.*;
@@ -31,11 +33,22 @@ public class AjusteHijos {
 		super();
 	}
 
+	
+
+	
+
+	
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(desdeCantHijos, hastaCantHijos, idRangoAjustePorHijo, valorActualPorcentajeCantHijos,
-				valoresPasadosPorcentajeCantHijos);
+		return Objects.hash(idRangoAjusteHijos);
 	}
+
+
+
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -45,61 +58,94 @@ public class AjusteHijos {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RangoAjustePorHijo other = (RangoAjustePorHijo) obj;
-		return desdeCantHijos == other.desdeCantHijos && hastaCantHijos == other.hastaCantHijos
-				&& idRangoAjustePorHijo == other.idRangoAjustePorHijo
-				&& Objects.equals(valorActualPorcentajeCantHijos, other.valorActualPorcentajeCantHijos)
-				&& Objects.equals(valoresPasadosPorcentajeCantHijos, other.valoresPasadosPorcentajeCantHijos);
+		AjusteHijos other = (AjusteHijos) obj;
+		return idRangoAjusteHijos == other.idRangoAjusteHijos;
 	}
+
+
+
+
+
 
 	@Override
 	public String toString() {
-		return "RangoAjustePorHijo [idRangoAjustePorHijo=" + idRangoAjustePorHijo + ", desdeCantHijos=" + desdeCantHijos
-				+ ", hastaCantHijos=" + hastaCantHijos + ", valorActualPorcentajeCantHijos="
-				+ valorActualPorcentajeCantHijos + ", valoresPasadosPorcentajeCantHijos="
-				+ valoresPasadosPorcentajeCantHijos + "]";
+		return "AjusteHijos [idRangoAjusteHijos=" + idRangoAjusteHijos + ", valorActualPorcentajeCantHijos="
+				+ valorActualPorcentajeCantHijos + ", valoresPasadosAjusteHijos=" + valoresPasadosAjusteHijos + "]";
 	}
+
+
 	//setters and getters
+	
 
-	public long getIdRangoAjustePorHijo() {
-		return idRangoAjustePorHijo;
+
+
+
+
+	public long getIdRangoAjusteHijos() {
+		return idRangoAjusteHijos;
 	}
 
-	public int getDesdeCantHijos() {
-		return desdeCantHijos;
-	}
 
-	public int getHastaCantHijos() {
-		return hastaCantHijos;
-	}
 
-	public PorcentajeCantHijos getValorActualPorcentajeCantHijos() {
+
+
+
+
+
+	public PorcentajeAjusteHijos getValorActualPorcentajeCantHijos() {
 		return valorActualPorcentajeCantHijos;
 	}
 
-	public List<PorcentajeCantHijos> getValoresPasadosPorcentajeCantHijos() {
-		return valoresPasadosPorcentajeCantHijos;
+
+
+
+
+
+
+
+	public List<PorcentajeAjusteHijos> getValoresPasadosAjusteHijos() {
+		return valoresPasadosAjusteHijos;
 	}
 
-	public void setIdRangoAjustePorHijo(long idRangoAjustePorHijo) {
-		this.idRangoAjustePorHijo = idRangoAjustePorHijo;
+
+
+
+
+
+
+
+	public void setIdRangoAjusteHijos(long idRangoAjusteHijos) {
+		this.idRangoAjusteHijos = idRangoAjusteHijos;
 	}
 
-	public void setDesdeCantHijos(int desdeCantHijos) {
-		this.desdeCantHijos = desdeCantHijos;
-	}
 
-	public void setHastaCantHijos(int hastaCantHijos) {
-		this.hastaCantHijos = hastaCantHijos;
-	}
 
-	public void setValorActualPorcentajeCantHijos(PorcentajeCantHijos valorActualPorcentajeCantHijos) {
+
+
+
+
+
+	public void setValorActualPorcentajeCantHijos(PorcentajeAjusteHijos valorActualPorcentajeCantHijos) {
 		this.valorActualPorcentajeCantHijos = valorActualPorcentajeCantHijos;
 	}
 
-	public void setValoresPasadosPorcentajeCantHijos(List<PorcentajeCantHijos> valoresPasadosPorcentajeCantHijos) {
-		this.valoresPasadosPorcentajeCantHijos = valoresPasadosPorcentajeCantHijos;
+
+
+
+
+
+
+
+	public void setValoresPasadosAjusteHijos(List<PorcentajeAjusteHijos> valoresPasadosAjusteHijos) {
+		this.valoresPasadosAjusteHijos = valoresPasadosAjusteHijos;
 	}
+
+	
+
+
+
+
+	
 	
 	
 

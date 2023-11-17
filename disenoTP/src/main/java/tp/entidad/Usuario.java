@@ -31,17 +31,21 @@ public class Usuario {
 	
 	//relaciones
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idRol", foreignKey= @ForeignKey(name="FK_id_rol_en_usuario"))
+	@JoinColumn(name="idRol",referencedColumnName="idRol", foreignKey= @ForeignKey(name="FK_id_rol_en_usuario"))
 	private Rol rolActual;
 	
 	public Usuario() {
 		super();
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellido, idUsuario, nombre, rolActual, tipoDocumento);
+		return Objects.hash(idUsuario);
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -52,10 +56,10 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(apellido, other.apellido) && idUsuario == other.idUsuario
-				&& Objects.equals(nombre, other.nombre) && Objects.equals(rolActual, other.rolActual)
-				&& tipoDocumento == other.tipoDocumento;
+		return idUsuario == other.idUsuario;
 	}
+
+
 
 	@Override
 	public String toString() {

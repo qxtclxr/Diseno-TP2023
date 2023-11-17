@@ -23,7 +23,7 @@ public class PorcentajeAjusteHijos {
 	//relaciones
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cant_hijos"))
+	@JoinColumn(name="idUsuario",referencedColumnName="idUsuario" ,foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cant_hijos"))
 	private Usuario modificadoPor;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
@@ -44,10 +44,13 @@ public class PorcentajeAjusteHijos {
 	public PorcentajeAjusteHijos() {
 		super();
 	}
+	
+
+	
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idPorcentajeCantHijos);
+		return Objects.hash(idPorcentajeAjusteHijos);
 	}
 
 	@Override
@@ -58,19 +61,16 @@ public class PorcentajeAjusteHijos {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PorcentajeCantHijos other = (PorcentajeCantHijos) obj;
-		return idPorcentajeCantHijos == other.idPorcentajeCantHijos;
+		PorcentajeAjusteHijos other = (PorcentajeAjusteHijos) obj;
+		return idPorcentajeAjusteHijos == other.idPorcentajeAjusteHijos;
 	}
+	
 
 	@Override
 	public String toString() {
-		return "PorcentajeCantHijos [idPorcentajeCantHijos=" + idPorcentajeCantHijos + ", valorNumerico="
-				+ valorNumerico + ", fechaModificacion=" + fechaModificacion + ", modificadoPor=" + modificadoPor + "]";
-	}
-	//getters and setters
-
-	public long getIdPorcentajeCantHijos() {
-		return idPorcentajeCantHijos;
+		return "PorcentajeAjusteHijos [idPorcentajeAjusteHijos=" + idPorcentajeAjusteHijos + ", valorNumerico="
+				+ valorNumerico + ", fechaModificacion=" + fechaModificacion + ", modificadoPor=" + modificadoPor
+				+ ", ajusteAsociado=" + ajusteAsociado + "]";
 	}
 
 	public Float getValorNumerico() {
@@ -85,9 +85,7 @@ public class PorcentajeAjusteHijos {
 		return modificadoPor;
 	}
 
-	public void setIdPorcentajeCantHijos(long idPorcentajeCantHijos) {
-		this.idPorcentajeCantHijos = idPorcentajeCantHijos;
-	}
+	
 
 	public void setValorNumerico(Float valorNumerico) {
 		this.valorNumerico = valorNumerico;
@@ -100,6 +98,23 @@ public class PorcentajeAjusteHijos {
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
 	}
+
+	public long getIdPorcentajeAjusteHijos() {
+		return idPorcentajeAjusteHijos;
+	}
+
+	public AjusteHijos getAjusteAsociado() {
+		return ajusteAsociado;
+	}
+
+	public void setIdPorcentajeAjusteHijos(long idPorcentajeAjusteHijos) {
+		this.idPorcentajeAjusteHijos = idPorcentajeAjusteHijos;
+	}
+
+	public void setAjusteAsociado(AjusteHijos ajusteAsociado) {
+		this.ajusteAsociado = ajusteAsociado;
+	}
+	
 	
 	
 }

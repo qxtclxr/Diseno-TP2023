@@ -27,7 +27,7 @@ public class PorcentajeDescPorUnidad {
 	private DescuentoPorUnidad descAsociado;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_desc_por_unidad"))
+	@JoinColumn(name="idUsuario", referencedColumnName="idUsuario",foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_desc_por_unidad"))
 	private Usuario modificadoPor;
 	
 	@PrePersist
@@ -45,9 +45,11 @@ public class PorcentajeDescPorUnidad {
 		super();
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fechaModificacion, idPorcentajeDescPorUnidad, valorNumerico);
+		return Objects.hash(idPorcentajeDescPorUnidad);
 	}
 
 	@Override
@@ -59,9 +61,7 @@ public class PorcentajeDescPorUnidad {
 		if (getClass() != obj.getClass())
 			return false;
 		PorcentajeDescPorUnidad other = (PorcentajeDescPorUnidad) obj;
-		return Objects.equals(fechaModificacion, other.fechaModificacion)
-				&& idPorcentajeDescPorUnidad == other.idPorcentajeDescPorUnidad
-				&& Objects.equals(valorNumerico, other.valorNumerico);
+		return idPorcentajeDescPorUnidad == other.idPorcentajeDescPorUnidad;
 	}
 
 	@Override
@@ -102,6 +102,15 @@ public class PorcentajeDescPorUnidad {
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
 	}
+
+	public DescuentoPorUnidad getDescAsociado() {
+		return descAsociado;
+	}
+
+	public void setDescAsociado(DescuentoPorUnidad descAsociado) {
+		this.descAsociado = descAsociado;
+	}
+	
 	
 	
 }
