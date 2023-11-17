@@ -32,8 +32,9 @@ public class ModificacionPoliza {
 	
 	//relaciones
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<RespuestaSegModificacion> respuestasModificadas;
+	
+	@ManyToMany(fetch= FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private List<PorcentajeMedidaDeSeguridad> porcMedidasModificadas;
 	
 	//Relaciones simplificadas
 	@Column
@@ -41,8 +42,9 @@ public class ModificacionPoliza {
 	@Column
 	private int idRangoCantSiniestros;
 	
-	@Column
-	private int idCobertura;
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="porCoberturaModificada", referencedColumnName="idPorcentajeCobertura", foreignKey= @ForeignKey(name="FK_Por_cobertura_mod"))
+	private PorcentajeCobertura porcCoberturaModificada;
 	
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HijoDeclaradoModificacion> hijosDeclaradosModificados;
@@ -82,16 +84,18 @@ public class ModificacionPoliza {
 		return idModificacionPoliza == other.idModificacionPoliza;
 	}
 
+	
+	//getters and setters
+
 	@Override
 	public String toString() {
 		return "ModificacionPoliza [idModificacionPoliza=" + idModificacionPoliza + ", anioVehiculo=" + anioVehiculo
 				+ ", patente=" + patente + ", motor=" + motor + ", chasis=" + chasis + ", fechaModificacion="
 				+ fechaModificacion + ", respuestasModificadas=" + respuestasModificadas + ", idRangoKMrealizados="
-				+ idRangoKMrealizados + ", idRangoCantSiniestros=" + idRangoCantSiniestros + ", idCobertura="
-				+ idCobertura + ", hijosDeclaradosModificados=" + hijosDeclaradosModificados + ", modificadoPor="
-				+ modificadoPor + "]";
+				+ idRangoKMrealizados + ", idRangoCantSiniestros=" + idRangoCantSiniestros
+				+ ", porcCoberturaModificada=" + porcCoberturaModificada + ", hijosDeclaradosModificados="
+				+ hijosDeclaradosModificados + ", modificadoPor=" + modificadoPor + "]";
 	}
-	//getters and setters
 
 	public long getIdModificacionPoliza() {
 		return idModificacionPoliza;
@@ -129,9 +133,6 @@ public class ModificacionPoliza {
 		return idRangoCantSiniestros;
 	}
 
-	public int getIdCobertura() {
-		return idCobertura;
-	}
 
 	public List<HijoDeclaradoModificacion> getHijosDeclaradosModificados() {
 		return hijosDeclaradosModificados;
@@ -177,8 +178,14 @@ public class ModificacionPoliza {
 		this.idRangoCantSiniestros = idRangoCantSiniestros;
 	}
 
-	public void setIdCobertura(int idCobertura) {
-		this.idCobertura = idCobertura;
+	
+
+	public PorcentajeCobertura getPorcCoberturaModificada() {
+		return porcCoberturaModificada;
+	}
+
+	public void setPorcCoberturaModificada(PorcentajeCobertura porcCoberturaModificada) {
+		this.porcCoberturaModificada = porcCoberturaModificada;
 	}
 
 	public void setHijosDeclaradosModificados(List<HijoDeclaradoModificacion> hijosDeclaradosModificados) {

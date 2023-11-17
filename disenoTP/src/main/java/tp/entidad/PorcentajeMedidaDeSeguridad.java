@@ -28,6 +28,13 @@ public class PorcentajeMedidaDeSeguridad {
 	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_medida_de_seguridad"))
 	private Usuario modificadoPor;
 	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idMedidaDeSeguridad",referencedColumnName="idMedidaDeSeguridad" ,foreignKey= @ForeignKey(name="FK_medida_porc_medida"))
+	private MedidaDeSeguridad medidaAsociada;
+	
+	
+	
+	
 	@PrePersist
 	protected void onCreate() {
 		fechaModificacion=LocalDateTime.now();

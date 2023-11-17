@@ -24,8 +24,13 @@ public class PorcentajeCobertura {
 	//relaciones
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idCobertura",referencedColumnName="idCobertura" ,foreignKey= @ForeignKey(name="FK_cob_en_por_cobertura"))
+	private Cobertura coberturaAsociada;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cobertura"))
 	private Usuario modificadoPor;
+	
 	
 	@PrePersist
 	protected void onCreate() {
@@ -99,6 +104,15 @@ public class PorcentajeCobertura {
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
 	}
+
+	public Cobertura getCoberturaAsociada() {
+		return coberturaAsociada;
+	}
+
+	public void setCoberturaAsociada(Cobertura coberturaAsociada) {
+		this.coberturaAsociada = coberturaAsociada;
+	}
+	
 	
 	
 	

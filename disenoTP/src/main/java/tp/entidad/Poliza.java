@@ -61,7 +61,7 @@ public class Poliza {
 	//Relaciones
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_cliente", foreignKey= @ForeignKey(name ="POLIZA_CLIENTE_FK"))
+	@JoinColumn(name = "idCliente", referencedColumnName="idCliente" ,foreignKey= @ForeignKey(name ="POLIZA_CLIENTE_FK"))
 	private Cliente cliente;
 	
 	//relaciones // Factores de calculo
@@ -95,15 +95,16 @@ public class Poliza {
 	//Medidas y respuestas de seguridad
 	//ver el eager de los factores
 	
-	@OneToMany(fetch= FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<RespuestaSeguridad> respuestasSeguridad;
+	//Este puede traer problemas
+	@ManyToMany(fetch= FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private List<PorcentajeMedidaDeSeguridad> porcMedidaSeguridad;
 	
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ModificacionPoliza> modificaciones;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idCobertura", foreignKey= @ForeignKey(name="FK_cobertura_en_poliza"))
-	private Cobertura cobertura;
+	@JoinColumn(name="porCobertura", referencedColumnName="idPorcentajeCobertura", foreignKey= @ForeignKey(name="FK_Por_cobertura_Poliza"))
+	private PorcentajeCobertura cobertura;
 	
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HijoDeclarado> hijosDeclarados;
@@ -281,9 +282,7 @@ public class Poliza {
 
 
 
-	public Cobertura getCobertura() {
-		return cobertura;
-	}
+	
 
 
 
@@ -425,7 +424,17 @@ public class Poliza {
 
 
 
-	public void setCobertura(Cobertura cobertura) {
+	
+
+
+
+	public PorcentajeCobertura getCobertura() {
+		return cobertura;
+	}
+
+
+
+	public void setCobertura(PorcentajeCobertura cobertura) {
 		this.cobertura = cobertura;
 	}
 

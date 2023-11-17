@@ -21,7 +21,7 @@ public class LocalidadDAO extends AbstractDAO<Localidad> {
 		CriteriaQuery<Localidad> cQuery= cbuild.createQuery(Localidad.class);
 		Root<Localidad> root = cQuery.from(Localidad.class);
 		
-		cQuery.select(root).where(cbuild.equal(root.get("idProvincia"), p.getIdProvincia()));
+		cQuery.select(root).where(cbuild.equal(root.get("provincia"), p));
 		Query query = this.getEntityManager().createQuery(cQuery);
 		List<Localidad> retorno = query.getResultList();
 		return retorno;
