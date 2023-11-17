@@ -32,23 +32,29 @@ public class ModificacionPoliza {
 	
 	//relaciones
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<RespuestaSegModificacion> respuestasModificadas;
 	
-	//Relaciones simplificadas
-	@Column
-	private int idRangoKMrealizados;
-	@Column
-	private int idRangoCantSiniestros;
+	@ManyToMany(fetch= FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private List<PorcentajeMedidaDeSeguridad> porcMedidasModificadas;
 	
-	@Column
-	private int idCobertura;
+	//Relaciones 
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="porKMModificado", referencedColumnName="idPorcentajeKMRealizados", foreignKey= @ForeignKey(name="FK_Por_KM_mod"))
+	private PorcentajeKMRealizados porcentajeKMModificado;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="porCantSinModificado", referencedColumnName="idPorcCantSin", foreignKey= @ForeignKey(name="FK_Por_cant_sin_mod"))
+	private PorcentajeCantSiniestros porcentajeModificado;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="porCoberturaModificada", referencedColumnName="idPorcentajeCobertura", foreignKey= @ForeignKey(name="FK_Por_cobertura_mod"))
+	private PorcentajeCobertura porcCoberturaModificada;
 	
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HijoDeclaradoModificacion> hijosDeclaradosModificados;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_modificacion"))
+	@JoinColumn(name="idUsuario", referencedColumnName="idUsuario",foreignKey= @ForeignKey(name="FK_usuario_en_modificacion"))
 	private Usuario modificadoPor;
 	
 	
@@ -82,16 +88,20 @@ public class ModificacionPoliza {
 		return idModificacionPoliza == other.idModificacionPoliza;
 	}
 
+	
+	//getters and setters
+
+	
+
 	@Override
 	public String toString() {
 		return "ModificacionPoliza [idModificacionPoliza=" + idModificacionPoliza + ", anioVehiculo=" + anioVehiculo
 				+ ", patente=" + patente + ", motor=" + motor + ", chasis=" + chasis + ", fechaModificacion="
-				+ fechaModificacion + ", respuestasModificadas=" + respuestasModificadas + ", idRangoKMrealizados="
-				+ idRangoKMrealizados + ", idRangoCantSiniestros=" + idRangoCantSiniestros + ", idCobertura="
-				+ idCobertura + ", hijosDeclaradosModificados=" + hijosDeclaradosModificados + ", modificadoPor="
-				+ modificadoPor + "]";
+				+ fechaModificacion + ", porcMedidasModificadas=" + porcMedidasModificadas + ", porcentajeKMModificado="
+				+ porcentajeKMModificado + ", porcentajeModificado=" + porcentajeModificado
+				+ ", porcCoberturaModificada=" + porcCoberturaModificada + ", hijosDeclaradosModificados="
+				+ hijosDeclaradosModificados + ", modificadoPor=" + modificadoPor + "]";
 	}
-	//getters and setters
 
 	public long getIdModificacionPoliza() {
 		return idModificacionPoliza;
@@ -117,21 +127,7 @@ public class ModificacionPoliza {
 		return fechaModificacion;
 	}
 
-	public List<RespuestaSegModificacion> getRespuestasModificadas() {
-		return respuestasModificadas;
-	}
-
-	public int getIdRangoKMrealizados() {
-		return idRangoKMrealizados;
-	}
-
-	public int getIdRangoCantSiniestros() {
-		return idRangoCantSiniestros;
-	}
-
-	public int getIdCobertura() {
-		return idCobertura;
-	}
+	
 
 	public List<HijoDeclaradoModificacion> getHijosDeclaradosModificados() {
 		return hijosDeclaradosModificados;
@@ -165,20 +161,16 @@ public class ModificacionPoliza {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public void setRespuestasModificadas(List<RespuestaSegModificacion> respuestasModificadas) {
-		this.respuestasModificadas = respuestasModificadas;
+	
+
+	
+
+	public PorcentajeCobertura getPorcCoberturaModificada() {
+		return porcCoberturaModificada;
 	}
 
-	public void setIdRangoKMrealizados(int idRangoKMrealizados) {
-		this.idRangoKMrealizados = idRangoKMrealizados;
-	}
-
-	public void setIdRangoCantSiniestros(int idRangoCantSiniestros) {
-		this.idRangoCantSiniestros = idRangoCantSiniestros;
-	}
-
-	public void setIdCobertura(int idCobertura) {
-		this.idCobertura = idCobertura;
+	public void setPorcCoberturaModificada(PorcentajeCobertura porcCoberturaModificada) {
+		this.porcCoberturaModificada = porcCoberturaModificada;
 	}
 
 	public void setHijosDeclaradosModificados(List<HijoDeclaradoModificacion> hijosDeclaradosModificados) {
@@ -188,5 +180,30 @@ public class ModificacionPoliza {
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
 	}
+
+	public List<PorcentajeMedidaDeSeguridad> getPorcMedidasModificadas() {
+		return porcMedidasModificadas;
+	}
+
+	public PorcentajeKMRealizados getPorcentajeKMModificado() {
+		return porcentajeKMModificado;
+	}
+
+	public PorcentajeCantSiniestros getPorcentajeModificado() {
+		return porcentajeModificado;
+	}
+
+	public void setPorcMedidasModificadas(List<PorcentajeMedidaDeSeguridad> porcMedidasModificadas) {
+		this.porcMedidasModificadas = porcMedidasModificadas;
+	}
+
+	public void setPorcentajeKMModificado(PorcentajeKMRealizados porcentajeKMModificado) {
+		this.porcentajeKMModificado = porcentajeKMModificado;
+	}
+
+	public void setPorcentajeModificado(PorcentajeCantSiniestros porcentajeModificado) {
+		this.porcentajeModificado = porcentajeModificado;
+	}
+	
 	
 }

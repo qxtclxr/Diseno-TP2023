@@ -8,23 +8,23 @@ import java.util.stream.Collectors;
 import tp.dao.*;
 
 public class GestorCobertura {
-	public Cobertura getCobertura(CoberturaDTO dto) {
+	public static Cobertura getCobertura(CoberturaDTO dto) {
 		CoberturaDAO dao = new CoberturaDAO();
 		Cobertura objeto = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
 		return objeto;
 	}
 	
-	public CoberturaDTO getDTO(Cobertura cobertura) {
+	public static CoberturaDTO getDTO(Cobertura cobertura) {
 		CoberturaDTO dto = new CoberturaDTO();
 		dto.setNombre(cobertura.getTipoCobertura());
 		dto.setId(cobertura.getIdCobertura());
 		return dto;
 	}
 	
-	public List<CoberturaDTO> getAll(){
+	public static List<CoberturaDTO> getAll(){
 		CoberturaDAO dao = new CoberturaDAO();
 		List<Cobertura> all = dao.getAll();
-		List<CoberturaDTO> allDTOs = all.stream().map(obj -> this.getDTO(obj)).collect(Collectors.toList());
+		List<CoberturaDTO> allDTOs = all.stream().map(obj -> getDTO(obj)).collect(Collectors.toList());
 		return allDTOs;
 	}
 }

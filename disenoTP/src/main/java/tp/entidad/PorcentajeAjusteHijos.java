@@ -6,13 +6,13 @@ import java.util.Objects;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="porcentajeCantHijos")
-public class PorcentajeCantHijos {
+@Table(name="porcentajeAjusteHijos")
+public class PorcentajeAjusteHijos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idPorcentajeCantHijos")
-	private long idPorcentajeCantHijos;
+	@Column(name="idPorcentajeAjusteHijos")
+	private long idPorcentajeAjusteHijos;
 	
 	@Column(nullable=false)
 	private Float valorNumerico;
@@ -23,8 +23,12 @@ public class PorcentajeCantHijos {
 	//relaciones
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cant_hijos"))
+	@JoinColumn(name="idUsuario",referencedColumnName="idUsuario" ,foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cant_hijos"))
 	private Usuario modificadoPor;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idRangoAjusteHijos",referencedColumnName="idRangoAjusteHijos" ,foreignKey= @ForeignKey(name="FK_ajuste_en_por_hijos"))
+	private AjusteHijos ajusteAsociado;
 	
 	@PrePersist
 	protected void onCreate() {
@@ -37,13 +41,16 @@ public class PorcentajeCantHijos {
 	  }
 	
 	
-	public PorcentajeCantHijos() {
+	public PorcentajeAjusteHijos() {
 		super();
 	}
+	
+
+	
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idPorcentajeCantHijos);
+		return Objects.hash(idPorcentajeAjusteHijos);
 	}
 
 	@Override
@@ -54,19 +61,16 @@ public class PorcentajeCantHijos {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PorcentajeCantHijos other = (PorcentajeCantHijos) obj;
-		return idPorcentajeCantHijos == other.idPorcentajeCantHijos;
+		PorcentajeAjusteHijos other = (PorcentajeAjusteHijos) obj;
+		return idPorcentajeAjusteHijos == other.idPorcentajeAjusteHijos;
 	}
+	
 
 	@Override
 	public String toString() {
-		return "PorcentajeCantHijos [idPorcentajeCantHijos=" + idPorcentajeCantHijos + ", valorNumerico="
-				+ valorNumerico + ", fechaModificacion=" + fechaModificacion + ", modificadoPor=" + modificadoPor + "]";
-	}
-	//getters and setters
-
-	public long getIdPorcentajeCantHijos() {
-		return idPorcentajeCantHijos;
+		return "PorcentajeAjusteHijos [idPorcentajeAjusteHijos=" + idPorcentajeAjusteHijos + ", valorNumerico="
+				+ valorNumerico + ", fechaModificacion=" + fechaModificacion + ", modificadoPor=" + modificadoPor
+				+ ", ajusteAsociado=" + ajusteAsociado + "]";
 	}
 
 	public Float getValorNumerico() {
@@ -81,9 +85,7 @@ public class PorcentajeCantHijos {
 		return modificadoPor;
 	}
 
-	public void setIdPorcentajeCantHijos(long idPorcentajeCantHijos) {
-		this.idPorcentajeCantHijos = idPorcentajeCantHijos;
-	}
+	
 
 	public void setValorNumerico(Float valorNumerico) {
 		this.valorNumerico = valorNumerico;
@@ -96,6 +98,23 @@ public class PorcentajeCantHijos {
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
 	}
+
+	public long getIdPorcentajeAjusteHijos() {
+		return idPorcentajeAjusteHijos;
+	}
+
+	public AjusteHijos getAjusteAsociado() {
+		return ajusteAsociado;
+	}
+
+	public void setIdPorcentajeAjusteHijos(long idPorcentajeAjusteHijos) {
+		this.idPorcentajeAjusteHijos = idPorcentajeAjusteHijos;
+	}
+
+	public void setAjusteAsociado(AjusteHijos ajusteAsociado) {
+		this.ajusteAsociado = ajusteAsociado;
+	}
+	
 	
 	
 }

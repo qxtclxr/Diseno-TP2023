@@ -21,17 +21,21 @@ public class Provincia {
 	//relaciones
 	
 	@ManyToOne(fetch= FetchType.EAGER)
-	@JoinColumn(name="idPais", foreignKey= @ForeignKey(name="FK_pais_en_provincia"))
+	@JoinColumn(name="idPais", referencedColumnName="idPais",foreignKey= @ForeignKey(name="FK_pais_en_provincia"))
 	private Pais pais;
 	
 	public Provincia() {
 		super();
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(idProvincia, nombreProvincia, pais);
+		return Objects.hash(idProvincia);
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -42,9 +46,10 @@ public class Provincia {
 		if (getClass() != obj.getClass())
 			return false;
 		Provincia other = (Provincia) obj;
-		return idProvincia == other.idProvincia && Objects.equals(nombreProvincia, other.nombreProvincia)
-				&& Objects.equals(pais, other.pais);
+		return idProvincia == other.idProvincia;
 	}
+
+
 
 	@Override
 	public String toString() {
@@ -75,6 +80,19 @@ public class Provincia {
 	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
+
+
+
+	public String getNombreProvincia() {
+		return nombreProvincia;
+	}
+
+
+
+	public void setNombreProvincia(String nombreProvincia) {
+		this.nombreProvincia = nombreProvincia;
+	}
+	
 	
 	
 	

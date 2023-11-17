@@ -23,7 +23,7 @@ public class RangoKMRealizados implements FactorCaracteristico{
 	private PorcentajeKMRealizados valorActualPorcentajeKMRealizados;
 	
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="rangoAsociado" ,cascade = CascadeType.ALL)
 	private List<PorcentajeKMRealizados> valoresPasadosPorcentajeKMRealizados;
 	
 	public RangoKMRealizados() {
@@ -46,14 +46,13 @@ public class RangoKMRealizados implements FactorCaracteristico{
 
 
 
+	
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(concepto, idRangoKMRealizados, valorActualPorcentajeKMRealizados,
-				valoresPasadosPorcentajeKMRealizados);
+		return Objects.hash(idRangoKMRealizados);
 	}
-
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -64,11 +63,8 @@ public class RangoKMRealizados implements FactorCaracteristico{
 		if (getClass() != obj.getClass())
 			return false;
 		RangoKMRealizados other = (RangoKMRealizados) obj;
-		return Objects.equals(concepto, other.concepto) && idRangoKMRealizados == other.idRangoKMRealizados
-				&& Objects.equals(valorActualPorcentajeKMRealizados, other.valorActualPorcentajeKMRealizados)
-				&& Objects.equals(valoresPasadosPorcentajeKMRealizados, other.valoresPasadosPorcentajeKMRealizados);
+		return idRangoKMRealizados == other.idRangoKMRealizados;
 	}
-
 
 	public long getIdRangoKMRealizados() {
 		return idRangoKMRealizados;
@@ -111,6 +107,7 @@ public class RangoKMRealizados implements FactorCaracteristico{
 	public void setValoresPasadosPorcentajeKMRealizados(List<PorcentajeKMRealizados> valoresPasadosPorcentajeKMRealizados) {
 		this.valoresPasadosPorcentajeKMRealizados = valoresPasadosPorcentajeKMRealizados;
 	}
+	
 	
 	
 	

@@ -12,7 +12,18 @@ import jakarta.persistence.*;
 @Table(name="poliza")
 public class Poliza {
 	/*
-	 * ver la unicidad de patente motor y chasis
+	 *Cambie:
+	Cobertura
+	MedidaDeSeguridad
+	AjusteCantHijos
+	RangoCantSiniestros
+	RangoKMRRealizados
+	DescPorUnidad
+	FactorRiesgo
+	EstadisticaRobo
+	ValorVehiculo
+	
+	
 	 * 
 	 */
 	@Id
@@ -55,55 +66,63 @@ public class Poliza {
 	private long cantKMRealizados;
 	//ver
 	
+	@Column(nullable=false)
+	private float importeTotal;
+	
 	
 	
 	
 	//Relaciones
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_cliente", foreignKey= @ForeignKey(name ="POLIZA_CLIENTE_FK"))
+	@JoinColumn(name = "idCliente", referencedColumnName="idCliente" ,foreignKey= @ForeignKey(name ="POLIZA_CLIENTE_FK"))
 	private Cliente cliente;
+	
 	
 	//relaciones // Factores de calculo
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idDomicilioDeRiesgo", foreignKey= @ForeignKey(name="FK_domicilio_de_riesgo_en_poliza"))
-	private Localidad domicilioDeRiesgo;
+	@JoinColumn(name="idFactorRiesgo", referencedColumnName="idFactorRiesgoLocalidad",foreignKey= @ForeignKey(name="FK_factor_riesgo_en_poliza"))
+	private FactorRiesgoLocalidad factorRiesgoLoc;
 	//ver si esta bien este cascade como en caso pago
 	
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idDescuentoPorUnidad", foreignKey= @ForeignKey(name="FK_desc_unidad_en_poliza"))
-	private DescuentoPorUnidad descuentoPorU;
+	@JoinColumn(name="idPorcentajeDescPorUnidad",referencedColumnName="idPorcentajeDescPorUnidad", foreignKey= @ForeignKey(name="FK_porc_unidad_en_poliza"))
+	private PorcentajeDescPorUnidad porcDescuentoPorU;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idRangoCantSiniestros", foreignKey= @ForeignKey(name="FK_rango_cant_siniestros_en_poliza"))
-	private RangoCantSiniestros rangoCantSiniestros;
+	@JoinColumn(name="idPorcCantSin",referencedColumnName="idPorcCantSin", foreignKey= @ForeignKey(name="FK_por_siniestros_en_poliza"))
+	private PorcentajeCantSiniestros porcCantSiniestros;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idRangoKMRealizados", foreignKey= @ForeignKey(name="FK_rango_km_realizados_en_poliza"))
-	private RangoKMRealizados rangoKMRealizados;
+	@JoinColumn(name="idRangoKMRealizados",referencedColumnName="idPorcentajeKMRealizados", foreignKey= @ForeignKey(name="FK_porc_km_realizados_en_poliza"))
+	private PorcentajeKMRealizados porcKMRealizados;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idDerechosDeEmision", foreignKey= @ForeignKey(name="FK_derechos_de_emision_en_poliza"))
-	private DerechosDeEmision derechosDeEmision;
+	@JoinColumn(name="idValorDerechosDeEmision",referencedColumnName="idValorDerechosDeEmision", foreignKey= @ForeignKey(name="FK_valor_derechos_en_poliza"))
+	private ValorDerechosDeEmision valorDerechosDeEmision;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idRangoAjustePorHijo", foreignKey= @ForeignKey(name="FK_rango_ajuste_por_hijo_en_poliza"))
-	private RangoAjustePorHijo rangoAjustePorHijo;
+	@JoinColumn(name="idPorcAjusteHijos", referencedColumnName="idPorcentajeAjusteHijos",foreignKey= @ForeignKey(name="FK_porc_hijo_en_poliza"))
+	private PorcentajeAjusteHijos porcAjustePorHijo;
 	
-	//Medidas y respuestas de seguridad
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name="idPorcEstRobo", referencedColumnName="idPorcentajeEstadisticaRobo",foreignKey= @ForeignKey(name="FK_porc_robo_en_poliza"))
+	private PorcentajeEstadisticaRobo porcEstRobo;
+	
 	//ver el eager de los factores
 	
-	@OneToMany(fetch= FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<RespuestaSeguridad> respuestasSeguridad;
+	//Este puede traer problemas
+	@ManyToMany(fetch= FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private List<PorcentajeMedidaDeSeguridad> porcMedidaSeguridad;
 	
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ModificacionPoliza> modificaciones;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idCobertura", foreignKey= @ForeignKey(name="FK_cobertura_en_poliza"))
-	private Cobertura cobertura;
+	@JoinColumn(name="porCobertura", referencedColumnName="idPorcentajeCobertura", foreignKey= @ForeignKey(name="FK_Por_cobertura_Poliza"))
+	private PorcentajeCobertura porcCobertura;
 	
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HijoDeclarado> hijosDeclarados;
@@ -144,21 +163,25 @@ public class Poliza {
 
 
 
+	
+	
+	//getters and setters
+
+
 	@Override
 	public String toString() {
 		return "Poliza [idPoliza=" + idPoliza + ", nroPoliza=" + nroPoliza + ", sumaAsegurada=" + sumaAsegurada
 				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + ", premio="
 				+ premio + ", tipoPoliza=" + tipoPoliza + ", fechaEmision=" + fechaEmision + ", cantidadDeSiniestros="
 				+ cantidadDeSiniestros + ", cantKMRealizados=" + cantKMRealizados + ", cliente=" + cliente
-				+ ", domicilioDeRiesgo=" + domicilioDeRiesgo + ", descuentoPorU=" + descuentoPorU
-				+ ", rangoCantSiniestros=" + rangoCantSiniestros + ", rangoKMRealizados=" + rangoKMRealizados
-				+ ", derechosDeEmision=" + derechosDeEmision + ", rangoAjustePorHijo=" + rangoAjustePorHijo
-				+ ", respuestasSeguridad=" + respuestasSeguridad + ", modificaciones=" + modificaciones + ", cobertura="
-				+ cobertura + ", hijosDeclarados=" + hijosDeclarados + ", vehiculoAsegurado=" + vehiculoAsegurado
-				+ ", cuotasAsociadas=" + cuotasAsociadas + "]";
+				+ ", factorRiesgoLoc=" + factorRiesgoLoc + ", porcDescuentoPorU=" + porcDescuentoPorU
+				+ ", porcCantSiniestros=" + porcCantSiniestros + ", porcKMRealizados=" + porcKMRealizados
+				+ ", valorDerechosDeEmision=" + valorDerechosDeEmision + ", porcAjustePorHijo=" + porcAjustePorHijo
+				+ ", porcEstRobo=" + porcEstRobo + ", porcMedidaSeguridad=" + porcMedidaSeguridad + ", modificaciones="
+				+ modificaciones + ", porcCobertura=" + porcCobertura + ", hijosDeclarados=" + hijosDeclarados
+				+ ", vehiculoAsegurado=" + vehiculoAsegurado + ", cuotasAsociadas=" + cuotasAsociadas + "]";
 	}
-	
-	//getters and setters
+
 
 
 	public long getIdPoliza() {
@@ -233,45 +256,7 @@ public class Poliza {
 
 
 
-	public Localidad getDomicilioDeRiesgo() {
-		return domicilioDeRiesgo;
-	}
-
-
-
-	public DescuentoPorUnidad getDescuentoPorU() {
-		return descuentoPorU;
-	}
-
-
-
-	public RangoCantSiniestros getRangoCantSiniestros() {
-		return rangoCantSiniestros;
-	}
-
-
-
-	public RangoKMRealizados getRangoKMRealizados() {
-		return rangoKMRealizados;
-	}
-
-
-
-	public DerechosDeEmision getDerechosDeEmision() {
-		return derechosDeEmision;
-	}
-
-
-
-	public RangoAjustePorHijo getRangoAjustePorHijo() {
-		return rangoAjustePorHijo;
-	}
-
-
-
-	public List<RespuestaSeguridad> getRespuestasSeguridad() {
-		return respuestasSeguridad;
-	}
+	
 
 
 
@@ -281,9 +266,7 @@ public class Poliza {
 
 
 
-	public Cobertura getCobertura() {
-		return cobertura;
-	}
+	
 
 
 
@@ -377,47 +360,7 @@ public class Poliza {
 
 
 
-	public void setDomicilioDeRiesgo(Localidad domicilioDeRiesgo) {
-		this.domicilioDeRiesgo = domicilioDeRiesgo;
-	}
-
-
-
-	public void setDescuentoPorU(DescuentoPorUnidad descuentoPorU) {
-		this.descuentoPorU = descuentoPorU;
-	}
-
-
-
-	public void setRangoCantSiniestros(RangoCantSiniestros rangoCantSiniestros) {
-		this.rangoCantSiniestros = rangoCantSiniestros;
-	}
-
-
-
-	public void setRangoKMRealizados(RangoKMRealizados rangoKMRealizados) {
-		this.rangoKMRealizados = rangoKMRealizados;
-	}
-
-
-
-	public void setDerechosDeEmision(DerechosDeEmision derechosDeEmision) {
-		this.derechosDeEmision = derechosDeEmision;
-	}
-
-
-
-	public void setRangoAjustePorHijo(RangoAjustePorHijo rangoAjustePorHijo) {
-		this.rangoAjustePorHijo = rangoAjustePorHijo;
-	}
-
-
-
-	public void setRespuestasSeguridad(List<RespuestaSeguridad> respuestasSeguridad) {
-		this.respuestasSeguridad = respuestasSeguridad;
-	}
-
-
+	
 
 	public void setModificaciones(List<ModificacionPoliza> modificaciones) {
 		this.modificaciones = modificaciones;
@@ -425,9 +368,9 @@ public class Poliza {
 
 
 
-	public void setCobertura(Cobertura cobertura) {
-		this.cobertura = cobertura;
-	}
+	
+
+
 
 
 
@@ -445,6 +388,114 @@ public class Poliza {
 
 	public void setCuotasAsociadas(List<Cuota> cuotasAsociadas) {
 		this.cuotasAsociadas = cuotasAsociadas;
+	}
+
+
+
+	public FactorRiesgoLocalidad getFactorRiesgoLoc() {
+		return factorRiesgoLoc;
+	}
+
+
+
+	public PorcentajeDescPorUnidad getPorcDescuentoPorU() {
+		return porcDescuentoPorU;
+	}
+
+
+
+	public PorcentajeCantSiniestros getPorcCantSiniestros() {
+		return porcCantSiniestros;
+	}
+
+
+
+	public PorcentajeKMRealizados getPorcKMRealizados() {
+		return porcKMRealizados;
+	}
+
+
+
+	public ValorDerechosDeEmision getValorDerechosDeEmision() {
+		return valorDerechosDeEmision;
+	}
+
+
+
+	public PorcentajeAjusteHijos getPorcAjustePorHijo() {
+		return porcAjustePorHijo;
+	}
+
+
+
+	public PorcentajeEstadisticaRobo getPorcEstRobo() {
+		return porcEstRobo;
+	}
+
+
+
+	public List<PorcentajeMedidaDeSeguridad> getPorcMedidaSeguridad() {
+		return porcMedidaSeguridad;
+	}
+
+
+
+	public PorcentajeCobertura getPorcCobertura() {
+		return porcCobertura;
+	}
+
+
+
+	public void setFactorRiesgoLoc(FactorRiesgoLocalidad factorRiesgoLoc) {
+		this.factorRiesgoLoc = factorRiesgoLoc;
+	}
+
+
+
+	public void setPorcDescuentoPorU(PorcentajeDescPorUnidad porcDescuentoPorU) {
+		this.porcDescuentoPorU = porcDescuentoPorU;
+	}
+
+
+
+	public void setPorcCantSiniestros(PorcentajeCantSiniestros porcCantSiniestros) {
+		this.porcCantSiniestros = porcCantSiniestros;
+	}
+
+
+
+	public void setPorcKMRealizados(PorcentajeKMRealizados porcKMRealizados) {
+		this.porcKMRealizados = porcKMRealizados;
+	}
+
+
+
+	public void setValorDerechosDeEmision(ValorDerechosDeEmision valorDerechosDeEmision) {
+		this.valorDerechosDeEmision = valorDerechosDeEmision;
+	}
+
+
+
+	public void setPorcAjustePorHijo(PorcentajeAjusteHijos porcAjustePorHijo) {
+		this.porcAjustePorHijo = porcAjustePorHijo;
+	}
+
+
+
+	public void setPorcEstRobo(PorcentajeEstadisticaRobo porcEstRobo) {
+		this.porcEstRobo = porcEstRobo;
+	}
+
+
+
+	public void setPorcMedidaSeguridad(List<PorcentajeMedidaDeSeguridad> porcMedidaSeguridad) {
+		this.porcMedidaSeguridad = porcMedidaSeguridad;
+	}
+
+
+
+	public void setPorcCobertura(PorcentajeCobertura porcCobertura) {
+		this.porcCobertura = porcCobertura;
 	}
 	
 	

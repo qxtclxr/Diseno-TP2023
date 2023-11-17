@@ -24,8 +24,13 @@ public class PorcentajeCobertura {
 	//relaciones
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cobertura"))
+	@JoinColumn(name="idCobertura",referencedColumnName="idCobertura" ,foreignKey= @ForeignKey(name="FK_cob_en_por_cobertura"))
+	private Cobertura coberturaAsociada;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idUsuario",referencedColumnName="idUsuario" ,foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cobertura"))
 	private Usuario modificadoPor;
+	
 	
 	@PrePersist
 	protected void onCreate() {
@@ -42,9 +47,11 @@ public class PorcentajeCobertura {
 		super();
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fechaModificacion, idPorcentajeCobertura, valorNumerico);
+		return Objects.hash(idPorcentajeCobertura);
 	}
 
 	@Override
@@ -56,9 +63,7 @@ public class PorcentajeCobertura {
 		if (getClass() != obj.getClass())
 			return false;
 		PorcentajeCobertura other = (PorcentajeCobertura) obj;
-		return Objects.equals(fechaModificacion, other.fechaModificacion)
-				&& idPorcentajeCobertura == other.idPorcentajeCobertura
-				&& Objects.equals(valorNumerico, other.valorNumerico);
+		return idPorcentajeCobertura == other.idPorcentajeCobertura;
 	}
 
 	@Override
@@ -99,6 +104,15 @@ public class PorcentajeCobertura {
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
 	}
+
+	public Cobertura getCoberturaAsociada() {
+		return coberturaAsociada;
+	}
+
+	public void setCoberturaAsociada(Cobertura coberturaAsociada) {
+		this.coberturaAsociada = coberturaAsociada;
+	}
+	
 	
 	
 	

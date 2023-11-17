@@ -16,8 +16,9 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 	private long idRangoCantSiniestros;
 	
 	
-	@Column(nullable = false)
-	private String concepto;
+	@Column(nullable = false,unique=true)
+	private int desdeCant;
+	
 	
 	//relaciones
 	
@@ -25,8 +26,9 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 	@JoinColumn(name="idValorActualPorcentajeCantSiniestros")
 	private PorcentajeCantSiniestros valorActualPorcentajeCantSiniestros;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="rangoAsociado", cascade = CascadeType.ALL)
 	private List<PorcentajeCantSiniestros> valoresPasadosPorcentajeCantSiniestros;
+	
 	public RangoCantSiniestros() {
 		super();
 	}
@@ -36,17 +38,18 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 		return this.valorActualPorcentajeCantSiniestros.getValorNumerico();
 	}
 	
+	
+
 	@Override
 	public String toString() {
-		return "RangoCantSiniestros [idRangoCantSiniestros=" + idRangoCantSiniestros + ", concepto=" + concepto
+		return "RangoCantSiniestros [idRangoCantSiniestros=" + idRangoCantSiniestros + ", desdeCant=" + desdeCant
 				+ ", valorActualPorcentajeCantSiniestros=" + valorActualPorcentajeCantSiniestros
 				+ ", valoresPasadosPorcentajeCantSiniestros=" + valoresPasadosPorcentajeCantSiniestros + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(concepto, idRangoCantSiniestros, valorActualPorcentajeCantSiniestros,
-				valoresPasadosPorcentajeCantSiniestros);
+		return Objects.hash(idRangoCantSiniestros);
 	}
 
 	@Override
@@ -58,9 +61,7 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 		if (getClass() != obj.getClass())
 			return false;
 		RangoCantSiniestros other = (RangoCantSiniestros) obj;
-		return Objects.equals(concepto, other.concepto) && idRangoCantSiniestros == other.idRangoCantSiniestros
-				&& Objects.equals(valorActualPorcentajeCantSiniestros, other.valorActualPorcentajeCantSiniestros)
-				&& Objects.equals(valoresPasadosPorcentajeCantSiniestros, other.valoresPasadosPorcentajeCantSiniestros);
+		return idRangoCantSiniestros == other.idRangoCantSiniestros;
 	}
 
 	//setters and getters
@@ -86,13 +87,16 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 		this.valoresPasadosPorcentajeCantSiniestros = valoresPasadosPorcentajeCantSiniestros;
 	}
 
-	public String getConcepto() {
-		return concepto;
+	public int getDesdeCant() {
+		return desdeCant;
 	}
 
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
+	public void setDesdeCant(int desdeCant) {
+		this.desdeCant = desdeCant;
 	}
+	
+
+	
 	
 	
 }
