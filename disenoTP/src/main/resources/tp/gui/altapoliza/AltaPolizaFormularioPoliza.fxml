@@ -63,7 +63,7 @@
             <ComboBox fx:id="kmsRealizadosPorAnio" layoutX="819.0" layoutY="345.0" prefWidth="180.0" AnchorPane.leftAnchor="819.0" AnchorPane.topAnchor="345.0" />
             <ComboBox fx:id="nroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="345.0" prefWidth="180.0" AnchorPane.rightAnchor="13.0" />
             <TextFlow layoutX="549.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" AnchorPane.leftAnchor="549.0" AnchorPane.topAnchor="345.0" />
-            <ComboBox fx:id="localidad" layoutX="13.0" layoutY="381.0" prefWidth="180.0" promptText="Ingrese una localidad" AnchorPane.topAnchor="381.0" />
+            <ComboBox fx:id="localidad" layoutX="13.0" layoutY="381.0" onShowing="#setLocalidades" prefWidth="180.0" promptText="Ingrese una localidad" AnchorPane.topAnchor="381.0" />
             <ComboBox fx:id="vehiculo" layoutX="281.0" layoutY="381.0" prefWidth="180.0" promptText="Ingrese un vehiculo" />
             <ComboBox fx:id="anio" layoutX="281.0" layoutY="417.0" prefWidth="180.0" promptText="Ingrese un anio" AnchorPane.topAnchor="417.0" />
             <TextField fx:id="motor" layoutX="13.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
@@ -241,7 +241,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="atrasButton" layoutX="168.0" layoutY="635.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
+            <Button fx:id="atrasButton" layoutX="168.0" layoutY="635.0" mnemonicParsing="false" onAction="#volverAtrasClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -261,6 +261,7 @@
             <Label fx:id="errorFormatoPatente" layoutX="549.0" layoutY="545.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" />
             <Label fx:id="errorNroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="373.0" text="El campo esta incompleto" textFill="RED" visible="false" />
             <Label fx:id="contadorHijosDeclarados" layoutX="1093.0" layoutY="553.0" text="Label" />
+            <Label fx:id="pruebaNombre" layoutX="496.0" layoutY="249.0" text="Label" />
          </children>
       </AnchorPane>
    </children>
