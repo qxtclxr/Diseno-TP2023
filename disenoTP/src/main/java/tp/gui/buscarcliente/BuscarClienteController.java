@@ -1,6 +1,6 @@
 package tp.gui.buscarcliente;
 
-import tp.dao.*;
+import tp.dto.*;
 
 import java.io.IOException;
 
@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tp.app.App;
-
 import tp.gui.altapoliza.AltaPolizaFormularioPolizaController;
 
 public class BuscarClienteController {
@@ -23,33 +22,26 @@ public class BuscarClienteController {
 	    @FXML
 	   private Button exitButton;
 	    
-	   private ClienteDAO clienteDAO = new ClienteDAO(); 
+	   private ClienteDTO clienteDTO = new ClienteDTO(); 
 	    
 	    @FXML
 	   private void confirmarCliqueado(ActionEvent event) throws IOException {
+	    	
+	    	clienteDTO.setNombre("Juan");
+	    	clienteDTO.setApellido("Perez");
+	    	clienteDTO.setNroCliente("123456789");
+	    	
 	    	FXMLLoader loader = new FXMLLoader();
 	    	
 	    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
 	    	AnchorPane form = loader.load();
 
-	    	//AltaPolizaFormularioController altaPolizaC = loader.getController();
+	    	AltaPolizaFormularioPolizaController altaPolizaC = loader.getController();
+	    	altaPolizaC.setClienteDTO(clienteDTO);
 	    	
-	    	//altaPolizaC.setClienteDAO(clienteDAO);
 	    	App.switchScreenTo(form);
 	    }
 	    
-	   /* Probando otra manera de hacer lo de arriba 
-	    @FXML
-	    private void confirmarCliqueado(ActionEvent event) throws IOException{
-	    	
-	    	Parent root;
-	    	
-	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
-	    	root = loader.load();
-	    	
-	    	AltaPolizaFormularioController altaPolizaC = loader.getController();
-	    	altaPolizaC.setClienteDAO(clienteDAO);
-	    } */
 
 	    @FXML
 	    private void handleExit(ActionEvent event) throws IOException {
@@ -59,5 +51,9 @@ public class BuscarClienteController {
 	    	Stage window = (Stage)exitButton.getScene().getWindow();
 	    	window.setTitle("Alta de poliza");
 	    	window.setScene(new Scene(root));
+	    }
+	    
+	    public void setClienteDTO(ClienteDTO c) {
+	    	clienteDTO = c;
 	    }
 }

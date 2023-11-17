@@ -1,11 +1,11 @@
 package tp.gui.altapoliza;
 
-import tp.gui.altapoliza.*;
 import tp.logica.GestorLocalizacion;
 import tp.dto.*;
 import tp.entidad.Localidad;
 import tp.entidad.Pais;
 import tp.entidad.Provincia;
+import tp.gui.buscarcliente.BuscarClienteController;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -36,6 +36,9 @@ public class AltaPolizaFormularioPolizaController {
 	
 	
 	private PolizaDTO poliza = new PolizaDTO();
+	
+	@FXML
+	private Label pruebaNombre;
 	
 	@FXML
 	private Button declararHijos;
@@ -95,8 +98,13 @@ public class AltaPolizaFormularioPolizaController {
 	 @FXML
 	 private Label contadorHijosDeclarados;
 	
-	public void setClienteDAO(ClienteDTO clienteDTO) throws IOException {
+	public void setClienteDTO(ClienteDTO clienteDTO) throws IOException {
 		poliza.setCliente(clienteDTO);
+		this.pruebaNombre.setText(this.poliza.getCliente().getNombre());
+	}
+	
+	public void setPolizaDTO(PolizaDTO poliza) {
+		this.poliza = poliza;
 	}
 	
 	@FXML
@@ -104,14 +112,36 @@ public class AltaPolizaFormularioPolizaController {
 		
 		if(this.validarDatos()) {
 			
-		this.setPolizaValuesFormulario();
+		this.cargarDatosFormulario();
+		
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
+   
     	AnchorPane form = loader.load();
+    	
+    	AltaPolizaFormularioCoberturaController formularioCoberturaC = loader.getController();
+    	formularioCoberturaC.setPolizaDTO(this.poliza);
+    	
     	App.switchScreenTo(form);
     	
 		}
     	
+    	
+	}
+	
+	@FXML 
+	private void volverAtrasClicked( ActionEvent action ) throws IOException {
+		
+		
+		FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("../buscarcliente/BuscarCliente.fxml"));
+    	AnchorPane form = loader.load();
+    	
+    	BuscarClienteController buscarClienteC = loader.getController();
+    	buscarClienteC.setClienteDTO(poliza.getCliente());
+    	
+    	
+    	App.switchScreenTo(form);
     	
 	}
 	
@@ -138,13 +168,7 @@ public class AltaPolizaFormularioPolizaController {
 	    ventanaModal.showAndWait();
 	}
 
-	private void setPolizaValuesFormulario() {
-		
-		
-		
-		
-		
-	}
+
 	
 	private void setErroresFalse() {
 		errorNroDeSiniestrosUltAnio.setVisible(false);
@@ -169,12 +193,17 @@ public class AltaPolizaFormularioPolizaController {
 	@FXML
 	private void setLocalidades() {
 		
+		if(!(provincia.getValue()==null)) {
+			
+		
 		GestorLocalizacion g = new GestorLocalizacion();
 		ProvinciaDTO p = new ProvinciaDTO();
 		p.setNombre(provincia.getValue().toString());
 		
 		ObservableList<String> opLocalidad = FXCollections.observableArrayList(g.getLocalidadesByProvincia(p).stream().map(LocalidadDTO::getNombre).toList());
 		localidad.setItems(opLocalidad);
+		
+		}
 	}
 	
 	
@@ -264,9 +293,49 @@ public class AltaPolizaFormularioPolizaController {
 		
 	}
 	
-	
-	
-	
+	private void testDatosFormulario( ) { 
+		
+		//Borrar esto antes de entregar 
+		
+		this.provincia.setValue("Santa Fe");
+		this.localidad.setValue("Esperanza");
+		this.motor.setText("A1S2D3F4G5");
+		this.marca.setValue("Ford");
+		this.vehiculo.setValue("Focus");
+		this.anio.setValue("2015");
+		this.chasis.setText("12345678A90");
+		this.patente.setText("ABC123");
+		this.kmsRealizadosPorAnio.setValue("123568");
+		this.nroDeSiniestrosUltAnio.setValue("dos");
+		
+		
+	}
+		
+	private void cargarDatosFormulario() {
+		
+		VehiculoDTO vehiculoD = new VehiculoDTO();
+		ModeloDTO modeloD = new ModeloDTO();
+		MarcaDTO marcaD = new MarcaDTO();
+		RangoKMRealizadosDTO rangoD = new RangoKMRealizadosDTO(); 
+		RangoCantSiniestrosDTO rangoCsD = new RangoCantSiniestrosDTO();
+		
+		
+		vehiculoD.setAño( Integer.parseInt(anio.getValue().toString()) );
+		vehiculoD.setChasis(chasis.getText());
+		vehiculoD.setMotor(motor.getText());
+		vehiculoD.setPatente(patente.getText());
+		modeloD.setNombre(vehiculo.getValue().toString());
+		marcaD.setNombre(marca.getValue().toString());
+		vehiculoD.setModelo(modeloD);
+		rangoD.setNombre(kmsRealizadosPorAnio.getValue().toString());
+		rangoCsD.setNombre(nroDeSiniestrosUltAnio.getValue().toString());
+		poliza.setCantidadSiniestros(rangoCsD);
+		poliza.setKmRealizados(rangoD);
+		poliza.setVehiculo(vehiculoD);
+		
+		
+		
+	}
 	
 	
 	@FXML
@@ -278,7 +347,10 @@ public class AltaPolizaFormularioPolizaController {
 		this.setMarcaVehiculoAnio();
 		
 		this.setContadorHijosDeclarados();
+	
+		this.testDatosFormulario(); // deberia ser reeplazo por una funcion que tome los valores de poliza 
 		
+		this.cargarDatosFormulario();
 		
 		ObservableList<String> opKmsRealizadosPorAnio = FXCollections.observableArrayList("Hasta 10000 Km","Hasta 20000 Km", "Hasta 30000 Km","Hasta 40000 Km", "Mas de 40000 Km");
 		kmsRealizadosPorAnio.setItems(opKmsRealizadosPorAnio);

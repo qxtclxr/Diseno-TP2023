@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.20072383073496655" layoutX="-110.0" layoutY="-17.0" orientation="VERTICAL" prefHeight="680.0" prefWidth="1280.0">
         <items>
@@ -80,6 +79,13 @@
                         <Label text="  Premio" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                         <Label text="  Importes por descuentos" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                         <Label text="  Monto total a abonar" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                        <Label fx:id="apellido" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="nombre" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="marca" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="vehiculo" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="motor" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="chasis" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="patente" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                      </children>
                   </GridPane>
                   <Button layoutX="158.0" layoutY="515.0" mnemonicParsing="false" text="Confirmar" />
