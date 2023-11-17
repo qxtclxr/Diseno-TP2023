@@ -1,8 +1,6 @@
 package tp.gui.buscarcliente;
 
-import tp.dto.*;
-import tp.gui.*;
-import tp.gui.altapoliza.AltaPolizaFormularioCoberturaController;
+import tp.dao.*;
 
 import java.io.IOException;
 
@@ -16,29 +14,30 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tp.app.App;
 
+import tp.gui.altapoliza.AltaPolizaFormularioPolizaController;
+
 public class BuscarClienteController {
-	
-		private PolizaDTO poliza = new PolizaDTO();
-		private ClienteDTO cliente = new ClienteDTO();
-		
 	
 		@FXML
 	   private Button confirmarButton;
 	    @FXML
 	   private Button exitButton;
 	    
+	   private ClienteDAO clienteDAO = new ClienteDAO(); 
+	    
 	    @FXML
 	   private void confirmarCliqueado(ActionEvent event) throws IOException {
-	    	
-	    	poliza.setCliente(this.cliente);
-	    	
 	    	FXMLLoader loader = new FXMLLoader();
-	    	AltaPolizaFormularioCoberturaController controlador = new AltaPolizaFormularioCoberturaController();
-	    	controlador.setPoliza(poliza);
 	    	
 	    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
 	    	AnchorPane form = loader.load();
+	    	
+	    	AltaPolizaFormularioController altaPolizaC = loader.getController();
+
+	    	
+	    	altaPolizaC.setClienteDAO(clienteDAO);
 	    	App.switchScreenTo(form);
+	    	
 	    }
 
 	    @FXML

@@ -27,8 +27,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import tp.app.App;
-import tp.logica;
-import tp.entidad;
+import tp.logica.*;
+import tp.entidad.*;
+import tp.dao.*;
+
 public class AltaPolizaFormularioPolizaController {
 	
 	
@@ -93,7 +95,9 @@ public class AltaPolizaFormularioPolizaController {
 	 @FXML
 	 private Label contadorHijosDeclarados;
 	
-	
+	public void setClienteDAO(ClienteDTO clienteDTO) throws IOException {
+		poliza.setCliente(clienteDTO);
+	}
 	
 	@FXML
 	private void confirmarClicked(ActionEvent action) throws IOException {
@@ -169,7 +173,7 @@ public class AltaPolizaFormularioPolizaController {
 		ProvinciaDTO p = new ProvinciaDTO();
 		p.setNombre(provincia.getValue().toString());
 		
-		ObservableList<String> opLocalidad = FXCollections.observableArrayList(g.getLocalidadesByProvincia(p).stream().map(Localidad::getNombre).toList());
+		ObservableList<String> opLocalidad = FXCollections.observableArrayList(g.getLocalidadesByProvincia(p).stream().map(LocalidadDTO::getNombre).toList());
 		localidad.setItems(opLocalidad);
 	}
 	
