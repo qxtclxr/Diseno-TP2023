@@ -1,18 +1,23 @@
 package tp.dto;
 
-import tp.entidad.AñoModelo;
+import tp.entidad.AnioModelo;
 
-public class AñoModeloDTO implements NoModificableDTO<AñoModelo>{
+public class AnioModeloDTO extends NoModificableDTO<AnioModelo>{
 	
-	private int año;
+	private int anio;
 	private float valoracion;
 	private ModeloDTO modelo;
 	
-	public int getAño() {
-		return año;
+	@Override
+	public String getText() {
+		return String.valueOf(anio);
 	}
-	public void setAño(int año) {
-		this.año = año;
+	
+	public int getAnio() {
+		return anio;
+	}
+	public void setAnio(int anio) {
+		this.anio = anio;
 	}
 	public float getValoracion() {
 		return valoracion;

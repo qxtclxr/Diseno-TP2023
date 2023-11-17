@@ -35,7 +35,7 @@
                   <TableColumn prefWidth="75.0" text="Nombre" />
                   <TableColumn prefWidth="75.0" text="Marca" />
                   <TableColumn prefWidth="75.0" text="Modelo" />
-                  <TableColumn prefWidth="75.0" text="Año" />
+                  <TableColumn prefWidth="75.0" text="Anio" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -10,48 +10,49 @@ import tp.dao.*;
 
 public class GestorVehiculo {
 	
-	public boolean existePatente(String patente) {
+	public static boolean existePatente(String patente) {
 		if(patente==null) {
 			return false;
 		}
 		PolizaDAO dao = new PolizaDAO();
 		List<Poliza> polizas = dao.getByPatente(patente);
+		
 		return !polizas.isEmpty();
 	}
 	
-	public boolean existeMotor(String motor) {
+	public static boolean existeMotor(String motor) {
 		PolizaDAO dao = new PolizaDAO();
 		List<Poliza> polizas = dao.getByMotor(motor);
 		return !polizas.isEmpty();
 	}
 	
-	public boolean existeChasis(String chasis) {
+	public static boolean existeChasis(String chasis) {
 		PolizaDAO dao = new PolizaDAO();
 		List<Poliza> polizas = dao.getByChasis(chasis);
 		return !polizas.isEmpty();
 	}
 	
-	public boolean valoresUnicosParaAltaVehiculo(VehiculoDTO dto) {
-		boolean chasis = this.existeChasis(dto.getChasis());
-		boolean motor = this.existeMotor(dto.getMotor());
-		boolean patente = this.existePatente(dto.getPatente());
+	public static boolean valoresUnicosParaAltaVehiculo(VehiculoDTO dto) {
+		boolean chasis = existeChasis(dto.getChasis());
+		boolean motor = existeMotor(dto.getMotor());
+		boolean patente = existePatente(dto.getPatente());
 		return !(chasis || motor || patente);
 	}
 	
-	public Vehiculo crearVehiculo(VehiculoDTO dto) {
+	public static Vehiculo crearVehiculo(VehiculoDTO dto) {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setPatente(dto.getPatente());
 		vehiculo.setMotor(dto.getMotor());
 		vehiculo.setChasis(dto.getChasis());
-		vehiculo.setAñoModelo(this.getAñoModelo(dto.getModelo()));
+		vehiculo.setAnioModelo(getAnioModelo(dto.getModelo()));
 		return vehiculo;
 	}
 	
-	public boolean esMayorADiezAños(VehiculoDTO dto) {
-		return (LocalDateTime.now().getYear() - dto.getModelo().getAño()) > 10;
+	public static boolean esMayorADiezAnios(VehiculoDTO dto) {
+		return (LocalDateTime.now().getYear() - dto.getModelo().getAnio()) > 10;
 	}
 	
-	public boolean datosObligatoriosPresentes(VehiculoDTO dto) {
+	public static boolean datosObligatoriosPresentes(VehiculoDTO dto) {
 		boolean datosPresentes = dto != null;
 		datosPresentes &= dto.getModelo() != null;
 		if(datosPresentes==false) {
@@ -67,82 +68,79 @@ public class GestorVehiculo {
 		return datosPresentes;
 	}
 	
-	public float getValorModelo(ModeloDTO dto) {
-		Modelo modelo = this.getModelo(dto);
-		return modelo.getValor();
-	}
-	
-	public List<AñoModeloDTO> getAñosByModelo(ModeloDTO dto){
-		Modelo modelo = this.getModelo(dto);
-		List<AñoModeloDTO> añoDtos = modelo.getAñosModelo().stream().
-				map(entidad -> this.getAñoModeloDTO(entidad)).
+	public static List<AnioModeloDTO> getAniosByModelo(ModeloDTO dto){
+		Modelo modelo = getModelo(dto);
+		List<AnioModeloDTO> anioDtos = modelo.getAniosFabricacion().stream().
+				map(entidad -> getAnioModeloDTO(entidad)).
 				collect(Collectors.toList());
-		return añoDtos;
+		return anioDtos;
 		
 	}
 	
-	public List<Modelo> getModelosByMarca(Marca marca){
+	public static List<Modelo> getModelosByMarca(Marca marca){
 		ModeloDAO dao = new ModeloDAO();
 		List<Modelo> modelos = dao.getModelosByMarca(marca);
 		return modelos;
 	}
 	
-	public List<ModeloDTO> getModelosByMarca(MarcaDTO marcaDto){
-		Marca marca = this.getMarca(marcaDto);
-		List<Modelo> modelos = this.getModelosByMarca(marca);
+	public static List<ModeloDTO> getModelosByMarca(MarcaDTO marcaDto){
+		Marca marca = getMarca(marcaDto);
+		List<Modelo> modelos = getModelosByMarca(marca);
 		List<ModeloDTO> modelosDto = modelos.stream().
 				map(entidad -> getModeloDTO(entidad)).
 				collect(Collectors.toList());
 		return modelosDto;
 	}
 	
-	public List<Marca> getAllMarcas(){
+	public static List<Marca> getAllMarcas(){
 		MarcaDAO dao = new MarcaDAO();
 		return dao.getAll();
 	}
 	
-	public List<MarcaDTO> getAllMarcaDTOs(){
-		List<Marca> marcas = this.getAllMarcas();
+	public static List<MarcaDTO> getAllMarcaDTOs(){
+		List<Marca> marcas = getAllMarcas();
 		List<MarcaDTO> marcaDtos = marcas.stream().
-				map(entidad -> this.getMarcaDTO(entidad)).
+				map(entidad -> getMarcaDTO(entidad)).
 				collect(Collectors.toList());
 		return marcaDtos;
 	}
 	
-	public Marca getAñoModelo(AñoModeloDTO dto) {
-		AñoModeloDAO dao = new AñoModeloDAO();
-		AñoModelo marca = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
-		return marca;
+	public static AnioModelo getAnioModelo(AnioModeloDTO dto) {
+		AnioModeloDAO dao = new AnioModeloDAO();
+		AnioModelo modelo = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
+		return modelo;
 	}
 	
-	public Modelo getModelo(ModeloDTO dto) {
+	public static Modelo getModelo(ModeloDTO dto) {
 		ModeloDAO dao = new ModeloDAO();
 		Modelo modelo = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
 		return modelo;
 	}
 	
-	public Marca getMarca(MarcaDTO dto) {
+	public static Marca getMarca(MarcaDTO dto) {
 		MarcaDAO dao = new MarcaDAO();
 		Marca marca = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
 		return marca;
 	}
 	
-	public AñoModeloDTO getAñoModeloDTO(AñoModelo entidad) {
-		AñoModeloDTO dto = new AñoModeloDTO();
-		dto.setAño(entidad.getAño());
-		dto.setValoracion(entidad.getValoracion());
-		dto.setModelo(this.getModelo(entidad.getModelo()));
-	}
-	
-	public ModeloDTO getModeloDTO(Modelo entidad) {
-		ModeloDTO dto = new ModeloDTO();
-		dto.setId(entidad.getIdModelo());
-		dto.setNombre(entidad.getNombreModelo());
-		dto.setMarca(this.getMarcaDTO(entidad.getMarca()));
+	public static AnioModeloDTO getAnioModeloDTO(AnioModelo entidad) {
+		AnioModeloDTO dto = new AnioModeloDTO();
+		dto.setId(entidad.getIdAnioModelo());
+		dto.setAnio(entidad.getAnio());
+		dto.setValoracion(entidad.getValorVehiculo());
+		dto.setModelo(getModeloDTO(entidad.getTieneModelo()));
 		return dto;
 	}
 	
-	public MarcaDTO getMarcaDTO(Marca entidad) {
+	public static ModeloDTO getModeloDTO(Modelo entidad) {
+		ModeloDTO dto = new ModeloDTO();
+		dto.setId(entidad.getIdModelo());
+		dto.setNombre(entidad.getNombreModelo());
+		dto.setMarca(getMarcaDTO(entidad.getMarca()));
+		return dto;
+	}
+	
+	public static MarcaDTO getMarcaDTO(Marca entidad) {
 		MarcaDTO dto = new MarcaDTO();
 		dto.setId(entidad.getIdMarca());
 		dto.setNombre(entidad.getNombre());

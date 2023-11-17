@@ -13,7 +13,7 @@ import tp.entidad.*;
 
 public class GestorPoliza {
 	
-	public Poliza crearPoliza(PolizaDTO dto) {
+	public static Poliza crearPoliza(PolizaDTO dto) {
 		Poliza poliza = new Poliza();
 		
 		poliza.setSumaAsegurada(dto.getSumaAsegurada());
@@ -65,18 +65,18 @@ public class GestorPoliza {
 		Localidad localidad = gestorLocal.getLocalidad(dto.getLocalidad());
 		poliza.setDomicilioDeRiesgo(localidad);
 		
-		poliza.setNroPoliza(this.generarNroPoliza(dto));
+		poliza.setNroPoliza(generarNroPoliza(dto));
 		
 		return poliza;
 	}
 	
-	public Poliza altaPoliza(PolizaDTO dto) {
+	public static Poliza altaPoliza(PolizaDTO dto) {
 		
 		//TODO: calcularDescuentos()
-		this.validarDTO(dto);
+		validarDTO(dto);
 		//Ver si estas dos cosas van aca o en crearPoliza()
 		
-		Poliza poliza = this.crearPoliza(dto);
+		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
 		//Ver si es ese metodo (saveInstance) o hay un metodo particular a implementar en PolizaDAO.
 		dao.saveInstance(poliza);
@@ -86,40 +86,11 @@ public class GestorPoliza {
 	
 	
 	//TODO: Esto probablemente haya que hacerlo de nuevo.
-	public float calcularPrima(PolizaDTO dto) {
-		GestorLocalizacion gestorLocal = new GestorLocalizacion();
-		GestorVehiculo gestorVehic = new GestorVehiculo();
-		GestorRangoKMRealizados gestorKm = new GestorRangoKMRealizados();
-		GestorMedidaDeSeguridad gestorMedidas = new GestorMedidaDeSeguridad();
-		GestorCobertura gestorCob = new GestorCobertura();
-		GestorHijoDeclarado gestorHijo = new GestorHijoDeclarado();
-		List<FactorCaracteristico> listaFactores = new ArrayList<>();
-		float prima = 0F;
+	public static float calcularPrima(PolizaDTO dto) {
 		
-		listaFactores.add(gestorCob.getCobertura(dto.getCobertura()));
-		listaFactores.add(gestorLocal.getLocalidad(dto.getLocalidad()));
-		listaFactores.add(gestorVehic.getModelo(dto.getVehiculo().getModelo()));
-		listaFactores.add(gestorKm.getRangoKMRealizados(dto.getKmRealizados()));
-		List<MedidaDeSeguridad> medidasSeleccionadas = 
-				gestorMedidas.crearRespuestasSeguridad(dto.getRespuestasSeguridad()).
-				stream().
-				filter(respuesta -> respuesta.getValorRespuesta().equals(true)).
-				map(respuesta -> respuesta.getMedida()).
-				collect(Collectors.toList());
-		listaFactores.addAll(medidasSeleccionadas);
-		//TODO: Hay que charlar esto ultimo. Por ahora se considera que hay un porcentaje fijo por hijo
-		//y se multiplica este por la cantidad de hijos
-		float porcentajeHijos = gestorHijo.getPorcentajeCantHijos() * dto.getHijosDeclarados().size();
-		
-		prima += porcentajeHijos;
-		for(FactorCaracteristico factor : listaFactores) {			
-			prima += factor.getPorcentaje();
-		}
-		
-		return (prima/100) * dto.getSumaAsegurada();
 	}
 	
-	public boolean datosObligatoriosPresentes(PolizaDTO dto) {
+	public static boolean datosObligatoriosPresentes(PolizaDTO dto) {
 		boolean datosPresentes = true;
 		GestorLocalizacion gestorLocal = new GestorLocalizacion();
 		GestorVehiculo gestorVehiculo = new GestorVehiculo();
@@ -130,34 +101,34 @@ public class GestorPoliza {
 		return datosPresentes;
 	}
 	
-	public boolean coberturaElegidaEsValida(PolizaDTO dto) {
+	public static boolean coberturaElegidaEsValida(PolizaDTO dto) {
 		GestorVehiculo gestorVehic = new GestorVehiculo();
-		boolean vehiculoMayorADiezAños = gestorVehic.esMayorADiezAños(dto.getVehiculo());
+		boolean vehiculoMayorADiezAnios = gestorVehic.esMayorADiezAnios(dto.getVehiculo());
 		//TODO: Esta linea de abajo esta bastante floja de papeles
 		//Ver si se puede hacer reconocer la cobertura por la id, si es que la id se puede conocer.
 		boolean coberturaEsResponsabilidadCivil = dto.getCobertura().getText().toUpperCase().equals("RESPONSABILIDAD CIVIL");
 		//La expresion cuyo resultado retorna es equivalente logicamente a
-		//"vehiculoMayorADiezAños IMPLIES coberturaEsResponsabilidadCivil"
-		return !vehiculoMayorADiezAños || coberturaEsResponsabilidadCivil;
+		//"vehiculoMayorADiezAnios IMPLIES coberturaEsResponsabilidadCivil"
+		return !vehiculoMayorADiezAnios || coberturaEsResponsabilidadCivil;
 	}
 	
-	public boolean existenPolizasVigentes(List<Poliza> polizas) {
+	public static boolean existenPolizasVigentes(List<Poliza> polizas) {
 		boolean algunaVigente = polizas.stream().anyMatch(poliza -> poliza.getEstado().equals(EstadoPoliza.VIGENTE));
 		return algunaVigente;
 	}
 	
-	public boolean existenCuotasImpagas(Poliza poliza) {
+	public static boolean existenCuotasImpagas(Poliza poliza) {
 		List<Cuota> cuotas = poliza.getCuotasAsociadas();
 		boolean algunaImpaga = cuotas.stream().anyMatch(cuota -> !cuota.getEstado().equals(EstadoCuota.PAGA));
 		return algunaImpaga;
 	}
 	
-	public boolean existenCuotasImpagas(List<Poliza> polizas) {
-		boolean algunaPolizaImpaga = polizas.stream().anyMatch(poliza -> this.existenCuotasImpagas(poliza));
+	public static boolean existenCuotasImpagas(List<Poliza> polizas) {
+		boolean algunaPolizaImpaga = polizas.stream().anyMatch(poliza -> existenCuotasImpagas(poliza));
 		return algunaPolizaImpaga;
 	}
 	
-	public List<CuotaDTO> generarCuotas(PolizaDTO dto){
+	public static List<CuotaDTO> generarCuotas(PolizaDTO dto){
 		List<CuotaDTO> cuotaDtos = new ArrayList<CuotaDTO>();
 		switch(dto.getTipoPoliza()) {
 			case SEMESTRAL: {
@@ -184,19 +155,16 @@ public class GestorPoliza {
 		return cuotaDtos;
 	}
 	
-	public void validarDTO(PolizaDTO dto) {
-		
-		GestorVehiculo gestorVehic = new GestorVehiculo();
-		
-		if(!this.datosObligatoriosPresentes(dto)) {
+	public static void validarDTO(PolizaDTO dto) {
+		if(!datosObligatoriosPresentes(dto)) {
 			throw new DatosObligatoriosAusentesException;
 		}
 		
-		if(!gestorVehic.valoresUnicosParaAltaVehiculo(dto.getVehiculo())) {
+		if(!GestorVehiculo.valoresUnicosParaAltaVehiculo(dto.getVehiculo())) {
 			throw new ValoresParaVehiculoExistentesException;
 		}
 		
-		if(!this.coberturaElegidaEsValida(dto)) {
+		if(!coberturaElegidaEsValida(dto)) {
 			throw new AutoMuyViejoParaCoberturaElegidaException;
 		}
 	}

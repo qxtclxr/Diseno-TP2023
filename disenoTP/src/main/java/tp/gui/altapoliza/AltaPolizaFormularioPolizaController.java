@@ -1,23 +1,17 @@
 package tp.gui.altapoliza;
 
-import tp.gui.altapoliza.*;
-import tp.logica.GestorLocalizacion;
 import tp.dto.*;
-import tp.entidad.Localidad;
-import tp.entidad.Pais;
-import tp.entidad.Provincia;
+import tp.logica.*;
+import tp.entidad.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javafx.scene.Scene;
-
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
@@ -27,8 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import tp.app.App;
-import tp.logica;
-import tp.entidad;
+
 public class AltaPolizaFormularioPolizaController {
 	
 	
@@ -155,21 +148,22 @@ public class AltaPolizaFormularioPolizaController {
 	}
 	@FXML
 	private void setProvincia() {
-		GestorLocalizacion g = new GestorLocalizacion();
 		PaisDTO pais = new PaisDTO();
 		pais.setId(Long.valueOf(1));
-		ObservableList<String> opProvincia = FXCollections.observableArrayList(g.getProvinciasByPais(pais).stream().map(ProvinciaDTO::getNombre).toList());
+		ObservableList<String> opProvincia = FXCollections.observableArrayList(GestorLocalizacion.getProvinciasByPais(pais).stream().
+				map(ProvinciaDTO::getText).
+				toList());
 		provincia.setItems(opProvincia);
 	}
 	
 	@FXML
 	private void setLocalidades() {
-		
 		GestorLocalizacion g = new GestorLocalizacion();
 		ProvinciaDTO p = new ProvinciaDTO();
 		p.setNombre(provincia.getValue().toString());
-		
-		ObservableList<String> opLocalidad = FXCollections.observableArrayList(g.getLocalidadesByProvincia(p).stream().map(Localidad::getNombre).toList());
+		ObservableList<String> opLocalidad = FXCollections.observableArrayList(GestorLocalizacion.getLocalidadesByProvincia(p).stream().
+				map(LocalidadDTO::getText).
+				toList());
 		localidad.setItems(opLocalidad);
 	}
 	

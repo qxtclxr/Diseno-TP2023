@@ -40,7 +40,6 @@ public class App extends Application {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	private void showMainFrame() throws IOException {

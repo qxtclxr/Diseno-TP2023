@@ -20,7 +20,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="31.0" layoutY="48.0" opacity="0.75" text="Declarar una cantidad de hijos de entre 18 y 30 años" />
+      <Label layoutX="31.0" layoutY="48.0" opacity="0.75" text="Declarar una cantidad de hijos de entre 18 y 30 anios" />
       <Label layoutX="22.0" layoutY="70.0" text="Fecha de nacimiento">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -64,7 +64,7 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="errorFechaNacimiento" layoutX="21.0" layoutY="112.0" prefHeight="51.0" prefWidth="161.0" text="La fecha de nacimiento debe corresponder a una edad entre 18 y 30 años" textFill="RED" visible="false" wrapText="true">
+      <Label fx:id="errorFechaNacimiento" layoutX="21.0" layoutY="112.0" prefHeight="51.0" prefWidth="161.0" text="La fecha de nacimiento debe corresponder a una edad entre 18 y 30 anios" textFill="RED" visible="false" wrapText="true">
          <font>
             <Font size="10.0" />
          </font>
