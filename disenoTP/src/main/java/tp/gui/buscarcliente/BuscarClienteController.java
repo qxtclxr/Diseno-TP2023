@@ -31,14 +31,25 @@ public class BuscarClienteController {
 	    	
 	    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
 	    	AnchorPane form = loader.load();
+
+	    	//AltaPolizaFormularioController altaPolizaC = loader.getController();
+	    	
+	    	//altaPolizaC.setClienteDAO(clienteDAO);
+	    	App.switchScreenTo(form);
+	    }
+	    
+	   /* Probando otra manera de hacer lo de arriba 
+	    @FXML
+	    private void confirmarCliqueado(ActionEvent event) throws IOException{
+	    	
+	    	Parent root;
+	    	
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
+	    	root = loader.load();
 	    	
 	    	AltaPolizaFormularioController altaPolizaC = loader.getController();
-
-	    	
 	    	altaPolizaC.setClienteDAO(clienteDAO);
-	    	App.switchScreenTo(form);
-	    	
-	    }
+	    } */
 
 	    @FXML
 	    private void handleExit(ActionEvent event) throws IOException {
