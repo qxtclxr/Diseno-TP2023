@@ -76,13 +76,17 @@ public class AltaPolizaFormularioCoberturaController {
 		
 		
 		FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
-   
-    	AnchorPane form = loader.load();
     	
-    	AltaPolizaFormularioPolizaController formularioPolizaC = loader.getController();
+    	AltaPolizaFormularioPolizaController formularioPolizaC = new AltaPolizaFormularioPolizaController();
+    	
     	formularioPolizaC.setPolizaDTO(this.poliza);
-    	formularioPolizaC.mostrarDatosPoliza();
+    	
+    	loader.setController(formularioPolizaC);
+    	
+    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
+    	AnchorPane form = loader.load();
+    	//formularioPolizaC.setPolizaDTO(this.poliza);
+    	//formularioPolizaC.mostrarDatosPoliza();
     	App.switchScreenTo(form);
 		
 		
@@ -152,14 +156,14 @@ public class AltaPolizaFormularioCoberturaController {
 			
 			FXMLLoader loader = new FXMLLoader();
 			
-			loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaConfirmar.fxml"));
-			
-			AnchorPane form = loader.load();
-			
 			AltaPolizaConfirmarController confirmar = loader.getController();
 			
 			confirmar.setPolizaDTO(this.poliza);
 			
+			loader.setController(confirmar); //chequear
+			
+			loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaConfirmar.fxml"));
+			AnchorPane form = loader.load();
 			App.switchScreenTo(form);
     	
 		}
