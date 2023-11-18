@@ -96,9 +96,13 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 	public void setDesdeCant(int desdeCant) {
 		this.desdeCant = desdeCant;
 	}
-	
 
-	
-	
-	
+	public String getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+		
 }

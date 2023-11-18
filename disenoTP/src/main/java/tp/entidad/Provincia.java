@@ -20,7 +20,7 @@ public class Provincia {
 	
 	//relaciones
 	
-	@ManyToOne(fetch= FetchType.EAGER)
+	@ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="idPais", referencedColumnName="idPais",foreignKey= @ForeignKey(name="FK_pais_en_provincia"))
 	private Pais pais;
 	

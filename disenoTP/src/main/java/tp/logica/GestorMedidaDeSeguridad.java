@@ -2,15 +2,17 @@ package tp.logica;
 
 import tp.dto.*;
 import tp.entidad.*;
+import tp.exception.ObjetoNoEncontradoException;
 import tp.dao.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GestorMedidaDeSeguridad {
 	
-	public static MedidaDeSeguridad getMedidaDeSeguridad(MedidaDeSeguridadDTO dto) {
+	public static MedidaDeSeguridad getMedidaDeSeguridad(MedidaDeSeguridadDTO dto)
+			throws ObjetoNoEncontradoException {
 		MedidaDeSeguridadDAO dao = new MedidaDeSeguridadDAO();
-		return dao.getById(dto.getId()).orElseThrow(/*TODO*/);
+		return dao.getById(dto.getId()).orElseThrow(() -> new ObjetoNoEncontradoException());
 	}
 	
 	public static MedidaDeSeguridadDTO getDTO (MedidaDeSeguridad entidad) {
@@ -33,7 +35,8 @@ public class GestorMedidaDeSeguridad {
 		return medidasDto;
 	}
 
-	public static PorcentajeMedidaDeSeguridad getPorcentajeMedidaDeSeguridadActual(MedidaDeSeguridadDTO dto) {
+	public static PorcentajeMedidaDeSeguridad getPorcentajeMedidaDeSeguridadActual(MedidaDeSeguridadDTO dto)
+			throws ObjetoNoEncontradoException {
 		MedidaDeSeguridad medida = getMedidaDeSeguridad(dto);
 		return medida.getValorActualPorcMedidaDeSeg();
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import tp.dto.*;
 import tp.entidad.*;
+import tp.exception.ObjetoNoEncontradoException;
 import tp.dao.*;
 
 public class GestorVehiculo {
@@ -17,20 +18,22 @@ public class GestorVehiculo {
 		}
 		PolizaDAO dao = new PolizaDAO();
 		List<Poliza> polizas = dao.getByPatente(patente);
-		
-		return !polizas.isEmpty();
+		boolean existeVigente = polizas.stream().anyMatch(p -> p.getEstado().equals(EstadoPoliza.VIGENTE));
+		return existeVigente;
 	}
 	
 	public static boolean existeMotor(String motor) {
 		PolizaDAO dao = new PolizaDAO();
 		List<Poliza> polizas = dao.getByMotor(motor);
-		return !polizas.isEmpty();
+		boolean existeVigente = polizas.stream().anyMatch(p -> p.getEstado().equals(EstadoPoliza.VIGENTE));
+		return existeVigente;
 	}
 	
 	public static boolean existeChasis(String chasis) {
 		PolizaDAO dao = new PolizaDAO();
 		List<Poliza> polizas = dao.getByChasis(chasis);
-		return !polizas.isEmpty();
+		boolean existeVigente = polizas.stream().anyMatch(p -> p.getEstado().equals(EstadoPoliza.VIGENTE));
+		return existeVigente;
 	}
 	
 	public static boolean valoresUnicosParaAltaVehiculo(VehiculoDTO dto) {
@@ -40,7 +43,8 @@ public class GestorVehiculo {
 		return !(chasis || motor || patente);
 	}
 	
-	public static Vehiculo crearVehiculo(VehiculoDTO dto) {
+	public static Vehiculo crearVehiculo(VehiculoDTO dto)
+			throws ObjetoNoEncontradoException {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setPatente(dto.getPatente());
 		vehiculo.setMotor(dto.getMotor());
@@ -69,7 +73,8 @@ public class GestorVehiculo {
 		return datosPresentes;
 	}
 	
-	public static List<AnioModeloDTO> getAniosByModelo(ModeloDTO dto){
+	public static List<AnioModeloDTO> getAniosByModelo(ModeloDTO dto)
+			throws ObjetoNoEncontradoException{
 		Modelo modelo = getModelo(dto);
 		List<AnioModeloDTO> anioDtos = modelo.getAniosFabricacion().stream().
 				map(entidad -> getAnioModeloDTO(entidad)).
@@ -84,7 +89,8 @@ public class GestorVehiculo {
 		return modelos;
 	}
 	
-	public static List<ModeloDTO> getModelosByMarca(MarcaDTO marcaDto){
+	public static List<ModeloDTO> getModelosByMarca(MarcaDTO marcaDto)
+			throws ObjetoNoEncontradoException{
 		Marca marca = getMarca(marcaDto);
 		List<Modelo> modelos = getModelosByMarca(marca);
 		List<ModeloDTO> modelosDto = modelos.stream().
@@ -106,21 +112,21 @@ public class GestorVehiculo {
 		return marcaDtos;
 	}
 	
-	public static AnioModelo getAnioModelo(AnioModeloDTO dto) {
+	public static AnioModelo getAnioModelo(AnioModeloDTO dto) throws ObjetoNoEncontradoException {
 		AnioModeloDAO dao = new AnioModeloDAO();
-		AnioModelo modelo = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
+		AnioModelo modelo = dao.getById(dto.getId()).orElseThrow(() -> new ObjetoNoEncontradoException());
 		return modelo;
 	}
 	
-	public static Modelo getModelo(ModeloDTO dto) {
+	public static Modelo getModelo(ModeloDTO dto) throws ObjetoNoEncontradoException {
 		ModeloDAO dao = new ModeloDAO();
-		Modelo modelo = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
+		Modelo modelo = dao.getById(dto.getId()).orElseThrow(() -> new ObjetoNoEncontradoException());
 		return modelo;
 	}
 	
-	public static Marca getMarca(MarcaDTO dto) {
+	public static Marca getMarca(MarcaDTO dto) throws ObjetoNoEncontradoException {
 		MarcaDAO dao = new MarcaDAO();
-		Marca marca = dao.getById(dto.getId()).orElseThrow(/*TODO*/);
+		Marca marca = dao.getById(dto.getId()).orElseThrow(() -> new ObjetoNoEncontradoException());
 		return marca;
 	}
 	
@@ -148,7 +154,8 @@ public class GestorVehiculo {
 		return dto;
 	}
 
-	public static PorcentajeEstadisticaRobo getPorcentajeEstadisticaRoboActualActual(AnioModeloDTO dto) {
+	public static PorcentajeEstadisticaRobo getPorcentajeEstadisticaRoboActualActual(AnioModeloDTO dto)
+			throws ObjetoNoEncontradoException {
 		AnioModelo modelo = getAnioModelo(dto);
 		return modelo.getValorActualPorcentajeEstadisticaRobo();
 	}

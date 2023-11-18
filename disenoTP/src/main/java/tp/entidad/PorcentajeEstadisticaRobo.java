@@ -13,7 +13,7 @@ public class PorcentajeEstadisticaRobo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idPorcEstadRobo")
-	private long idPorcEstadRob;
+	private long idPorcEstadRobo;
 	
 	@Column(nullable=false)
 	private Float valorNumerico;
@@ -51,24 +51,24 @@ public class PorcentajeEstadisticaRobo {
 
 	
 
-	public long getIdPorcEstadRob() {
-		return idPorcEstadRob;
+	public long getIdPorcEstadRobo() {
+		return idPorcEstadRobo;
 	}
 
-	public void setIdPorcEstadRob(long idPorcEstadRob) {
-		this.idPorcEstadRob = idPorcEstadRob;
+	public void setIdPorcEstadRobo(long idPorcEstadRobo) {
+		this.idPorcEstadRobo = idPorcEstadRobo;
 	}
 
 	@Override
 	public String toString() {
-		return "PorcentajeEstadisticaRobo [idPorcEstadRob=" + idPorcEstadRob + ", valorNumerico=" + valorNumerico
+		return "PorcentajeEstadisticaRobo [idPorcEstadRobo=" + idPorcEstadRobo + ", valorNumerico=" + valorNumerico
 				+ ", fechaModificacion=" + fechaModificacion + ", anioModeloAsociado=" + anioModeloAsociado
 				+ ", modificadoPor=" + modificadoPor + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idPorcEstadRob);
+		return Objects.hash(idPorcEstadRobo);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class PorcentajeEstadisticaRobo {
 		if (getClass() != obj.getClass())
 			return false;
 		PorcentajeEstadisticaRobo other = (PorcentajeEstadisticaRobo) obj;
-		return idPorcEstadRob == other.idPorcEstadRob;
+		return idPorcEstadRobo == other.idPorcEstadRobo;
 	}
 
 	public Float getValorNumerico() {

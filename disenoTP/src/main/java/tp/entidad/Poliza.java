@@ -100,7 +100,7 @@ public class Poliza {
 	private PorcentajeAjusteHijos porcAjustePorHijo;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idPorcEstRobo", referencedColumnName="idPorcEstadRob",foreignKey= @ForeignKey(name="FK_porc_robo_en_poliza"))
+	@JoinColumn(name="idPorcEstadRobo", referencedColumnName="idPorcEstadRobo",foreignKey= @ForeignKey(name="FK_porc_robo_en_poliza"))
 	private PorcentajeEstadisticaRobo porcEstRobo;
 	
 	//ver el eager de los factores
@@ -373,14 +373,6 @@ public class Poliza {
 		this.modificaciones = modificaciones;
 	}
 
-
-
-	
-
-
-
-
-
 	public void setHijosDeclarados(List<HijoDeclarado> hijosDeclarados) {
 		this.hijosDeclarados = hijosDeclarados;
 	}
@@ -503,6 +495,18 @@ public class Poliza {
 
 	public void setPorcCobertura(PorcentajeCobertura porcCobertura) {
 		this.porcCobertura = porcCobertura;
+	}
+
+
+
+	public float getDescuento() {
+		return descuento;
+	}
+
+
+
+	public void setDescuento(float descuento) {
+		this.descuento = descuento;
 	}
 	
 	
