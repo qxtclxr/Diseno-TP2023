@@ -29,10 +29,16 @@ public class Usuario {
 	private TipoDocumento tipoDocumento;
 	
 	
+	
+	
 	//relaciones
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="idRol",referencedColumnName="idRol", foreignKey= @ForeignKey(name="FK_id_rol_en_usuario"))
 	private Rol rolActual;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="sucursal",referencedColumnName="idSucursal", foreignKey= @ForeignKey(name="FK_surcusal_en_user"))
+	private Sucursal sucursalAsociada;
 	
 	public Usuario() {
 		super();
@@ -122,6 +128,19 @@ public class Usuario {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
+
+
+
+	public Sucursal getSucursalAsociada() {
+		return sucursalAsociada;
+	}
+
+
+
+	public void setSucursalAsociada(Sucursal sucursalAsociada) {
+		this.sucursalAsociada = sucursalAsociada;
+	}
+	
 	
 	
 	
