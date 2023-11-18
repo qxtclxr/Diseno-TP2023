@@ -50,12 +50,12 @@ public class DeclararHijosController {
 	@FXML
 	public void volverAtrasClicked( ActionEvent action ) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
+    	AltaPolizaFormularioPolizaController altaPolizaC = new AltaPolizaFormularioPolizaController();
+    	altaPolizaC.setHijosDeclarados(listaHijos);
+    	loader.setController(altaPolizaC);
+    	
     	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
     	AnchorPane form = loader.load();
-    	
-    	AltaPolizaFormularioPolizaController formularioPolizaC = loader.getController();
-    	formularioPolizaC.setHijosDeclarados(this.listaHijos);
-    	formularioPolizaC.mostrarDatosPoliza();
     	
     	App.switchScreenTo(form);
 	}

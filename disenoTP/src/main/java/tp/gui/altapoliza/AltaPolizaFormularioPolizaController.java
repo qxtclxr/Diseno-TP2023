@@ -140,18 +140,17 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	@FXML
 	private void confirmarClicked(ActionEvent action) throws IOException {
 		
+		
 		if(this.validarDatos()) {
 			
 		this.cargarDatosFormulario();
 		
 		FXMLLoader loader = new FXMLLoader();
+		AltaPolizaFormularioCoberturaController formularioCoberturaC = new AltaPolizaFormularioCoberturaController();
+		formularioCoberturaC.setPolizaDTO(this.poliza);
     	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
-   
     	AnchorPane form = loader.load();
-    	
-    	AltaPolizaFormularioCoberturaController formularioCoberturaC = loader.getController();
-    	
-    	formularioCoberturaC.setPolizaDTO(this.poliza);
+    	formularioCoberturaC = loader.getController();
     	
     	App.switchScreenTo(form);
     	
@@ -163,14 +162,12 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	@FXML 
 	private void volverAtrasClicked( ActionEvent action ) throws IOException {
 		
-		
 		FXMLLoader loader = new FXMLLoader();
+		BuscarClienteController buscarClienteC = new BuscarClienteController();
+		buscarClienteC.setClienteDTO(this.poliza.getCliente());
     	loader.setLocation(getClass().getResource("../buscarcliente/BuscarCliente.fxml"));
     	AnchorPane form = loader.load();
-    	
-    	BuscarClienteController buscarClienteC = loader.getController();
-    	buscarClienteC.setClienteDTO(poliza.getCliente());
-    	//TODO: buscarClienteC.mostrarDatos();
+    	buscarClienteC = loader.getController();
     	
     	App.switchScreenTo(form);
     	
@@ -183,28 +180,18 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	@FXML
 	private void declararHijosClicked(ActionEvent action) throws IOException {
-	    // Cargar el archivo FXML
-	    FXMLLoader loader = new FXMLLoader();
-	    loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
-	    AnchorPane form = loader.load();
 
-	    // Crear una nueva ventana modal
-	    Stage ventanaModal = new Stage();
-	    ventanaModal.initModality(Modality.APPLICATION_MODAL);
-	    ventanaModal.setTitle("Declarar Hijos");
-	    
-
-	    // Configurar el contenido de la ventana modal
-	    Scene modalScene = new Scene(form);
-	    ventanaModal.setScene(modalScene);
-	    
-	    	    
-	    DeclararHijosController declararHijosC = loader.getController();
-	    //TODO: declararHijosC.setListaHijos(poliza.getHijosDeclarados());
-
-
-	    // Mostrar la ventana modal y esperar hasta que se cierre
-	    ventanaModal.showAndWait();
+		FXMLLoader loader = new FXMLLoader();
+		DeclararHijosController declararHijosC = new DeclararHijosController();
+		declararHijosC.setListaHijos(this.poliza.getHijosDeclarados());
+    	loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
+    	AnchorPane form = loader.load();
+    	declararHijosC = loader.getController();
+    	
+    	App.switchScreenTo(form);
+		
+		
+		
 	}
 
 
