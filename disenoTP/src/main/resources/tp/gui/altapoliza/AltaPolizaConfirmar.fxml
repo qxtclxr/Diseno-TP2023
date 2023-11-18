@@ -86,6 +86,14 @@
                         <Label fx:id="motor" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label fx:id="chasis" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Label fx:id="patente" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="direccionDeRiesgo" text="Label" GridPane.columnIndex="3" />
+                        <Label fx:id="inicioVigencia" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label fx:id="finalVigencia" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Label fx:id="ultimoDiaDePago" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Label fx:id="sumaAsegurada" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Label fx:id="premio" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                        <Label fx:id="importePorDescuento" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                        <Label fx:id="totalAbonar" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="8" />
                      </children>
                   </GridPane>
                   <Button layoutX="158.0" layoutY="515.0" mnemonicParsing="false" text="Confirmar" />

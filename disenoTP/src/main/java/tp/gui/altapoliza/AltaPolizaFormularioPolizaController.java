@@ -1,5 +1,6 @@
 package tp.gui.altapoliza;
 
+import tp.gui.buscarcliente.*;
 import tp.dto.*;
 import tp.logica.*;
 import tp.entidad.*;
@@ -91,6 +92,24 @@ public class AltaPolizaFormularioPolizaController {
 	 @FXML
 	 private Label contadorHijosDeclarados;
 	
+	 
+	public void mostrarDatosPoliza( ) {
+		
+		motor.setText(poliza.getVehiculo().getMotor());
+		chasis.setText(poliza.getVehiculo().getChasis());
+		patente.setText(poliza.getVehiculo().getPatente());
+		localidad.setValue(poliza.getLocalidad().getNombre());
+		provincia.setValue(poliza.getLocalidad().getProvincia().getNombre());
+		marca.setValue(poliza.getVehiculo().getModelo().getModelo().getMarca());
+		vehiculo.setValue(poliza.getVehiculo().getModelo().getModelo().getNombre());
+		anio.setValue(Integer.toString(poliza.getVehiculo().getModelo().getAnio()));
+		kmsRealizadosPorAnio.setValue(poliza.getKmRealizados().getNombre());
+		nroDeSiniestrosUltAnio.setValue(poliza.getCantidadSiniestros().getNombre());
+		
+		
+	}
+	 
+	 
 	public void setClienteDTO(ClienteDTO clienteDTO) throws IOException {
 		poliza.setCliente(clienteDTO);
 		this.pruebaNombre.setText(this.poliza.getCliente().getNombre());
@@ -132,15 +151,17 @@ public class AltaPolizaFormularioPolizaController {
     	
     	BuscarClienteController buscarClienteC = loader.getController();
     	buscarClienteC.setClienteDTO(poliza.getCliente());
-    	
+    	buscarClienteC.mostrarDatos();
     	
     	App.switchScreenTo(form);
     	
 	}
 	
+	public void setHijosDeclarados(list<HijoDeclaradoDTO> l) {
+		poliza.setHijosDeclarados(l);
+	}
 
-	 
-	 
+	
 	@FXML
 	private void declararHijosClicked(ActionEvent action) throws IOException {
 	    // Cargar el archivo FXML
@@ -152,10 +173,16 @@ public class AltaPolizaFormularioPolizaController {
 	    Stage ventanaModal = new Stage();
 	    ventanaModal.initModality(Modality.APPLICATION_MODAL);
 	    ventanaModal.setTitle("Declarar Hijos");
+	    
 
 	    // Configurar el contenido de la ventana modal
 	    Scene modalScene = new Scene(form);
 	    ventanaModal.setScene(modalScene);
+	    
+	    	    
+	    DeclararHijosController declararHijosC = loader.getController();
+	    declararHijosC.setListaHijos(poliza.getHijosDeclarados());
+
 
 	    // Mostrar la ventana modal y esperar hasta que se cierre
 	    ventanaModal.showAndWait();
@@ -193,8 +220,8 @@ public class AltaPolizaFormularioPolizaController {
 				map(LocalidadDTO::getText).
 				toList());
 		localidad.setItems(opLocalidad);
-		
 	}	
+
 	
 	private void setMarcaVehiculoAnio( ) {
 		
@@ -302,13 +329,16 @@ public class AltaPolizaFormularioPolizaController {
 		
 	private void cargarDatosFormulario() {
 		
+		AnioModeloDTO anioModelo = new AnioModeloDTO();
 		VehiculoDTO vehiculoD = new VehiculoDTO();
 		AnioModeloDTO anioD = new AnioModeloDTO();
 		ModeloDTO modeloD = new ModeloDTO();
 		MarcaDTO marcaD = new MarcaDTO();
 		RangoKMRealizadosDTO rangoD = new RangoKMRealizadosDTO(); 
 		RangoCantSiniestrosDTO rangoCsD = new RangoCantSiniestrosDTO();
-		
+		LocalidadDTO localidadD = new LocalidadDTO();
+		ProvinciaDTO provinciaD = new ProvinciaDTO();
+		PaisDTO paisD = new PaisDTO();
 		
 		vehiculoD.setChasis(chasis.getText());
 		vehiculoD.setMotor(motor.getText());
@@ -320,10 +350,15 @@ public class AltaPolizaFormularioPolizaController {
 		vehiculoD.setModelo(anioD);
 		rangoD.setNombre(kmsRealizadosPorAnio.getValue().toString());
 		rangoCsD.setNombre(nroDeSiniestrosUltAnio.getValue().toString());
+		paisD.setNombre("Argentina");
+		provinciaD.setNombre(provincia.getValue().toString());
+		provinciaD.setPais(paisD);
+		localidadD.setNombre(localidad.getValue().toString());
+		localidadD.setProvincia(provinciaD);
 		poliza.setCantidadSiniestros(rangoCsD);
 		poliza.setKmRealizados(rangoD);
 		poliza.setVehiculo(vehiculoD);
-		
+		poliza.setLocalidad(localidadD);
 		
 		
 	}

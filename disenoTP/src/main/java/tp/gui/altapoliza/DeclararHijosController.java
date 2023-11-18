@@ -1,15 +1,25 @@
 package tp.gui.altapoliza;
 
+import tp.app.App;
+import tp.dto.*;
+import tp.entidad.*;
+import tp.gui.buscarcliente.BuscarClienteController;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 public class DeclararHijosController {
 	
@@ -29,7 +39,29 @@ public class DeclararHijosController {
 	private Button agregarHijo;
 	@FXML 
 	private DatePicker fechaNacimiento;
-
+	
+	private List<HijoDeclaradoDTO> listaHijos;
+	
+	
+	public void setListaHijos(list<HijoDeclaradoDTO> l) {
+		listaHijos = l;
+	}
+	
+	@FXML
+	public void volverAtrasClicked( ActionEvent action ) throws IOException{
+		FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
+    	AnchorPane form = loader.load();
+    	
+    	AltaPolizaFormularioPolizaController formularioPolizaC = loader.getController();
+    	formularioPolizaC.setHijosDeclarados(this.listaHijos);
+    	formularioPolizaC.mostrarDatosPoliza();
+    	
+    	App.switchScreenTo(form);
+	}
+	
+	
+	
 	@FXML
 	public void initialize() {
 		
@@ -43,9 +75,48 @@ public class DeclararHijosController {
 
 	}
 	
+	private EstadoCivil getValueEstadoCivil() {
+		
+		if(estadoCivil.getValue().toString().equals("Casado/a")) {
+			return EstadoCivil.CASADO;
+		}
+		else if(estadoCivil.getValue().toString().equals("Soltero/a") ) {
+			return EstadoCivil.SOLTERO;
+		}
+		else if(estadoCivil.getValue().toString().equals("Viudo/a")) {
+			return EstadoCivil.VIUDO;
+		}else if(estadoCivil.getValue().toString().equals("Divorciado/a")) {
+			return EstadoCivil.DIVORCIADO;
+		}
+		
+	}
+	
+	private Sexo getValueSexo( ) {
+		if(sexo.getValue().toString().equals("Hombre")) {
+			return Sexo.MASCULINO;
+		}
+		else if(sexo.getValue().toString().equals("Mujer")){
+			return Sexo.FEMENINO;
+		}
+	}
+	
+	
+	private void addHijo( ) {
+	
+		HijoDeclaradoDTO hijo = new HijoDeclaradoDTO();
+		hijo.setFechaNacimiento(fechaNacimiento.getValue());
+		hijo.setEstadoCivil( this.getValueEstadoCivil() );
+		hijo.setSexo(this.getValueSexo() );
+		
+		listaHijos.add(hijo);
+		
+	}
+	
+	
 	@FXML
 	public void agregarHijoClicked() {
 		this.validarDatos();
+		this.addHijo();
 	}
 	@FXML
 	public void validarDatos() {
