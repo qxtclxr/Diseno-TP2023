@@ -1,6 +1,7 @@
 package tp.gui.buscarcliente;
 
 import tp.dto.*;
+import tp.entidad.TipoDocumento;
 
 import java.io.IOException;
 
@@ -30,15 +31,15 @@ public class BuscarClienteController {
 	    	clienteDTO.setNombre("Juan");
 	    	clienteDTO.setApellido("Perez");
 	    	clienteDTO.setNroCliente("123456789");
+	    	clienteDTO.setNroDocumento("1512999191");
+	    	clienteDTO.setTipoDocumento(TipoDocumento.DNI);
 	    	
 	    	FXMLLoader loader = new FXMLLoader();
 	    	
 	    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
 	    	AnchorPane form = loader.load();
-
 	    	AltaPolizaFormularioPolizaController altaPolizaC = loader.getController();
 	    	altaPolizaC.setClienteDTO(clienteDTO);
-	    	
 	    	App.switchScreenTo(form);
 	    }
 	    

@@ -7,9 +7,11 @@ import tp.entidad.*;
 import tp.exception.ObjetoNoEncontradoException;
 import tp.gui.buscarcliente.BuscarClienteController;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.List;
@@ -33,7 +35,19 @@ public class AltaPolizaFormularioPolizaController {
 	private PolizaDTO poliza = new PolizaDTO();
 	
 	@FXML
-	private Label pruebaNombre;
+	private TableColumn nroCliente;
+	@FXML
+	private TableColumn apellido;
+	@FXML
+	private TableColumn nombre;
+	@FXML
+	private TableColumn tipoDni;
+	
+	@FXML
+	private TableColumn nroDocumento;
+	@FXML
+	private TableColumn direccion;
+	
 	
 	@FXML
 	private Button declararHijos;
@@ -113,7 +127,7 @@ public class AltaPolizaFormularioPolizaController {
 	 
 	public void setClienteDTO(ClienteDTO clienteDTO) throws IOException {
 		poliza.setCliente(clienteDTO);
-		this.pruebaNombre.setText(this.poliza.getCliente().getNombre());
+		
 	}
 	
 	public void setPolizaDTO(PolizaDTO poliza) {
@@ -133,6 +147,7 @@ public class AltaPolizaFormularioPolizaController {
     	AnchorPane form = loader.load();
     	
     	AltaPolizaFormularioCoberturaController formularioCoberturaC = loader.getController();
+    	
     	formularioCoberturaC.setPolizaDTO(this.poliza);
     	
     	App.switchScreenTo(form);
@@ -364,10 +379,22 @@ public class AltaPolizaFormularioPolizaController {
 		
 	}
 	
+	public void mostrarCliente( ) {
+		
+		nroCliente.setText(poliza.getCliente().getNroCliente());
+		nombre.setText(poliza.getCliente().getNombre());
+		apellido.setText(poliza.getCliente().getApellido());
+		tipoDni.setText(poliza.getCliente().getTipoDocumento().toString());
+		nroDocumento.setText(poliza.getCliente().getNroDocumento());
+		//direccion.setText(poliza.getCliente().);
+		
+	}
+	
 	
 	@FXML
 	public void initialize( ) {
 		
+		this.mostrarCliente();
 		
 		this.setErroresFalse();
 		

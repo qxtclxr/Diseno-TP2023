@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import tp.app.App;
 import tp.dto.*;
 
@@ -14,6 +13,7 @@ import tp.dto.*;
 public class AltaPolizaConfirmarController {
 
 	private PolizaDTO poliza = new PolizaDTO();
+	
 	
 	@FXML
 	private Label apellido;
@@ -72,7 +72,7 @@ public class AltaPolizaConfirmarController {
 	}
 	
 	private void mostrarDatosPoliza( ) {
-		
+		/*
 		apellido.setText(poliza.getCliente().getApellido());
 		nombre.setText(poliza.getCliente().getNombre());
 		modelo.setText(poliza.getVehiculo().getModelo().getModelo().getNombre());
@@ -83,7 +83,7 @@ public class AltaPolizaConfirmarController {
 		direccionDeRiesgo.setText(poliza.getLocalidad().getNombre()+ ", "+ poliza.getLocalidad().getProvincia().getNombre());
 		inicioVigencia.setText( poliza.getFechaInicio().toString() );
 		finalVigencia.setText(  poliza.getFechaInicio().plusMonths(1).toString()  );
-		
+		*/
 		
 		
 	}

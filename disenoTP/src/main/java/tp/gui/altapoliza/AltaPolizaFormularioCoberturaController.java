@@ -25,8 +25,6 @@ public class AltaPolizaFormularioCoberturaController {
 	private PolizaDTO poliza;
 	
 	@FXML
-	private Button confirmar;
-	@FXML
 	private RadioButton respCivil;
 	@FXML
 	private RadioButton respCivilRoboIncendioTotal;
@@ -152,8 +150,8 @@ public class AltaPolizaFormularioCoberturaController {
 		
 			this.cargarDatosFormulario();
 			
-		
 			FXMLLoader loader = new FXMLLoader();
+			
 			loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaConfirmar.fxml"));
 			
 			AnchorPane form = loader.load();
@@ -225,6 +223,8 @@ public class AltaPolizaFormularioCoberturaController {
     	errorFechaInicioVigencia3.setVisible(false);
     	errorTipoPago.setVisible(false);
     	errorTipoCobertura.setVisible(false);
+    	
+    	
 		
 	}
 	
