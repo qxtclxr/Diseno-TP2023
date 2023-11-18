@@ -1,8 +1,14 @@
 package tp.logica;
 
+import tp.dao.DerechosDeEmisionDAO;
+import tp.entidad.DerechosDeEmision;
+import tp.entidad.ValorDerechosDeEmision;
+
 public class GestorDerechosDeEmision {
-	public float getDerechosDeEmisionActual() {
+	
+	public static ValorDerechosDeEmision getDerechosDeEmisionActual() {
 		DerechosDeEmisionDAO dao = new DerechosDeEmisionDAO();
-		dao.get
+		DerechosDeEmision derechos = dao.getAll().get(0);
+		return derechos.getValorActualDerechosDeEmision();
 	}
 }

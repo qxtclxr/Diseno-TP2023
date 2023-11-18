@@ -1,23 +1,21 @@
 package tp.logica;
 
 import tp.dto.HijoDeclaradoDTO;
+import tp.entidad.AjusteHijos;
 import tp.entidad.HijoDeclarado;
-import tp.entidad.PorcentajeCantHijos;
-import tp.dao.HijoDeclaradoDAO;
-
+import tp.dao.AjusteHijosDAO;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class GestorHijoDeclarado {
 	
-	public HijoDeclarado crearHijoDeclarado(HijoDeclaradoDTO dto) {
-		if(!this.datosObligatoriosPresentes(dto)) {
+	public static HijoDeclarado crearHijoDeclarado(HijoDeclaradoDTO dto) {
+		if(!datosObligatoriosPresentes(dto)) {
 			//TODO: throw DatosObligatoriosAusentesException
 		}
-		if(!this.fechaDeNacimientoEsValida(dto)) {
+		if(!fechaDeNacimientoEsValida(dto)) {
 			// TODO: throw FechaNacimientoHijoInvalidaException
 		}
 		HijoDeclarado hijoDeclarado = new HijoDeclarado();
@@ -27,22 +25,22 @@ public class GestorHijoDeclarado {
 		return hijoDeclarado;
 	}
 	
-	public List<HijoDeclarado> crearHijosDeclarados(List<HijoDeclaradoDTO> dtos){
+	public static List<HijoDeclarado> crearHijosDeclarados(List<HijoDeclaradoDTO> dtos){
 		List<HijoDeclarado> hijosDeclarados = dtos.stream().
 				map(dto -> crearHijoDeclarado(dto)).
 				collect(Collectors.toList());
 		return hijosDeclarados;
 	}
 	
-	public boolean fechaDeNacimientoEsValida(HijoDeclaradoDTO dto) {
+	public static boolean fechaDeNacimientoEsValida(HijoDeclaradoDTO dto) {
 		LocalDate now = LocalDate.now();
 		LocalDate fechaNacimiento = dto.getFechaNacimiento();
 		Period edad = Period.between(fechaNacimiento,now);
-		int añosDeEdad = edad.getYears();
-		return añosDeEdad >= HijoDeclaradoDTO.MIN_EDAD && añosDeEdad <= HijoDeclaradoDTO.MAX_EDAD;
+		int aniosDeEdad = edad.getYears();
+		return aniosDeEdad >= HijoDeclaradoDTO.MIN_EDAD && aniosDeEdad <= HijoDeclaradoDTO.MAX_EDAD;
 	}
 	
-	public boolean datosObligatoriosPresentes(HijoDeclaradoDTO dto) {
+	public static boolean datosObligatoriosPresentes(HijoDeclaradoDTO dto) {
 		boolean datosPresentes = dto != null;
 		if(datosPresentes == false) {
 			return false;
@@ -53,9 +51,9 @@ public class GestorHijoDeclarado {
 		return datosPresentes;
 	}
 	
-	public float getPorcentajeCantHijos() {
-		HijoDeclaradoDAO dao = new HijoDeclaradoDAO();
-		PorcentajeCantHijos porcentaje = dao.getPorcentajePorHijoActual();
-		return porcentaje.getValorNumerico();
+	public static float getPorcentajeAjusteHijosActual() {
+		AjusteHijosDAO dao = new AjusteHijosDAO();
+		AjusteHijos ajuste = dao.getAll().get(0);
+		return ajuste.getValorActualPorcentajeCantHijos().getValorNumerico();
 	}
 }

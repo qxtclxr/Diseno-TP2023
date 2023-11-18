@@ -14,17 +14,13 @@ public class RangoCantSiniestrosDAO extends AbstractDAO<RangoCantSiniestros> {
 		this.setClase(RangoCantSiniestros.class);
 	}
 	
-	public Optional<RangoCantSiniestros> getByCant(int cant) {
+	public Optional<RangoCantSiniestros> getByMinimo(int cant) {
 		CriteriaBuilder cbuild = this.getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<RangoCantSiniestros> cQuery = cbuild.createQuery(RangoCantSiniestros.class);
 		Root<RangoCantSiniestros> root = cQuery.from(RangoCantSiniestros.class);
 		
-		
-		
-		
 		Predicate cantMin = cbuild.greaterThanOrEqualTo(root.get("desdeCant"),cant);
 		
-
 		cQuery.select(root).where(cantMin);
 		TypedQuery<RangoCantSiniestros> query = this.getEntityManager().createQuery(cQuery);
 		List<RangoCantSiniestros> result=query.getResultList().stream().sorted(Comparator.comparingInt(RangoCantSiniestros::getDesdeCant)).collect(Collectors.toList());
