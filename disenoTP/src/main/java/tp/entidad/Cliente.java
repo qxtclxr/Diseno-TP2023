@@ -18,6 +18,7 @@ public class Cliente {
 	@Column(name="idCliente")
 	private long idCliente;
 	
+	
 	@Column(nullable = false, unique = true) 
 	private String nroCliente; //puede usarse un naturalid
 	

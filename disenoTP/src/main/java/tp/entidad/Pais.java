@@ -13,6 +13,9 @@ public class Pais {
 	@Column(name="idPais")
 	private long idPais;
 	
+	@Column(nullable=false)
+	private String codPais;
+	
 	@Column(nullable = false, unique=true)
 	private String nombre;
 	
