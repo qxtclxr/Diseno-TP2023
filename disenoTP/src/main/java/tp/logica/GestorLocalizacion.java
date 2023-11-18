@@ -27,6 +27,20 @@ public class GestorLocalizacion {
 		return objeto;
 	}
 	
+	public static PaisDTO getPaisDTOByNombre(String nombre)
+			throws ObjetoNoEncontradoException {
+		Pais objeto = getPaisByNombre(nombre);
+		PaisDTO dto = getPaisDTO(objeto);
+		return dto;
+	}
+	
+	public static Pais getPaisByNombre(String nombre)
+			throws ObjetoNoEncontradoException{
+		PaisDAO dao = new PaisDAO();
+		Pais objeto = dao.getByNombre(nombre).orElseThrow(() -> new ObjetoNoEncontradoException());
+		return objeto;
+	}
+	
 	public static LocalidadDTO getLocalidadDTO(Localidad entidad) {
 		LocalidadDTO dto = new LocalidadDTO();
 		dto.setId(entidad.getIdLocalidad());

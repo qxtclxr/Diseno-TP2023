@@ -96,7 +96,7 @@ public class GestorPoliza {
 			ValoresParaVehiculoExistentesException,
 			AutoMuyViejoParaCoberturaElegidaException,
 			ObjetoNoEncontradoException {
-		validarDTO(dto);		
+		validarDTO(dto);
 		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
 		dao.saveInstance(poliza);
