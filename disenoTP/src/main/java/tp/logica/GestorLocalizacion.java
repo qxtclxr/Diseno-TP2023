@@ -115,4 +115,21 @@ public class GestorLocalizacion {
 		Localidad localidad = getLocalidad(dto);
 		return localidad.getValorActualFactorRiesgo();
 	}
+	
+	public static Domicilio getDomicilio(DomicilioDTO dto) throws ObjetoNoEncontradoException {
+		DomicilioDAO dao = new DomicilioDAO();
+		return dao.getById(dto.getId()).orElseThrow(() -> new ObjetoNoEncontradoException());
+	}
+	
+	public static DomicilioDTO getDomicilioDTO(Domicilio domicilio) {
+		DomicilioDTO dto = new DomicilioDTO();
+		dto.setCalle(domicilio.getCalle());
+		dto.setCodigoPostal(domicilio.getCodigoPostal());
+		dto.setDpto(domicilio.getDpto());
+		dto.setId(domicilio.getIdDomicilio());
+		dto.setNumero(domicilio.getNumero());
+		dto.setPiso(domicilio.getPiso());
+		dto.setLocalidad(getLocalidadDTO(domicilio.getLocalidad()));
+		return dto;
+	}
 }

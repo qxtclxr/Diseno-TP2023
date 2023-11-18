@@ -8,6 +8,7 @@ public class ClienteDTO {
 	private String nombre;
 	private TipoDocumento tipoDocumento;
 	private String nroDocumento;
+	private DomicilioDTO domicilio;
 	
 	public String getNroCliente() {
 		return nroCliente;
