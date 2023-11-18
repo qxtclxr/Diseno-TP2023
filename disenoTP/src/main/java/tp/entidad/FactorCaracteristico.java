@@ -1,5 +1,6 @@
 package tp.entidad;
 
+@Deprecated
 public interface FactorCaracteristico {
 	
 	public float getPorcentaje();

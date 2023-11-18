@@ -19,6 +19,8 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 	@Column(nullable = false,unique=true)
 	private int desdeCant;
 	
+	@Column(unique=true,nullable=false)
+	private String concepto;
 	
 	//relaciones
 	
@@ -94,9 +96,13 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 	public void setDesdeCant(int desdeCant) {
 		this.desdeCant = desdeCant;
 	}
-	
 
-	
-	
-	
+	public String getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+		
 }

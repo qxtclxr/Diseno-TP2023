@@ -14,8 +14,8 @@ public class DescuentoPorUnidad {
 	@Column(name="idDescuentoPorUnidad")
 	private long idDescuentoPorUnidad;
 	
-	@Column(nullable = false)
-	private String concepto;
+	@Column(nullable = false,unique=true)
+	private int desdeCantU;
 	
 	
 	//relaciones
@@ -50,9 +50,11 @@ public class DescuentoPorUnidad {
 
 	
 
+	
+
 	@Override
 	public String toString() {
-		return "DescuentoPorUnidad [idDescuentoPorUnidad=" + idDescuentoPorUnidad + ", concepto=" + concepto
+		return "DescuentoPorUnidad [idDescuentoPorUnidad=" + idDescuentoPorUnidad + ", desdeCantU=" + desdeCantU
 				+ ", valorActualDescPorUnidad=" + valorActualDescPorUnidad + ", valoresPasadosDescPorUnidad="
 				+ valoresPasadosDescPorUnidad + "]";
 	}
@@ -60,8 +62,6 @@ public class DescuentoPorUnidad {
 	public long getIdDescuentoPorUnidad() {
 		return idDescuentoPorUnidad;
 	}
-
-	
 
 	public PorcentajeDescPorUnidad getValorActualDescPorUnidad() {
 		return valorActualDescPorUnidad;
@@ -75,8 +75,6 @@ public class DescuentoPorUnidad {
 		this.idDescuentoPorUnidad = idDescuentoPorUnidad;
 	}
 
-
-
 	public void setValorActualDescPorUnidad(PorcentajeDescPorUnidad valorActualDescPorUnidad) {
 		this.valorActualDescPorUnidad = valorActualDescPorUnidad;
 	}
@@ -85,18 +83,12 @@ public class DescuentoPorUnidad {
 		this.valoresPasadosDescPorUnidad = valoresPasadosDescPorUnidad;
 	}
 
-	public String getConcepto() {
-		return concepto;
+	public int getDesdeCantU() {
+		return desdeCantU;
 	}
 
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
+	public void setDesdeCantU(int desdeCantU) {
+		this.desdeCantU = desdeCantU;
 	}
 	
-	
-	
-	
-	
-	
-
 }

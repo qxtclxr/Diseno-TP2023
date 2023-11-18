@@ -5,6 +5,7 @@ import tp.entidad.DerechosDeEmision;
 import tp.entidad.ValorDerechosDeEmision;
 
 public class GestorDerechosDeEmision {
+	
 	public static ValorDerechosDeEmision getDerechosDeEmisionActual() {
 		DerechosDeEmisionDAO dao = new DerechosDeEmisionDAO();
 		DerechosDeEmision derechos = dao.getAll().get(0);

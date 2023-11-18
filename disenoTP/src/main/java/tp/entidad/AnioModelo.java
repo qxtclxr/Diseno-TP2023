@@ -27,7 +27,7 @@ public class AnioModelo {
 	private Modelo tieneModelo;
 	
 	@OneToOne
-	@JoinColumn(name="idValorActualPorcentajeEstadisticaRobo")
+	@JoinColumn(name="idPorcEstadRobo")
 	private PorcentajeEstadisticaRobo valorActualPorcentajeEstadisticaRobo;
 	
 	@OneToMany(fetch= FetchType.LAZY,mappedBy="anioModeloAsociado", cascade = CascadeType.ALL)

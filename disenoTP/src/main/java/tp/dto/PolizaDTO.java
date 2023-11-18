@@ -12,13 +12,14 @@ public class PolizaDTO {
 	private TipoPoliza tipoPoliza;
 	private List<HijoDeclaradoDTO> hijosDeclarados;
 	private List<CuotaDTO> cuotas;
-	private List<RespuestaSeguridadDTO> respuestasSeguridad;
+	private List<MedidaDeSeguridadDTO> medidas;
 	private VehiculoDTO vehiculo;
 	private RangoKMRealizadosDTO kmRealizados;
 	private RangoCantSiniestrosDTO cantidadSiniestros;
 	private ClienteDTO cliente;
 	private LocalidadDTO localidad;
 	private CoberturaDTO cobertura;
+	private FactorCaracteristicoDTO factores;
 	private float importeTotal;
 	private float premio;
 	private float descuento;
@@ -58,12 +59,6 @@ public class PolizaDTO {
 	}
 	public void setCuotas(List<CuotaDTO> cuotas) {
 		this.cuotas = cuotas;
-	}
-	public List<RespuestaSeguridadDTO> getRespuestasSeguridad() {
-		return respuestasSeguridad;
-	}
-	public void setRespuestasSeguridad(List<RespuestaSeguridadDTO> respuestasSeguridad) {
-		this.respuestasSeguridad = respuestasSeguridad;
 	}
 	public VehiculoDTO getVehiculo() {
 		return vehiculo;
@@ -107,5 +102,28 @@ public class PolizaDTO {
 	public void setImporteTotal(float importeTotal) {
 		this.importeTotal = importeTotal;
 	}
-	
+	public List<MedidaDeSeguridadDTO> getMedidas() {
+		return medidas;
+	}
+	public void setMedidas(List<MedidaDeSeguridadDTO> medidas) {
+		this.medidas = medidas;
+	}
+	public float getPremio() {
+		return premio;
+	}
+	public void setPremio(float premio) {
+		this.premio = premio;
+	}
+	public float getDescuento() {
+		return descuento;
+	}
+	public void setDescuento(float descuento) {
+		this.descuento = descuento;
+	}
+	public FactorCaracteristicoDTO getFactores() {
+		return factores;
+	}
+	public void setFactores(FactorCaracteristicoDTO factores) {
+		this.factores = factores;
+	}
 }

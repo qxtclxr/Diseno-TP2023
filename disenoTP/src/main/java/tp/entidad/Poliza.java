@@ -58,18 +58,10 @@ public class Poliza {
 	private LocalDateTime fechaEmision;
 	
 	@Column(nullable=false)
-	private int cantidadDeSiniestros;
-	//ver
-	
-	
-	@Column(nullable=false)
-	private long cantKMRealizados;
-	//ver
-	
+	private float descuento;
+
 	@Column(nullable=false)
 	private float importeTotal;
-	
-	
 	
 	
 	//Relaciones
@@ -108,7 +100,7 @@ public class Poliza {
 	private PorcentajeAjusteHijos porcAjustePorHijo;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idPorcEstRobo", referencedColumnName="idPorcentajeEstadisticaRobo",foreignKey= @ForeignKey(name="FK_porc_robo_en_poliza"))
+	@JoinColumn(name="idPorcEstadRobo", referencedColumnName="idPorcEstadRobo",foreignKey= @ForeignKey(name="FK_porc_robo_en_poliza"))
 	private PorcentajeEstadisticaRobo porcEstRobo;
 	
 	//ver el eager de los factores
@@ -134,6 +126,9 @@ public class Poliza {
 	@OneToMany(fetch= FetchType.LAZY, mappedBy="polizaAsociada",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Cuota> cuotasAsociadas;
 	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="productor", referencedColumnName="idUsuario", foreignKey= @ForeignKey(name="FK_productor_poliza"))
+	private Usuario productorAsociado;
 	
 	
 	public Poliza() {
@@ -168,24 +163,28 @@ public class Poliza {
 	//getters and setters
 
 
-	@Override
-	public String toString() {
-		return "Poliza [idPoliza=" + idPoliza + ", nroPoliza=" + nroPoliza + ", sumaAsegurada=" + sumaAsegurada
-				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + ", premio="
-				+ premio + ", tipoPoliza=" + tipoPoliza + ", fechaEmision=" + fechaEmision + ", cantidadDeSiniestros="
-				+ cantidadDeSiniestros + ", cantKMRealizados=" + cantKMRealizados + ", cliente=" + cliente
-				+ ", factorRiesgoLoc=" + factorRiesgoLoc + ", porcDescuentoPorU=" + porcDescuentoPorU
-				+ ", porcCantSiniestros=" + porcCantSiniestros + ", porcKMRealizados=" + porcKMRealizados
-				+ ", valorDerechosDeEmision=" + valorDerechosDeEmision + ", porcAjustePorHijo=" + porcAjustePorHijo
-				+ ", porcEstRobo=" + porcEstRobo + ", porcMedidaSeguridad=" + porcMedidaSeguridad + ", modificaciones="
-				+ modificaciones + ", porcCobertura=" + porcCobertura + ", hijosDeclarados=" + hijosDeclarados
-				+ ", vehiculoAsegurado=" + vehiculoAsegurado + ", cuotasAsociadas=" + cuotasAsociadas + "]";
-	}
+	
 
 
 
 	public long getIdPoliza() {
 		return idPoliza;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Poliza [idPoliza=" + idPoliza + ", nroPoliza=" + nroPoliza + ", sumaAsegurada=" + sumaAsegurada
+				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + ", premio="
+				+ premio + ", tipoPoliza=" + tipoPoliza + ", fechaEmision=" + fechaEmision + ", importeTotal="
+				+ importeTotal + ", cliente=" + cliente + ", factorRiesgoLoc=" + factorRiesgoLoc
+				+ ", porcDescuentoPorU=" + porcDescuentoPorU + ", porcCantSiniestros=" + porcCantSiniestros
+				+ ", porcKMRealizados=" + porcKMRealizados + ", valorDerechosDeEmision=" + valorDerechosDeEmision
+				+ ", porcAjustePorHijo=" + porcAjustePorHijo + ", porcEstRobo=" + porcEstRobo + ", porcMedidaSeguridad="
+				+ porcMedidaSeguridad + ", modificaciones=" + modificaciones + ", porcCobertura=" + porcCobertura
+				+ ", hijosDeclarados=" + hijosDeclarados + ", vehiculoAsegurado=" + vehiculoAsegurado
+				+ ", cuotasAsociadas=" + cuotasAsociadas + ", productorAsociado=" + productorAsociado + "]";
 	}
 
 
@@ -238,14 +237,30 @@ public class Poliza {
 
 
 
-	public int getCantidadDeSiniestros() {
-		return cantidadDeSiniestros;
+	
+
+
+
+	public float getImporteTotal() {
+		return importeTotal;
 	}
 
 
 
-	public long getCantKMRealizados() {
-		return cantKMRealizados;
+	public Usuario getProductorAsociado() {
+		return productorAsociado;
+	}
+
+
+
+	public void setImporteTotal(float importeTotal) {
+		this.importeTotal = importeTotal;
+	}
+
+
+
+	public void setProductorAsociado(Usuario productorAsociado) {
+		this.productorAsociado = productorAsociado;
 	}
 
 
@@ -342,15 +357,7 @@ public class Poliza {
 
 
 
-	public void setCantidadDeSiniestros(int cantidadDeSiniestros) {
-		this.cantidadDeSiniestros = cantidadDeSiniestros;
-	}
-
-
-
-	public void setCantKMRealizados(long cantKMRealizados) {
-		this.cantKMRealizados = cantKMRealizados;
-	}
+	
 
 
 
@@ -365,14 +372,6 @@ public class Poliza {
 	public void setModificaciones(List<ModificacionPoliza> modificaciones) {
 		this.modificaciones = modificaciones;
 	}
-
-
-
-	
-
-
-
-
 
 	public void setHijosDeclarados(List<HijoDeclarado> hijosDeclarados) {
 		this.hijosDeclarados = hijosDeclarados;
@@ -496,6 +495,18 @@ public class Poliza {
 
 	public void setPorcCobertura(PorcentajeCobertura porcCobertura) {
 		this.porcCobertura = porcCobertura;
+	}
+
+
+
+	public float getDescuento() {
+		return descuento;
+	}
+
+
+
+	public void setDescuento(float descuento) {
+		this.descuento = descuento;
 	}
 	
 	

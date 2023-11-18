@@ -13,7 +13,7 @@ public class PorcentajeEstadisticaRobo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idPorcEstadRobo")
-	private long idPorcentajeEstadisticaRobo;
+	private long idPorcEstadRobo;
 	
 	@Column(nullable=false)
 	private Float valorNumerico;
@@ -49,9 +49,26 @@ public class PorcentajeEstadisticaRobo {
 
 	
 
+	
+
+	public long getIdPorcEstadRobo() {
+		return idPorcEstadRobo;
+	}
+
+	public void setIdPorcEstadRobo(long idPorcEstadRobo) {
+		this.idPorcEstadRobo = idPorcEstadRobo;
+	}
+
+	@Override
+	public String toString() {
+		return "PorcentajeEstadisticaRobo [idPorcEstadRobo=" + idPorcEstadRobo + ", valorNumerico=" + valorNumerico
+				+ ", fechaModificacion=" + fechaModificacion + ", anioModeloAsociado=" + anioModeloAsociado
+				+ ", modificadoPor=" + modificadoPor + "]";
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(idPorcentajeEstadisticaRobo);
+		return Objects.hash(idPorcEstadRobo);
 	}
 
 	@Override
@@ -63,19 +80,7 @@ public class PorcentajeEstadisticaRobo {
 		if (getClass() != obj.getClass())
 			return false;
 		PorcentajeEstadisticaRobo other = (PorcentajeEstadisticaRobo) obj;
-		return idPorcentajeEstadisticaRobo == other.idPorcentajeEstadisticaRobo;
-	}
-
-	@Override
-	public String toString() {
-		return "PorcentajeEstadisticaRobo [idPorcentajeEstadisticaRobo=" + idPorcentajeEstadisticaRobo
-				+ ", valorNumerico=" + valorNumerico + ", fechaModificacion=" + fechaModificacion + ", modificadoPor="
-				+ modificadoPor + "]";
-	}
-	//getters and setters
-
-	public long getIdPorcentajeEstadisticaRobo() {
-		return idPorcentajeEstadisticaRobo;
+		return idPorcEstadRobo == other.idPorcEstadRobo;
 	}
 
 	public Float getValorNumerico() {
@@ -90,9 +95,7 @@ public class PorcentajeEstadisticaRobo {
 		return modificadoPor;
 	}
 
-	public void setIdPorcentajeEstadisticaRobo(long idPorcentajeEstadisticaRobo) {
-		this.idPorcentajeEstadisticaRobo = idPorcentajeEstadisticaRobo;
-	}
+	
 
 	public void setValorNumerico(Float valorNumerico) {
 		this.valorNumerico = valorNumerico;

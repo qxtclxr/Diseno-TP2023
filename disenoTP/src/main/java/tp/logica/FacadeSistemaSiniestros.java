@@ -5,7 +5,7 @@ import java.util.Random;
 import tp.entidad.Cliente;
 
 //Esta clase simula respuestas de un subsistema de Siniestros
-public class FacadeSubsistemaSiniestros {
+public class FacadeSistemaSiniestros {
 	
 	private static int MAX_SINIESTROS;
 	

@@ -14,7 +14,7 @@ public class Vehiculo {
 	private LocalDate anioVehiculo;
 	
 	@Column(nullable=false)
-	private String Motor;
+	private String motor;
 	
 	@Column(nullable=false)
 	private String chasis;
@@ -35,9 +35,28 @@ public class Vehiculo {
 	
 	//setters and getters
 
+	
+
+
+
+
+	
+
+
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(Motor, chasis, patente);
+		return Objects.hash(chasis, motor, patente);
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Vehiculo [anioVehiculo=" + anioVehiculo + ", motor=" + motor + ", chasis=" + chasis + ", patente="
+				+ patente + ", anioModelo=" + anioModelo + "]";
 	}
 
 
@@ -52,17 +71,8 @@ public class Vehiculo {
 		if (getClass() != obj.getClass())
 			return false;
 		Vehiculo other = (Vehiculo) obj;
-		return Objects.equals(Motor, other.Motor) && Objects.equals(chasis, other.chasis)
+		return Objects.equals(chasis, other.chasis) && Objects.equals(motor, other.motor)
 				&& Objects.equals(patente, other.patente);
-	}
-
-
-
-
-	@Override
-	public String toString() {
-		return "Vehiculo [anioVehiculo=" + anioVehiculo + ", Motor=" + Motor + ", chasis=" + chasis + ", patente="
-				+ patente + ", anioModelo=" + anioModelo + "]";
 	}
 
 
@@ -72,9 +82,7 @@ public class Vehiculo {
 		return anioVehiculo;
 	}
 
-	public String getMotor() {
-		return Motor;
-	}
+	
 
 	public String getChasis() {
 		return chasis;
@@ -90,9 +98,21 @@ public class Vehiculo {
 		this.anioVehiculo = anioVehiculo;
 	}
 
-	public void setMotor(String motor) {
-		Motor = motor;
+	
+
+	public String getMotor() {
+		return motor;
 	}
+
+
+
+
+	public void setMotor(String motor) {
+		this.motor = motor;
+	}
+
+
+
 
 	public void setChasis(String chasis) {
 		this.chasis = chasis;

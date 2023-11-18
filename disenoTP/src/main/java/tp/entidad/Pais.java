@@ -13,6 +13,9 @@ public class Pais {
 	@Column(name="idPais")
 	private long idPais;
 	
+	@Column(nullable=false)
+	private String codPais;
+	
 	@Column(nullable = false, unique=true)
 	private String nombre;
 	
@@ -57,6 +60,14 @@ public class Pais {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getCodPais() {
+		return codPais;
+	}
+
+	public void setCodPais(String codPais) {
+		this.codPais = codPais;
 	}
 	
 
