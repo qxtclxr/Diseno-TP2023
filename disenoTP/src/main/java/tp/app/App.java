@@ -1,8 +1,6 @@
 package tp.app;
 import java.io.IOException;
 
-
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,8 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import tp.dao.PolizaDAO;
-import tp.entidad.Usuario;
+import tp.dao.*;
+import tp.entidad.*;
 
 
 public class App extends Application {
@@ -21,6 +19,8 @@ public class App extends Application {
 	private static Usuario usuarioLogeado = new Usuario();
 	
     public static void main(String[] args) {
+    	PolizaDAO dao = new PolizaDAO();
+    	cargarDatos();
     	launch();
     }
 
@@ -62,5 +62,23 @@ public class App extends Application {
 
 	public static void setUsuarioLogeado(Usuario usuarioLogeado) {
 		App.usuarioLogeado = usuarioLogeado;
+	}
+	
+	public static void cargarDatos() {
+		LocalidadDAO dao = new LocalidadDAO();
+		Pais pais = new Pais();
+		Provincia prov = new Provincia();
+		Localidad local = new Localidad();
+		
+		pais.setNombre("Argentina");
+		pais.setCodPais("01");
+		
+		prov.setNombreProvincia("Entre Rios");
+		prov.setPais(pais);
+		
+		local.setNombre("Parana");
+		local.setProvincia(prov);
+		
+		dao.saveInstance(local);
 	}
 }

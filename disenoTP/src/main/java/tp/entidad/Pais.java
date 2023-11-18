@@ -61,6 +61,14 @@ public class Pais {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public String getCodPais() {
+		return codPais;
+	}
+
+	public void setCodPais(String codPais) {
+		this.codPais = codPais;
+	}
 	
 
 }

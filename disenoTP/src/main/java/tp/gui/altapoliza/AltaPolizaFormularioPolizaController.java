@@ -188,7 +188,7 @@ public class AltaPolizaFormularioPolizaController {
 	private void setLocalidades() throws ObjetoNoEncontradoException {
 		GestorLocalizacion g = new GestorLocalizacion();
 		ProvinciaDTO p = new ProvinciaDTO();
-		p.setNombre(provincia.getValue().toString());
+		p.setId(Long.valueOf(1));
 		ObservableList<String> opLocalidad = FXCollections.observableArrayList(GestorLocalizacion.getLocalidadesByProvincia(p).stream().
 				map(LocalidadDTO::getText).
 				toList());
