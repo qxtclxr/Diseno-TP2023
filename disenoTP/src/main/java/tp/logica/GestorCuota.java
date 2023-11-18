@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class GestorCuota {
 	
-	public Cuota crearCuota(CuotaDTO dto) {
+	public static Cuota crearCuota(CuotaDTO dto) {
 		Cuota cuota = new Cuota();
 		cuota.setFechaVencimiento(dto.getFechaVencimiento());
 		cuota.setImporteTotal(dto.getImporteTotal());
@@ -16,7 +16,7 @@ public class GestorCuota {
 		return cuota;
 	}
 	
-	public List<Cuota> crearCuotas(List<CuotaDTO> dtos){
+	public static List<Cuota> crearCuotas(List<CuotaDTO> dtos){
 		List<Cuota> cuotas = dtos.stream().
 				map(dto -> crearCuota(dto)).
 				collect(Collectors.toList());

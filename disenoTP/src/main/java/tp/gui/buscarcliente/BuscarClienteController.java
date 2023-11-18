@@ -1,8 +1,6 @@
 package tp.gui.buscarcliente;
 
 import tp.dto.*;
-import tp.gui.*;
-import tp.gui.altapoliza.AltaPolizaFormularioCoberturaController;
 
 import java.io.IOException;
 
@@ -15,31 +13,35 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tp.app.App;
+import tp.gui.altapoliza.AltaPolizaFormularioPolizaController;
 
 public class BuscarClienteController {
-	
-		private PolizaDTO poliza = new PolizaDTO();
-		private ClienteDTO cliente = new ClienteDTO();
-		
 	
 		@FXML
 	   private Button confirmarButton;
 	    @FXML
 	   private Button exitButton;
 	    
+	   private ClienteDTO clienteDTO = new ClienteDTO(); 
+	    
 	    @FXML
 	   private void confirmarCliqueado(ActionEvent event) throws IOException {
 	    	
-	    	poliza.setCliente(this.cliente);
+	    	clienteDTO.setNombre("Juan");
+	    	clienteDTO.setApellido("Perez");
+	    	clienteDTO.setNroCliente("123456789");
 	    	
 	    	FXMLLoader loader = new FXMLLoader();
-	    	AltaPolizaFormularioCoberturaController controlador = new AltaPolizaFormularioCoberturaController();
-	    	controlador.setPoliza(poliza);
 	    	
 	    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
 	    	AnchorPane form = loader.load();
+
+	    	AltaPolizaFormularioPolizaController altaPolizaC = loader.getController();
+	    	altaPolizaC.setClienteDTO(clienteDTO);
+	    	
 	    	App.switchScreenTo(form);
 	    }
+	    
 
 	    @FXML
 	    private void handleExit(ActionEvent event) throws IOException {
@@ -49,5 +51,9 @@ public class BuscarClienteController {
 	    	Stage window = (Stage)exitButton.getScene().getWindow();
 	    	window.setTitle("Alta de poliza");
 	    	window.setScene(new Scene(root));
+	    }
+	    
+	    public void setClienteDTO(ClienteDTO c) {
+	    	clienteDTO = c;
 	    }
 }

@@ -59,17 +59,9 @@ public class Poliza {
 	
 	@Column(nullable=false)
 	private float descuento;
-	
-	//ver
-	
-	
-	
-	//ver
-	
+
 	@Column(nullable=false)
 	private float importeTotal;
-	
-	
 	
 	
 	//Relaciones

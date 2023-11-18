@@ -35,7 +35,7 @@
                   <TableColumn prefWidth="75.0" text="Nombre" />
                   <TableColumn prefWidth="75.0" text="Marca" />
                   <TableColumn prefWidth="75.0" text="Modelo" />
-                  <TableColumn prefWidth="75.0" text="Año" />
+                  <TableColumn prefWidth="75.0" text="Anio" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -64,7 +64,7 @@
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="166.0" layoutY="643.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
+            <Button layoutX="166.0" layoutY="643.0" mnemonicParsing="false" onAction="#volverAtrasClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
                <font>
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>

@@ -63,8 +63,6 @@ public class DescuentoPorUnidad {
 		return idDescuentoPorUnidad;
 	}
 
-	
-
 	public PorcentajeDescPorUnidad getValorActualDescPorUnidad() {
 		return valorActualDescPorUnidad;
 	}
@@ -76,8 +74,6 @@ public class DescuentoPorUnidad {
 	public void setIdDescuentoPorUnidad(long idDescuentoPorUnidad) {
 		this.idDescuentoPorUnidad = idDescuentoPorUnidad;
 	}
-
-
 
 	public void setValorActualDescPorUnidad(PorcentajeDescPorUnidad valorActualDescPorUnidad) {
 		this.valorActualDescPorUnidad = valorActualDescPorUnidad;
@@ -94,13 +90,5 @@ public class DescuentoPorUnidad {
 	public void setDesdeCantU(int desdeCantU) {
 		this.desdeCantU = desdeCantU;
 	}
-
 	
-	
-	
-	
-	
-	
-	
-
 }
