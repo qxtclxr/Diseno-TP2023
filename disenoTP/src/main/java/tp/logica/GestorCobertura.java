@@ -27,4 +27,9 @@ public class GestorCobertura {
 		List<CoberturaDTO> allDTOs = all.stream().map(obj -> getDTO(obj)).collect(Collectors.toList());
 		return allDTOs;
 	}
+	
+	public static PorcentajeCobertura getPorcentajeCoberturaActual(CoberturaDTO dto) {
+		Cobertura cobertura = getCobertura(dto);
+		return cobertura.getValorActualPorcentajeCobertura();
+	}
 }

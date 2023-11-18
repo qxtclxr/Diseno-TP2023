@@ -55,7 +55,7 @@ public class GestorCliente {
 	}
 	
 	public static boolean tieneSiniestrosUltimoAnio(Cliente cliente) {
-		return FacadeSubsistemaSiniestros.tieneSiniestrosUltimoAnio(cliente);
+		return FacadeSistemaSiniestros.tieneSiniestrosUltimoAnio(cliente);
 	}
 	
 }

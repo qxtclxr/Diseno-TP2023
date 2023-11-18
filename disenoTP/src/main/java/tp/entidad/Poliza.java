@@ -56,20 +56,9 @@ public class Poliza {
 	
 	@Column(nullable = false)
 	private LocalDateTime fechaEmision;
-	
-	@Column(nullable=false)
-	private int cantidadDeSiniestros;
-	//ver
-	
-	
-	@Column(nullable=false)
-	private long cantKMRealizados;
-	//ver
-	
+
 	@Column(nullable=false)
 	private float importeTotal;
-	
-	
 	
 	
 	//Relaciones

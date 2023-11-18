@@ -8,28 +8,33 @@ import java.util.stream.Collectors;
 
 public class GestorMedidaDeSeguridad {
 	
-	public MedidaDeSeguridad getMedidaDeSeguridad(MedidaDeSeguridadDTO dto) {
+	public static MedidaDeSeguridad getMedidaDeSeguridad(MedidaDeSeguridadDTO dto) {
 		MedidaDeSeguridadDAO dao = new MedidaDeSeguridadDAO();
 		return dao.getById(dto.getId()).orElseThrow(/*TODO*/);
 	}
 	
-	public MedidaDeSeguridadDTO getDTO (MedidaDeSeguridad entidad) {
+	public static MedidaDeSeguridadDTO getDTO (MedidaDeSeguridad entidad) {
 		MedidaDeSeguridadDTO dto = new MedidaDeSeguridadDTO();
 		dto.setId(Long.valueOf(entidad.getIdMedidaDeSeguridad()));
 		dto.setPregunta(entidad.getPregunta());
 		return dto;
 	}
 	
-	public List<MedidaDeSeguridad> getAll(){
+	public static List<MedidaDeSeguridad> getAll(){
 		MedidaDeSeguridadDAO dao = new MedidaDeSeguridadDAO();
 		return dao.getAll();
 	}
 	
-	public List<MedidaDeSeguridadDTO> getAllDAOs(){
-		List<MedidaDeSeguridad> medidas = this.getAll();
+	public static List<MedidaDeSeguridadDTO> getAllDAOs(){
+		List<MedidaDeSeguridad> medidas = getAll();
 		List<MedidaDeSeguridadDTO> medidasDto = medidas.stream().
-				map(entidad -> this.getDTO(entidad)).
+				map(entidad -> getDTO(entidad)).
 				collect(Collectors.toList());
 		return medidasDto;
+	}
+
+	public static PorcentajeMedidaDeSeguridad getPorcentajeMedidaDeSeguridadActual(MedidaDeSeguridadDTO dto) {
+		MedidaDeSeguridad medida = getMedidaDeSeguridad(dto);
+		return medida.getValorActualPorcMedidaDeSeg();
 	}
 }

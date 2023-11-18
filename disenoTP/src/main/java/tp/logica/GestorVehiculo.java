@@ -10,6 +10,7 @@ import tp.dao.*;
 
 public class GestorVehiculo {
 	
+	//TODO: A los tres le falta fijarse si la patente es vigente
 	public static boolean existePatente(String patente) {
 		if(patente==null) {
 			return false;
@@ -145,6 +146,11 @@ public class GestorVehiculo {
 		dto.setId(entidad.getIdMarca());
 		dto.setNombre(entidad.getNombre());
 		return dto;
+	}
+
+	public static PorcentajeEstadisticaRobo getPorcentajeEstadisticaRoboActualActual(AnioModeloDTO dto) {
+		AnioModelo modelo = getAnioModelo(dto);
+		return modelo.getValorActualPorcentajeEstadisticaRobo();
 	}
 	
 	

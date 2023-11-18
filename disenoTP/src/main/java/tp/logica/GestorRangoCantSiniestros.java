@@ -50,5 +50,11 @@ public class GestorRangoCantSiniestros {
 				collect(Collectors.toList());
 		return allDtos;
 	}
+
+	public static PorcentajeCantSiniestros getPorcentajeCantSiniestrosActual(
+			RangoCantSiniestrosDTO dto) {
+		RangoCantSiniestros rango = getRangoCantSiniestros(dto);
+		return rango.getValorActualPorcentajeCantSiniestros();
+	}
 	
 }

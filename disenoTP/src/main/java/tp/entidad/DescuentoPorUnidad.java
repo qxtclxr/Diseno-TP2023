@@ -61,8 +61,6 @@ public class DescuentoPorUnidad {
 		return idDescuentoPorUnidad;
 	}
 
-	
-
 	public PorcentajeDescPorUnidad getValorActualDescPorUnidad() {
 		return valorActualDescPorUnidad;
 	}
@@ -84,19 +82,5 @@ public class DescuentoPorUnidad {
 	public void setValoresPasadosDescPorUnidad(List<PorcentajeDescPorUnidad> valoresPasadosDescPorUnidad) {
 		this.valoresPasadosDescPorUnidad = valoresPasadosDescPorUnidad;
 	}
-
-	public String getConcepto() {
-		return concepto;
-	}
-
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
-	}
 	
-	
-	
-	
-	
-	
-
 }

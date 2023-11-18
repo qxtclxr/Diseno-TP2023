@@ -13,7 +13,6 @@ public class GestorRangoKMRealizados {
 		return objeto;
 	}
 	
-	//TODO
 	public static RangoKMRealizadosDTO getDTO(RangoKMRealizados kmRealizados) {
 		RangoKMRealizadosDTO dto = new RangoKMRealizadosDTO();
 		dto.setId(kmRealizados.getIdRangoKMRealizados());
@@ -33,5 +32,10 @@ public class GestorRangoKMRealizados {
 				map(obj -> getDTO(obj)).
 				collect(Collectors.toList());
 		return allDtos;
+	}
+
+	public static PorcentajeKMRealizados getPorcentajeKMRealizadosActual(RangoKMRealizadosDTO dto) {
+		RangoKMRealizados rangoKm = getRangoKMRealizados(dto);
+		return rangoKm.getValorActualPorcentajeKMRealizados();
 	}
 }

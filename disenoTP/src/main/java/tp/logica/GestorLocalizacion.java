@@ -92,4 +92,9 @@ public class GestorLocalizacion {
 		datosPresentes &= dto.getProvincia().getPais() != null;
 		return datosPresentes;
 	}
+
+	public static FactorRiesgoLocalidad getPorcentajeRiesgoLocalidadActual(LocalidadDTO dto) {
+		Localidad localidad = getLocalidad(dto);
+		return localidad.getValorActualFactorRiesgo();
+	}
 }
