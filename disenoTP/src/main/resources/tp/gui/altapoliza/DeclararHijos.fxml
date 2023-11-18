@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="432.0" prefWidth="768.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.gui.altapoliza.DeclararHijosController">
+<AnchorPane prefHeight="432.0" prefWidth="768.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="-85.0" layoutY="-152.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 10;">
          <children>
