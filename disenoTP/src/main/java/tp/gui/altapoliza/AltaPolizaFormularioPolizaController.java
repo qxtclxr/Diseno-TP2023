@@ -12,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.scene.Scene;
@@ -151,13 +152,13 @@ public class AltaPolizaFormularioPolizaController {
     	
     	BuscarClienteController buscarClienteC = loader.getController();
     	buscarClienteC.setClienteDTO(poliza.getCliente());
-    	buscarClienteC.mostrarDatos();
+    	//TODO: buscarClienteC.mostrarDatos();
     	
     	App.switchScreenTo(form);
     	
 	}
 	
-	public void setHijosDeclarados(list<HijoDeclaradoDTO> l) {
+	public void setHijosDeclarados(List<HijoDeclaradoDTO> l) {
 		poliza.setHijosDeclarados(l);
 	}
 
@@ -181,7 +182,7 @@ public class AltaPolizaFormularioPolizaController {
 	    
 	    	    
 	    DeclararHijosController declararHijosC = loader.getController();
-	    declararHijosC.setListaHijos(poliza.getHijosDeclarados());
+	    //TODO: declararHijosC.setListaHijos(poliza.getHijosDeclarados());
 
 
 	    // Mostrar la ventana modal y esperar hasta que se cierre

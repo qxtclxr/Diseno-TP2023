@@ -43,7 +43,7 @@ public class DeclararHijosController {
 	private List<HijoDeclaradoDTO> listaHijos;
 	
 	
-	public void setListaHijos(list<HijoDeclaradoDTO> l) {
+	public void setListaHijos(List<HijoDeclaradoDTO> l) {
 		listaHijos = l;
 	}
 	
@@ -89,6 +89,11 @@ public class DeclararHijosController {
 			return EstadoCivil.DIVORCIADO;
 		}
 		
+		return null;
+		//Este return null es para que no tire error de compilacion
+		//Si ponen todos los returns dentro de los "if", Eclipse va a pensar que
+		//puede haber un camino que no entre a ningun "if" y no retorne nada.
+		//No es lo mas seguro tener un return null, deberian pensar otra manera
 	}
 	
 	private Sexo getValueSexo( ) {
@@ -98,6 +103,11 @@ public class DeclararHijosController {
 		else if(sexo.getValue().toString().equals("Mujer")){
 			return Sexo.FEMENINO;
 		}
+		return null;
+		//Este return null es para que no tire error de compilacion
+		//Si ponen todos los returns dentro de los "if", Eclipse va a pensar que
+		//puede haber un camino que no entre a ningun "if" y no retorne nada.
+		//No es lo mas seguro tener un return null, deberian pensar otra manera
 	}
 	
 	
