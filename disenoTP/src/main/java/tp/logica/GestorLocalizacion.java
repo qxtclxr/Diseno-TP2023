@@ -37,7 +37,7 @@ public class GestorLocalizacion {
 	public static Pais getPaisByNombre(String nombre)
 			throws ObjetoNoEncontradoException{
 		PaisDAO dao = new PaisDAO();
-		Pais objeto = dao.getByNombre(nombre).orElseThrow(() -> new ObjetoNoEncontradoException());
+		Pais objeto = dao.getPaisByNombre(nombre).orElseThrow(() -> new ObjetoNoEncontradoException());
 		return objeto;
 	}
 	
@@ -64,7 +64,8 @@ public class GestorLocalizacion {
 		return dto;
 	}
 	
-	public static List<ProvinciaDTO> getProvinciasByPais(PaisDTO paisDto) throws ObjetoNoEncontradoException{
+	public static List<ProvinciaDTO> getProvinciasByPais(PaisDTO paisDto)
+			throws ObjetoNoEncontradoException{
 		Pais pais = getPais(paisDto);
 		List<Provincia> provincias = getProvinciasByPais(pais);
 		List<ProvinciaDTO> provinciasDto = provincias.stream().
@@ -80,7 +81,8 @@ public class GestorLocalizacion {
 		
 	}
 	
-	public static List<LocalidadDTO> getLocalidadesByProvincia(ProvinciaDTO provinciaDto) throws ObjetoNoEncontradoException{
+	public static List<LocalidadDTO> getLocalidadesByProvincia(ProvinciaDTO provinciaDto)
+			throws ObjetoNoEncontradoException{
 		Provincia provincia = getProvincia(provinciaDto);
 		List<Localidad> localidades = getLocalidadesByProvincia(provincia);
 		List<LocalidadDTO> localidadesDto = localidades.stream().
@@ -108,7 +110,8 @@ public class GestorLocalizacion {
 		return datosPresentes;
 	}
 
-	public static FactorRiesgoLocalidad getPorcentajeRiesgoLocalidadActual(LocalidadDTO dto) throws ObjetoNoEncontradoException {
+	public static FactorRiesgoLocalidad getPorcentajeRiesgoLocalidadActual(LocalidadDTO dto)
+			throws ObjetoNoEncontradoException {
 		Localidad localidad = getLocalidad(dto);
 		return localidad.getValorActualFactorRiesgo();
 	}
