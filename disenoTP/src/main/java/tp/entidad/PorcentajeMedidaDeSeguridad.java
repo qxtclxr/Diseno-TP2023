@@ -25,8 +25,15 @@ public class PorcentajeMedidaDeSeguridad {
 	//relaciones
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_medida_de_seguridad"))
+	@JoinColumn(name="idUsuario",referencedColumnName="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_medida_de_seguridad"))
 	private Usuario modificadoPor;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idMedidaDeSeguridad",referencedColumnName="idMedidaDeSeguridad" ,foreignKey= @ForeignKey(name="FK_medida_porc_medida"))
+	private MedidaDeSeguridad medidaAsociada;
+	
+	
+	
 	
 	@PrePersist
 	protected void onCreate() {
@@ -43,9 +50,11 @@ public class PorcentajeMedidaDeSeguridad {
 		super();
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fechaModificacion, idPorcentajeMedidaDeSeguridad, valorNumerico);
+		return Objects.hash(idPorcentajeMedidaDeSeguridad);
 	}
 
 	@Override
@@ -57,9 +66,7 @@ public class PorcentajeMedidaDeSeguridad {
 		if (getClass() != obj.getClass())
 			return false;
 		PorcentajeMedidaDeSeguridad other = (PorcentajeMedidaDeSeguridad) obj;
-		return Objects.equals(fechaModificacion, other.fechaModificacion)
-				&& idPorcentajeMedidaDeSeguridad == other.idPorcentajeMedidaDeSeguridad
-				&& Objects.equals(valorNumerico, other.valorNumerico);
+		return idPorcentajeMedidaDeSeguridad == other.idPorcentajeMedidaDeSeguridad;
 	}
 
 	@Override
@@ -100,6 +107,14 @@ public class PorcentajeMedidaDeSeguridad {
 
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
+	}
+
+	public MedidaDeSeguridad getMedidaAsociada() {
+		return medidaAsociada;
+	}
+
+	public void setMedidaAsociada(MedidaDeSeguridad medidaAsociada) {
+		this.medidaAsociada = medidaAsociada;
 	}
 	
 }

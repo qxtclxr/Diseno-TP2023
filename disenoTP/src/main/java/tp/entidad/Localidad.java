@@ -22,14 +22,14 @@ public class Localidad implements FactorCaracteristico{
 	//relaciones
 	
 	@ManyToOne(fetch= FetchType.EAGER)
-	@JoinColumn(name="idProvincia", foreignKey= @ForeignKey(name="FK_provincia_en_localidad"))
+	@JoinColumn(name="idProvincia", referencedColumnName="idProvincia",foreignKey= @ForeignKey(name="FK_provincia_en_localidad"))
 	private Provincia provincia;
 	
 	@OneToOne
 	@JoinColumn(name="idValorActualFactorRiesgo")
 	private FactorRiesgoLocalidad valorActualFactorRiesgo;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="localidadAsociada", cascade = CascadeType.ALL)
 	private List<FactorRiesgoLocalidad> valoresPasadosFactorRiesgo;
 	
 	

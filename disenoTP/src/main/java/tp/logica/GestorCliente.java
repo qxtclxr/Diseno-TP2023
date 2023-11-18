@@ -10,26 +10,25 @@ import java.util.List;
 
 public class GestorCliente {
 	
-	public Cliente getCliente(ClienteDTO dto) {
+	public static Cliente getCliente(ClienteDTO dto) {
 		ClienteDAO dao = new ClienteDAO();
 		Cliente cliente = dao.getClienteByNroCliente(dto.getNroCliente()).orElseThrow(/*TODO*/);
 		return cliente;
 	}
 	
-	public Cliente crearCliente(ClienteDTO dto) {
+	public static Cliente crearCliente(ClienteDTO dto) {
 		Cliente cliente = new Cliente();
 		//TODO
 		return cliente;
 	}
 	
-	public RangoCantSiniestrosDTO getCantidadDeSiniestrosPorCliente(ClienteDTO dto) {
-		GestorRangoCantSiniestros gestorSiniestros = new GestorRangoCantSiniestros();
-		Cliente cliente = this.getCliente(dto);
-		RangoCantSiniestros siniestros = gestorSiniestros.getRangoCantSiniestros(cliente.getCantSiniestrosCliente());
-		return gestorSiniestros.getDTO(siniestros);
+	public static RangoCantSiniestrosDTO getCantidadDeSiniestrosPorCliente(ClienteDTO dto) {
+		Cliente cliente = getCliente(dto);
+		RangoCantSiniestros siniestros = GestorRangoCantSiniestros.getRangoCantSiniestros(cliente.getCantSiniestrosCliente());
+		return GestorRangoCantSiniestros.getDTO(siniestros);
 	}
 	
-	public boolean activoPorDosAños(Cliente cliente) {
+	public static boolean activoPorDosAnios(Cliente cliente) {
 		TipoCliente tipo = cliente.getTipoCliente();
 		if(!(tipo == TipoCliente.ACTIVO || tipo == TipoCliente.PLATA)) {
 			return false;
@@ -37,18 +36,17 @@ public class GestorCliente {
 		LocalDate ultimaModificacion = cliente.getFechaModificacionEstado().toLocalDate();
 		LocalDate hoy = LocalDate.now();
 		Period activoPor = Period.between(ultimaModificacion,hoy);
-		int activoPorAños = activoPor.getYears();
-		return activoPorAños >= 2;
+		int activoPorAnios = activoPor.getYears();
+		return activoPorAnios >= 2;
 	}
 	
-	public void actualizarConsideracion(Cliente cliente) {
-		GestorPoliza gestorPoliza = new GestorPoliza();
+	public static void actualizarConsideracion(Cliente cliente) {
 		List<Poliza> polizas = cliente.getPolizas();
-		if(polizas.isEmpty() || !gestorPoliza.existenPolizasVigentes(polizas)) {
+		if(polizas.isEmpty() || !GestorPoliza.existenPolizasVigentes(polizas)) {
 			cliente.setTipoCliente(TipoCliente.NORMAL);
 			return;
 		}
-		if(this.poseeSiniestrosEnUltimoAño(cliente) || gestorPoliza.existenCuotasImpagas(polizas) || !this.activoPorDosAños(cliente)) {
+		if(tieneSiniestrosUltimoAnio(cliente) || GestorPoliza.existenCuotasImpagas(polizas) || !activoPorDosAnios(cliente)) {
 			cliente.setTipoCliente(TipoCliente.NORMAL);
 		}else {
 			cliente.setTipoCliente(TipoCliente.PLATA);
@@ -56,9 +54,8 @@ public class GestorCliente {
 		return;
 	}
 	
-	public boolean poseeSiniestrosEnUltimoAño(Cliente cliente) {
-		ClienteDAO dao = new ClienteDAO();
-		return dao.poseeSiniestrosEnUltimoAño(cliente);
+	public static boolean tieneSiniestrosUltimoAnio(Cliente cliente) {
+		return FacadeSubsistemaSiniestros.tieneSiniestrosUltimoAnio(cliente);
 	}
 	
 }

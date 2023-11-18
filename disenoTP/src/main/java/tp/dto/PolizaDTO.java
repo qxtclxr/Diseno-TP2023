@@ -20,8 +20,8 @@ public class PolizaDTO {
 	private LocalidadDTO localidad;
 	private CoberturaDTO cobertura;
 	private float importeTotal;
-	//private DerechosEmision(DTO)? derechos;
-	//private DescuentoPorUnidad(DTO)? descuentos;
+	private float premio;
+	private float descuento;
 	
 	public float getSumaAsegurada() {
 		return sumaAsegurada;

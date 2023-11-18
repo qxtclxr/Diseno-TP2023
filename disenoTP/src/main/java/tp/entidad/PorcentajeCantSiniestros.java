@@ -12,7 +12,7 @@ public class PorcentajeCantSiniestros {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idPorcCantSin")
-	private long idPorcentajeCantSiniestros;
+	private long idPorcCantSin;
 	
 	@Column(nullable=false)
 	private Float valorNumerico;
@@ -24,7 +24,11 @@ public class PorcentajeCantSiniestros {
 	//relaciones
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario", foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cant_siniestros"))
+	@JoinColumn(name="idRangoCantSiniestros",referencedColumnName="idRangoCantSiniestros" ,foreignKey= @ForeignKey(name="FK_rango_en_cant_siniestros"))
+	private RangoCantSiniestros rangoAsociado;
+	
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="idUsuario", referencedColumnName="idUsuario",foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cant_siniestros"))
 	private Usuario modificadoPor;
 	
 	@PrePersist
@@ -42,9 +46,22 @@ public class PorcentajeCantSiniestros {
 		super();
 	}
 
+	
+	
+
+	
+	//getters and setters
+
+	@Override
+	public String toString() {
+		return "PorcentajeCantSiniestros [idPorcCantSin=" + idPorcCantSin + ", valorNumerico=" + valorNumerico
+				+ ", fechaModificacion=" + fechaModificacion + ", rangoAsociado=" + rangoAsociado + ", modificadoPor="
+				+ modificadoPor + "]";
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fechaModificacion, idPorcentajeCantSiniestros, valorNumerico);
+		return Objects.hash(idPorcCantSin);
 	}
 
 	@Override
@@ -56,21 +73,10 @@ public class PorcentajeCantSiniestros {
 		if (getClass() != obj.getClass())
 			return false;
 		PorcentajeCantSiniestros other = (PorcentajeCantSiniestros) obj;
-		return Objects.equals(fechaModificacion, other.fechaModificacion)
-				&& idPorcentajeCantSiniestros == other.idPorcentajeCantSiniestros
-				&& Objects.equals(valorNumerico, other.valorNumerico);
+		return idPorcCantSin == other.idPorcCantSin;
 	}
 
-	@Override
-	public String toString() {
-		return "PorcentajeCantSiniestros [idPorcentajeCantSiniestros=" + idPorcentajeCantSiniestros + ", valorNumerico="
-				+ valorNumerico + ", fechaModificacion=" + fechaModificacion + ", modificadoPor=" + modificadoPor + "]";
-	}
-	//getters and setters
-
-	public long getIdPorcentajeCantSiniestros() {
-		return idPorcentajeCantSiniestros;
-	}
+	
 
 	public Float getValorNumerico() {
 		return valorNumerico;
@@ -84,9 +90,7 @@ public class PorcentajeCantSiniestros {
 		return modificadoPor;
 	}
 
-	public void setIdPorcentajeCantSiniestros(long idPorcentajeCantSiniestros) {
-		this.idPorcentajeCantSiniestros = idPorcentajeCantSiniestros;
-	}
+	
 
 	public void setValorNumerico(Float valorNumerico) {
 		this.valorNumerico = valorNumerico;
@@ -98,6 +102,22 @@ public class PorcentajeCantSiniestros {
 
 	public void setModificadoPor(Usuario modificadoPor) {
 		this.modificadoPor = modificadoPor;
+	}
+
+	public long getIdPorcCantSin() {
+		return idPorcCantSin;
+	}
+
+	public RangoCantSiniestros getRangoAsociado() {
+		return rangoAsociado;
+	}
+
+	public void setIdPorcCantSin(long idPorcCantSin) {
+		this.idPorcCantSin = idPorcCantSin;
+	}
+
+	public void setRangoAsociado(RangoCantSiniestros rangoAsociado) {
+		this.rangoAsociado = rangoAsociado;
 	}
 
 	

@@ -13,7 +13,7 @@ public class RespuestaSeguridad {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idRespuestaDeSeguridad")
 	private long idRespuestaDeSeguridad;
-	
+	/*
 	
 	@Column(nullable = false)
 	private Boolean valorRespuesta;
@@ -74,6 +74,7 @@ public class RespuestaSeguridad {
 	public void setMedida(MedidaDeSeguridad medida) {
 		this.medida = medida;
 	}
+	*/
 	
 	
 	

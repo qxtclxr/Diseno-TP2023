@@ -22,7 +22,7 @@ public class MedidaDeSeguridad implements FactorCaracteristico{
 	@JoinColumn(name="idValorActualPorcentajeMedidaDeSeguridad")
 	private PorcentajeMedidaDeSeguridad valorActualPorcMedidaDeSeg;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="medidaAsociada", cascade = CascadeType.ALL)
 	private List<PorcentajeMedidaDeSeguridad> valoresPasadosPorcMedidaDeSeg;
 
 	public MedidaDeSeguridad() {
