@@ -19,6 +19,8 @@ public class RangoCantSiniestros implements FactorCaracteristico{
 	@Column(nullable = false,unique=true)
 	private int desdeCant;
 	
+	@Column(unique=true,nullable=false)
+	private String concepto;
 	
 	//relaciones
 	
