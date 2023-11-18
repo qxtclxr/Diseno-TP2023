@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import tp.app.App;
 import tp.dto.PolizaDTO;
+import tp.entidad.TipoPoliza;
 
 public class AltaPolizaFormularioCoberturaController {
 	
@@ -49,6 +50,8 @@ public class AltaPolizaFormularioCoberturaController {
 	private ComboBox tipoPago;
 	@FXML 
 	private Label errorTipoPago;
+	@FXML
+	private Label errorMayor5anios;
 	
 	
 	public void setPolizaDTO(PolizaDTO poliza1) {
@@ -61,7 +64,15 @@ public class AltaPolizaFormularioCoberturaController {
 		super();
 	}
 
-
+	public void mostrarDatos() {
+	
+		this.setearTipoCobertura(poliza.getCobertura().getNombre());
+		fechaInicioVigencia.setValue(poliza.getFechaInicio().toLocalDate());
+		tipoPago.setValue(poliza.getTipoPoliza().toString());
+		
+	}
+	
+	
 	@FXML
 	private void volverAtrasClicked(ActionEvent action) throws IOException {
 		
@@ -73,7 +84,7 @@ public class AltaPolizaFormularioCoberturaController {
     	
     	AltaPolizaFormularioPolizaController formularioPolizaC = loader.getController();
     	formularioPolizaC.setPolizaDTO(this.poliza);
-    	
+    	formularioPolizaC.mostrarDatosPoliza();
     	App.switchScreenTo(form);
 		
 		
@@ -104,20 +115,33 @@ public class AltaPolizaFormularioCoberturaController {
 		
 	}
 	
+	private void setearTipoCobertura(String tipoCobertura) {
+		
+		if(tipoCobertura.equals("Responsabilidad Civil")) {
+			respCivil.setSelected(true);
+		}
+		else if(tipoCobertura.equals("Responsabilidad Civil + Robo o incendio total")) {
+			respCivilRoboIncendioTotal.setSelected(true);
+		}
+		else if(tipoCobertura.equals("Todo total") ) {
+			todoTotal.setSelected(true);
+		}
+		else if(tipoCobertura.equals("Terceros completos")) {
+			tercerosCompletos.setSelected(true);
+		}
+		else if(tipoCobertura.equals("Todo riesgo con franquicia") ) {
+			todoRiesgoConFranquicia.setSelected(true);
+		}
+		
+	}
+	
+	
 	private void cargarDatosFormulario() {
-		
-		//¿Forma de pago? tipoPago.getValue().toString()
-		
-		
-		
 		CoberturaDTO cobertura = new CoberturaDTO();
 		cobertura.setNombre( this.getTipoCobertura() );
 		poliza.setCobertura(cobertura);
-		
-
-		//hay que pasar de LocalDate a LocalDateTime
-		//poliza.setFechaInicio(fechaInicioVigencia.getValue());
-		
+		poliza.setTipoPoliza((tipoPago.getValue().toString().equals("Mensual"))?TipoPoliza.MENSUAL:TipoPoliza.SEMESTRAL);
+		poliza.setFechaInicio(fechaInicioVigencia.getValue().atStartOfDay());	
 	}
 
 
@@ -146,6 +170,15 @@ public class AltaPolizaFormularioCoberturaController {
 	public boolean validarDatos( ) {
 		
 		boolean validacionExitosa = true;
+		
+		if( (LocalDate.now().getYear() - poliza.getVehiculo().getModelo().getAnio() ) >= 10 && !respCivil.isSelected() ) {
+			errorMayor5anios.setVisible(true);
+			validacionExitosa = false;
+		}
+		else {
+			errorMayor5anios.setVisible(false);
+		}
+		
 		
 		if(!(respCivil.isSelected() || respCivilRoboIncendioTotal.isSelected() || todoTotal.isSelected() || tercerosCompletos.isSelected() || todoRiesgoConFranquicia.isSelected()) ) { 
 				errorTipoCobertura.setVisible(true);

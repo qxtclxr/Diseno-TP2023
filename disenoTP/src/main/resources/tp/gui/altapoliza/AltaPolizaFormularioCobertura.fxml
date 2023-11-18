@@ -181,6 +181,7 @@
             <Label fx:id="errorFechaInicioVigencia2" layoutX="440.0" layoutY="408.0" text="-El mes actual" textFill="RED" visible="false" />
             <Label fx:id="errorFechaInicioVigencia3" layoutX="440.0" layoutY="424.0" text="-Un mes luego del mes actual" textFill="RED" visible="false" />
             <Label fx:id="errorTipoPago" layoutX="866.0" layoutY="391.0" text="El campo esta incompleto" textFill="RED" visible="false" />
+            <Label fx:id="errorMayor5anios" layoutX="22.0" layoutY="567.0" text="Los vehiculos mayores a 5 años solo pueden acceder a Responsabilidad Civil" textFill="RED" visible="false" />
          </children>
       </AnchorPane>
    </children>

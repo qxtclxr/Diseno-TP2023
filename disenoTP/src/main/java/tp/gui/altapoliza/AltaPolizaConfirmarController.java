@@ -31,8 +31,7 @@ public class AltaPolizaConfirmarController {
 	private Label patente;
 	@FXML
 	private Label direccionDeRiesgo;
-	@FXML
-	private Label vigencia;
+
 	@FXML
 	private Label inicioVigencia;
 	@FXML
@@ -64,6 +63,7 @@ public class AltaPolizaConfirmarController {
     	
     	AltaPolizaFormularioCoberturaController formularioPolizaCoberturaC = loader.getController();
     	formularioPolizaCoberturaC.setPolizaDTO(this.poliza);
+    	formularioPolizaCoberturaC.mostrarDatos();
     	
     	App.switchScreenTo(form);
 		
@@ -75,7 +75,17 @@ public class AltaPolizaConfirmarController {
 		
 		apellido.setText(poliza.getCliente().getApellido());
 		nombre.setText(poliza.getCliente().getNombre());
-			
+		modelo.setText(poliza.getVehiculo().getModelo().getModelo().getNombre());
+		marca.setText(poliza.getVehiculo().getModelo().getModelo().getMarca().getNombre());
+		motor.setText(poliza.getVehiculo().getMotor());
+		chasis.setText(poliza.getVehiculo().getChasis());
+		patente.setText(poliza.getVehiculo().getPatente());
+		direccionDeRiesgo.setText(poliza.getLocalidad().getNombre()+ ", "+ poliza.getLocalidad().getProvincia().getNombre());
+		inicioVigencia.setText( poliza.getFechaInicio().toString() );
+		finalVigencia.setText(  poliza.getFechaInicio().plusMonths(1).toString()  );
+		
+		
+		
 	}
 	
 	
