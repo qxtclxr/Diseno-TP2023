@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import tp.app.App;
 import tp.dao.CoberturaDAO;
 import tp.dao.PolizaDAO;
 import tp.dto.*;
@@ -28,6 +29,10 @@ public class GestorPoliza {
 		
 		poliza.setPremio(dto.getPremio());
 		
+		poliza.setDescuento(dto.getDescuento());
+		
+		poliza.setImporteTotal(dto.getImporteTotal());
+		
 		Vehiculo vehiculo = GestorVehiculo.crearVehiculo(dto.getVehiculo());
 		poliza.setVehiculoAsegurado(vehiculo);
 		
@@ -41,37 +46,42 @@ public class GestorPoliza {
 		GestorCliente.actualizarConsideracion(cliente);
 		poliza.setCliente(cliente);
 		
-		/*TODO ESTO DE ABAJO CAMBIA SEGURO*/
+		//Factores caracteristicos
 		
-		//Dependiendo si el DTO contiene "[Derechos|Descuentos|Premio]DTO", hay que cambiar por recuperacion de entidad.
-		poliza.setDerechosDeEmision(dto.getDerechosDeEmision());
-		poliza.setDescuentoPorU(dto.getDescuentosPorUnidad());
+		FactorCaracteristicoDTO factores = dto.getFactores();
 		
-		GestorMedidaDeSeguridad gestorMedida = new GestorMedidaDeSeguridad();
-		List<RespuestaSeguridad> respuestas = gestorMedida.crearRespuestasSeguridad(dto.getRespuestasSeguridad());
-		poliza.setRespuestasSeguridad(respuestas);
+		poliza.setPorcMedidaSeguridad(factores.getPorcentajeMedida());
 		
-		GestorRangoKMRealizados gestorKm = new GestorRangoKMRealizados();
-		RangoKMRealizados km = gestorKm.getRangoKMRealizados(dto.getKmRealizados());
-		poliza.setRangoKMRealizados(km);
+		poliza.setPorcCobertura(factores.getPorcentajeCobertura());
 		
-		GestorRangoCantSiniestros gestorSiniestros = new GestorRangoCantSiniestros();
-		RangoCantSiniestros siniestros = gestorSiniestros.getRangoCantSiniestros(dto.getCantidadSiniestros());
-		poliza.setRangoCantSiniestros(siniestros);
+		poliza.setFactorRiesgoLoc(factores.getPorcentajeRiesgoLocalidad());
 		
-		GestorCobertura gestorCobertura = new GestorCobertura();
-		Cobertura cobertura = gestorCobertura.getCobertura(dto.getCobertura());
-		poliza.setCobertura(cobertura);
+		poliza.setPorcDescuentoPorU(factores.getDescuentoPorUnidad());
 		
-		GestorLocalizacion gestorLocal = new GestorLocalizacion();
-		Localidad localidad = gestorLocal.getLocalidad(dto.getLocalidad());
-		poliza.setDomicilioDeRiesgo(localidad);
+		poliza.setPorcCantSiniestros(factores.getPorcentajeSiniestros());
+		
+		poliza.setPorcKMRealizados(factores.getPorcentajeKm());
+		
+		poliza.setValorDerechosDeEmision(factores.getDerechosDeEmision());
+		
+		poliza.setPorcAjustePorHijo(factores.getPorcentajeHijos());
+		
+		poliza.setPorcEstRobo(factores.getPorcentajeEstadisticaRobo());
+		
+		poliza.setModificaciones(new ArrayList<ModificacionPoliza>());
 		
 		poliza.setNroPoliza(generarNroPoliza(dto));
+		
+		poliza.setProductorAsociado(App.getUsuarioLogeado());
 		
 		return poliza;
 	}
 	
+	private static String generarNroPoliza(PolizaDTO dto) {
+		//TODO
+		return null;
+	}
+
 	public static Poliza altaPoliza(PolizaDTO dto) {
 		
 		//TODO: calcularDescuentos()

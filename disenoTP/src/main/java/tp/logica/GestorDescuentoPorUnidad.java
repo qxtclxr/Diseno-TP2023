@@ -17,16 +17,15 @@ public class GestorDescuentoPorUnidad {
 	
 	public static PorcentajeDescPorUnidad getDescuentoPorUnidadByCliente(Cliente cliente) {
 		DescuentoPorUnidadDAO dao = new DescuentoPorUnidadDAO();
-		DescuentoPorUnidad descuento = dao.getAll().get(0);
 		long cantUnidades = cliente.getPolizas().parallelStream().
 				filter(p -> p.getEstado().equals(EstadoPoliza.VIGENTE)).
 				map(p -> p.getVehiculoAsegurado().getChasis()).
 				distinct().
 				count();
 		if(cantUnidades==0) {
-			return descuento.getByMinimo(0).getValorActualDescPorUnidad();
+			return dao.getByMinimo(0).orElseThrow(/*TODO*/).getValorActualDescPorUnidad();
 		}else {
-			return descuento.getByMinimo(1).getValorActualDescPorUnidad();
+			return dao.getByMinimo(1).orElseThrow(/*TODO*/).getValorActualDescPorUnidad();
 		}
 	}
 }

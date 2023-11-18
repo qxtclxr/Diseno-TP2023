@@ -9,25 +9,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import tp.dao.PolizaDAO;
-import tp.entidad.Poliza;
+import tp.entidad.Usuario;
 
 
 public class App extends Application {
     
 	private Stage primaryStage;
 	private static BorderPane mainFrame;
+	private static Usuario usuarioLogeado = new Usuario();
 	
     public static void main(String[] args) {
-    	System.out.println("ho");
-    	/*PolizaDAO p = new PolizaDAO();
-    	
-    	p.saveInstance(new Poliza());
-    	*/
-    	PolizaDAO p = new PolizaDAO();
-       launch();
+    	launch();
     }
 
 	@Override
@@ -60,5 +54,13 @@ public class App extends Application {
 	
 	public static void switchScreenTo(Parent parent) {
 		mainFrame.setCenter(parent);
+	}
+
+	public static Usuario getUsuarioLogeado() {
+		return usuarioLogeado;
+	}
+
+	public static void setUsuarioLogeado(Usuario usuarioLogeado) {
+		App.usuarioLogeado = usuarioLogeado;
 	}
 }

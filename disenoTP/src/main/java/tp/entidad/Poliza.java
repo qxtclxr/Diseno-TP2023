@@ -373,14 +373,6 @@ public class Poliza {
 		this.modificaciones = modificaciones;
 	}
 
-
-
-	
-
-
-
-
-
 	public void setHijosDeclarados(List<HijoDeclarado> hijosDeclarados) {
 		this.hijosDeclarados = hijosDeclarados;
 	}
@@ -503,6 +495,18 @@ public class Poliza {
 
 	public void setPorcCobertura(PorcentajeCobertura porcCobertura) {
 		this.porcCobertura = porcCobertura;
+	}
+
+
+
+	public float getDescuento() {
+		return descuento;
+	}
+
+
+
+	public void setDescuento(float descuento) {
+		this.descuento = descuento;
 	}
 	
 	
