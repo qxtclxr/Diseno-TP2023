@@ -3,6 +3,7 @@ package tp.logica;
 import tp.dao.*;
 import tp.dto.*;
 import tp.entidad.*;
+import tp.exception.ObjetoNoEncontradoException;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -10,9 +11,9 @@ import java.util.List;
 
 public class GestorCliente {
 	
-	public static Cliente getCliente(ClienteDTO dto) {
+	public static Cliente getCliente(ClienteDTO dto) throws ObjetoNoEncontradoException {
 		ClienteDAO dao = new ClienteDAO();
-		Cliente cliente = dao.getClienteByNroCliente(dto.getNroCliente()).orElseThrow(/*TODO*/);
+		Cliente cliente = dao.getClienteByNroCliente(dto.getNroCliente()).orElseThrow(() -> new ObjetoNoEncontradoException());
 		return cliente;
 	}
 	
@@ -22,7 +23,7 @@ public class GestorCliente {
 		return cliente;
 	}
 	
-	public static RangoCantSiniestrosDTO getCantidadDeSiniestrosPorCliente(ClienteDTO dto) {
+	public static RangoCantSiniestrosDTO getCantidadDeSiniestrosPorCliente(ClienteDTO dto) throws ObjetoNoEncontradoException {
 		Cliente cliente = getCliente(dto);
 		RangoCantSiniestros siniestros = GestorRangoCantSiniestros.getRangoCantSiniestros(cliente.getCantSiniestrosCliente());
 		return GestorRangoCantSiniestros.getDTO(siniestros);

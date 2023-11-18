@@ -3,6 +3,8 @@ package tp.gui.altapoliza;
 import tp.dto.*;
 import tp.logica.*;
 import tp.entidad.*;
+import tp.exception.ObjetoNoEncontradoException;
+import tp.gui.buscarcliente.BuscarClienteController;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -173,7 +175,7 @@ public class AltaPolizaFormularioPolizaController {
 		errorKmsRealizadosPorAnio.setVisible(false);
 	}
 	@FXML
-	private void setProvincia() {
+	private void setProvincia() throws ObjetoNoEncontradoException {
 		PaisDTO pais = new PaisDTO();
 		pais.setId(Long.valueOf(1));
 		ObservableList<String> opProvincia = FXCollections.observableArrayList(GestorLocalizacion.getProvinciasByPais(pais).stream().
@@ -183,7 +185,7 @@ public class AltaPolizaFormularioPolizaController {
 	}
 	
 	@FXML
-	private void setLocalidades() {
+	private void setLocalidades() throws ObjetoNoEncontradoException {
 		GestorLocalizacion g = new GestorLocalizacion();
 		ProvinciaDTO p = new ProvinciaDTO();
 		p.setNombre(provincia.getValue().toString());
@@ -192,9 +194,7 @@ public class AltaPolizaFormularioPolizaController {
 				toList());
 		localidad.setItems(opLocalidad);
 		
-		}
-	}
-	
+	}	
 	
 	private void setMarcaVehiculoAnio( ) {
 		
@@ -303,19 +303,21 @@ public class AltaPolizaFormularioPolizaController {
 	private void cargarDatosFormulario() {
 		
 		VehiculoDTO vehiculoD = new VehiculoDTO();
+		AnioModeloDTO anioD = new AnioModeloDTO();
 		ModeloDTO modeloD = new ModeloDTO();
 		MarcaDTO marcaD = new MarcaDTO();
 		RangoKMRealizadosDTO rangoD = new RangoKMRealizadosDTO(); 
 		RangoCantSiniestrosDTO rangoCsD = new RangoCantSiniestrosDTO();
 		
 		
-		vehiculoD.setAño( Integer.parseInt(anio.getValue().toString()) );
 		vehiculoD.setChasis(chasis.getText());
 		vehiculoD.setMotor(motor.getText());
 		vehiculoD.setPatente(patente.getText());
+		anioD.setAnio( Integer.parseInt(anio.getValue().toString()) );
+		anioD.setModelo(modeloD);
 		modeloD.setNombre(vehiculo.getValue().toString());
 		marcaD.setNombre(marca.getValue().toString());
-		vehiculoD.setModelo(modeloD);
+		vehiculoD.setModelo(anioD);
 		rangoD.setNombre(kmsRealizadosPorAnio.getValue().toString());
 		rangoCsD.setNombre(nroDeSiniestrosUltAnio.getValue().toString());
 		poliza.setCantidadSiniestros(rangoCsD);
