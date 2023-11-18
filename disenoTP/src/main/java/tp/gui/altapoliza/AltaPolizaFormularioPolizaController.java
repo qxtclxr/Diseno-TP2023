@@ -148,9 +148,10 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		FXMLLoader loader = new FXMLLoader();
 		AltaPolizaFormularioCoberturaController formularioCoberturaC = new AltaPolizaFormularioCoberturaController();
 		formularioCoberturaC.setPolizaDTO(this.poliza);
-    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
+		loader.setController(formularioCoberturaC);
+		loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
     	AnchorPane form = loader.load();
-    	formularioCoberturaC = loader.getController();
+    	//formularioCoberturaC = loader.getController();
     	
     	App.switchScreenTo(form);
     	
@@ -335,7 +336,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 	private void cargarDatosFormulario() {
 		
-		AnioModeloDTO anioModelo = new AnioModeloDTO();
 		VehiculoDTO vehiculoD = new VehiculoDTO();
 		AnioModeloDTO anioD = new AnioModeloDTO();
 		ModeloDTO modeloD = new ModeloDTO();
@@ -353,6 +353,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		anioD.setModelo(modeloD);
 		modeloD.setNombre(vehiculo.getValue().toString());
 		marcaD.setNombre(marca.getValue().toString());
+		modeloD.setMarca(marcaD);
 		vehiculoD.setModelo(anioD);
 		rangoD.setNombre(kmsRealizadosPorAnio.getValue().toString());
 		rangoCsD.setNombre(nroDeSiniestrosUltAnio.getValue().toString());
