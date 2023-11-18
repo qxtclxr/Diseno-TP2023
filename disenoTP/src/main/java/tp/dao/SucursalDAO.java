@@ -16,7 +16,7 @@ public class SucursalDAO extends AbstractDAO<Sucursal> {
 			
 			ret=s.getSecuenciaDePoliza();
 			s.setSecuenciaDePoliza(ret+1);
-			this.saveInstance(s);
+			this.getEntityManager().persist(s);
 			t.commit();
 		} catch(RuntimeException exep) {
 			t.rollback();
