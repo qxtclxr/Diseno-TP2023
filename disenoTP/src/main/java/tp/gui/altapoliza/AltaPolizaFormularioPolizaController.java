@@ -14,7 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.scene.Scene;
@@ -25,10 +27,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import tp.app.App;
 
-public class AltaPolizaFormularioPolizaController {
+public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	
 	
@@ -390,30 +393,6 @@ public class AltaPolizaFormularioPolizaController {
 		
 	}
 	
-	
-	@FXML
-	public void initialize( ) {
-		
-		this.mostrarCliente();
-		
-		this.setErroresFalse();
-		
-		this.setMarcaVehiculoAnio();
-		
-		this.setContadorHijosDeclarados();
-	
-		this.testDatosFormulario(); // deberia ser reeplazo por una funcion que tome los valores de poliza 
-		
-		this.cargarDatosFormulario();
-		
-		ObservableList<String> opKmsRealizadosPorAnio = FXCollections.observableArrayList("Hasta 10000 Km","Hasta 20000 Km", "Hasta 30000 Km","Hasta 40000 Km", "Mas de 40000 Km");
-		kmsRealizadosPorAnio.setItems(opKmsRealizadosPorAnio);
-		
-		ObservableList<String> opNroSiniestrosUltAnio = FXCollections.observableArrayList("Ninguno", "1", "2", "Mas de 2");
-		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
-		
-		
-	}
 	public boolean validarDatos( ) {
 		
 		boolean datosValidos = true;
@@ -525,6 +504,29 @@ public class AltaPolizaFormularioPolizaController {
 	   }
 		    
 		return datosValidos;
+	}
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+		this.mostrarCliente();
+		
+		this.setErroresFalse();
+		
+		this.setMarcaVehiculoAnio();
+		
+		this.setContadorHijosDeclarados();
+	
+		this.testDatosFormulario(); // deberia ser reeplazo por una funcion que tome los valores de poliza 
+		
+		this.cargarDatosFormulario();
+		
+		ObservableList<String> opKmsRealizadosPorAnio = FXCollections.observableArrayList("Hasta 10000 Km","Hasta 20000 Km", "Hasta 30000 Km","Hasta 40000 Km", "Mas de 40000 Km");
+		kmsRealizadosPorAnio.setItems(opKmsRealizadosPorAnio);
+		
+		ObservableList<String> opNroSiniestrosUltAnio = FXCollections.observableArrayList("Ninguno", "1", "2", "Mas de 2");
+		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
 	}
 
 	

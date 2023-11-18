@@ -36,10 +36,13 @@ public class BuscarClienteController {
 	    	
 	    	FXMLLoader loader = new FXMLLoader();
 	    	
+	    	AltaPolizaFormularioPolizaController altaPolizaC = new AltaPolizaFormularioPolizaController();
+	    	altaPolizaC.setClienteDTO(clienteDTO);
+	    	loader.setController(altaPolizaC);
+	    	
 	    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
 	    	AnchorPane form = loader.load();
-	    	AltaPolizaFormularioPolizaController altaPolizaC = loader.getController();
-	    	altaPolizaC.setClienteDTO(clienteDTO);
+	    	
 	    	App.switchScreenTo(form);
 	    }
 	    
