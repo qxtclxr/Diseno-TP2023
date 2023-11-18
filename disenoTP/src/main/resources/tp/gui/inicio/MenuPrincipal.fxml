@@ -20,7 +20,7 @@
                   <Text layoutX="1156.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenid@, Usuario" />
                   <ImageView fitHeight="126.0" fitWidth="496.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@logo-el-asegurado.png" />
+                        <Image url="@../../../logo/logo-el-asegurado.png" />
                      </image>
                   </ImageView>
                </children>
