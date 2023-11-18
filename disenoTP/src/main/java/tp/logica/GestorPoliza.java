@@ -104,7 +104,6 @@ public class GestorPoliza {
 	}
 	
 	
-	//TODO: Esto probablemente haya que hacerlo de nuevo.
 	public static float calcularPremio(PolizaDTO dto) {
 		FactorCaracteristicoDTO factores = dto.getFactores();
 		float porcentaje = 0;

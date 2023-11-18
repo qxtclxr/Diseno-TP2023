@@ -3,6 +3,9 @@ package tp.logica;
 import tp.dto.HijoDeclaradoDTO;
 import tp.entidad.AjusteHijos;
 import tp.entidad.HijoDeclarado;
+import tp.exception.DatosObligatoriosAusentesException;
+import tp.exception.FechaNacimientoHijoInvalidaException;
+import tp.util.CheckedFunction;
 import tp.dao.AjusteHijosDAO;
 import java.time.LocalDate;
 import java.time.Period;
@@ -11,12 +14,14 @@ import java.util.stream.Collectors;
 
 public class GestorHijoDeclarado {
 	
-	public static HijoDeclarado crearHijoDeclarado(HijoDeclaradoDTO dto) {
+	public static HijoDeclarado crearHijoDeclarado(HijoDeclaradoDTO dto)
+			throws FechaNacimientoHijoInvalidaException,
+			DatosObligatoriosAusentesException {
 		if(!datosObligatoriosPresentes(dto)) {
-			//TODO: throw DatosObligatoriosAusentesException
+			throw new DatosObligatoriosAusentesException();
 		}
 		if(!fechaDeNacimientoEsValida(dto)) {
-			// TODO: throw FechaNacimientoHijoInvalidaException
+			throw new FechaNacimientoHijoInvalidaException();
 		}
 		HijoDeclarado hijoDeclarado = new HijoDeclarado();
 		hijoDeclarado.setSexo(dto.getSexo());
@@ -27,7 +32,7 @@ public class GestorHijoDeclarado {
 	
 	public static List<HijoDeclarado> crearHijosDeclarados(List<HijoDeclaradoDTO> dtos){
 		List<HijoDeclarado> hijosDeclarados = dtos.stream().
-				map(dto -> crearHijoDeclarado(dto)).
+				map(CheckedFunction.wrap(GestorHijoDeclarado::crearHijoDeclarado)).
 				collect(Collectors.toList());
 		return hijosDeclarados;
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import tp.dao.*;
 import tp.entidad.*;
+import tp.exception.NoExisteRangoCantSiniestos;
 import tp.exception.ObjetoNoEncontradoException;
 import tp.dto.*;
 
@@ -14,7 +15,9 @@ public class GestorRangoCantSiniestros {
 		return objeto;
 	}
 	
-	public static RangoCantSiniestros getRangoCantSiniestros(int cantSiniestros) throws ObjetoNoEncontradoException {
+	public static RangoCantSiniestros getRangoCantSiniestros(int cantSiniestros)
+			throws ObjetoNoEncontradoException,
+			NoExisteRangoCantSiniestos {
 		RangoCantSiniestrosDAO dao = new RangoCantSiniestrosDAO();
 		RangoCantSiniestros objeto = new RangoCantSiniestros();
 		if(cantSiniestros == 0) {
@@ -26,7 +29,7 @@ public class GestorRangoCantSiniestros {
 		}else if(cantSiniestros > 2) {
 			objeto = dao.getByMinimo(3).orElseThrow(() -> new ObjetoNoEncontradoException());
 		}else {
-			//TODO: throw new NoExisteRangoCantSiniestos;
+			throw new NoExisteRangoCantSiniestos();
 		}
 		return objeto;
 	}
