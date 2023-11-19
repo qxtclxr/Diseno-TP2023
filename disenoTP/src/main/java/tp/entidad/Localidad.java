@@ -21,7 +21,7 @@ public class Localidad implements FactorCaracteristico{
 	
 	//relaciones
 	
-	@ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name="idProvincia", referencedColumnName="idProvincia",foreignKey= @ForeignKey(name="FK_provincia_en_localidad"))
 	private Provincia provincia;
 	

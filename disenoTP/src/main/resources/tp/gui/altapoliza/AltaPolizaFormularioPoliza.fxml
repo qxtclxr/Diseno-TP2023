@@ -65,7 +65,7 @@
             <TextFlow fx:id="sumaAsegurada" layoutX="549.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" />
             <ComboBox fx:id="localidad" layoutX="14.0" layoutY="381.0" onShowing="#setLocalidades" prefWidth="180.0" promptText="Ingrese una localidad" />
             <ComboBox fx:id="modelo" layoutX="281.0" layoutY="381.0" onShowing="#setModelos" prefWidth="180.0" promptText="Ingrese un modelo" />
-            <ComboBox fx:id="anio" layoutX="281.0" layoutY="417.0" onShowing="#setAnios" prefWidth="180.0" promptText="Ingrese un anio" />
+            <ComboBox fx:id="anio" layoutX="281.0" layoutY="417.0" onAction="#setSumaAsegurada" onShowing="#setAnios" prefWidth="180.0" promptText="Ingrese un anio" />
             <TextField fx:id="motor" layoutX="14.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField fx:id="chasis" layoutX="281.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField fx:id="patente" layoutX="549.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
@@ -263,7 +263,7 @@
             <Label fx:id="contadorHijosDeclarados" layoutX="1093.0" layoutY="553.0" text="Label" />
             <Label fx:id="errorFaltaProvincia" layoutX="15.0" layoutY="430.0" prefHeight="58.0" prefWidth="179.0" text="Para seleccionar una localidad, debe haber seleccionado la provincia" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorFaltaMarca" layoutX="281.0" layoutY="459.0" text="Para seleccionar un modelo, debe haber seleccionado una marca" textFill="RED" visible="false" />
-            <Label fx:id="errorFaltaVehiculo" layoutX="281.0" layoutY="476.0" text="Para seleccionar un año, debe haber seleccionado un modelo" textFill="RED" visible="false" />
+            <Label fx:id="errorFaltaModelo" layoutX="281.0" layoutY="476.0" text="Para seleccionar un año, debe haber seleccionado un modelo" textFill="RED" visible="false" />
          </children>
       </AnchorPane>
    </children>
