@@ -305,6 +305,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	@FXML
 	private void setSumaAsegurada() {
+		sumaAsegurada.getChildren().clear();
 		AnioModeloDTO anioSelect = anio.getValue();
 		if(anioSelect!=null) {
 			sumaAsegurada.getChildren().add(new Text(String.valueOf(anioSelect.getValoracion())));
