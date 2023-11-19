@@ -21,13 +21,13 @@
    <children>
       <AnchorPane prefHeight="680.0" prefWidth="1280.0">
          <children>
-            <Separator layoutY="82.0" prefHeight="10.0" prefWidth="1280.0" AnchorPane.topAnchor="82.0" />
-            <Text layoutX="14.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alta de pólizas" AnchorPane.topAnchor="14.009765625">
+            <Separator layoutY="82.0" prefHeight="10.0" prefWidth="1280.0" />
+            <Text layoutX="14.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alta de pólizas">
                <font>
                   <Font name="Franklin Gothic Demi" size="60.0" />
                </font>
             </Text>
-            <TableView layoutX="15.0" layoutY="145.0" prefHeight="50.0" prefWidth="1252.0" AnchorPane.bottomAnchor="489.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="145.0">
+            <TableView layoutX="14.0" layoutY="145.0" prefHeight="50.0" prefWidth="1252.0">
               <columns>
                 <TableColumn fx:id="nroCliente" prefWidth="75.0" text="Número de cliente" />
                 <TableColumn fx:id="apellido" prefWidth="75.0" text="Apellido" />
@@ -43,30 +43,30 @@
                   <Blend />
                </effect>
             </TableView>
-            <Text layoutX="13.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente seleccionado" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="114.669921875">
+            <Text layoutX="14.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente seleccionado">
                <font>
                   <Font name="Franklin Gothic Demi" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="13.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese los datos de la póliza" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="238.671875">
+            <Text layoutX="14.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese los datos de la póliza">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <Text fill="RED" layoutX="13.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*) Campo obligatorio" AnchorPane.topAnchor="275.08544921875">
+            <Text fill="RED" layoutX="14.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*) Campo obligatorio">
                <font>
                   <Font name="Franklin Gothic Medium Italic" size="13.0" />
                </font>
             </Text>
-            <ComboBox fx:id="provincia" layoutX="13.0" layoutY="345.0" prefWidth="180.0" promptText="Ingrese una provincia" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="345.0" />
-            <ComboBox fx:id="marca" layoutX="281.0" layoutY="345.0" prefWidth="180.0" promptText="Ingrese una marca" AnchorPane.leftAnchor="281.0" />
-            <ComboBox fx:id="kmsRealizadosPorAnio" layoutX="819.0" layoutY="345.0" prefWidth="180.0" AnchorPane.leftAnchor="819.0" AnchorPane.topAnchor="345.0" />
-            <ComboBox fx:id="nroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="345.0" prefWidth="180.0" AnchorPane.rightAnchor="13.0" />
-            <TextFlow fx:id="sumaAsegurada" layoutX="549.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" AnchorPane.leftAnchor="549.0" AnchorPane.topAnchor="345.0" />
-            <ComboBox fx:id="localidad" layoutX="13.0" layoutY="381.0" onShowing="#setLocalidades" prefWidth="180.0" promptText="Ingrese una localidad" AnchorPane.topAnchor="381.0" />
+            <ComboBox fx:id="provincia" layoutX="14.0" layoutY="345.0" prefWidth="180.0" promptText="Ingrese una provincia" />
+            <ComboBox fx:id="marca" layoutX="281.0" layoutY="345.0" prefWidth="180.0" promptText="Ingrese una marca" />
+            <ComboBox fx:id="kmsRealizadosPorAnio" layoutX="819.0" layoutY="345.0" prefWidth="180.0" />
+            <ComboBox fx:id="nroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="345.0" prefWidth="180.0" />
+            <TextFlow fx:id="sumaAsegurada" layoutX="549.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" />
+            <ComboBox fx:id="localidad" layoutX="14.0" layoutY="381.0" onShowing="#setLocalidades" prefWidth="180.0" promptText="Ingrese una localidad" />
             <ComboBox fx:id="modelo" layoutX="281.0" layoutY="381.0" onShowing="#setModelos" prefWidth="180.0" promptText="Ingrese un modelo" />
-            <ComboBox fx:id="anio" layoutX="281.0" layoutY="417.0" onShowing="#setAnios" prefWidth="180.0" promptText="Ingrese un anio" AnchorPane.topAnchor="417.0" />
-            <TextField fx:id="motor" layoutX="13.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
+            <ComboBox fx:id="anio" layoutX="281.0" layoutY="417.0" onShowing="#setAnios" prefWidth="180.0" promptText="Ingrese un anio" />
+            <TextField fx:id="motor" layoutX="14.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField fx:id="chasis" layoutX="281.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField fx:id="patente" layoutX="549.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <Button fx:id="declararHijos" layoutX="1087.0" layoutY="521.0" mnemonicParsing="false" onAction="#declararHijosClicked" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTER-LEFT;" text="Declarar hijos">
@@ -98,7 +98,7 @@
                   </CheckBox>
                </children>
             </VBox>
-            <HBox layoutX="13.0" layoutY="317.0" prefHeight="19.0" prefWidth="180.0">
+            <HBox layoutX="14.0" layoutY="317.0" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <Label text="Domicilio de riesgo">
                      <font>
@@ -115,7 +115,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox layoutX="13.0" layoutY="490.0" prefHeight="19.0" prefWidth="180.0">
+            <HBox layoutX="14.0" layoutY="490.0" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <Label text="Motor">
                      <font>
@@ -236,19 +236,19 @@
                   </Text>
                </children>
             </HBox>
-            <Button fx:id="confimarButton" layoutX="13.0" layoutY="635.0" mnemonicParsing="false" onAction="#confirmarClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar" AnchorPane.topAnchor="635.0">
+            <Button fx:id="confimarButton" layoutX="14.0" layoutY="625.0" mnemonicParsing="false" onAction="#confirmarClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="atrasButton" layoutX="168.0" layoutY="635.0" mnemonicParsing="false" onAction="#volverAtrasClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
+            <Button fx:id="atrasButton" layoutX="168.0" layoutY="625.0" mnemonicParsing="false" onAction="#volverAtrasClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="salirButton" layoutX="1132.0" layoutY="635.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: CF2A27; -fx-border-color: gray;" text="Salir" textFill="WHITE">
+            <Button fx:id="salirButton" layoutX="1132.0" layoutY="625.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: CF2A27; -fx-border-color: gray;" text="Salir" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
             <Label fx:id="errorDomicilioRiesgo" layoutX="15.0" layoutY="421.0" text="El campo esta incompleto" textFill="RED" visible="false" />

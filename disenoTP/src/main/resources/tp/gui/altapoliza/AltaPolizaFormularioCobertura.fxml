@@ -20,22 +20,22 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="7.0" prefHeight="680.0" prefWidth="1280.0">
+      <AnchorPane maxHeight="680.0" maxWidth="1280.0" minHeight="680.0" minWidth="1280.0" prefHeight="680.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Separator layoutY="112.0" prefHeight="10.0" prefWidth="1280.0" AnchorPane.topAnchor="112.0" />
-            <Text layoutX="14.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alta de pólizas" AnchorPane.topAnchor="42.0">
+            <Separator layoutY="82.0" prefHeight="10.0" prefWidth="1280.0" />
+            <Text layoutX="14.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alta de pólizas">
                <font>
                   <Font name="Franklin Gothic Demi" size="60.0" />
                </font>
             </Text>
-            <TableView layoutX="14.0" layoutY="171.0" prefHeight="50.0" AnchorPane.bottomAnchor="494.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="174.0">
+            <TableView layoutX="14.0" layoutY="145.0" prefHeight="50.0" prefWidth="1252.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Número de cliente" />
                 <TableColumn prefWidth="75.0" text="Apellido" />
                   <TableColumn prefWidth="75.0" text="Nombre" />
                   <TableColumn prefWidth="75.0" text="Marca" />
                   <TableColumn prefWidth="75.0" text="Modelo" />
-                  <TableColumn prefWidth="75.0" text="Anio" />
+                  <TableColumn prefWidth="77.0" text="Anio" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -44,37 +44,37 @@
                   <Blend />
                </effect>
             </TableView>
-            <Text layoutX="14.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente seleccionado" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="140.0">
+            <Text layoutX="14.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resumen de datos">
                <font>
                   <Font name="Franklin Gothic Demi" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="145.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese los datos de cobertura" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="251.0">
+            <Text layoutX="14.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese los datos de cobertura">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <Text fill="RED" layoutX="14.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*) Campo obligatorio" AnchorPane.topAnchor="288.0">
+            <Text fill="RED" layoutX="14.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*) Campo obligatorio" AnchorPane.topAnchor="275.08544921875">
                <font>
                   <Font name="Franklin Gothic Medium Italic" size="13.0" />
                </font>
             </Text>
-            <Button fx:id="confirmar" layoutX="14.0" layoutY="667.0" mnemonicParsing="false" onAction="#confirmarClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar" AnchorPane.topAnchor="643.0">
+            <Button fx:id="confirmar" layoutX="14.0" layoutY="625.0" mnemonicParsing="false" onAction="#confirmarClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar">
                <font>
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="166.0" layoutY="643.0" mnemonicParsing="false" onAction="#volverAtrasClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
+            <Button layoutX="168.0" layoutY="625.0" mnemonicParsing="false" onAction="#volverAtrasClicked" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras" AnchorPane.leftAnchor="168.0">
                <font>
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="1131.0" layoutY="643.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: CF2A27; -fx-border-color: gray;" text="Salir" textFill="WHITE">
+            <Button layoutX="1131.0" layoutY="625.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: CF2A27; -fx-border-color: gray;" text="Salir" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
-            <HBox layoutX="70.0" layoutY="365.0" prefHeight="20.0" prefWidth="400.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="330.0">
+            <HBox layoutX="70.0" layoutY="317.0" prefHeight="20.0" prefWidth="400.0" AnchorPane.leftAnchor="14.0">
                <children>
                   <Label text="Tipo de cobertura">
                      <font>
@@ -92,7 +92,7 @@
                   <Canvas height="200.0" width="200.0" />
                </children>
             </HBox>
-            <HBox layoutX="80.0" layoutY="375.0" prefHeight="20.0" prefWidth="400.0" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="330.0">
+            <HBox layoutX="80.0" layoutY="317.0" prefHeight="20.0" prefWidth="400.0" AnchorPane.leftAnchor="440.0">
                <children>
                   <Label text="Fecha de inicio de vigencia de la poliza">
                      <font>
@@ -109,7 +109,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="416.0" layoutY="331.0" prefHeight="20.0" prefWidth="400.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="330.0">
+            <HBox layoutX="416.0" layoutY="317.0" prefHeight="20.0" prefWidth="400.0" AnchorPane.rightAnchor="14.0">
                <children>
                   <Label text="Forma de pago">
                      <font>
@@ -126,7 +126,7 @@
                   </Label>
                </children>
             </HBox>
-            <VBox layoutX="14.0" layoutY="350.0" prefHeight="200.0" prefWidth="400.0" spacing="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="358.0">
+            <VBox layoutX="14.0" layoutY="345.0" prefHeight="200.0" prefWidth="400.0" spacing="10.0">
                <children>
                   <RadioButton fx:id="respCivil" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Responsabilidad Civil">
                      <font>
@@ -173,8 +173,8 @@
                   </RadioButton>
                </children>
             </VBox>
-            <DatePicker fx:id="fechaInicioVigencia" layoutX="440.0" layoutY="358.0" prefHeight="20.0" prefWidth="400.0" AnchorPane.topAnchor="358.0" />
-            <ComboBox fx:id="tipoPago" layoutX="866.0" layoutY="358.0" prefWidth="400.0" />
+            <DatePicker fx:id="fechaInicioVigencia" layoutX="440.0" layoutY="345.0" prefHeight="20.0" prefWidth="400.0" />
+            <ComboBox fx:id="tipoPago" layoutX="866.0" layoutY="345.0" prefWidth="400.0" />
             <Label fx:id="errorTipoCobertura" layoutX="22.0" layoutY="550.0" text="El campo esta incompleto" textFill="RED" visible="false" />
             <Label layoutX="440.0" layoutY="383.0" prefHeight="49.0" prefWidth="235.0" wrapText="true" />
             <Label fx:id="errorFechaInicioVigencia1" layoutX="440.0" layoutY="391.0" text="La fecha debe encontrarse entre:" textFill="RED" visible="false" />
