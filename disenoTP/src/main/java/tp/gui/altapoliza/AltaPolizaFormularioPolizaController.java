@@ -426,6 +426,10 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	private boolean patenteFormatoCorrecto(String patente) {
 		
+		if (patente == null || patente.isEmpty()) {
+			return true;
+		}
+		
 	    // Definir el patrón de la expresión regular para el formato de patente
         String patron = "^[A-Z]{2,3}\\s?\\d{3}\\s?[A-Z]{0,3}$";
 
@@ -437,8 +441,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 
         // Verificar si la patente cumple con el formato
         return matcher.matches();
-		
-		
 		
 	}
 	
