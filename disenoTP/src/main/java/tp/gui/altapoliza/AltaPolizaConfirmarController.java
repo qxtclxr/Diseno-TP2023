@@ -72,19 +72,25 @@ public class AltaPolizaConfirmarController {
 	}
 	
 	private void mostrarDatosPoliza( ) {
-		/*
+		
 		apellido.setText(poliza.getCliente().getApellido());
 		nombre.setText(poliza.getCliente().getNombre());
+		/* 
+
+		
+		
+		
+
+		
+		*/
 		modelo.setText(poliza.getVehiculo().getModelo().getModelo().getNombre());
+		direccionDeRiesgo.setText(poliza.getLocalidad().getNombre()+ ", "+ poliza.getLocalidad().getProvincia().getNombre());
 		marca.setText(poliza.getVehiculo().getModelo().getModelo().getMarca().getNombre());
+		patente.setText(poliza.getVehiculo().getPatente());
 		motor.setText(poliza.getVehiculo().getMotor());
 		chasis.setText(poliza.getVehiculo().getChasis());
-		patente.setText(poliza.getVehiculo().getPatente());
-		direccionDeRiesgo.setText(poliza.getLocalidad().getNombre()+ ", "+ poliza.getLocalidad().getProvincia().getNombre());
 		inicioVigencia.setText( poliza.getFechaInicio().toString() );
 		finalVigencia.setText(  poliza.getFechaInicio().plusMonths(1).toString()  );
-		*/
-		
 		
 	}
 	

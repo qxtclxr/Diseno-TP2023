@@ -1,5 +1,6 @@
 package tp.gui.altapoliza;
 
+import java.util.ArrayList;
 import tp.gui.buscarcliente.*;
 import tp.dto.*;
 import tp.logica.*;
@@ -16,9 +17,12 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,6 +33,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.TextFlow;
 import tp.app.App;
 
 public class AltaPolizaFormularioPolizaController implements Initializable{
@@ -51,6 +56,8 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	@FXML
 	private TableColumn direccion;
 	
+	@FXML
+	private TextFlow sumaAsegurada;
 	
 	@FXML
 	private Button declararHijos;
@@ -61,7 +68,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	@FXML 
 	private ComboBox marca;
 	@FXML
-	private ComboBox vehiculo;
+	private ComboBox modelo;
 	@FXML
 	private ComboBox anio;
 	@FXML
@@ -109,6 +116,13 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	 
 	 @FXML
 	 private Label contadorHijosDeclarados;
+	 @FXML
+	 private Label errorFaltaProvincia;
+	 @FXML
+	 private Label errorFaltaModelo;
+	 @FXML
+	 private Label errorFaltaMarca;
+	 
 	
 	 
 	public void mostrarDatosPoliza( ) {
@@ -119,7 +133,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		localidad.setValue(poliza.getLocalidad().getNombre());
 		provincia.setValue(poliza.getLocalidad().getProvincia().getNombre());
 		marca.setValue(poliza.getVehiculo().getModelo().getModelo().getMarca());
-		vehiculo.setValue(poliza.getVehiculo().getModelo().getModelo().getNombre());
+		modelo.setValue(poliza.getVehiculo().getModelo().getModelo().getNombre());
 		anio.setValue(Integer.toString(poliza.getVehiculo().getModelo().getAnio()));
 		kmsRealizadosPorAnio.setValue(poliza.getKmRealizados().getNombre());
 		nroDeSiniestrosUltAnio.setValue(poliza.getCantidadSiniestros().getNombre());
@@ -140,18 +154,18 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	@FXML
 	private void confirmarClicked(ActionEvent action) throws IOException {
 		
+		
 		if(this.validarDatos()) {
 			
 		this.cargarDatosFormulario();
 		
 		FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
-   
+		AltaPolizaFormularioCoberturaController formularioCoberturaC = new AltaPolizaFormularioCoberturaController();
+		formularioCoberturaC.setPolizaDTO(this.poliza);
+		loader.setController(formularioCoberturaC);
+		loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
     	AnchorPane form = loader.load();
-    	
-    	AltaPolizaFormularioCoberturaController formularioCoberturaC = loader.getController();
-    	
-    	formularioCoberturaC.setPolizaDTO(this.poliza);
+    	//formularioCoberturaC = loader.getController();
     	
     	App.switchScreenTo(form);
     	
@@ -163,14 +177,12 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	@FXML 
 	private void volverAtrasClicked( ActionEvent action ) throws IOException {
 		
-		
 		FXMLLoader loader = new FXMLLoader();
+		BuscarClienteController buscarClienteC = new BuscarClienteController();
+		buscarClienteC.setClienteDTO(this.poliza.getCliente());
     	loader.setLocation(getClass().getResource("../buscarcliente/BuscarCliente.fxml"));
     	AnchorPane form = loader.load();
-    	
-    	BuscarClienteController buscarClienteC = loader.getController();
-    	buscarClienteC.setClienteDTO(poliza.getCliente());
-    	//TODO: buscarClienteC.mostrarDatos();
+    	buscarClienteC = loader.getController();
     	
     	App.switchScreenTo(form);
     	
@@ -183,28 +195,18 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	@FXML
 	private void declararHijosClicked(ActionEvent action) throws IOException {
-	    // Cargar el archivo FXML
-	    FXMLLoader loader = new FXMLLoader();
-	    loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
-	    AnchorPane form = loader.load();
 
-	    // Crear una nueva ventana modal
-	    Stage ventanaModal = new Stage();
-	    ventanaModal.initModality(Modality.APPLICATION_MODAL);
-	    ventanaModal.setTitle("Declarar Hijos");
-	    
-
-	    // Configurar el contenido de la ventana modal
-	    Scene modalScene = new Scene(form);
-	    ventanaModal.setScene(modalScene);
-	    
-	    	    
-	    DeclararHijosController declararHijosC = loader.getController();
-	    //TODO: declararHijosC.setListaHijos(poliza.getHijosDeclarados());
-
-
-	    // Mostrar la ventana modal y esperar hasta que se cierre
-	    ventanaModal.showAndWait();
+		FXMLLoader loader = new FXMLLoader();
+		DeclararHijosController declararHijosC = new DeclararHijosController();
+		declararHijosC.setListaHijos(this.poliza.getHijosDeclarados());
+    	loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
+    	AnchorPane form = loader.load();
+    	declararHijosC = loader.getController();
+    	
+    	App.switchScreenTo(form);
+		
+		
+		
 	}
 
 
@@ -220,18 +222,36 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		errorFormatoPatente.setVisible(false);
 		errorKmsRealizadosPorAnio.setVisible(false);
 	}
-	@FXML
-	private void setProvincia() throws ObjetoNoEncontradoException {
+	
+	
+	private void setProvincia() {
+		
+		try {
+		
+		
 		PaisDTO pais = new PaisDTO();
 		pais.setId(Long.valueOf(1));
 		ObservableList<String> opProvincia = FXCollections.observableArrayList(GestorLocalizacion.getProvinciasByPais(pais).stream().
 				map(ProvinciaDTO::getText).
 				toList());
 		provincia.setItems(opProvincia);
+		
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML
-	private void setLocalidades() throws ObjetoNoEncontradoException {
+	private void setLocalidades() {
+		
+		try {
+		
+		if(provincia.getValue()!=null) {
+		
+		errorFaltaProvincia.setVisible(false);	
+			
 		GestorLocalizacion g = new GestorLocalizacion();
 		ProvinciaDTO p = new ProvinciaDTO();
 		p.setId(Long.valueOf(1));
@@ -239,19 +259,118 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 				map(LocalidadDTO::getText).
 				toList());
 		localidad.setItems(opLocalidad);
+		
+		}
+		else {
+			errorFaltaProvincia.setVisible(true);
+		}
+		
+		}
+		catch(Exception e){
+				e.printStackTrace();
+		}
+		
 	}	
 
 	
-	private void setMarcaVehiculoAnio( ) {
+	private void setMarcas( ) {
 		
-		//Traer todo de la base de datos
+		ArrayList<MarcaDTO> marcas = (ArrayList<MarcaDTO>) GestorVehiculo.getAllMarcaDTOs();
 		
-		ObservableList<String> op= FXCollections.observableArrayList("op1","op2");
+		ObservableList<String> op = FXCollections.observableArrayList(marcas.stream().
+																			map(MarcaDTO::getNombre).
+																			toList());
 		marca.setItems(op);
-		vehiculo.setItems(op);
-		anio.setItems(op);
+
+	}
+	
+	@FXML
+	private void setModelos() {
+		
+		try {
+		
+		if(marca.getValue()!=null) {
+			errorFaltaMarca.setVisible(false);
+			MarcaDTO marcaD = new MarcaDTO();
+			marcaD.setNombre(marca.getValue().toString());
+			
+			ObservableList<String> op = FXCollections.observableArrayList(GestorVehiculo.getModelosByMarca(marcaD).stream().
+					map(ModeloDTO::getNombre).
+					toList());			
+			
+			modelo.setItems(op);
+			
+		}
+		else {
+			errorFaltaMarca.setVisible(false);
+		}
+		
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
+	
+	@FXML
+	private void setAnios()  {
+		
+		try {
+		
+		if(modelo.getValue()!=null) {
+			errorFaltaModelo.setVisible(false);
+			
+			ModeloDTO modeloD = new ModeloDTO();
+			modeloD.setNombre(modelo.getValue().toString());
+			
+			
+			ObservableList<String> op = FXCollections.observableArrayList(
+				    GestorVehiculo.getAniosByModelo(modeloD).stream()
+				        .map(anioModeloDTO -> Objects.toString(anioModeloDTO.getAnio(), ""))
+				        .collect(Collectors.toList())
+				);
+
+			anio.setItems(op);
+			
+			
+			
+		} else {
+			errorFaltaModelo.setVisible(true);
+		}
+		
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	/*
+	private void setSumaAsegurada() {
+	    try {
+	        if (anio.getValue() != null && modelo.getValue() != null && marca.getValue() != null) {
+	            MarcaDTO marcaD = new MarcaDTO();
+	            marcaD.setNombre(marca.getValue().toString());
+
+	            
+	            ModeloDTO modelo1 = GestorVehiculo.getModelosByMarca(marcaD)
+	                    .stream()
+	                    .filter(p -> p.getNombre().equals(modelo.getValue().toString()))
+	                    .collect(Collectors.toList()) 
+	                    .get(0);
+	      
+
+	            
+	            
+	            //sumaAsegurada.setValue(valoracion);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	 */
+	
 	
 	
 	private void setContadorHijosDeclarados() {
@@ -263,16 +382,11 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	private boolean motorYaExiste(String motor) {
 		
-		boolean existe = false;
-		//Se debe consultar a la base de datos si existe
-		return existe;
+		return GestorVehiculo.existeMotor(motor);
 	}
 	
 	private boolean chasisYaExiste(String chasis) {
-		
-		boolean existe = false;
-		//Se debe consultar a la base de datos si existe
-		return existe;
+		return GestorVehiculo.existeChasis(chasis);
 	}
 	
 	
@@ -336,7 +450,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		this.localidad.setValue("Esperanza");
 		this.motor.setText("A1S2D3F4G5");
 		this.marca.setValue("Ford");
-		this.vehiculo.setValue("Focus");
+		this.modelo.setValue("Focus");
 		this.anio.setValue("2015");
 		this.chasis.setText("12345678A90");
 		this.patente.setText("ABC123");
@@ -348,7 +462,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 	private void cargarDatosFormulario() {
 		
-		AnioModeloDTO anioModelo = new AnioModeloDTO();
 		VehiculoDTO vehiculoD = new VehiculoDTO();
 		AnioModeloDTO anioD = new AnioModeloDTO();
 		ModeloDTO modeloD = new ModeloDTO();
@@ -364,8 +477,9 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		vehiculoD.setPatente(patente.getText());
 		anioD.setAnio( Integer.parseInt(anio.getValue().toString()) );
 		anioD.setModelo(modeloD);
-		modeloD.setNombre(vehiculo.getValue().toString());
+		modeloD.setNombre(modelo.getValue().toString());
 		marcaD.setNombre(marca.getValue().toString());
+		modeloD.setMarca(marcaD);
 		vehiculoD.setModelo(anioD);
 		rangoD.setNombre(kmsRealizadosPorAnio.getValue().toString());
 		rangoCsD.setNombre(nroDeSiniestrosUltAnio.getValue().toString());
@@ -407,8 +521,8 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    }
 	    
 	    //Comprueba marca vehiculo y anio
-	    if((marca.getValue()==null || vehiculo.getValue()==null|| anio.getValue()==null)
-	    		|| (marca.getValue().toString().isEmpty() || vehiculo.getValue().toString().isEmpty() || anio.getValue().toString().isEmpty())) {
+	    if((marca.getValue()==null || modelo.getValue()==null|| anio.getValue()==null)
+	    		|| (marca.getValue().toString().isEmpty() || modelo.getValue().toString().isEmpty() || anio.getValue().toString().isEmpty())) {
 	    	
 	    	errorMarcaVehiculoAnio.setVisible(true);
 	    	datosValidos = false;
@@ -510,11 +624,14 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		
 		this.mostrarCliente();
 		
 		this.setErroresFalse();
 		
-		this.setMarcaVehiculoAnio();
+		this.setMarcas();
+		
+		this.setProvincia();
 		
 		this.setContadorHijosDeclarados();
 	
@@ -529,5 +646,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
 	}
 
+		
 	
 }

@@ -35,7 +35,6 @@ public class BuscarClienteController {
 	    	clienteDTO.setTipoDocumento(TipoDocumento.DNI);
 	    	
 	    	FXMLLoader loader = new FXMLLoader();
-	    	
 	    	AltaPolizaFormularioPolizaController altaPolizaC = new AltaPolizaFormularioPolizaController();
 	    	altaPolizaC.setClienteDTO(clienteDTO);
 	    	loader.setController(altaPolizaC);
