@@ -89,7 +89,7 @@ public class AltaPolizaFormularioCoberturaController {
     	//formularioPolizaC.setPolizaDTO(this.poliza);
     	//
     	
-    	formularioPolizaC.mostrarDatosPoliza();
+    	//formularioPolizaC.mostrarDatosPoliza();
     	
     	App.switchScreenTo(form);
 		

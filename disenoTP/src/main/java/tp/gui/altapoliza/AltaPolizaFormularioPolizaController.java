@@ -8,7 +8,6 @@ import tp.entidad.*;
 import tp.exception.ObjetoNoEncontradoException;
 import tp.gui.buscarcliente.BuscarClienteController;
 import javafx.scene.control.Button;
-
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -22,7 +21,6 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -33,6 +31,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import tp.app.App;
 
@@ -157,7 +156,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		nroDeSiniestrosUltAnio.setValue(poliza.getCantidadSiniestros().getNombre());
 		
 	}
-	 
+	*/
 	 
 	public void setClienteDTO(ClienteDTO clienteDTO) throws IOException {
 		poliza.setCliente(clienteDTO);
@@ -244,15 +243,9 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	private void setProvincia() {
 		
 		try {
-		
-		
-		PaisDTO pais = new PaisDTO();
-		pais.setId(Long.valueOf(1));
-		ObservableList<String> opProvincia = FXCollections.observableArrayList(GestorLocalizacion.getProvinciasByPais(pais).stream().
-				map(ProvinciaDTO::getText).
-				toList());
-		provincia.setItems(opProvincia);
-		
+			PaisDTO paisSelect = GestorLocalizacion.getPaisDTOByNombre("Argentina");
+			ObservableList<ProvinciaDTO> opProvincia = FXCollections.observableArrayList(GestorLocalizacion.getProvinciasByPais(paisSelect));
+			provincia.setItems(opProvincia);		
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -264,24 +257,15 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	private void setLocalidades() {
 		
 		try {
-		
-		if(provincia.getValue()!=null) {
-		
-		errorFaltaProvincia.setVisible(false);	
-			
-		GestorLocalizacion g = new GestorLocalizacion();
-		ProvinciaDTO p = new ProvinciaDTO();
-		p.setId(Long.valueOf(1));
-		ObservableList<String> opLocalidad = FXCollections.observableArrayList(GestorLocalizacion.getLocalidadesByProvincia(p).stream().
-				map(LocalidadDTO::getText).
-				toList());
-		localidad.setItems(opLocalidad);
-		
-		}
-		else {
-			errorFaltaProvincia.setVisible(true);
-		}
-		
+			ProvinciaDTO provSelect = provincia.getValue();
+			if(provSelect != null) {
+				errorFaltaProvincia.setVisible(false);
+				ObservableList<LocalidadDTO> opLocalidad = FXCollections.observableArrayList(GestorLocalizacion.getLocalidadesByProvincia(provSelect));
+				localidad.setItems(opLocalidad);
+			}
+			else {
+				errorFaltaProvincia.setVisible(true);
+			}
 		}
 		catch(Exception e){
 				e.printStackTrace();
@@ -320,7 +304,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	@FXML
 	private void setAnios()  {
-		
+		System.out.println("ah");
 		try {
 			ModeloDTO modeloSelect = modelo.getValue();
 			if(modelo!=null) {
@@ -335,6 +319,15 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@FXML
+	private void setSumaAsegurada() {
+		sumaAsegurada.getChildren().clear();
+		AnioModeloDTO anioSelect = anio.getValue();
+		if(anioSelect!=null) {
+			sumaAsegurada.getChildren().add(new Text(String.valueOf(anioSelect.getValoracion())));
+		}
 	}
 	
 	/*
@@ -434,6 +427,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 	}
 	
+	/*
 	private void testDatosFormulario( ) { 
 		
 		//Borrar esto antes de entregar 
@@ -451,10 +445,24 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 		
 	}
+	*/
 		
 	private void cargarDatosFormulario() {
 		
-		VehiculoDTO vehiculoD = new VehiculoDTO();
+		poliza.setLocalidad(localidad.getValue());
+		
+		VehiculoDTO vehiculoDto = new VehiculoDTO();
+		vehiculoDto.setChasis(chasis.getText());
+		vehiculoDto.setMotor(motor.getText());
+		vehiculoDto.setPatente(patente.getText());
+		vehiculoDto.setModelo(anio.getValue());
+		poliza.setVehiculo(vehiculoDto);
+		
+		poliza.setSumaAsegurada(anio.getValue().getValoracion());
+		//poliza.setKmRealizados(kmsRealizadosPorAnio.getValue());
+		//poliza.setCantidadSiniestros(this.nroDeSiniestrosUltAnio.getValue());
+		//getMedidasDeSeguridad
+		
 		AnioModeloDTO anioD = new AnioModeloDTO();
 		ModeloDTO modeloD = new ModeloDTO();
 		MarcaDTO marcaD = new MarcaDTO();
@@ -464,15 +472,13 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		ProvinciaDTO provinciaD = new ProvinciaDTO();
 		PaisDTO paisD = new PaisDTO();
 		
-		vehiculoD.setChasis(chasis.getText());
-		vehiculoD.setMotor(motor.getText());
-		vehiculoD.setPatente(patente.getText());
+		
 		anioD.setAnio( Integer.parseInt(anio.getValue().toString()) );
 		anioD.setModelo(modeloD);
 		modeloD.setNombre(modelo.getValue().toString());
 		marcaD.setNombre(marca.getValue().toString());
 		modeloD.setMarca(marcaD);
-		vehiculoD.setModelo(anioD);
+		vehiculoDto.setModelo(anioD);
 		rangoD.setNombre(kmsRealizadosPorAnio.getValue().toString());
 		rangoCsD.setNombre(nroDeSiniestrosUltAnio.getValue().toString());
 		paisD.setNombre("Argentina");
@@ -482,7 +488,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		localidadD.setProvincia(provinciaD);
 		poliza.setCantidadSiniestros(rangoCsD);
 		poliza.setKmRealizados(rangoD);
-		poliza.setVehiculo(vehiculoD);
+		poliza.setVehiculo(vehiculoDto);
 		poliza.setLocalidad(localidadD);
 		
 		
@@ -624,10 +630,18 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		return datosValidos;
 	}
 
-
+	public void setKms() {
+		ObservableList<RangoKMRealizadosDTO> opKmsRealizadosPorAnio = FXCollections.observableArrayList(GestorRangoKMRealizados.getAllDTOs());
+		kmsRealizadosPorAnio.setItems(opKmsRealizadosPorAnio);
+	}
+	
+	public void setSiniestros() {
+		ObservableList<RangoCantSiniestrosDTO> opNroSiniestrosUltAnio = FXCollections.observableArrayList(GestorRangoCantSiniestros.getAllDTOs());
+		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
 		
 		this.mostrarCliente();
 		
@@ -638,16 +652,18 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		this.setProvincia();
 		
 		this.setContadorHijosDeclarados();
+		
+		this.setKms();
+		
+		this.setSiniestros();
 	
-		this.testDatosFormulario(); // deberia ser reeplazo por una funcion que tome los valores de poliza 
+		//this.testDatosFormulario(); // deberia ser reeplazo por una funcion que tome los valores de poliza 
 		
-		this.cargarDatosFormulario();
+		//this.cargarDatosFormulario();
 		
-		ObservableList<String> opKmsRealizadosPorAnio = FXCollections.observableArrayList("Hasta 10000 Km","Hasta 20000 Km", "Hasta 30000 Km","Hasta 40000 Km", "Mas de 40000 Km");
-		kmsRealizadosPorAnio.setItems(opKmsRealizadosPorAnio);
 		
-		ObservableList<String> opNroSiniestrosUltAnio = FXCollections.observableArrayList("Ninguno", "1", "2", "Mas de 2");
-		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
+		
+
 	}
 
 		

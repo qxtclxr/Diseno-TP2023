@@ -20,12 +20,6 @@ public class Modelo{
 	@Column(nullable=false)
 	private String descripcion;
 	
-	@Column(nullable=false)
-	private LocalTime fabricadoDesde;
-	
-	@Column(nullable=false)
-	private LocalTime fabricadoHasta;
-	
 
 	
 	//relaciones
@@ -33,7 +27,7 @@ public class Modelo{
 	@OneToMany(fetch= FetchType.LAZY, mappedBy="tieneModelo",cascade = CascadeType.ALL)
 	private List<AnioModelo> aniosFabricacion;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idMarca", referencedColumnName="idMarca",foreignKey= @ForeignKey(name="FK_marca_en_modelo"))
 	private Marca marca;
 	
@@ -64,13 +58,10 @@ public class Modelo{
 
 
 
-	
-
 	@Override
 	public String toString() {
 		return "Modelo [idModelo=" + idModelo + ", nombreModelo=" + nombreModelo + ", descripcion=" + descripcion
-				+ ", fabricadoDesde=" + fabricadoDesde + ", fabricadoHasta=" + fabricadoHasta + ", aniosFabricacion="
-				+ aniosFabricacion + ", marca=" + marca + "]";
+				+ ", aniosFabricacion=" + aniosFabricacion + ", marca=" + marca + "]";
 	}
 
 
@@ -87,18 +78,6 @@ public class Modelo{
 
 	public String getDescripcion() {
 		return descripcion;
-	}
-
-
-
-	public LocalTime getFabricadoDesde() {
-		return fabricadoDesde;
-	}
-
-
-
-	public LocalTime getFabricadoHasta() {
-		return fabricadoHasta;
 	}
 
 
@@ -123,19 +102,6 @@ public class Modelo{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-
-
-	public void setFabricadoDesde(LocalTime fabricadoDesde) {
-		this.fabricadoDesde = fabricadoDesde;
-	}
-
-
-
-	public void setFabricadoHasta(LocalTime fabricadoHasta) {
-		this.fabricadoHasta = fabricadoHasta;
-	}
-
 
 
 	public void setMarca(Marca marca) {

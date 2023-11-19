@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import tp.dao.*;
 import tp.entidad.*;
+import tp.util.Poblador;
 
 
 public class App extends Application {
@@ -19,8 +20,10 @@ public class App extends Application {
 	private static Usuario usuarioLogeado = new Usuario();
 	
     public static void main(String[] args) {
+    	//Se crea un dao para que inicialice la conexion.
     	PolizaDAO dao = new PolizaDAO();
-    	//cargarDatos();
+    	//IMPORTANTE: Solo descomentar esto para poblar la base de datos.
+    	//Poblador.poblar();
     	launch();
     }
 
