@@ -155,7 +155,7 @@ public class AltaPolizaFormularioCoberturaController {
 	private void confirmarClicked(ActionEvent action) throws IOException {
 		
 		if(this.validarDatos()) {
-		
+			System.out.println("entro");
 			this.cargarDatosFormulario();
 			
 			FXMLLoader loader = new FXMLLoader();
@@ -169,9 +169,7 @@ public class AltaPolizaFormularioCoberturaController {
 			loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaConfirmar.fxml"));
 			AnchorPane form = loader.load();
 			
-			
 			App.switchScreenTo(form);
-    	
 		}
 	}
 	@FXML

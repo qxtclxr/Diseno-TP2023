@@ -62,19 +62,19 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	@FXML
 	private Button declararHijos;
 	@FXML 
-	private ComboBox localidad;
+	private ComboBox<LocalidadDTO> localidad;
 	@FXML
-	private ComboBox provincia;
+	private ComboBox<ProvinciaDTO> provincia;
 	@FXML 
-	private ComboBox marca;
+	private ComboBox<MarcaDTO> marca;
 	@FXML
-	private ComboBox modelo;
+	private ComboBox<ModeloDTO> modelo;
 	@FXML
-	private ComboBox anio;
+	private ComboBox<AnioModeloDTO> anio;
 	@FXML
-	private ComboBox kmsRealizadosPorAnio;
+	private ComboBox<RangoKMRealizadosDTO> kmsRealizadosPorAnio;
 	@FXML
-	private ComboBox nroDeSiniestrosUltAnio;
+	private ComboBox<RangoCantSiniestrosDTO> nroDeSiniestrosUltAnio;
 	@FXML
 	private Label errorNroDeSiniestrosUltAnio;
 	@FXML
@@ -137,7 +137,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		anio.setValue(Integer.toString(poliza.getVehiculo().getModelo().getAnio()));
 		kmsRealizadosPorAnio.setValue(poliza.getKmRealizados().getNombre());
 		nroDeSiniestrosUltAnio.setValue(poliza.getCantidadSiniestros().getNombre());
-		
 		
 	}
 	 
@@ -275,11 +274,8 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	private void setMarcas( ) {
 		
-		ArrayList<MarcaDTO> marcas = (ArrayList<MarcaDTO>) GestorVehiculo.getAllMarcaDTOs();
-		
-		ObservableList<String> op = FXCollections.observableArrayList(marcas.stream().
-																			map(MarcaDTO::getNombre).
-																			toList());
+		List<MarcaDTO> marcas = GestorVehiculo.getAllMarcaDTOs();
+		ObservableList<MarcaDTO> op = FXCollections.observableArrayList(marcas);
 		marca.setItems(op);
 
 	}
@@ -288,23 +284,15 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	private void setModelos() {
 		
 		try {
-		
-		if(marca.getValue()!=null) {
-			errorFaltaMarca.setVisible(false);
-			MarcaDTO marcaD = new MarcaDTO();
-			marcaD.setNombre(marca.getValue().toString());
-			
-			ObservableList<String> op = FXCollections.observableArrayList(GestorVehiculo.getModelosByMarca(marcaD).stream().
-					map(ModeloDTO::getNombre).
-					toList());			
-			
-			modelo.setItems(op);
-			
-		}
-		else {
-			errorFaltaMarca.setVisible(false);
-		}
-		
+			MarcaDTO marcaSelect = marca.getValue();
+			if(marcaSelect!=null) {
+				errorFaltaMarca.setVisible(false);				
+				ObservableList<ModeloDTO> op = FXCollections.observableArrayList(GestorVehiculo.getModelosByMarca(marcaSelect));
+				modelo.setItems(op);
+			}
+			else {
+				errorFaltaMarca.setVisible(false);
+			}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -316,33 +304,18 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	private void setAnios()  {
 		
 		try {
-		
-		if(modelo.getValue()!=null) {
-			errorFaltaModelo.setVisible(false);
-			
-			ModeloDTO modeloD = new ModeloDTO();
-			modeloD.setNombre(modelo.getValue().toString());
-			
-			
-			ObservableList<String> op = FXCollections.observableArrayList(
-				    GestorVehiculo.getAniosByModelo(modeloD).stream()
-				        .map(anioModeloDTO -> Objects.toString(anioModeloDTO.getAnio(), ""))
-				        .collect(Collectors.toList())
-				);
-
-			anio.setItems(op);
-			
-			
-			
-		} else {
-			errorFaltaModelo.setVisible(true);
-		}
-		
+			ModeloDTO modeloSelect = modelo.getValue();
+			if(modelo!=null) {
+				errorFaltaModelo.setVisible(false);				
+				ObservableList<AnioModeloDTO> op = FXCollections.observableArrayList(GestorVehiculo.getAniosByModelo(modeloSelect));
+				anio.setItems(op);				
+			} else {
+				errorFaltaModelo.setVisible(true);
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		
 		
 	}
 	
@@ -381,7 +354,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	
 	private boolean motorYaExiste(String motor) {
-		
 		return GestorVehiculo.existeMotor(motor);
 	}
 	
