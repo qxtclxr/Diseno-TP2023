@@ -1,6 +1,7 @@
 package tp.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -55,5 +56,13 @@ public class PolizaDAO extends AbstractDAO<Poliza> {
 		TypedQuery<Poliza> tq = this.getEntityManager().createQuery(cQuery).setParameter("patente", patente);
 		List<Poliza> ret = tq.getResultList();
 		return ret;
+	}
+	public Optional<Poliza> getByNumero(String numPoliza){
+		CriteriaBuilder cb=this.getEntityManager().getCriteriaBuilder();
+		CriteriaQuery<Poliza> cq= cb.createQuery(Poliza.class);
+		Root<Poliza> from = cq.from(Poliza.class);
+		cq.select(from).where(cb.equal(from.get("nroPoliza"), numPoliza));
+		TypedQuery<Poliza> query=this.getEntityManager().createQuery(cq);
+		return Optional.ofNullable(query.getSingleResult());
 	}
 }

@@ -23,8 +23,8 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 		Root<Cliente> root =cQuery.from(Cliente.class);
 		
 		cQuery.select(root).where(cbuild.equal(root.get("nroCliente"), nroCliente));
-		Query query = this.getEntityManager().createQuery(cQuery);
-		return Optional.ofNullable((Cliente)query.getSingleResult());
+		TypedQuery<Cliente> query = this.getEntityManager().createQuery(cQuery);
+		return Optional.ofNullable(query.getSingleResult());
 	}
 	
 	public List<Cliente> buscarCliente(String nroCliente, String apellido, String nombre, TipoDocumento tipoDoc, String nroDoc){
