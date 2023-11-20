@@ -14,7 +14,7 @@ public class PaisDAO extends AbstractDAO<Pais> {
 	public PaisDAO() {
 		this.setClase(Pais.class);
 	}
-	Optional<Pais> getPaisByNombre(String nombre){
+	public Optional<Pais> getPaisByNombre(String nombre){
 		CriteriaBuilder cb = this.getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<Pais> cq = cb.createQuery(Pais.class);
 		Root<Pais> from = cq.from(Pais.class);

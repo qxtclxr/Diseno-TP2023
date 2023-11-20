@@ -2,8 +2,6 @@ package tp.gui.altapoliza;
 
 import tp.dto.*;
 import tp.logica.*;
-import tp.entidad.*;
-import tp.exception.ObjetoNoEncontradoException;
 import tp.gui.buscarcliente.BuscarClienteController;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -11,44 +9,60 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import tp.app.App;
 
-public class AltaPolizaFormularioPolizaController {
+public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	
 	
 	private PolizaDTO poliza = new PolizaDTO();
 	
 	@FXML
-	private Label pruebaNombre;
+	private Text columnaCliente;
+	@FXML
+	private Text columnaNombre;
+	@FXML
+	private Text columnaApellido;
+	@FXML
+	private Text columnaTipoDoc;
+	@FXML
+	private Text columnaNroDoc;
+	@FXML
+	private Text columnaDirec;
+	
+	@FXML
+	private TextFlow sumaAsegurada;
 	
 	@FXML
 	private Button declararHijos;
 	@FXML 
-	private ComboBox localidad;
+	private ComboBox<LocalidadDTO> localidad;
 	@FXML
-	private ComboBox provincia;
+	private ComboBox<ProvinciaDTO> provincia;
 	@FXML 
-	private ComboBox marca;
+	private ComboBox<MarcaDTO> marca;
 	@FXML
-	private ComboBox vehiculo;
+	private ComboBox<ModeloDTO> modelo;
 	@FXML
-	private ComboBox anio;
+	private ComboBox<AnioModeloDTO> anio;
 	@FXML
-	private ComboBox kmsRealizadosPorAnio;
+	private ComboBox<RangoKMRealizadosDTO> kmsRealizadosPorAnio;
 	@FXML
-	private ComboBox nroDeSiniestrosUltAnio;
+	private ComboBox<RangoCantSiniestrosDTO> nroDeSiniestrosUltAnio;
 	@FXML
 	private Label errorNroDeSiniestrosUltAnio;
 	@FXML
@@ -90,10 +104,33 @@ public class AltaPolizaFormularioPolizaController {
 	 
 	 @FXML
 	 private Label contadorHijosDeclarados;
-	
+	 @FXML
+	 private Label errorFaltaProvincia;
+	 @FXML
+	 private Label errorFaltaModelo;
+	 @FXML
+	 private Label errorFaltaMarca;
+
+  /*
+	public void mostrarDatosPoliza( ) {
+		
+		motor.setText(poliza.getVehiculo().getMotor());
+		chasis.setText(poliza.getVehiculo().getChasis());
+		patente.setText(poliza.getVehiculo().getPatente());
+		localidad.setValue(poliza.getLocalidad().getNombre());
+		provincia.setValue(poliza.getLocalidad().getProvincia().getNombre());
+		marca.setValue(poliza.getVehiculo().getModelo().getModelo().getMarca());
+		modelo.setValue(poliza.getVehiculo().getModelo().getModelo().getNombre());
+		anio.setValue(Integer.toString(poliza.getVehiculo().getModelo().getAnio()));
+		kmsRealizadosPorAnio.setValue(poliza.getKmRealizados().getNombre());
+		nroDeSiniestrosUltAnio.setValue(poliza.getCantidadSiniestros().getNombre());
+		
+	}
+  */
+	 
 	public void setClienteDTO(ClienteDTO clienteDTO) throws IOException {
 		poliza.setCliente(clienteDTO);
-		this.pruebaNombre.setText(this.poliza.getCliente().getNombre());
+		
 	}
 	
 	public void setPolizaDTO(PolizaDTO poliza) {
@@ -103,17 +140,18 @@ public class AltaPolizaFormularioPolizaController {
 	@FXML
 	private void confirmarClicked(ActionEvent action) throws IOException {
 		
+		
 		if(this.validarDatos()) {
 			
 		this.cargarDatosFormulario();
 		
 		FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
-   
+		AltaPolizaFormularioCoberturaController formularioCoberturaC = new AltaPolizaFormularioCoberturaController();
+		formularioCoberturaC.setPolizaDTO(this.poliza);
+		loader.setController(formularioCoberturaC);
+		loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
     	AnchorPane form = loader.load();
-    	
-    	AltaPolizaFormularioCoberturaController formularioCoberturaC = loader.getController();
-    	formularioCoberturaC.setPolizaDTO(this.poliza);
+    	//formularioCoberturaC = loader.getController();
     	
     	App.switchScreenTo(form);
     	
@@ -125,43 +163,44 @@ public class AltaPolizaFormularioPolizaController {
 	@FXML 
 	private void volverAtrasClicked( ActionEvent action ) throws IOException {
 		
-		
 		FXMLLoader loader = new FXMLLoader();
+		BuscarClienteController buscarClienteC = new BuscarClienteController();
+		buscarClienteC.setClienteDTO(this.poliza.getCliente());
     	loader.setLocation(getClass().getResource("../buscarcliente/BuscarCliente.fxml"));
     	AnchorPane form = loader.load();
-    	
-    	BuscarClienteController buscarClienteC = loader.getController();
-    	buscarClienteC.setClienteDTO(poliza.getCliente());
-    	
+    	buscarClienteC = loader.getController();
     	
     	App.switchScreenTo(form);
     	
 	}
 	
-
-	 
-	 
+	public void setHijosDeclarados(List<HijoDeclaradoDTO> l) {
+		poliza.setHijosDeclarados(l);
+	}
+	
 	@FXML
 	private void declararHijosClicked(ActionEvent action) throws IOException {
-	    // Cargar el archivo FXML
 	    FXMLLoader loader = new FXMLLoader();
+	    DeclararHijosController declararHijosC = new DeclararHijosController();
+	    declararHijosC.setListaHijos(this.poliza.getHijosDeclarados());
+	    loader.setController(declararHijosC);
 	    loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
+
+	    // Cargar el formulario en un AnchorPane
 	    AnchorPane form = loader.load();
 
-	    // Crear una nueva ventana modal
-	    Stage ventanaModal = new Stage();
-	    ventanaModal.initModality(Modality.APPLICATION_MODAL);
-	    ventanaModal.setTitle("Declarar Hijos");
+	    // Crear un nuevo Stage (ventana) para mostrar el formulario como modal
+	    Stage modalStage = new Stage();
+	    modalStage.initModality(Modality.APPLICATION_MODAL);
+	    modalStage.setTitle("Declarar Hijos");
 
-	    // Configurar el contenido de la ventana modal
-	    Scene modalScene = new Scene(form);
-	    ventanaModal.setScene(modalScene);
-
+	    // Configurar el formulario en la nueva ventana modal
+	    Scene scene = new Scene(form);
+	    modalStage.setScene(scene);
+	    
 	    // Mostrar la ventana modal y esperar hasta que se cierre
-	    ventanaModal.showAndWait();
+	    modalStage.showAndWait();
 	}
-
-
 	
 	private void setErroresFalse() {
 		errorNroDeSiniestrosUltAnio.setVisible(false);
@@ -174,38 +213,120 @@ public class AltaPolizaFormularioPolizaController {
 		errorFormatoPatente.setVisible(false);
 		errorKmsRealizadosPorAnio.setVisible(false);
 	}
-	@FXML
-	private void setProvincia() throws ObjetoNoEncontradoException {
-		PaisDTO pais = new PaisDTO();
-		pais.setId(Long.valueOf(1));
-		ObservableList<String> opProvincia = FXCollections.observableArrayList(GestorLocalizacion.getProvinciasByPais(pais).stream().
-				map(ProvinciaDTO::getText).
-				toList());
-		provincia.setItems(opProvincia);
+	
+	
+	private void setProvincia() {
+		
+		try {
+			PaisDTO paisSelect = GestorLocalizacion.getPaisDTOByNombre("Argentina");
+			ObservableList<ProvinciaDTO> opProvincia = FXCollections.observableArrayList(GestorLocalizacion.getProvinciasByPais(paisSelect));
+			provincia.setItems(opProvincia);		
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML
-	private void setLocalidades() throws ObjetoNoEncontradoException {
-		GestorLocalizacion g = new GestorLocalizacion();
-		ProvinciaDTO p = new ProvinciaDTO();
-		p.setId(Long.valueOf(1));
-		ObservableList<String> opLocalidad = FXCollections.observableArrayList(GestorLocalizacion.getLocalidadesByProvincia(p).stream().
-				map(LocalidadDTO::getText).
-				toList());
-		localidad.setItems(opLocalidad);
+	private void setLocalidades() {
+		
+		try {
+			ProvinciaDTO provSelect = provincia.getValue();
+			if(provSelect != null) {
+				errorFaltaProvincia.setVisible(false);
+				ObservableList<LocalidadDTO> opLocalidad = FXCollections.observableArrayList(GestorLocalizacion.getLocalidadesByProvincia(provSelect));
+				localidad.setItems(opLocalidad);
+			}
+			else {
+				errorFaltaProvincia.setVisible(true);
+			}
+		}
+		catch(Exception e){
+				e.printStackTrace();
+		}
 		
 	}	
+
 	
-	private void setMarcaVehiculoAnio( ) {
+	private void setMarcas( ) {
 		
-		//Traer todo de la base de datos
-		
-		ObservableList<String> op= FXCollections.observableArrayList("op1","op2");
+		List<MarcaDTO> marcas = GestorVehiculo.getAllMarcaDTOs();
+		ObservableList<MarcaDTO> op = FXCollections.observableArrayList(marcas);
 		marca.setItems(op);
-		vehiculo.setItems(op);
-		anio.setItems(op);
+
+	}
+	
+	@FXML
+	private void setModelos() {
+		try {
+			MarcaDTO marcaSelect = marca.getValue();
+			if(marcaSelect!=null) {
+				errorFaltaMarca.setVisible(false);				
+				ObservableList<ModeloDTO> op = FXCollections.observableArrayList(GestorVehiculo.getModelosByMarca(marcaSelect));
+				modelo.setItems(op);
+			}
+			else {
+				errorFaltaMarca.setVisible(false);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private void setAnios()  {
+		try {
+			ModeloDTO modeloSelect = modelo.getValue();
+			if(modelo!=null) {
+				errorFaltaModelo.setVisible(false);				
+				ObservableList<AnioModeloDTO> op = FXCollections.observableArrayList(GestorVehiculo.getAniosByModelo(modeloSelect));
+				anio.setItems(op);				
+			} else {
+				errorFaltaModelo.setVisible(true);
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		
 	}
+	
+	@FXML
+	private void setSumaAsegurada() {
+		sumaAsegurada.getChildren().clear();
+		AnioModeloDTO anioSelect = anio.getValue();
+		if(anioSelect!=null) {
+			sumaAsegurada.getChildren().add(new Text(String.valueOf(anioSelect.getValoracion())));
+		}
+	}
+	
+	/*
+	private void setSumaAsegurada() {
+	    try {
+	        if (anio.getValue() != null && modelo.getValue() != null && marca.getValue() != null) {
+	            MarcaDTO marcaD = new MarcaDTO();
+	            marcaD.setNombre(marca.getValue().toString());
+
+	            
+	            ModeloDTO modelo1 = GestorVehiculo.getModelosByMarca(marcaD)
+	                    .stream()
+	                    .filter(p -> p.getNombre().equals(modelo.getValue().toString()))
+	                    .collect(Collectors.toList()) 
+	                    .get(0);
+	      
+
+	            
+	            
+	            //sumaAsegurada.setValue(valoracion);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	 */
+	
 	
 	
 	private void setContadorHijosDeclarados() {
@@ -216,17 +337,11 @@ public class AltaPolizaFormularioPolizaController {
 	
 	
 	private boolean motorYaExiste(String motor) {
-		
-		boolean existe = false;
-		//Se debe consultar a la base de datos si existe
-		return existe;
+		return GestorVehiculo.existeMotor(motor);
 	}
 	
 	private boolean chasisYaExiste(String chasis) {
-		
-		boolean existe = false;
-		//Se debe consultar a la base de datos si existe
-		return existe;
+		return GestorVehiculo.existeChasis(chasis);
 	}
 	
 	
@@ -266,6 +381,10 @@ public class AltaPolizaFormularioPolizaController {
 	
 	private boolean patenteFormatoCorrecto(String patente) {
 		
+		if (patente == null || patente.isEmpty()) {
+			return true;
+		}
+		
 	    // Definir el patrón de la expresión regular para el formato de patente
         String patron = "^[A-Z]{2,3}\\s?\\d{3}\\s?[A-Z]{0,3}$";
 
@@ -278,10 +397,9 @@ public class AltaPolizaFormularioPolizaController {
         // Verificar si la patente cumple con el formato
         return matcher.matches();
 		
-		
-		
 	}
 	
+	/*
 	private void testDatosFormulario( ) { 
 		
 		//Borrar esto antes de entregar 
@@ -290,7 +408,7 @@ public class AltaPolizaFormularioPolizaController {
 		this.localidad.setValue("Esperanza");
 		this.motor.setText("A1S2D3F4G5");
 		this.marca.setValue("Ford");
-		this.vehiculo.setValue("Focus");
+		this.modelo.setValue("Focus");
 		this.anio.setValue("2015");
 		this.chasis.setText("12345678A90");
 		this.patente.setText("ABC123");
@@ -299,110 +417,140 @@ public class AltaPolizaFormularioPolizaController {
 		
 		
 	}
+	*/
 		
 	private void cargarDatosFormulario() {
 		
-		VehiculoDTO vehiculoD = new VehiculoDTO();
+		poliza.setLocalidad(localidad.getValue());
+		
+		VehiculoDTO vehiculoDto = new VehiculoDTO();
+		vehiculoDto.setChasis(chasis.getText());
+		vehiculoDto.setMotor(motor.getText());
+		vehiculoDto.setPatente(patente.getText());
+		vehiculoDto.setModelo(anio.getValue());
+		poliza.setVehiculo(vehiculoDto);
+		
+		poliza.setSumaAsegurada(anio.getValue().getValoracion());
+		//poliza.setKmRealizados(kmsRealizadosPorAnio.getValue());
+		//poliza.setCantidadSiniestros(this.nroDeSiniestrosUltAnio.getValue());
+		//getMedidasDeSeguridad
+		
 		AnioModeloDTO anioD = new AnioModeloDTO();
 		ModeloDTO modeloD = new ModeloDTO();
 		MarcaDTO marcaD = new MarcaDTO();
 		RangoKMRealizadosDTO rangoD = new RangoKMRealizadosDTO(); 
 		RangoCantSiniestrosDTO rangoCsD = new RangoCantSiniestrosDTO();
+		LocalidadDTO localidadD = new LocalidadDTO();
+		ProvinciaDTO provinciaD = new ProvinciaDTO();
+		PaisDTO paisD = new PaisDTO();
 		
 		
-		vehiculoD.setChasis(chasis.getText());
-		vehiculoD.setMotor(motor.getText());
-		vehiculoD.setPatente(patente.getText());
 		anioD.setAnio( Integer.parseInt(anio.getValue().toString()) );
 		anioD.setModelo(modeloD);
-		modeloD.setNombre(vehiculo.getValue().toString());
+		modeloD.setNombre(modelo.getValue().toString());
 		marcaD.setNombre(marca.getValue().toString());
-		vehiculoD.setModelo(anioD);
+		modeloD.setMarca(marcaD);
+		vehiculoDto.setModelo(anioD);
 		rangoD.setNombre(kmsRealizadosPorAnio.getValue().toString());
 		rangoCsD.setNombre(nroDeSiniestrosUltAnio.getValue().toString());
+		paisD.setNombre("Argentina");
+		provinciaD.setNombre(provincia.getValue().toString());
+		provinciaD.setPais(paisD);
+		localidadD.setNombre(localidad.getValue().toString());
+		localidadD.setProvincia(provinciaD);
 		poliza.setCantidadSiniestros(rangoCsD);
 		poliza.setKmRealizados(rangoD);
-		poliza.setVehiculo(vehiculoD);
-		
-		
-		
-	}
-	
-	
-	@FXML
-	public void initialize( ) {
-		
-		
-		this.setErroresFalse();
-		
-		this.setMarcaVehiculoAnio();
-		
-		this.setContadorHijosDeclarados();
-	
-		this.testDatosFormulario(); // deberia ser reeplazo por una funcion que tome los valores de poliza 
-		
-		this.cargarDatosFormulario();
-		
-		ObservableList<String> opKmsRealizadosPorAnio = FXCollections.observableArrayList("Hasta 10000 Km","Hasta 20000 Km", "Hasta 30000 Km","Hasta 40000 Km", "Mas de 40000 Km");
-		kmsRealizadosPorAnio.setItems(opKmsRealizadosPorAnio);
-		
-		ObservableList<String> opNroSiniestrosUltAnio = FXCollections.observableArrayList("Ninguno", "1", "2", "Mas de 2");
-		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
+		poliza.setVehiculo(vehiculoDto);
+		poliza.setLocalidad(localidadD);
 		
 		
 	}
+	
+	public void mostrarCliente( ) {
+		ClienteDTO cliente = poliza.getCliente();
+		columnaCliente.setText(cliente.getNroCliente());
+		columnaNombre.setText(cliente.getNombre());
+		columnaApellido.setText(cliente.getApellido());
+		columnaTipoDoc.setText(cliente.getTipoDocumento().toString());
+		columnaNroDoc.setText(cliente.getNroDocumento());
+		//columnaDirec.setText(cliente.getDomicilio().toString());		
+	}
+	
 	public boolean validarDatos( ) {
 		
 		boolean datosValidos = true;
 		
 		
-		//Comprueba domicilio de riesgo
+		//Comprueba domicilio de riesgo - Pruebo si se pone de rojo el fondo en la segunda linea del if
 	    if ((provincia.getValue() == null || localidad.getValue()==null) || localidad.getValue().toString().isEmpty() || provincia.getValue().toString().isEmpty()) {
 	        errorDomicilioRiesgo.setVisible(true);
+	        //rojoDomicilioRiesgo.setOpacity(0.1);
+	        provincia.setStyle("-fx-background-color: #fa8e8e;");
+	        localidad.setStyle("-fx-background-color: #fa8e8e;");
 	        datosValidos = false;
 	    } else {
 	       errorDomicilioRiesgo.setVisible(false);
+	        provincia.setStyle("-fx-background-color: white;");
+	        localidad.setStyle("-fx-background-color: white;");
+
 	    }
 	    
 	    //Comprueba marca vehiculo y anio
-	    if((marca.getValue()==null || vehiculo.getValue()==null|| anio.getValue()==null)
-	    		|| (marca.getValue().toString().isEmpty() || vehiculo.getValue().toString().isEmpty() || anio.getValue().toString().isEmpty())) {
+	    if((marca.getValue()==null || modelo.getValue()==null|| anio.getValue()==null)
+	    		|| (marca.getValue().toString().isEmpty() || modelo.getValue().toString().isEmpty() || anio.getValue().toString().isEmpty())) {
 	    	
 	    	errorMarcaVehiculoAnio.setVisible(true);
+	    	//rojoMarca.setOpacity(0.1);
+	    	marca.setStyle("-fx-background-color: #fa8e8e;");
+	    	modelo.setStyle("-fx-background-color: #fa8e8e;");
+	    	anio.setStyle("-fx-background-color: #fa8e8e;");
 	    	datosValidos = false;
 	    }
 	    else {
 	    	errorMarcaVehiculoAnio.setVisible(false);
+	    	marca.setStyle("-fx-background-color: white;");
+	    	modelo.setStyle("-fx-background-color: white;");
+	    	anio.setStyle("-fx-background-color: white;");
 	    }
 	    
 	    //comprueba nroDeSiniestrosUltAnio
 	    
 	    if(nroDeSiniestrosUltAnio.getValue()==null || nroDeSiniestrosUltAnio.getValue().toString().isEmpty() ) {
 	    	errorNroDeSiniestrosUltAnio.setVisible(true);
+	    	//rojoNroSiniestro.setOpacity(0.1);
+	    	nroDeSiniestrosUltAnio.setStyle("-fx-background-color: #fa8e8e;");
 	    	datosValidos = false;
 	    }else {
 	    	errorNroDeSiniestrosUltAnio.setVisible(false);
+	    	nroDeSiniestrosUltAnio.setStyle("-fx-background-color: white;");
 	    }
 		
 	    //comprueba KmsRealizadosPorAnio
 	    
 	    if(kmsRealizadosPorAnio.getValue()==null || kmsRealizadosPorAnio.getValue().toString().isEmpty() ) {
 	    	errorKmsRealizadosPorAnio.setVisible(true);
+	    	//rojoKM.setOpacity(0.1);
+	    	kmsRealizadosPorAnio.setStyle("-fx-background-color: #fa8e8e;");
 	    	datosValidos = false;
 	    }else {
 	    	errorKmsRealizadosPorAnio.setVisible(false);
+	    	kmsRealizadosPorAnio.setStyle("-fx-background-color: white;");
 	    }
 	    
 	    //comprueba el motor
 	    
 	    if(motor.getText() == null) {
 	    	errorFormatoMotor.setVisible(true);
+	    	//rojoMotor.setOpacity(0.1);
+	    	motor.setStyle("-fx-background-color: #fa8e8e;");
 	    	datosValidos = false;
 	    }else {
 	    	errorFormatoMotor.setVisible(false);
 	    	
 	    	if(this.motorYaExiste(motor.getText())){
 	    		errorMotorYaExiste.setVisible(true);
+	    		//rojoMotor.setOpacity(0.1);
+	    		motor.setStyle("-fx-background-color: #fa8e8e;");
 	    		datosValidos = false;
 	    	}
 	    	else {
@@ -411,47 +559,65 @@ public class AltaPolizaFormularioPolizaController {
 	    	
 	    	if(!this.motorFormatoCorrecto(motor.getText())) {
 	    		errorFormatoMotor.setVisible(true);
+	    		//rojoMotor.setOpacity(0.1);
+	    		motor.setStyle("-fx-background-color: #fa8e8e;");
 	    		datosValidos = false;
 	    	}else {
 	    		errorFormatoMotor.setVisible(false);
+	    		motor.setStyle("-fx-background-color: white;");
 	    	}
 	    	
 	    	//comprueba el chasis
 	    	
 		    if(chasis.getText() == null) {
 		    	errorFormatoChasis.setVisible(true);
+		    	chasis.setStyle("-fx-background-color: #fa8e8e;");
+		    	//rojoChasis.setOpacity(0.1);
 		    	datosValidos = false;
 		    }else {
 		    	errorFormatoChasis.setVisible(false);
+		    	chasis.setStyle("-fx-background-color: white;");
 		    	
 		    	if(this.chasisYaExiste(chasis.getText())){
 		    		errorChasisYaExiste.setVisible(true);
+		    		//rojoChasis.setOpacity(0.1);
+		    		chasis.setStyle("-fx-background-color: #fa8e8e;");
 		    		datosValidos = false;
 		    	}
 		    	else {
 		    		errorChasisYaExiste.setVisible(false);
+		    		chasis.setStyle("-fx-background-color: white;");
 		    	}
 		    	
 		    	if(!this.chasisFormatoCorrecto(chasis.getText())) {
 		    		errorFormatoChasis.setVisible(true);
+		    		//rojoChasis.setOpacity(0.1);
+		    		chasis.setStyle("-fx-background-color: #fa8e8e;");
 		    		datosValidos = false;
 		    	}else {
 		    		errorFormatoChasis.setVisible(false);
+		    		chasis.setStyle("-fx-background-color: white;");
 		    	}
 		    	
 	    	
-	    	//comprueba la patente
+	    	//comprueba la patente - Prueba de setear color rojo el fondo
 	    	
 	    	if(patente.getText()==null) {
 	    		errorFormatoPatente.setVisible(true);
+	    		//rojoPatente.setOpacity(0.1);
+	    		patente.setStyle("-fx-background-color: #fa8e8e;");
 	    		datosValidos = false;
 	    	}
 	    	else {
 	    		if(!this.patenteFormatoCorrecto(patente.getText())) {
 		    		errorFormatoPatente.setVisible(true);
+		    		//rojoPatente.setOpacity(0.1);
+		    		patente.setStyle("-fx-background-color: #fa8e8e;");
 		    		datosValidos = false;
 	    		}else {
 	    			errorFormatoPatente.setVisible(false);
+		    		patente.setStyle("-fx-background-color: white;");
+
 	    		}
 	    	}
 	    	
@@ -464,5 +630,54 @@ public class AltaPolizaFormularioPolizaController {
 		return datosValidos;
 	}
 
+	public void setKms() {
+		ObservableList<RangoKMRealizadosDTO> opKmsRealizadosPorAnio = FXCollections.observableArrayList(GestorRangoKMRealizados.getAllDTOs());
+		kmsRealizadosPorAnio.setItems(opKmsRealizadosPorAnio);
+	}
+	
+	public void setSiniestros() {
+		ObservableList<RangoCantSiniestrosDTO> opNroSiniestrosUltAnio = FXCollections.observableArrayList(GestorRangoCantSiniestros.getAllDTOs());
+		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
+	}
+	
+	public void habilitarLocalidad() {
+		localidad.setDisable(false);
+	}
+	
+	public void habilitarModelo() {
+		modelo.setDisable(false);
+	}
+	
+	public void habilitarAnio() {
+		anio.setDisable(false);
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+		this.mostrarCliente();
+		
+		this.setErroresFalse();
+		
+		this.setMarcas();
+		
+		this.setProvincia();
+		
+		this.setContadorHijosDeclarados();
+		
+		this.setKms();
+		
+		this.setSiniestros();
+	
+		//this.testDatosFormulario(); // deberia ser reeplazo por una funcion que tome los valores de poliza 
+		
+		//this.cargarDatosFormulario();
+		
+		
+		
+
+	}
+
+		
 	
 }

@@ -27,7 +27,7 @@ public class GestorMedidaDeSeguridad {
 		return dao.getAll();
 	}
 	
-	public static List<MedidaDeSeguridadDTO> getAllDAOs(){
+	public static List<MedidaDeSeguridadDTO> getAllDTOs(){
 		List<MedidaDeSeguridad> medidas = getAll();
 		List<MedidaDeSeguridadDTO> medidasDto = medidas.stream().
 				map(entidad -> getDTO(entidad)).

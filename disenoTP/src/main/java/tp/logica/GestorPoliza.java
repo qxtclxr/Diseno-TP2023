@@ -96,7 +96,7 @@ public class GestorPoliza {
 			ValoresParaVehiculoExistentesException,
 			AutoMuyViejoParaCoberturaElegidaException,
 			ObjetoNoEncontradoException {
-		validarDTO(dto);		
+		validarDTO(dto);
 		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
 		dao.saveInstance(poliza);
@@ -104,7 +104,6 @@ public class GestorPoliza {
 	}
 	
 	
-	//TODO: Esto probablemente haya que hacerlo de nuevo.
 	public static float calcularPremio(PolizaDTO dto) {
 		FactorCaracteristicoDTO factores = dto.getFactores();
 		float porcentaje = 0;

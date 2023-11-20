@@ -27,6 +27,20 @@ public class GestorLocalizacion {
 		return objeto;
 	}
 	
+	public static PaisDTO getPaisDTOByNombre(String nombre)
+			throws ObjetoNoEncontradoException {
+		Pais objeto = getPaisByNombre(nombre);
+		PaisDTO dto = getPaisDTO(objeto);
+		return dto;
+	}
+	
+	public static Pais getPaisByNombre(String nombre)
+			throws ObjetoNoEncontradoException{
+		PaisDAO dao = new PaisDAO();
+		Pais objeto = dao.getPaisByNombre(nombre).orElseThrow(() -> new ObjetoNoEncontradoException());
+		return objeto;
+	}
+	
 	public static LocalidadDTO getLocalidadDTO(Localidad entidad) {
 		LocalidadDTO dto = new LocalidadDTO();
 		dto.setId(entidad.getIdLocalidad());
@@ -50,7 +64,8 @@ public class GestorLocalizacion {
 		return dto;
 	}
 	
-	public static List<ProvinciaDTO> getProvinciasByPais(PaisDTO paisDto) throws ObjetoNoEncontradoException{
+	public static List<ProvinciaDTO> getProvinciasByPais(PaisDTO paisDto)
+			throws ObjetoNoEncontradoException{
 		Pais pais = getPais(paisDto);
 		List<Provincia> provincias = getProvinciasByPais(pais);
 		List<ProvinciaDTO> provinciasDto = provincias.stream().
@@ -66,7 +81,8 @@ public class GestorLocalizacion {
 		
 	}
 	
-	public static List<LocalidadDTO> getLocalidadesByProvincia(ProvinciaDTO provinciaDto) throws ObjetoNoEncontradoException{
+	public static List<LocalidadDTO> getLocalidadesByProvincia(ProvinciaDTO provinciaDto)
+			throws ObjetoNoEncontradoException{
 		Provincia provincia = getProvincia(provinciaDto);
 		List<Localidad> localidades = getLocalidadesByProvincia(provincia);
 		List<LocalidadDTO> localidadesDto = localidades.stream().
@@ -94,8 +110,26 @@ public class GestorLocalizacion {
 		return datosPresentes;
 	}
 
-	public static FactorRiesgoLocalidad getPorcentajeRiesgoLocalidadActual(LocalidadDTO dto) throws ObjetoNoEncontradoException {
+	public static FactorRiesgoLocalidad getPorcentajeRiesgoLocalidadActual(LocalidadDTO dto)
+			throws ObjetoNoEncontradoException {
 		Localidad localidad = getLocalidad(dto);
 		return localidad.getValorActualFactorRiesgo();
+	}
+	
+	public static Domicilio getDomicilio(DomicilioDTO dto) throws ObjetoNoEncontradoException {
+		DomicilioDAO dao = new DomicilioDAO();
+		return dao.getById(dto.getId()).orElseThrow(() -> new ObjetoNoEncontradoException());
+	}
+	
+	public static DomicilioDTO getDomicilioDTO(Domicilio domicilio) {
+		DomicilioDTO dto = new DomicilioDTO();
+		dto.setCalle(domicilio.getCalle());
+		dto.setCodigoPostal(domicilio.getCodigoPostal());
+		dto.setDpto(domicilio.getDpto());
+		dto.setId(domicilio.getIdDomicilio());
+		dto.setNumero(domicilio.getNumero());
+		dto.setPiso(domicilio.getPiso());
+		dto.setLocalidad(getLocalidadDTO(domicilio.getLocalidad()));
+		return dto;
 	}
 }

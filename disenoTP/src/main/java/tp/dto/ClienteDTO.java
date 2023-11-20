@@ -8,6 +8,7 @@ public class ClienteDTO {
 	private String nombre;
 	private TipoDocumento tipoDocumento;
 	private String nroDocumento;
+	private DomicilioDTO domicilio;
 	
 	public String getNroCliente() {
 		return nroCliente;
@@ -39,5 +40,11 @@ public class ClienteDTO {
 	public void setNroDocumento(String nroDocumento) {
 		this.nroDocumento = nroDocumento;
 	}
-
+	public DomicilioDTO getDomicilio() {
+		return domicilio;
+	}
+	public void setDomicilio(DomicilioDTO domicilio) {
+		this.domicilio = domicilio;
+	}
+	
 }

@@ -1,6 +1,5 @@
 package tp.logica;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +10,6 @@ import tp.dao.*;
 
 public class GestorVehiculo {
 	
-	//TODO: A los tres le falta fijarse si la patente es vigente
 	public static boolean existePatente(String patente) {
 		if(patente==null) {
 			return false;

@@ -1,15 +1,25 @@
 package tp.gui.altapoliza;
 
+import tp.app.App;
+import tp.dto.*;
+import tp.entidad.*;
+import tp.gui.buscarcliente.BuscarClienteController;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 public class DeclararHijosController {
 	
@@ -29,7 +39,29 @@ public class DeclararHijosController {
 	private Button agregarHijo;
 	@FXML 
 	private DatePicker fechaNacimiento;
-
+	
+	private List<HijoDeclaradoDTO> listaHijos;
+	
+	
+	public void setListaHijos(List<HijoDeclaradoDTO> l) {
+		listaHijos = l;
+	}
+	
+	@FXML
+	public void volverAtrasClicked( ActionEvent action ) throws IOException{
+		FXMLLoader loader = new FXMLLoader();
+    	AltaPolizaFormularioPolizaController altaPolizaC = new AltaPolizaFormularioPolizaController();
+    	altaPolizaC.setHijosDeclarados(listaHijos);
+    	loader.setController(altaPolizaC);
+    	
+    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
+    	AnchorPane form = loader.load();
+    	
+    	App.switchScreenTo(form);
+	}
+	
+	
+	
 	@FXML
 	public void initialize() {
 		
@@ -43,9 +75,58 @@ public class DeclararHijosController {
 
 	}
 	
+	private EstadoCivil getValueEstadoCivil() {
+		
+		if(estadoCivil.getValue().toString().equals("Casado/a")) {
+			return EstadoCivil.CASADO;
+		}
+		else if(estadoCivil.getValue().toString().equals("Soltero/a") ) {
+			return EstadoCivil.SOLTERO;
+		}
+		else if(estadoCivil.getValue().toString().equals("Viudo/a")) {
+			return EstadoCivil.VIUDO;
+		}else if(estadoCivil.getValue().toString().equals("Divorciado/a")) {
+			return EstadoCivil.DIVORCIADO;
+		}
+		
+		return null;
+		//Este return null es para que no tire error de compilacion
+		//Si ponen todos los returns dentro de los "if", Eclipse va a pensar que
+		//puede haber un camino que no entre a ningun "if" y no retorne nada.
+		//No es lo mas seguro tener un return null, deberian pensar otra manera
+	}
+	
+	private Sexo getValueSexo( ) {
+		if(sexo.getValue().toString().equals("Hombre")) {
+			return Sexo.MASCULINO;
+		}
+		else if(sexo.getValue().toString().equals("Mujer")){
+			return Sexo.FEMENINO;
+		}
+		return null;
+		//Este return null es para que no tire error de compilacion
+		//Si ponen todos los returns dentro de los "if", Eclipse va a pensar que
+		//puede haber un camino que no entre a ningun "if" y no retorne nada.
+		//No es lo mas seguro tener un return null, deberian pensar otra manera
+	}
+	
+	
+	private void addHijo( ) {
+	
+		HijoDeclaradoDTO hijo = new HijoDeclaradoDTO();
+		hijo.setFechaNacimiento(fechaNacimiento.getValue());
+		hijo.setEstadoCivil( this.getValueEstadoCivil() );
+		hijo.setSexo(this.getValueSexo() );
+		
+		listaHijos.add(hijo);
+		
+	}
+	
+	
 	@FXML
 	public void agregarHijoClicked() {
 		this.validarDatos();
+		this.addHijo();
 	}
 	@FXML
 	public void validarDatos() {

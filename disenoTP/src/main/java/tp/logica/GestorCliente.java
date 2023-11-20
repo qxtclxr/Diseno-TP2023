@@ -3,6 +3,7 @@ package tp.logica;
 import tp.dao.*;
 import tp.dto.*;
 import tp.entidad.*;
+import tp.exception.NoExisteRangoCantSiniestos;
 import tp.exception.ObjetoNoEncontradoException;
 
 import java.time.LocalDate;
@@ -23,7 +24,9 @@ public class GestorCliente {
 		return cliente;
 	}
 	
-	public static RangoCantSiniestrosDTO getCantidadDeSiniestrosPorCliente(ClienteDTO dto) throws ObjetoNoEncontradoException {
+	public static RangoCantSiniestrosDTO getCantidadDeSiniestrosPorCliente(ClienteDTO dto)
+			throws ObjetoNoEncontradoException,
+			NoExisteRangoCantSiniestos {
 		Cliente cliente = getCliente(dto);
 		RangoCantSiniestros siniestros = GestorRangoCantSiniestros.getRangoCantSiniestros(cliente.getCantSiniestrosCliente());
 		return GestorRangoCantSiniestros.getDTO(siniestros);

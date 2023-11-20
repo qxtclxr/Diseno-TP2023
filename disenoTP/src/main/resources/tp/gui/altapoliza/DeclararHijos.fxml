@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="432.0" prefWidth="768.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.gui.altapoliza.DeclararHijosController">
+<AnchorPane prefHeight="432.0" prefWidth="768.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="-85.0" layoutY="-152.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 10;">
          <children>
@@ -20,7 +20,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="31.0" layoutY="48.0" opacity="0.75" text="Declarar una cantidad de hijos de entre 18 y 30 anios" />
+      <Label layoutX="31.0" layoutY="48.0" opacity="0.75" text="Declarar una cantidad de hijos de entre 18 y 30 años" />
       <Label layoutX="22.0" layoutY="70.0" text="Fecha de nacimiento">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -53,7 +53,7 @@
             <TableColumn prefWidth="185.0" text="Estado Civil" />
         </columns>
       </TableView>
-      <Button layoutX="22.0" layoutY="393.0" mnemonicParsing="false" text="Volver atras" />
+      <Button fx:id="volverAtrasClicked" layoutX="22.0" layoutY="393.0" mnemonicParsing="false" text="Volver atras" />
       <Label fx:id="errorSexo" layoutX="229.0" layoutY="112.0" text="El campo esta incompleto" textFill="RED" visible="false">
          <font>
             <Font size="10.0" />

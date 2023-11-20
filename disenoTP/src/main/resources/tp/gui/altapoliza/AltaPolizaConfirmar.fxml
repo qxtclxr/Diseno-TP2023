@@ -55,37 +55,90 @@
                      <children>
                         <Label text="  Titular del seguro">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold Italic" size="12.0" />
                            </font>
                         </Label>
-                        <Label text="  Apellido" GridPane.rowIndex="1" />
+                        <Label text="  Apellido" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
                         <Label text="  Nombre" GridPane.rowIndex="2" />
                         <Label text="  Datos del vehículo" GridPane.rowIndex="3">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold Italic" size="12.0" />
                            </font>
                         </Label>
-                        <Label text="  Marca" GridPane.rowIndex="4" />
-                        <Label text="  Modelo" GridPane.rowIndex="5" />
-                        <Label text="  Motor" GridPane.rowIndex="6" />
-                        <Label text="  Chasis" GridPane.rowIndex="7" />
-                        <Label text="  Patente" GridPane.rowIndex="8" />
-                        <Label text="  Dirección de riesgo" GridPane.columnIndex="2" />
-                        <Label text="  Vigencia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label text="    Fecha de inicio" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label text="    Fecha de fin" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <Label text="  Último día de pago" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Label text="  Suma asegurada" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <Label text="  Premio" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                        <Label text="  Importes por descuentos" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                        <Label text="  Monto total a abonar" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                        <Label fx:id="apellido" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="nombre" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="marca" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="vehiculo" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label fx:id="motor" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label fx:id="chasis" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label fx:id="patente" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label text="  Marca" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Modelo" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Motor" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Chasis" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Patente" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Dirección de riesgo" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Vigencia" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="    Fecha de inicio" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="    Fecha de fin" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Último día de pago" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Suma asegurada" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Premio" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Importes por descuentos" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label text="  Monto total a abonar" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="apellido" text="Label" translateX="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="nombre" text="Label" translateX="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="marca" text="Label" translateX="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="modelo" text="Label" translateX="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="motor" text="Label" translateX="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="chasis" text="Label" translateX="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="patente" text="Label" translateX="10.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="direccionDeRiesgo" text="Label" translateX="10.0" GridPane.columnIndex="3" />
+                        <Label fx:id="inicioVigencia" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label fx:id="finalVigencia" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Label fx:id="ultimoDiaDePago" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Label fx:id="sumaAsegurada" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Label fx:id="premio" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                        <Label fx:id="importePorDescuento" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                        <Label fx:id="totalAbonar" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
                      </children>
                   </GridPane>
                   <Button layoutX="158.0" layoutY="515.0" mnemonicParsing="false" text="Confirmar" />

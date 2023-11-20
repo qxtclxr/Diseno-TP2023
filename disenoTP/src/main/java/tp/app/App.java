@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import tp.dao.*;
 import tp.entidad.*;
 import tp.util.EntityManagerUtil;
+import tp.util.Poblador;
+
 
 
 public class App extends Application {
@@ -21,8 +23,12 @@ public class App extends Application {
 	
     public static void main(String[] args) {
     	EntityManagerUtil.createEntityManagerFactory();
+      
+    	//Se crea un dao para que inicialice la conexion.
     	PolizaDAO dao = new PolizaDAO();
-    	//cargarDatos();
+      
+    	//IMPORTANTE: Solo descomentar esto para poblar la base de datos.
+    	//Poblador.poblar();
     	launch();
     }
 
@@ -64,23 +70,5 @@ public class App extends Application {
 
 	public static void setUsuarioLogeado(Usuario usuarioLogeado) {
 		App.usuarioLogeado = usuarioLogeado;
-	}
-	
-	public static void cargarDatos() {
-		LocalidadDAO dao = new LocalidadDAO();
-		Pais pais = new Pais();
-		Provincia prov = new Provincia();
-		Localidad local = new Localidad();
-		
-		pais.setNombre("Argentina");
-		pais.setCodPais("01");
-		
-		prov.setNombreProvincia("Entre Rios");
-		prov.setPais(pais);
-		
-		local.setNombre("Parana");
-		local.setProvincia(prov);
-		
-		dao.saveInstance(local);
 	}
 }
