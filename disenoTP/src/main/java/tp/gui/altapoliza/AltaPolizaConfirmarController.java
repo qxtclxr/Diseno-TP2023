@@ -77,15 +77,6 @@ public class AltaPolizaConfirmarController {
 	
 	@FXML
 	private void volverAtrasClicked(ActionEvent action) throws IOException {
-		
-		/*
-		FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
-    	
-    	loader.setController(formAtras);
-    	
-    	AnchorPane form = loader.load();
-    	*/
 		System.out.println(anterior);
     	App.switchScreenTo(anterior);
 	}

@@ -151,7 +151,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 		if(this.validarDatos()) {
 			this.cargarDatosFormulario();
-			
 			FXMLLoader loader = new FXMLLoader();
 			AltaPolizaFormularioCoberturaController formularioCoberturaC = new AltaPolizaFormularioCoberturaController();
 			

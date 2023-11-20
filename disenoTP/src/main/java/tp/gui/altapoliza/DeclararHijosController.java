@@ -24,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -35,8 +36,6 @@ public class DeclararHijosController {
 	private Label errorEstadoCivil;
 	@FXML
 	private Label errorFechaNacimiento;
-	@FXML 
-	private TableView tablaDeHijos;
 	
 	@FXML
 	private ComboBox sexo;
@@ -48,6 +47,7 @@ public class DeclararHijosController {
 	private Button volverAtras2;
 	@FXML 
 	private DatePicker fechaNacimiento;
+
 	@FXML
 	private TableColumn columnaFechaNacimiento = new TableColumn();
 	@FXML
@@ -55,6 +55,9 @@ public class DeclararHijosController {
 	@FXML
 	private TableColumn columnaEstadoCivil = new TableColumn();
 	
+	@FXML 
+	private TableView<HijoDeclaradoDTO> tablaDeHijos;
+
 	
 	private List<HijoDeclaradoDTO> listaHijos;
 	
@@ -89,7 +92,7 @@ public class DeclararHijosController {
 		
         ObservableList<HijoDeclaradoDTO> datosTabla = FXCollections.observableArrayList(listaHijos);
         tablaDeHijos.setItems(datosTabla);
-	
+        tablaDeHijos.refresh(); 
         
 	}
 
@@ -97,10 +100,14 @@ public class DeclararHijosController {
 	@FXML
 	public void initialize() {
 		
+		
         // Configurar las columnas
         columnaFechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
         columnaSexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
         columnaEstadoCivil.setCellValueFactory(new PropertyValueFactory<>("estadoCivil"));
+        
+        ObservableList<HijoDeclaradoDTO> datosTabla = FXCollections.observableArrayList(listaHijos);
+        tablaDeHijos.setItems(datosTabla);
 
         // Configurar las celdas de la columna de fecha de nacimiento para formatear la fecha
         columnaFechaNacimiento.setCellFactory(column -> {

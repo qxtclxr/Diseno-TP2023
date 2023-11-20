@@ -82,6 +82,7 @@ public class AltaPolizaFormularioCoberturaController {
 	public void setActual(AnchorPane actual) {
 		this.actual = actual;
 	}
+
 	
 	public AltaPolizaFormularioCoberturaController() {
 		super();
