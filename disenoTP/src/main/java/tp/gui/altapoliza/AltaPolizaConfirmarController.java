@@ -74,8 +74,6 @@ public class AltaPolizaConfirmarController {
     	
     	App.switchScreenTo(form);
 		
-		
-		
 	}
 	
 	

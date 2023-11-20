@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class DeclararHijosController {
 	
@@ -37,6 +38,8 @@ public class DeclararHijosController {
 	private ComboBox estadoCivil;
 	@FXML
 	private Button agregarHijo;
+	@FXML
+	private Button volverAtras2;
 	@FXML 
 	private DatePicker fechaNacimiento;
 	
@@ -48,7 +51,8 @@ public class DeclararHijosController {
 	}
 	
 	@FXML
-	public void volverAtrasClicked( ActionEvent action ) throws IOException{
+	void volverAtrasClicked2( ActionEvent action ) {
+		/*
 		FXMLLoader loader = new FXMLLoader();
     	AltaPolizaFormularioPolizaController altaPolizaC = new AltaPolizaFormularioPolizaController();
     	altaPolizaC.setHijosDeclarados(listaHijos);
@@ -57,7 +61,9 @@ public class DeclararHijosController {
     	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
     	AnchorPane form = loader.load();
     	
-    	App.switchScreenTo(form);
+    	App.switchScreenTo(form);*/
+		Stage stage = (Stage) volverAtras2.getScene().getWindow();
+        stage.close(); // Cierra la ventana modal
 	}
 	
 	
