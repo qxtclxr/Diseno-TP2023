@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import tp.dao.*;
 import tp.entidad.*;
+import tp.util.EntityManagerUtil;
 
 
 public class App extends Application {
@@ -19,6 +20,7 @@ public class App extends Application {
 	private static Usuario usuarioLogeado = new Usuario();
 	
     public static void main(String[] args) {
+    	EntityManagerUtil.createEntityManagerFactory();
     	PolizaDAO dao = new PolizaDAO();
     	//cargarDatos();
     	launch();
