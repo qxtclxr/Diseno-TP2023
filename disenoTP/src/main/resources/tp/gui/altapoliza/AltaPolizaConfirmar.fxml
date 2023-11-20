@@ -144,7 +144,7 @@
                         <Button fx:id="totalAbonar" mnemonicParsing="false" text="Ver cuotas" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
                      </children>
                   </GridPane>
-                  <Button layoutX="158.0" layoutY="515.0" mnemonicParsing="false" text="Confirmar" />
+                  <Button layoutX="158.0" layoutY="515.0" mnemonicParsing="false" onAction="#confirmarCliqueado" text="Confirmar" />
                   <Button layoutX="258.0" layoutY="515.0" mnemonicParsing="false" text="Volver atras" />
                   <Button layoutX="1167.0" layoutY="516.0" mnemonicParsing="false" text="X  Salir" />
                </children>

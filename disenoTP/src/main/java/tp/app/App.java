@@ -22,13 +22,14 @@ public class App extends Application {
 	private static Usuario usuarioLogeado = new Usuario();
 	
     public static void main(String[] args) {
+    	
     	EntityManagerUtil.createEntityManagerFactory();
       
     	//Se crea un dao para que inicialice la conexion.
     	PolizaDAO dao = new PolizaDAO();
       
     	//IMPORTANTE: Solo descomentar esto para poblar la base de datos.
-    	//Poblador.poblar();
+    	Poblador.poblar();
     	launch();
     }
 

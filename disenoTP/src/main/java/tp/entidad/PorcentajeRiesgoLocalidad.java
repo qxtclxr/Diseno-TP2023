@@ -22,7 +22,7 @@ public class PorcentajeRiesgoLocalidad {
 	
 	
 	//relaciones
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="idLocalidad",referencedColumnName="idLocalidad" ,foreignKey= @ForeignKey(name="FK_loc_en_f_riesgo"))
 	private Localidad localidadAsociada;
 	

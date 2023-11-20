@@ -14,6 +14,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp.app.App;
 import tp.dto.*;
+import tp.exception.AutoMuyViejoParaCoberturaElegidaException;
+import tp.exception.DatosObligatoriosAusentesException;
+import tp.exception.ObjetoNoEncontradoException;
+import tp.exception.ValoresParaVehiculoExistentesException;
+import tp.logica.GestorPoliza;
 
 
 public class AltaPolizaConfirmarController {
@@ -52,7 +57,8 @@ public class AltaPolizaConfirmarController {
 	private Label importePorDescuento;
 	@FXML
 	private Button totalAbonar;
-	
+	@FXML
+	private AnchorPane rootPane2; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
 	
 	public void setPolizaDTO(PolizaDTO p) {
 		this.poliza = p;
@@ -69,14 +75,18 @@ public class AltaPolizaConfirmarController {
     	
     	AltaPolizaFormularioCoberturaController formularioPolizaCoberturaC = loader.getController();
     	formularioPolizaCoberturaC.setPolizaDTO(this.poliza);
-    	formularioPolizaCoberturaC.mostrarDatos();
     	
     	App.switchScreenTo(form);
 	}
 	
-	
 	@FXML
-	private AnchorPane rootPane2; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
+	public void confirmarCliqueado()
+			throws DatosObligatoriosAusentesException,
+			ValoresParaVehiculoExistentesException,
+			AutoMuyViejoParaCoberturaElegidaException,
+			ObjetoNoEncontradoException {
+		GestorPoliza.altaPoliza(poliza);
+	}
 
 	@FXML
 	private void verCoutasClicked(ActionEvent action) throws IOException {

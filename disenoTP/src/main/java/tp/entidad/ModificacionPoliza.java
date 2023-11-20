@@ -33,7 +33,7 @@ public class ModificacionPoliza {
 	//relaciones
 	
 	
-	@ManyToMany(fetch= FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany(fetch= FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.ALL})
 	private List<PorcentajeMedidaDeSeguridad> porcMedidasModificadas;
 	
 	//Relaciones 

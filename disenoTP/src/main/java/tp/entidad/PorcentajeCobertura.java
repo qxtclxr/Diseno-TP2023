@@ -23,7 +23,7 @@ public class PorcentajeCobertura {
 	
 	//relaciones
 	
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="idCobertura",referencedColumnName="idCobertura" ,foreignKey= @ForeignKey(name="FK_cob_en_por_cobertura"))
 	private Cobertura coberturaAsociada;
 	

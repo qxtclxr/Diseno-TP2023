@@ -106,7 +106,7 @@ public class Poliza {
 	//ver el eager de los factores
 	
 	//Este puede traer problemas
-	@ManyToMany(fetch= FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany(fetch= FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.ALL})
 	private List<PorcentajeMedidaDeSeguridad> porcMedidaSeguridad;
 	
 	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -126,7 +126,7 @@ public class Poliza {
 	@OneToMany(fetch= FetchType.LAZY, mappedBy="polizaAsociada",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Cuota> cuotasAsociadas;
 	
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="productor", referencedColumnName="idUsuario", foreignKey= @ForeignKey(name="FK_productor_poliza"))
 	private Usuario productorAsociado;
 	

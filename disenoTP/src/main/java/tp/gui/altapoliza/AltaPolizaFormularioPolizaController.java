@@ -1,7 +1,6 @@
 package tp.gui.altapoliza;
 
 import tp.dto.*;
-import tp.dto.*;
 import tp.logica.*;
 import tp.gui.buscarcliente.BuscarClienteController;
 import javafx.scene.Scene;
@@ -12,7 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,15 +24,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp.app.App;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 
 public class AltaPolizaFormularioPolizaController implements Initializable{
@@ -39,6 +41,12 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	private PolizaDTO poliza = new PolizaDTO();
 	
+	private Map<CheckBox,MedidaDeSeguridadDTO> medidasMap = new HashMap<>();
+	
+	private List<HijoDeclaradoDTO> hijosDeclarados = new ArrayList<>();
+	
+	@FXML
+	private VBox medidasBox;	
 	@FXML
 	private Text columnaCliente;
 	@FXML
@@ -136,9 +144,19 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	}
   */
 	 
+	public void setMedidas() {
+		List<MedidaDeSeguridadDTO> medidas = GestorMedidaDeSeguridad.getAllDTOs();
+		for(MedidaDeSeguridadDTO medida : medidas) {
+			CheckBox cb = new CheckBox(medida.getText());
+			cb.setWrapText(true);
+			VBox.setMargin(cb,new Insets(0, 0, 0, 5));// top, right, bottom, left
+			medidasBox.getChildren().add(cb);
+			medidasMap.put(cb, medida);
+		}
+	}
+	
 	public void setClienteDTO(ClienteDTO clienteDTO) throws IOException {
 		poliza.setCliente(clienteDTO);
-		
 	}
 	
 	public void setPolizaDTO(PolizaDTO poliza) {
@@ -477,38 +495,15 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		poliza.setVehiculo(vehiculoDto);
 		
 		poliza.setSumaAsegurada(anio.getValue().getValoracion());
-		//poliza.setKmRealizados(kmsRealizadosPorAnio.getValue());
-		//poliza.setCantidadSiniestros(this.nroDeSiniestrosUltAnio.getValue());
-		//getMedidasDeSeguridad
+		poliza.setKmRealizados(this.kmsRealizadosPorAnio.getValue());
+		poliza.setCantidadSiniestros(this.nroDeSiniestrosUltAnio.getValue());
 		
-		AnioModeloDTO anioD = new AnioModeloDTO();
-		ModeloDTO modeloD = new ModeloDTO();
-		MarcaDTO marcaD = new MarcaDTO();
-		RangoKMRealizadosDTO rangoD = new RangoKMRealizadosDTO(); 
-		RangoCantSiniestrosDTO rangoCsD = new RangoCantSiniestrosDTO();
-		LocalidadDTO localidadD = new LocalidadDTO();
-		ProvinciaDTO provinciaD = new ProvinciaDTO();
-		PaisDTO paisD = new PaisDTO();
+		poliza.setMedidas(medidasMap.entrySet().stream().
+				filter(entry -> entry.getKey().isSelected()).
+				map(entry -> entry.getValue()).
+				toList());
 		
-		
-		anioD.setAnio( Integer.parseInt(anio.getValue().toString()) );
-		anioD.setModelo(modeloD);
-		modeloD.setNombre(modelo.getValue().toString());
-		marcaD.setNombre(marca.getValue().toString());
-		modeloD.setMarca(marcaD);
-		vehiculoDto.setModelo(anioD);
-		rangoD.setNombre(kmsRealizadosPorAnio.getValue().toString());
-		rangoCsD.setNombre(nroDeSiniestrosUltAnio.getValue().toString());
-		paisD.setNombre("Argentina");
-		provinciaD.setNombre(provincia.getValue().toString());
-		provinciaD.setPais(paisD);
-		localidadD.setNombre(localidad.getValue().toString());
-		localidadD.setProvincia(provinciaD);
-		poliza.setCantidadSiniestros(rangoCsD);
-		poliza.setKmRealizados(rangoD);
-		poliza.setVehiculo(vehiculoDto);
-		poliza.setLocalidad(localidadD);
-		
+		poliza.setHijosDeclarados(hijosDeclarados);
 		
 	}
 	
@@ -712,6 +707,8 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 		this.setProvincia();
 		
+		this.setMedidas();
+		
 		this.setContadorHijosDeclarados();
 		
 		this.setKms();
@@ -722,9 +719,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 		//this.cargarDatosFormulario();
 		
-		
-		
-
 	}
 
 		

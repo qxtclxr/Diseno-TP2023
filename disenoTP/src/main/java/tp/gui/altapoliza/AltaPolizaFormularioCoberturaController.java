@@ -3,7 +3,9 @@ import tp.dto.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,26 +16,26 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import tp.app.App;
 import tp.dto.PolizaDTO;
 import tp.entidad.TipoPoliza;
+import tp.exception.ObjetoNoEncontradoException;
+import tp.logica.GestorCobertura;
+import tp.logica.GestorPoliza;
+import tp.logica.GestorVehiculo;
 
 public class AltaPolizaFormularioCoberturaController {
 	
 	private PolizaDTO poliza;
 	
+	private Map<RadioButton,CoberturaDTO> coberturasMap = new HashMap<>();
 	@FXML
-	private RadioButton respCivil;
+	private VBox coberturasBox;
 	@FXML
-	private RadioButton respCivilRoboIncendioTotal;
-	@FXML
-	private RadioButton todoTotal;
-	@FXML
-	private RadioButton tercerosCompletos;
-	@FXML
-	private RadioButton todoRiesgoConFranquicia;
+	private ToggleGroup coberturas;
 	@FXML
 	private Label errorTipoCobertura;
 	@FXML
@@ -45,7 +47,7 @@ public class AltaPolizaFormularioCoberturaController {
 	@FXML
 	private Label errorFechaInicioVigencia3;
 	@FXML 
-	private ComboBox tipoPago;
+	private ComboBox<String> tipoPago;
 	@FXML 
 	private Label errorTipoPago;
 	@FXML
@@ -55,21 +57,30 @@ public class AltaPolizaFormularioCoberturaController {
 	public void setPolizaDTO(PolizaDTO poliza1) {
 		this.poliza = poliza1;
 	}
-	
-	
+
 	
 	public AltaPolizaFormularioCoberturaController() {
 		super();
 	}
-
-	public void mostrarDatos() {
 	
-		this.setearTipoCobertura(poliza.getCobertura().getNombre());
-		fechaInicioVigencia.setValue(poliza.getFechaInicio().toLocalDate());
-		tipoPago.setValue(poliza.getTipoPoliza().toString());
-		
+	
+	public void setCoberturas() {
+		List<CoberturaDTO> dtos = GestorCobertura.getAllDTOs();
+		coberturasBox.setSpacing(10);
+		for(CoberturaDTO dto : dtos) {
+			RadioButton rb = new RadioButton();
+			coberturas.getToggles().add(rb);
+			rb.setText(dto.getText());
+			rb.setWrapText(true);
+			coberturasBox.getChildren().add(rb);
+			coberturasMap.put(rb, dto);
+		}
+		if(GestorVehiculo.esMayorADiezAnios(poliza.getVehiculo())) {
+			coberturasMap.entrySet().stream().
+			filter(entry -> !entry.getValue().getText().toUpperCase().equals("RESPONSABILIDAD CIVIL")).
+			forEach(entry -> entry.getKey().setDisable(true));
+		}
 	}
-	
 	
 	@FXML
 	private void volverAtrasClicked(ActionEvent action) throws IOException {
@@ -93,69 +104,21 @@ public class AltaPolizaFormularioCoberturaController {
     	
     	App.switchScreenTo(form);
 		
-		
-		
-	}
-	
-	private String getTipoCobertura( ) {
-		
-		if(respCivil.isSelected()) {
-			return "Responsabilidad Civil";
-		}
-		else if(respCivilRoboIncendioTotal.isPickOnBounds() ) {
-			return "Responsabilidad Civil + Robo o incendio total";
-		}
-		else if(todoTotal.isSelected()) {
-			return "Todo total";
-		}
-		else if(tercerosCompletos.isSelected()) {
-			return "Terceros completos";
-		}
-		else if(todoRiesgoConFranquicia.isSelected()) {
-			return "Todo riesgo con franquicia";
-		}
-		
-		
-		return "Algo anda mal!";
-		
-		
-	}
-	
-	private void setearTipoCobertura(String tipoCobertura) {
-		
-		if(tipoCobertura.equals("Responsabilidad Civil")) {
-			respCivil.setSelected(true);
-		}
-		else if(tipoCobertura.equals("Responsabilidad Civil + Robo o incendio total")) {
-			respCivilRoboIncendioTotal.setSelected(true);
-		}
-		else if(tipoCobertura.equals("Todo total") ) {
-			todoTotal.setSelected(true);
-		}
-		else if(tipoCobertura.equals("Terceros completos")) {
-			tercerosCompletos.setSelected(true);
-		}
-		else if(tipoCobertura.equals("Todo riesgo con franquicia") ) {
-			todoRiesgoConFranquicia.setSelected(true);
-		}
-		
 	}
 	
 	
-	private void cargarDatosFormulario() {
-		CoberturaDTO cobertura = new CoberturaDTO();
-		cobertura.setNombre( this.getTipoCobertura() );
-		poliza.setCobertura(cobertura);
+	private void cargarDatosFormulario() throws ObjetoNoEncontradoException {
+		poliza.setCobertura(coberturasMap.get(coberturas.getSelectedToggle()));
 		poliza.setTipoPoliza((tipoPago.getValue().toString().equals("Mensual"))?TipoPoliza.MENSUAL:TipoPoliza.SEMESTRAL);
-		poliza.setFechaInicio(fechaInicioVigencia.getValue().atStartOfDay());	
+		poliza.setFechaInicio(fechaInicioVigencia.getValue().atStartOfDay());
+		this.cargarDatosSobreCobro();
 	}
 
 
 	@FXML
-	private void confirmarClicked(ActionEvent action) throws IOException {
+	private void confirmarClicked(ActionEvent action) throws IOException, ObjetoNoEncontradoException {
 		
 		if(this.validarDatos()) {
-			System.out.println("entro");
 			this.cargarDatosFormulario();
 			
 			FXMLLoader loader = new FXMLLoader();
@@ -177,19 +140,7 @@ public class AltaPolizaFormularioCoberturaController {
 		
 		boolean validacionExitosa = true;
 		
-		if( (LocalDate.now().getYear() - poliza.getVehiculo().getModelo().getAnio() ) >= 10 && !respCivil.isSelected() ) {
-			errorMayor5anios.setVisible(true);
-			validacionExitosa = false;
-			fechaInicioVigencia.setStyle("-fx-control-inner-background: #fa8e8e;");
-		}
-		else {
-			errorMayor5anios.setVisible(false);
-			fechaInicioVigencia.setStyle("-fx-control-inner-background: white;");
-			
-		}
-		
-		
-		if(!(respCivil.isSelected() || respCivilRoboIncendioTotal.isSelected() || todoTotal.isSelected() || tercerosCompletos.isSelected() || todoRiesgoConFranquicia.isSelected()) ) { 
+		if(!coberturasMap.entrySet().stream().anyMatch(entry -> entry.getKey().isSelected())) { 
 				errorTipoCobertura.setVisible(true);
 				validacionExitosa = false;
 		}else {
@@ -220,16 +171,20 @@ public class AltaPolizaFormularioCoberturaController {
 	    	fechaInicioVigencia.setStyle("-fx-control-inner-background: white;");
 	    }
 	    
-	    
-	    
-		
 		return validacionExitosa;
 		
 	}
 	
 	@FXML
+	public void cargarDatosSobreCobro() throws ObjetoNoEncontradoException{
+		GestorPoliza.calcularPremioDerechoDeEmisionYDescuentos(poliza);
+		poliza.setCuotas(GestorPoliza.generarCuotas(poliza));
+	}
+	
+	@FXML
 	public void initialize() {
 		
+		this.setCoberturas();
 	
 		ObservableList<String> opTipoPago = FXCollections.observableArrayList("Mensual","Semestral");
 		tipoPago.setItems(opTipoPago);

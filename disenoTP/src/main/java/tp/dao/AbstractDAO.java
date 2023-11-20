@@ -28,7 +28,6 @@ public abstract class AbstractDAO<T> implements DAO<T> {
 	@Override
 	public void saveInstance(T instance) {
 		this.transaccion(entityManager -> entityManager.persist(instance));
-		
 	}
 
 	@Override

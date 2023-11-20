@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tp.app.App;
-import tp.gui.buscarcliente.BuscarCliente;
 
 public class AltaPolizaInicioController {
     @FXML

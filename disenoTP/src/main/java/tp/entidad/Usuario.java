@@ -29,8 +29,6 @@ public class Usuario {
 	private TipoDocumento tipoDocumento;
 	
 	
-	
-	
 	//relaciones
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="idRol",referencedColumnName="idRol", foreignKey= @ForeignKey(name="FK_id_rol_en_usuario"))

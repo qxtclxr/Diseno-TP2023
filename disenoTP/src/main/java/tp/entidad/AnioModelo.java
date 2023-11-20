@@ -22,7 +22,7 @@ public class AnioModelo {
 	
 	//relaciones
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="idModelo",referencedColumnName="idModelo" ,foreignKey= @ForeignKey(name="FK_modelo_anio"))
 	private Modelo tieneModelo;
 	

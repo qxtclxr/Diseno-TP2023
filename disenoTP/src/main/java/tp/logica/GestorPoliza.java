@@ -99,7 +99,7 @@ public class GestorPoliza {
 		validarDTO(dto);
 		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
-		dao.saveInstance(poliza);
+		dao.updateInstance(poliza);
 		return poliza;
 	}
 	
