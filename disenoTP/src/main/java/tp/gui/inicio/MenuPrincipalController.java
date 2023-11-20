@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import tp.app.App;
+import tp.gui.altapoliza.AltaPolizaInicioController;
 
 public class MenuPrincipalController {
 
@@ -25,9 +26,18 @@ public class MenuPrincipalController {
 	
 	@FXML
 	void altaPolizaCliqueado(ActionEvent evento) throws IOException{
+		AltaPolizaInicioController controller = new AltaPolizaInicioController();
+		
 		FXMLLoader loader = new FXMLLoader();
+		
+		loader.setController(controller);
+		
 		loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaInicio.fxml"));
-		SplitPane altaPoliza = loader.load();
+		
+		AnchorPane altaPoliza = loader.load();
+		
+		controller.setActual(altaPoliza);
+		
 		App.switchScreenTo(altaPoliza);
 	}
 	

@@ -25,7 +25,10 @@ public class BuscarClienteController {
 	    @FXML
 	   private Button exitButton;
 	    
-	   private ClienteDTO clienteDTO = new ClienteDTO(); 
+	   private ClienteDTO clienteDTO = new ClienteDTO();
+	   
+	   private AnchorPane actual;
+	   private AnchorPane anterior; 
 	    
 	    @FXML
 	   private void confirmarCliqueado(ActionEvent event) throws IOException, ObjetoNoEncontradoException {
@@ -41,21 +44,29 @@ public class BuscarClienteController {
 	    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
 	    	AnchorPane form = loader.load();
 	    	
+	    	altaPolizaC.setActual(form);
+	    	altaPolizaC.setAnterior(actual);
+	    	
 	    	App.switchScreenTo(form);
 	    }
 	    
 
 	    @FXML
 	    private void handleExit(ActionEvent event) throws IOException {
-	    	
-	    	Parent root = FXMLLoader.load((getClass().getResource("../altapoliza/AltaPolizaInicio.fxml")));
-	    	
-	    	Stage window = (Stage)exitButton.getScene().getWindow();
-	    	window.setTitle("Alta de poliza");
-	    	window.setScene(new Scene(root));
+	    	System.out.println(anterior);
+	    	App.switchScreenTo(anterior);
 	    }
 	    
 	    public void setClienteDTO(ClienteDTO c) {
 	    	clienteDTO = c;
 	    }
+
+
+		public void setActual(AnchorPane actual) {
+			this.actual = actual;
+		}
+		
+		public void setAnterior(AnchorPane anterior) {
+			this.anterior = anterior;
+		}
 }

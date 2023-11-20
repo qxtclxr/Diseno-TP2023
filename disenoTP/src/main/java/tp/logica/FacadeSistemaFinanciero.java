@@ -1,7 +1,7 @@
 package tp.logica;
 
 import tp.entidad.TipoPoliza;
-
+//comm
 public class FacadeSistemaFinanciero {
 	
 	private static float BONIFICACION_POR_PAGO_SEMESTRAL = 5F;
