@@ -141,7 +141,7 @@
                         <Label fx:id="premio" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                         <Label fx:id="importePorDescuento" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                         <Button fx:id="ultimoDiaDePago" mnemonicParsing="false" onAction="#verCoutasClicked" text="Ver cuotas" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <Button fx:id="totalAbonar" mnemonicParsing="false" text="Ver cuotas" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                        <Button fx:id="totalAbonar" mnemonicParsing="false" onAction="#verCoutasClicked" text="Ver cuotas" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
                      </children>
                   </GridPane>
                   <Button layoutX="158.0" layoutY="515.0" mnemonicParsing="false" text="Confirmar" />
