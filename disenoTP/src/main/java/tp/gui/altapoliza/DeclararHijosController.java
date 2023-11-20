@@ -173,37 +173,46 @@ public class DeclararHijosController {
 		hijo.setSexo(this.getValueSexo() );
 		
 		listaHijos.add(hijo);
-		System.out.println("Se agregó un hijo AAAAAAAAAAAA");
+		System.out.println("Se agrego: "+ fechaNacimiento.getValue()+ " "+ this.getValueEstadoCivil()+ " "+ this.getValueSexo());
 		this.actualizarDatos();
 	}
 	
 	
 	@FXML
 	public void agregarHijoClicked() {
-		this.validarDatos();
-		this.addHijo();
+		if(this.validarDatos()) {
+			this.addHijo();
+		}
+		
 	}
 	@FXML
-	public void validarDatos() {
+	public boolean validarDatos() {
+		
+		boolean validacionExitosa=true;
+		
 		
 	    if (sexo.getValue() == null || sexo.getValue().toString().isEmpty()) {
 	        errorSexo.setVisible(true);
+	        validacionExitosa=false;
 	    } else {
 	        errorSexo.setVisible(false);
 	    }
 
 	    if (estadoCivil.getValue() == null || estadoCivil.getValue().toString().isEmpty()) {
 	        errorEstadoCivil.setVisible(true);
+	        validacionExitosa=false;
 	    } else {
 	        errorEstadoCivil.setVisible(false);
 	    }
 
 	    if (fechaNacimiento.getValue() == null || !(Period.between(fechaNacimiento.getValue(), LocalDate.now()).getYears() >= 18 && Period.between(fechaNacimiento.getValue(), LocalDate.now()).getYears() <= 30)) {
 	        errorFechaNacimiento.setVisible(true);
+	        validacionExitosa=false;
 	    } else {
 	        errorFechaNacimiento.setVisible(false);
 	    }
 	    
+	    return validacionExitosa;
 	}
 
 	
