@@ -17,21 +17,16 @@ public class Cuota {
 	@Column(name="idCuota")
 	private long idCuota;
 	
-	@Column(nullable = false)
-	private float premio;
+	
 	
 	@Column(nullable = false)
 	private LocalDate fechaVencimiento;
 	
-	//ver si estos estan bien
-	@Column(nullable = false)
-	private float prima;
 	
-	@Column(nullable = false)
-	private float derechoEmision;
 	
-	@Column(nullable = false)
-	private float descuentos;
+	
+	
+	
 	///
 	@Column(nullable = false)
 	private float importeTotal;
@@ -62,8 +57,7 @@ public class Cuota {
 	
 	@Override
 	public String toString() {
-		return "Cuota [idCuota=" + idCuota + ", premio=" + premio + ", fechaVencimiento=" + fechaVencimiento
-				+ ", prima=" + prima + ", derechoEmision=" + derechoEmision + ", descuentos=" + descuentos
+		return "Cuota [idCuota=" + idCuota +  ", fechaVencimiento=" + fechaVencimiento
 				+ ", importeTotal=" + importeTotal + ", estado=" + estado + ", interesAsociadoPorcentual="
 				+ interesAsociadoPorcentual + ", pagoAsociado=" + pagoAsociado + ", polizaAsociada=" + polizaAsociada
 				+ "]";
@@ -100,25 +94,17 @@ public class Cuota {
 		return idCuota;
 	}
 
-	public float getPremio() {
-		return premio;
-	}
+	
 
 	public LocalDate getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
-	public float getPrima() {
-		return prima;
-	}
+	
 
-	public float getDerechoEmision() {
-		return derechoEmision;
-	}
+	
 
-	public float getDescuentos() {
-		return descuentos;
-	}
+	
 
 	public float getImporteTotal() {
 		return importeTotal;
@@ -144,25 +130,17 @@ public class Cuota {
 		this.idCuota = idCuota;
 	}
 
-	public void setPremio(float premio) {
-		this.premio = premio;
-	}
+	
 
 	public void setFechaVencimiento(LocalDate fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
-	public void setPrima(float prima) {
-		this.prima = prima;
-	}
+	
 
-	public void setDerechoEmision(float derechoEmision) {
-		this.derechoEmision = derechoEmision;
-	}
+	
 
-	public void setDescuentos(float descuentos) {
-		this.descuentos = descuentos;
-	}
+	
 
 	public void setImporteTotal(float importeTotal) {
 		this.importeTotal = importeTotal;

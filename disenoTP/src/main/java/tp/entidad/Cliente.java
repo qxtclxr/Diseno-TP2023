@@ -73,7 +73,7 @@ public class Cliente {
 	
 	//Relaciones
 	
-	@OneToMany(fetch= FetchType.LAZY, mappedBy="cliente",cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="cliente",cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<Poliza> polizas;
 	
 	@OneToOne
