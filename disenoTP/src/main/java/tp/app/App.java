@@ -29,7 +29,7 @@ public class App extends Application {
     	
       
     	//IMPORTANTE: Solo descomentar esto para poblar la base de datos.
-    	Poblador.poblar();
+    	//Poblador.poblar();
     	App.setUsuarioLogeado(null);
     	launch();
     }

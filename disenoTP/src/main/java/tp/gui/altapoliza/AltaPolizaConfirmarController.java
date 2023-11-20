@@ -13,7 +13,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp.app.App;
+import tp.dao.ClienteDAO;
+import tp.dao.PolizaDAO;
 import tp.dto.*;
+import tp.entidad.Poliza;
 import tp.exception.AutoMuyViejoParaCoberturaElegidaException;
 import tp.exception.DatosObligatoriosAusentesException;
 import tp.exception.ObjetoNoEncontradoException;
@@ -84,6 +87,13 @@ public class AltaPolizaConfirmarController {
 	public void confirmarCliqueado(){
 		try {
 			GestorPoliza.altaPoliza(poliza);
+			//
+			PolizaDAO dao = new PolizaDAO();
+			System.out.println("Poliza persistida!");
+			dao.getAll().stream().forEach(p -> System.out.println(p.getCuotasAsociadas()));
+			ClienteDAO daocli = new ClienteDAO();
+			daocli.getAll().stream().forEach(c -> System.out.println(c.getPolizas()));
+			//
 		} catch (DatosObligatoriosAusentesException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

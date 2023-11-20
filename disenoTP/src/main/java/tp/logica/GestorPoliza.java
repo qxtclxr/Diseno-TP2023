@@ -43,6 +43,7 @@ public class GestorPoliza {
 		poliza.setHijosDeclarados(hijosDeclarados);
 		
 		List<Cuota> cuotas = GestorCuota.crearCuotas(dto.getCuotas());
+		cuotas.stream().forEach(cuota -> cuota.setPolizaAsociada(poliza));
 		poliza.setCuotasAsociadas(cuotas);
 		
 		Cliente cliente = GestorCliente.getCliente(dto.getCliente());
@@ -104,7 +105,6 @@ public class GestorPoliza {
 		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
 		dao.altaPoliza(poliza);
-		System.out.println("Poliza persistida!");
 		return poliza;
 	}
 	
