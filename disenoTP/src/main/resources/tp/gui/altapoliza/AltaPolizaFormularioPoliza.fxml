@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -49,7 +50,7 @@
             <ComboBox fx:id="anio" disable="true" layoutX="281.0" layoutY="417.0" onAction="#setSumaAsegurada" onShowing="#setAnios" prefWidth="180.0" promptText="Ingrese un anio" />
             <TextField fx:id="motor" layoutX="14.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField fx:id="chasis" layoutX="281.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
-            <TextField fx:id="patente" layoutX="549.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
+            <TextField fx:id="patente" layoutX="550.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <Button fx:id="declararHijos" layoutX="1087.0" layoutY="521.0" mnemonicParsing="false" onAction="#declararHijosClicked" prefHeight="25.0" prefWidth="180.0" style="-fx-alignment: CENTER-LEFT;" text="Declarar hijos">
                <font>
                   <Font name="Franklin Gothic Demi" size="13.0" />
@@ -57,26 +58,34 @@
             </Button>
             <VBox layoutX="819.0" layoutY="521.0" prefHeight="151.0" prefWidth="180.0">
                <children>
-                  <CheckBox fx:id="seGuardaEnGarage" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Se guarda en garage?">
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="13.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox fx:id="tieneAlarma" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Tiene alarma?">
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="13.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox fx:id="poseeDispositivoRastreo" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee dispositivo de rastreo vehicular?" wrapText="true">
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="13.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox fx:id="poseeTuercasAntirrobo" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee tuercas antirrobo en las cuatro ruedas?" wrapText="true">
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="13.0" />
-                     </font>
-                  </CheckBox>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <CheckBox fx:id="seGuardaEnGarage" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Se guarda en garage?">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium" size="13.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="tieneAlarma" layoutX="10.0" layoutY="47.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Tiene alarma?">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium" size="13.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="poseeDispositivoRastreo" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee dispositivo de rastreo vehicular?" wrapText="true">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium" size="13.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="poseeTuercasAntirrobo" layoutX="10.0" layoutY="125.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee tuercas antirrobo en las cuatro ruedas?" wrapText="true">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium" size="13.0" />
+                                 </font>
+                              </CheckBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </VBox>
             <HBox layoutX="14.0" layoutY="317.0" prefHeight="19.0" prefWidth="180.0">
@@ -234,17 +243,18 @@
             </Button>
             <Label fx:id="errorDomicilioRiesgo" layoutX="15.0" layoutY="421.0" text="El campo esta incompleto" textFill="RED" visible="false" />
             <Label fx:id="errorMarcaVehiculoAnio" layoutX="281.0" layoutY="450.0" text="El campo esta incompleto" textFill="RED" visible="false" />
-            <Label fx:id="errorMotorYaExiste" layoutX="15.0" layoutY="545.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" />
-            <Label fx:id="errorChasisYaExiste" layoutX="281.0" layoutY="545.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" />
+            <Label fx:id="errorMotorYaExiste" layoutX="15.0" layoutY="545.0" prefHeight="18.0" prefWidth="179.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorChasisYaExiste" layoutX="281.0" layoutY="545.0" prefHeight="18.0" prefWidth="179.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorKmsRealizadosPorAnio" layoutX="819.0" layoutY="373.0" text="El campo esta incompleto" textFill="RED" visible="false" />
-            <Label fx:id="errorFormatoMotor" layoutX="15.0" layoutY="562.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" />
-            <Label fx:id="errorFormatoChasis" layoutX="281.0" layoutY="562.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" />
-            <Label fx:id="errorFormatoPatente" layoutX="549.0" layoutY="545.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" />
+            <Label fx:id="errorFormatoMotor" layoutX="15.0" layoutY="562.0" prefHeight="18.0" prefWidth="179.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorFormatoChasis" layoutX="281.0" layoutY="562.0" prefHeight="18.0" prefWidth="179.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorFormatoPatente" layoutX="549.0" layoutY="545.0" prefHeight="18.0" prefWidth="180.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorNroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="373.0" text="El campo esta incompleto" textFill="RED" visible="false" />
             <Label fx:id="contadorHijosDeclarados" layoutX="1093.0" layoutY="553.0" text="Label" />
             <Label fx:id="errorFaltaProvincia" layoutX="15.0" layoutY="430.0" prefHeight="58.0" prefWidth="179.0" text="Para seleccionar una localidad, debe haber seleccionado la provincia" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorFaltaMarca" layoutX="281.0" layoutY="459.0" text="Para seleccionar un modelo, debe haber seleccionado una marca" textFill="RED" visible="false" />
             <Label fx:id="errorFaltaModelo" layoutX="281.0" layoutY="476.0" text="Para seleccionar un año, debe haber seleccionado un modelo" textFill="RED" visible="false" />
+<<<<<<< HEAD
             <HBox layoutX="14.0" layoutY="145.0" prefHeight="50.0" prefWidth="1252.0" style="-fx-border-color: gray; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-color: white;">
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: gray;" HBox.hgrow="ALWAYS">
@@ -309,6 +319,21 @@
                   </VBox>
                </children>
             </HBox>
+=======
+            <Label fx:id="errorFaltaMarca" layoutX="281.0" layoutY="459.0" text="Para seleccionar un modelo, debe haber seleccionado una marca" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorFaltaVehiculo" layoutX="281.0" layoutY="476.0" text="Para seleccionar un año, debe haber seleccionado un modelo" textFill="RED" visible="false" />
+            <TextField fx:id="rojoPatente" alignment="TOP_LEFT" layoutX="540.0" layoutY="480.0" opacity="0.0" prefHeight="75.0" prefWidth="202.0" style="-fx-background-color: red;" text="Patente de vehículo">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="rojoDomicilioRiesgo" layoutX="4.0" layoutY="310.0" opacity="0.0" prefHeight="106.0" prefWidth="202.0" style="-fx-background-color: red;" />
+            <TextField fx:id="rojoMarca" layoutX="275.0" layoutY="291.0" opacity="0.0" prefHeight="158.0" prefWidth="195.0" style="-fx-background-color: red;" />
+            <TextField fx:id="rojoKM" layoutX="814.0" layoutY="292.0" opacity="0.0" prefHeight="86.0" prefWidth="195.0" style="-fx-background-color: red;" />
+            <TextField fx:id="rojoNroSiniestro" layoutX="1081.0" layoutY="291.0" opacity="0.0" prefHeight="86.0" prefWidth="195.0" style="-fx-background-color: red;" />
+            <TextField fx:id="rojoMotor" layoutX="12.0" layoutY="484.0" opacity="0.0" prefHeight="68.0" prefWidth="183.0" style="-fx-background-color: red;" />
+            <TextField fx:id="rojoChasis" layoutX="275.0" layoutY="482.0" opacity="0.0" prefHeight="68.0" prefWidth="195.0" style="-fx-background-color: red;" />
+>>>>>>> branch 'jose-gui' of https://github.com/qxtclxr/Diseno-TP2023.git
          </children>
       </AnchorPane>
    </children>

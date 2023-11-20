@@ -111,8 +111,26 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	 @FXML
 	 private Label errorFaltaMarca;
 	 
-	
-	/* 
+	 @FXML
+	 private Label rojoDomicilioRiesgo;
+	 
+	 @FXML
+	 private Label rojoPatente;
+	 
+	 @FXML
+	 private Label rojoMarca;
+	 @FXML
+	 private Label rojoKM;
+	 
+	 @FXML
+	 private Label rojoNroSiniestro;
+	 
+	 @FXML
+	 private Label rojoMotor;
+	 
+	 @FXML
+	 private Label rojoChasis;
+	 
 	public void mostrarDatosPoliza( ) {
 		
 		motor.setText(poliza.getVehiculo().getMotor());
@@ -377,6 +395,10 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	private boolean patenteFormatoCorrecto(String patente) {
 		
+		if (patente == null || patente.isEmpty()) {
+			return true;
+		}
+		
 	    // Definir el patrón de la expresión regular para el formato de patente
         String patron = "^[A-Z]{2,3}\\s?\\d{3}\\s?[A-Z]{0,3}$";
 
@@ -388,8 +410,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 
         // Verificar si la patente cumple con el formato
         return matcher.matches();
-		
-		
 		
 	}
 	
@@ -475,9 +495,10 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		boolean datosValidos = true;
 		
 		
-		//Comprueba domicilio de riesgo
+		//Comprueba domicilio de riesgo - Pruebo si se pone de rojo el fondo en la segunda linea del if
 	    if ((provincia.getValue() == null || localidad.getValue()==null) || localidad.getValue().toString().isEmpty() || provincia.getValue().toString().isEmpty()) {
 	        errorDomicilioRiesgo.setVisible(true);
+	        rojoDomicilioRiesgo.setOpacity(0.1);
 	        datosValidos = false;
 	    } else {
 	       errorDomicilioRiesgo.setVisible(false);
@@ -488,6 +509,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    		|| (marca.getValue().toString().isEmpty() || modelo.getValue().toString().isEmpty() || anio.getValue().toString().isEmpty())) {
 	    	
 	    	errorMarcaVehiculoAnio.setVisible(true);
+	    	rojoMarca.setOpacity(0.1);
 	    	datosValidos = false;
 	    }
 	    else {
@@ -498,6 +520,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    
 	    if(nroDeSiniestrosUltAnio.getValue()==null || nroDeSiniestrosUltAnio.getValue().toString().isEmpty() ) {
 	    	errorNroDeSiniestrosUltAnio.setVisible(true);
+	    	rojoNroSiniestro.setOpacity(0.1);
 	    	datosValidos = false;
 	    }else {
 	    	errorNroDeSiniestrosUltAnio.setVisible(false);
@@ -507,6 +530,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    
 	    if(kmsRealizadosPorAnio.getValue()==null || kmsRealizadosPorAnio.getValue().toString().isEmpty() ) {
 	    	errorKmsRealizadosPorAnio.setVisible(true);
+	    	rojoKM.setOpacity(0.1);
 	    	datosValidos = false;
 	    }else {
 	    	errorKmsRealizadosPorAnio.setVisible(false);
@@ -516,12 +540,14 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    
 	    if(motor.getText() == null) {
 	    	errorFormatoMotor.setVisible(true);
+	    	rojoMotor.setOpacity(0.1);
 	    	datosValidos = false;
 	    }else {
 	    	errorFormatoMotor.setVisible(false);
 	    	
 	    	if(this.motorYaExiste(motor.getText())){
 	    		errorMotorYaExiste.setVisible(true);
+	    		rojoMotor.setOpacity(0.1);
 	    		datosValidos = false;
 	    	}
 	    	else {
@@ -530,6 +556,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    	
 	    	if(!this.motorFormatoCorrecto(motor.getText())) {
 	    		errorFormatoMotor.setVisible(true);
+	    		rojoMotor.setOpacity(0.1);
 	    		datosValidos = false;
 	    	}else {
 	    		errorFormatoMotor.setVisible(false);
@@ -539,12 +566,14 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    	
 		    if(chasis.getText() == null) {
 		    	errorFormatoChasis.setVisible(true);
+		    	rojoChasis.setOpacity(0.1);
 		    	datosValidos = false;
 		    }else {
 		    	errorFormatoChasis.setVisible(false);
 		    	
 		    	if(this.chasisYaExiste(chasis.getText())){
 		    		errorChasisYaExiste.setVisible(true);
+		    		rojoChasis.setOpacity(0.1);
 		    		datosValidos = false;
 		    	}
 		    	else {
@@ -553,21 +582,24 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		    	
 		    	if(!this.chasisFormatoCorrecto(chasis.getText())) {
 		    		errorFormatoChasis.setVisible(true);
+		    		rojoChasis.setOpacity(0.1);
 		    		datosValidos = false;
 		    	}else {
 		    		errorFormatoChasis.setVisible(false);
 		    	}
 		    	
 	    	
-	    	//comprueba la patente
+	    	//comprueba la patente - Prueba de setear color rojo el fondo
 	    	
 	    	if(patente.getText()==null) {
 	    		errorFormatoPatente.setVisible(true);
+	    		rojoPatente.setOpacity(0.1);
 	    		datosValidos = false;
 	    	}
 	    	else {
 	    		if(!this.patenteFormatoCorrecto(patente.getText())) {
 		    		errorFormatoPatente.setVisible(true);
+		    		rojoPatente.setOpacity(0.1);
 		    		datosValidos = false;
 	    		}else {
 	    			errorFormatoPatente.setVisible(false);
