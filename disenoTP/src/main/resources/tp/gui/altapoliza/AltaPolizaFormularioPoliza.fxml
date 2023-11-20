@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -10,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -43,7 +42,6 @@
             <ComboBox fx:id="marca" layoutX="281.0" layoutY="345.0" onAction="#onActionMarca" prefWidth="180.0" promptText="Ingrese una marca" />
             <ComboBox fx:id="kmsRealizadosPorAnio" layoutX="819.0" layoutY="345.0" prefWidth="180.0" />
             <ComboBox fx:id="nroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="345.0" prefWidth="180.0" />
-            <TextFlow fx:id="sumaAsegurada" layoutX="549.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" />
             <ComboBox fx:id="localidad" disable="true" layoutX="14.0" layoutY="381.0" onShowing="#setLocalidades" prefWidth="180.0" promptText="Ingrese una localidad" />
             <ComboBox fx:id="modelo" disable="true" layoutX="281.0" layoutY="381.0" onAction="#onActionModelo" onShowing="#setModelos" prefWidth="180.0" promptText="Ingrese un modelo" />
             <ComboBox fx:id="anio" disable="true" layoutX="281.0" layoutY="417.0" onAction="#setSumaAsegurada" onShowing="#setAnios" prefWidth="180.0" promptText="Ingrese un anio" />
@@ -55,30 +53,7 @@
                   <Font name="Franklin Gothic Demi" size="13.0" />
                </font>
             </Button>
-            <VBox layoutX="819.0" layoutY="521.0" prefHeight="151.0" prefWidth="180.0">
-               <children>
-                  <CheckBox fx:id="poseeTuercasAntirrobo" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee tuercas antirrobo en las cuatro ruedas?" wrapText="true">
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="13.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox fx:id="tieneAlarma" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Tiene alarma?">
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="13.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox fx:id="seGuardaEnGarage" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="¿Se guarda en garage?">
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="13.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox fx:id="poseeDispositivoRastreo" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="¿Posee dispositivo de rastreo vehicular?" wrapText="true">
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="13.0" />
-                     </font>
-                  </CheckBox>
-               </children>
-            </VBox>
+            <VBox fx:id="medidasBox" layoutX="819.0" layoutY="521.0" prefHeight="151.0" prefWidth="180.0" />
             <HBox layoutX="14.0" layoutY="317.0" prefHeight="19.0" prefWidth="180.0">
                <children>
                   <Label text="Domicilio de riesgo">
@@ -310,6 +285,17 @@
                   </VBox>
                </children>
             </HBox>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIGHTGRAY" height="25.0" layoutX="549.0" layoutY="345.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="180.0" />
+            <Text fx:id="sumaAsegurada" layoutX="570.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="156.5595703125">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="557.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

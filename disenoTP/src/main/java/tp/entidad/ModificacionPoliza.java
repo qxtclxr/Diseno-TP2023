@@ -15,8 +15,8 @@ public class ModificacionPoliza {
 	@Column(name="idModificacionPoliza")
 	private long idModificacionPoliza;
 	
-	@Column
-	private LocalDate anioVehiculo;
+//	@Column
+//	private LocalDate anioVehiculo;
 	
 	@Column
 	private String patente;
@@ -33,7 +33,7 @@ public class ModificacionPoliza {
 	//relaciones
 	
 	
-	@ManyToMany(fetch= FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany(fetch= FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.ALL})
 	private List<PorcentajeMedidaDeSeguridad> porcMedidasModificadas;
 	
 	//Relaciones 
@@ -95,7 +95,7 @@ public class ModificacionPoliza {
 
 	@Override
 	public String toString() {
-		return "ModificacionPoliza [idModificacionPoliza=" + idModificacionPoliza + ", anioVehiculo=" + anioVehiculo
+		return "ModificacionPoliza [idModificacionPoliza=" + idModificacionPoliza /*+ ", anioVehiculo=" + anioVehiculo*/
 				+ ", patente=" + patente + ", motor=" + motor + ", chasis=" + chasis + ", fechaModificacion="
 				+ fechaModificacion + ", porcMedidasModificadas=" + porcMedidasModificadas + ", porcentajeKMModificado="
 				+ porcentajeKMModificado + ", porcentajeModificado=" + porcentajeModificado
@@ -107,9 +107,9 @@ public class ModificacionPoliza {
 		return idModificacionPoliza;
 	}
 
-	public LocalDate getAnioVehiculo() {
-		return anioVehiculo;
-	}
+//	public LocalDate getAnioVehiculo() {
+//		return anioVehiculo;
+//	}
 
 	public String getPatente() {
 		return patente;
@@ -141,9 +141,9 @@ public class ModificacionPoliza {
 		this.idModificacionPoliza = idModificacionPoliza;
 	}
 
-	public void setAnioVehiculo(LocalDate anioVehiculo) {
-		this.anioVehiculo = anioVehiculo;
-	}
+//	public void setAnioVehiculo(LocalDate anioVehiculo) {
+//		this.anioVehiculo = anioVehiculo;
+//	}
 
 	public void setPatente(String patente) {
 		this.patente = patente;

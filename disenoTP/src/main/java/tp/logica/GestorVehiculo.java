@@ -152,7 +152,7 @@ public class GestorVehiculo {
 		return dto;
 	}
 
-	public static PorcentajeEstadisticaRobo getPorcentajeEstadisticaRoboActualActual(AnioModeloDTO dto)
+	public static PorcentajeEstadisticaRobo getPorcentajeEstadisticaRoboActual(AnioModeloDTO dto)
 			throws ObjetoNoEncontradoException {
 		AnioModelo modelo = getAnioModelo(dto);
 		return modelo.getValorActualPorcentajeEstadisticaRobo();

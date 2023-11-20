@@ -8,7 +8,7 @@ public class FactorCaracteristicoDTO {
 	private PorcentajeCantSiniestros porcentajeSiniestros;
 	private PorcentajeCobertura porcentajeCobertura;
 	private PorcentajeEstadisticaRobo porcentajeEstadisticaRobo;
-	private FactorRiesgoLocalidad porcentajeRiesgoLocalidad;
+	private PorcentajeRiesgoLocalidad porcentajeRiesgoLocalidad;
 	private PorcentajeKMRealizados porcentajeKm;
 	private List<PorcentajeMedidaDeSeguridad> porcentajeMedida;
 	private PorcentajeDescPorUnidad descuentoPorUnidad;
@@ -38,10 +38,10 @@ public class FactorCaracteristicoDTO {
 	public void setPorcentajeEstadisticaRobo(PorcentajeEstadisticaRobo porcentajeEstadisticaRobo) {
 		this.porcentajeEstadisticaRobo = porcentajeEstadisticaRobo;
 	}
-	public FactorRiesgoLocalidad getPorcentajeRiesgoLocalidad() {
+	public PorcentajeRiesgoLocalidad getPorcentajeRiesgoLocalidad() {
 		return porcentajeRiesgoLocalidad;
 	}
-	public void setPorcentajeRiesgoLocalidad(FactorRiesgoLocalidad porcentajeRiesgoLocalidad) {
+	public void setPorcentajeRiesgoLocalidad(PorcentajeRiesgoLocalidad porcentajeRiesgoLocalidad) {
 		this.porcentajeRiesgoLocalidad = porcentajeRiesgoLocalidad;
 	}
 	public PorcentajeKMRealizados getPorcentajeKm() {

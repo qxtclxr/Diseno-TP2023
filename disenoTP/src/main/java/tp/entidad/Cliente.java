@@ -42,7 +42,7 @@ public class Cliente {
 	private String nroCuil;
 	
 	@Column(nullable = false)
-	private LocalDateTime fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
@@ -73,7 +73,7 @@ public class Cliente {
 	
 	//Relaciones
 	
-	@OneToMany(fetch= FetchType.LAZY, mappedBy="cliente",cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="cliente",cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<Poliza> polizas;
 	
 	@OneToOne
@@ -148,7 +148,7 @@ public class Cliente {
 		return nroCuil;
 	}
 
-	public LocalDateTime getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
@@ -221,7 +221,7 @@ public class Cliente {
 		this.nroCuil = nroCuil;
 	}
 
-	public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 

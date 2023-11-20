@@ -110,7 +110,7 @@ public class GestorLocalizacion {
 		return datosPresentes;
 	}
 
-	public static FactorRiesgoLocalidad getPorcentajeRiesgoLocalidadActual(LocalidadDTO dto)
+	public static PorcentajeRiesgoLocalidad getPorcentajeRiesgoLocalidadActual(LocalidadDTO dto)
 			throws ObjetoNoEncontradoException {
 		Localidad localidad = getLocalidad(dto);
 		return localidad.getValorActualFactorRiesgo();

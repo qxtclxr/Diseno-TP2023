@@ -1,5 +1,6 @@
 package tp.logica;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class GestorPoliza {
 		
 		poliza.setFechaInicio(dto.getFechaInicio());
 		
+		poliza.setFechaFin(dto.getFechaFin());
+		
 		poliza.setEstado(EstadoPoliza.GENERADA);
 		
 		poliza.setTipoPoliza(dto.getTipoPoliza());
@@ -40,6 +43,7 @@ public class GestorPoliza {
 		poliza.setHijosDeclarados(hijosDeclarados);
 		
 		List<Cuota> cuotas = GestorCuota.crearCuotas(dto.getCuotas());
+		cuotas.stream().forEach(cuota -> cuota.setPolizaAsociada(poliza));
 		poliza.setCuotasAsociadas(cuotas);
 		
 		Cliente cliente = GestorCliente.getCliente(dto.getCliente());
@@ -72,7 +76,8 @@ public class GestorPoliza {
 		
 		poliza.setNroPoliza(generarNroPoliza(dto));
 		
-		poliza.setProductorAsociado(App.getUsuarioLogeado());
+		UsuarioDAO d=new UsuarioDAO();
+		poliza.setProductorAsociado(d.getById(App.getUsuarioLogeado().getIdUsuario()).get());
 		
 		return poliza;
 	}
@@ -99,10 +104,9 @@ public class GestorPoliza {
 		validarDTO(dto);
 		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
-		dao.saveInstance(poliza);
+		dao.altaPoliza(poliza);
 		return poliza;
 	}
-	
 	
 	public static float calcularPremio(PolizaDTO dto) {
 		FactorCaracteristicoDTO factores = dto.getFactores();
@@ -135,7 +139,7 @@ public class GestorPoliza {
 		FactorCaracteristicoDTO factores = new FactorCaracteristicoDTO();
 		factores.setPorcentajeCobertura(GestorCobertura.getPorcentajeCoberturaActual(dto.getCobertura()));
 		factores.setPorcentajeRiesgoLocalidad(GestorLocalizacion.getPorcentajeRiesgoLocalidadActual(dto.getLocalidad()));
-		factores.setPorcentajeEstadisticaRobo(GestorVehiculo.getPorcentajeEstadisticaRoboActualActual(dto.getVehiculo().getModelo()));
+		factores.setPorcentajeEstadisticaRobo(GestorVehiculo.getPorcentajeEstadisticaRoboActual(dto.getVehiculo().getModelo()));
 		factores.setPorcentajeKm(GestorRangoKMRealizados.getPorcentajeKMRealizadosActual(dto.getKmRealizados()));
 		factores.setPorcentajeSiniestros(GestorRangoCantSiniestros.getPorcentajeCantSiniestrosActual(dto.getCantidadSiniestros()));
 		factores.setPorcentajeHijos(GestorAjusteHijos.getPorcentajeAjusteHijosActual());
@@ -206,7 +210,7 @@ public class GestorPoliza {
 			}
 			case MENSUAL: {
 				float importeMensual = dto.getImporteTotal() / 6;
-				LocalDateTime fechaPrimerPago = dto.getFechaInicio().minusDays(1);
+				LocalDate fechaPrimerPago = dto.getFechaInicio().minusDays(1);
 				for(int i = 0 ; i < 6 ; i++) {
 					CuotaDTO cuota = new CuotaDTO();
 					cuota.setEstado(EstadoCuota.PENDIENTE);

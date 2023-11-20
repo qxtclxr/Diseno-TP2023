@@ -2,6 +2,7 @@ package tp.gui.buscarcliente;
 
 import tp.dto.*;
 import tp.entidad.TipoDocumento;
+import tp.exception.ObjetoNoEncontradoException;
 
 import java.io.IOException;
 
@@ -15,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tp.app.App;
 import tp.gui.altapoliza.AltaPolizaFormularioPolizaController;
+import tp.logica.GestorCliente;
 
 public class BuscarClienteController {
 	
@@ -26,13 +28,10 @@ public class BuscarClienteController {
 	   private ClienteDTO clienteDTO = new ClienteDTO(); 
 	    
 	    @FXML
-	   private void confirmarCliqueado(ActionEvent event) throws IOException {
+	   private void confirmarCliqueado(ActionEvent event) throws IOException, ObjetoNoEncontradoException {
 	    	
-	    	clienteDTO.setNombre("Juan");
-	    	clienteDTO.setApellido("Perez");
-	    	clienteDTO.setNroCliente("123456789");
-	    	clienteDTO.setNroDocumento("1512999191");
-	    	clienteDTO.setTipoDocumento(TipoDocumento.DNI);
+	    	//Mockup
+	    	ClienteDTO clienteDTO = GestorCliente.getClienteDTO(GestorCliente.getByNroCliente("123456789")) ;
 	    	
 	    	FXMLLoader loader = new FXMLLoader();
 	    	AltaPolizaFormularioPolizaController altaPolizaC = new AltaPolizaFormularioPolizaController();

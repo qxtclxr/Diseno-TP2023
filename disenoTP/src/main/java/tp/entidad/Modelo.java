@@ -27,7 +27,7 @@ public class Modelo{
 	@OneToMany(fetch= FetchType.LAZY, mappedBy="tieneModelo",cascade = CascadeType.ALL)
 	private List<AnioModelo> aniosFabricacion;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="idMarca", referencedColumnName="idMarca",foreignKey= @ForeignKey(name="FK_marca_en_modelo"))
 	private Marca marca;
 	

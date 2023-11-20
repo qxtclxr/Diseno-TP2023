@@ -9,10 +9,10 @@ public class Vehiculo {
 	/*
 	 * Ver unicidad de motor chasis patente
 	 */
-	
-	@Column(nullable=false)
-	private LocalDate anioVehiculo;
-	
+	/*
+	@Column(nullable=true)
+	private Integer anioVehiculo;
+	*/
 	@Column(nullable=false)
 	private String motor;
 	
@@ -22,7 +22,7 @@ public class Vehiculo {
 	@Column(nullable=false)
 	private String patente;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idAnioModelo",referencedColumnName="idAnioModelo", foreignKey= @ForeignKey(name="FK_anio_vehiculo"))
 	private AnioModelo anioModelo;
 	
@@ -51,7 +51,7 @@ public class Vehiculo {
 	}
 
 
-
+/*
 
 	@Override
 	public String toString() {
@@ -60,7 +60,7 @@ public class Vehiculo {
 	}
 
 
-
+*/
 
 	@Override
 	public boolean equals(Object obj) {
@@ -77,10 +77,10 @@ public class Vehiculo {
 
 
 
-
-	public LocalDate getAnioVehiculo() {
+/*
+	public int getAnioVehiculo() {
 		return anioVehiculo;
-	}
+	}*/
 
 	
 
@@ -93,11 +93,11 @@ public class Vehiculo {
 	}
 
 	
-
-	public void setAnioVehiculo(LocalDate anioVehiculo) {
+/*
+	public void setAnioVehiculo(int anioVehiculo) {
 		this.anioVehiculo = anioVehiculo;
 	}
-
+*/
 	
 
 	public String getMotor() {
