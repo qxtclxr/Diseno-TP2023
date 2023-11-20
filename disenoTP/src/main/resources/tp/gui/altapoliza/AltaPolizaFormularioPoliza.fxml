@@ -265,9 +265,9 @@
             <Label fx:id="errorMotorYaExiste" layoutX="15.0" layoutY="545.0" prefHeight="18.0" prefWidth="179.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorChasisYaExiste" layoutX="281.0" layoutY="545.0" prefHeight="18.0" prefWidth="179.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorKmsRealizadosPorAnio" layoutX="819.0" layoutY="373.0" text="El campo esta incompleto" textFill="RED" visible="false" />
-            <Label fx:id="errorFormatoMotor" layoutX="15.0" layoutY="562.0" prefHeight="18.0" prefWidth="179.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
-            <Label fx:id="errorFormatoChasis" layoutX="281.0" layoutY="562.0" prefHeight="18.0" prefWidth="179.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
-            <Label fx:id="errorFormatoPatente" layoutX="549.0" layoutY="545.0" prefHeight="18.0" prefWidth="180.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorFormatoMotor" layoutX="15.0" layoutY="562.0" prefHeight="50.0" prefWidth="179.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorFormatoChasis" layoutX="281.0" layoutY="562.0" prefHeight="50.0" prefWidth="179.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorFormatoPatente" layoutX="549.0" layoutY="545.0" prefHeight="40.0" prefWidth="180.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorNroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="373.0" text="El campo esta incompleto" textFill="RED" visible="false" />
             <Label fx:id="contadorHijosDeclarados" layoutX="1093.0" layoutY="553.0" text="Label" />
             <Label fx:id="errorFaltaProvincia" layoutX="15.0" layoutY="430.0" prefHeight="58.0" prefWidth="179.0" text="Para seleccionar una localidad, debe haber seleccionado la provincia" textFill="RED" visible="false" wrapText="true" />
@@ -275,17 +275,6 @@
             <Label fx:id="errorFaltaModelo" layoutX="281.0" layoutY="476.0" text="Para seleccionar un año, debe haber seleccionado un modelo" textFill="RED" visible="false" />
             <Label fx:id="errorFaltaMarca" layoutX="281.0" layoutY="459.0" text="Para seleccionar un modelo, debe haber seleccionado una marca" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorFaltaVehiculo" layoutX="281.0" layoutY="476.0" text="Para seleccionar un año, debe haber seleccionado un modelo" textFill="RED" visible="false" />
-            <TextField fx:id="rojoPatente" alignment="TOP_LEFT" layoutX="540.0" layoutY="480.0" opacity="0.0" prefHeight="75.0" prefWidth="202.0" style="-fx-background-color: red;" text="Patente de vehículo">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="rojoDomicilioRiesgo" layoutX="4.0" layoutY="310.0" opacity="0.0" prefHeight="106.0" prefWidth="202.0" style="-fx-background-color: red;" />
-            <TextField fx:id="rojoMarca" layoutX="275.0" layoutY="291.0" opacity="0.0" prefHeight="158.0" prefWidth="195.0" style="-fx-background-color: red;" />
-            <TextField fx:id="rojoKM" layoutX="814.0" layoutY="292.0" opacity="0.0" prefHeight="86.0" prefWidth="195.0" style="-fx-background-color: red;" />
-            <TextField fx:id="rojoNroSiniestro" layoutX="1081.0" layoutY="291.0" opacity="0.0" prefHeight="86.0" prefWidth="195.0" style="-fx-background-color: red;" />
-            <TextField fx:id="rojoMotor" layoutX="12.0" layoutY="484.0" opacity="0.0" prefHeight="68.0" prefWidth="183.0" style="-fx-background-color: red;" />
-            <TextField fx:id="rojoChasis" layoutX="275.0" layoutY="482.0" opacity="0.0" prefHeight="68.0" prefWidth="195.0" style="-fx-background-color: red;" />
          </children>
       </AnchorPane>
    </children>

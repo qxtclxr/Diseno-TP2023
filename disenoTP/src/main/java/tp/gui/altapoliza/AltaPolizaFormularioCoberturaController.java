@@ -180,9 +180,12 @@ public class AltaPolizaFormularioCoberturaController {
 		if( (LocalDate.now().getYear() - poliza.getVehiculo().getModelo().getAnio() ) >= 10 && !respCivil.isSelected() ) {
 			errorMayor5anios.setVisible(true);
 			validacionExitosa = false;
+			fechaInicioVigencia.setStyle("-fx-control-inner-background: #fa8e8e;");
 		}
 		else {
 			errorMayor5anios.setVisible(false);
+			fechaInicioVigencia.setStyle("-fx-control-inner-background: white;");
+			
 		}
 		
 		
@@ -195,21 +198,26 @@ public class AltaPolizaFormularioCoberturaController {
 		
 	    if (tipoPago.getValue() == null || tipoPago.getValue().toString().isEmpty()) {
 	        errorTipoPago.setVisible(true);
+	        tipoPago.setStyle("-fx-control-inner-background: #fa8e8e;");
 	        validacionExitosa = false;
 	    } else {
 	    	errorTipoPago.setVisible(false);
+	        tipoPago.setStyle("-fx-control-inner-background: white;");
+
 	    }
 		
 	    if(fechaInicioVigencia.getValue()==null || !(Period.between(LocalDate.now() , fechaInicioVigencia.getValue()).getDays() >= 0 && Period.between(fechaInicioVigencia.getValue(), LocalDate.now().plusMonths(1)).getDays() >= 0)) {
 	    	errorFechaInicioVigencia1.setVisible(true);
 	    	errorFechaInicioVigencia2.setVisible(true);
 	    	errorFechaInicioVigencia3.setVisible(true);
+	    	fechaInicioVigencia.setStyle("-fx-control-inner-background: #fa8e8e;");
 	    	validacionExitosa = false;
 	    }
 	    else {
 	    	errorFechaInicioVigencia1.setVisible(false);
 	    	errorFechaInicioVigencia2.setVisible(false);
 	    	errorFechaInicioVigencia3.setVisible(false);
+	    	fechaInicioVigencia.setStyle("-fx-control-inner-background: white;");
 	    }
 	    
 	    
