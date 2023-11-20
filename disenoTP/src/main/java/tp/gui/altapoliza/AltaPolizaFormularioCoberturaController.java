@@ -76,16 +76,11 @@ public class AltaPolizaFormularioCoberturaController {
 
 	
 	
-	public void setPolizaDTO(PolizaDTO poliza1, AltaPolizaFormularioPolizaController a ) {
+	public void setPolizaDTO(PolizaDTO poliza1) {
 		this.poliza = poliza1;
-		controladorFormulario = a;
 		
 	}
-	
-	public void setPolizaDTOConfirmar(PolizaDTO poliza1, AltaPolizaConfirmarController b ) {
-		this.poliza = poliza1;
-		controladorConfirmar = b;
-	}
+
 
 	
 	public AltaPolizaFormularioCoberturaController() {

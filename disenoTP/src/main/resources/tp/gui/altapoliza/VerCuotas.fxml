@@ -11,11 +11,11 @@
    <children>
       <AnchorPane layoutX="11.0" layoutY="12.0" prefHeight="432.0" prefWidth="427.0">
          <children>
-            <TableView layoutX="14.0" layoutY="84.0" prefHeight="243.0" prefWidth="395.0">
+            <TableView fx:id="tablaCuotas" layoutX="14.0" layoutY="84.0" prefHeight="243.0" prefWidth="395.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Cuota" />
-                <TableColumn prefWidth="153.0" text="Monto a abonar" />
-                  <TableColumn prefWidth="165.0" text="Ultimo día de pago" />
+                <TableColumn fx:id="columnaCuota" prefWidth="75.0" text="Cuota" />
+                <TableColumn fx:id="columnaMonto" prefWidth="153.0" text="Monto a abonar" />
+                  <TableColumn fx:id="columnaUltimoDiaPago" prefWidth="165.0" text="Ultimo día de pago" />
               </columns>
             </TableView>
             <Label layoutX="14.0" layoutY="14.0" text="Cuotas">
@@ -29,7 +29,7 @@
                </font>
             </Label>
             <Button fx:id="volverAtras" layoutX="14.0" layoutY="393.0" mnemonicParsing="false" onAction="#volverAtrasCliqueado" text="Volver atrás" />
-            <Label fx:id="montoAPagar" layoutX="127.0" layoutY="343.0" prefHeight="22.0" prefWidth="28.0" />
+            <Label fx:id="montoAPagar" layoutX="127.0" layoutY="343.0" prefHeight="22.0" prefWidth="174.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

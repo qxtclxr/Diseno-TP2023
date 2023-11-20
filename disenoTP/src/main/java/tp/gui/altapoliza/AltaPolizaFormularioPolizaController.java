@@ -156,7 +156,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 		FXMLLoader loader = new FXMLLoader();
 		AltaPolizaFormularioCoberturaController formularioCoberturaC = new AltaPolizaFormularioCoberturaController();
-		formularioCoberturaC.setPolizaDTO(this.poliza, this);
+		formularioCoberturaC.setPolizaDTO(this.poliza);
 		loader.setController(formularioCoberturaC);
 		loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
     	AnchorPane form = loader.load();
