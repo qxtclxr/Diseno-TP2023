@@ -62,7 +62,10 @@
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font></Label>
-                        <Label text="  Nombre" GridPane.rowIndex="2" />
+                        <Label text="  Nombre" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font></Label>
                         <Label text="  Datos del vehículo" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold Italic" size="12.0" />
