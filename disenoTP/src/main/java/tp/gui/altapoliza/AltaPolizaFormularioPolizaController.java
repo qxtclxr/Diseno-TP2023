@@ -27,12 +27,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import tp.app.App;
-=======
-import tp.app.App; 
-
->>>>>>> branch 'master' of https://github.com/qxtclxr/Diseno-TP2023.git
 
 public class AltaPolizaFormularioPolizaController implements Initializable{
 	
