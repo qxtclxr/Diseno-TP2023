@@ -89,7 +89,8 @@ public class DeclararHijosController {
 		
         ObservableList<HijoDeclaradoDTO> datosTabla = FXCollections.observableArrayList(listaHijos);
         tablaDeHijos.setItems(datosTabla);
-		
+	
+        
 	}
 
 	
