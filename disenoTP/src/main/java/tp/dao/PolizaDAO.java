@@ -74,11 +74,13 @@ public class PolizaDAO extends AbstractDAO<Poliza> {
 		try {
 			t.begin();
 			//em.merge(p.getVehiculoAsegurado().getAnioModelo());
-			
+			/*
 			for(Cuota c:p.getCuotasAsociadas()) {
 				c.setPolizaAsociada(p);
 			}
 			p.getCliente().getPolizas().add(p);
+			*/
+			
 			em.persist(p);
 			em.merge(p.getCliente());
 			t.commit();
