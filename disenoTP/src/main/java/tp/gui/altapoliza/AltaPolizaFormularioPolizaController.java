@@ -31,7 +31,7 @@ import tp.app.App;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Pane;
-
+import java.util.ArrayList;
 
 public class AltaPolizaFormularioPolizaController implements Initializable{
 	
@@ -181,11 +181,13 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
     	App.switchScreenTo(form);
     	
 	}
+		
 	
 	public void setHijosDeclarados(List<HijoDeclaradoDTO> l) {
 		poliza.setHijosDeclarados(l);
+		this.setContadorHijosDeclarados();
 	}
-	/*
+	/* ESTA ES LA VERSION VIEJA DE LO QUE ESTA ABAJO
 	@FXML
 	private void declararHijosClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
@@ -217,7 +219,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	private void declararHijosClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
 	    DeclararHijosController declararHijosC = new DeclararHijosController();
-	    declararHijosC.setListaHijos(this.poliza.getHijosDeclarados());
+	    declararHijosC.setListaHijos(this.poliza.getHijosDeclarados(), this);
 	    loader.setController(declararHijosC);
 	    loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
 
@@ -373,12 +375,15 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	}
 	 */
 	
+	private void setListaHijosDeclarados(){
+		List<HijoDeclaradoDTO> a = new ArrayList<HijoDeclaradoDTO>();
+		poliza.setHijosDeclarados(a);
+		this.setContadorHijosDeclarados();
+	}
 	
 	
 	private void setContadorHijosDeclarados() {
-		//saca de alguna manera de la base de datos cuantos hijos declarados tiene
-		int hijosDeclarados = 0;
-		contadorHijosDeclarados.setText("Hijos declarados: "+ hijosDeclarados );
+		contadorHijosDeclarados.setText("Hijos Declarados: " + poliza.getHijosDeclarados().size());
 	}
 	
 	
@@ -712,7 +717,9 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 		this.setProvincia();
 		
-		this.setContadorHijosDeclarados();
+		this.setListaHijosDeclarados();
+		
+		//this.setContadorHijosDeclarados();
 		
 		this.setKms();
 		

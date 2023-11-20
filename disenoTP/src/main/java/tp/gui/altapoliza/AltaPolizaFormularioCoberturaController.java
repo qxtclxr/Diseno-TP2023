@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import tp.app.App;
 import tp.dto.PolizaDTO;
 import tp.entidad.TipoPoliza;
@@ -87,22 +88,20 @@ public class AltaPolizaFormularioCoberturaController {
     	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
     	AnchorPane form = loader.load();
     	//formularioPolizaC.setPolizaDTO(this.poliza);
-    	//
     	
     	//formularioPolizaC.mostrarDatosPoliza();
     	
     	App.switchScreenTo(form);
 		
-		
-		
-	}
+	} 
+	
 	
 	private String getTipoCobertura( ) {
 		
 		if(respCivil.isSelected()) {
 			return "Responsabilidad Civil";
 		}
-		else if(respCivilRoboIncendioTotal.isPickOnBounds() ) {
+		else if(respCivilRoboIncendioTotal.isSelected() ) {
 			return "Responsabilidad Civil + Robo o incendio total";
 		}
 		else if(todoTotal.isSelected()) {

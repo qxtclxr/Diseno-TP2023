@@ -45,9 +45,11 @@ public class DeclararHijosController {
 	
 	private List<HijoDeclaradoDTO> listaHijos;
 	
+	private AltaPolizaFormularioPolizaController controladorPantallaFormulario = new AltaPolizaFormularioPolizaController();
 	
-	public void setListaHijos(List<HijoDeclaradoDTO> l) {
+	public void setListaHijos(List<HijoDeclaradoDTO> l, AltaPolizaFormularioPolizaController a ) {
 		listaHijos = l;
+		controladorPantallaFormulario = a;
 	}
 	
 	@FXML
@@ -61,9 +63,13 @@ public class DeclararHijosController {
     	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
     	AnchorPane form = loader.load();
     	
-    	App.switchScreenTo(form);*/
+    	App.switchScreenTo(form);
+		*/
+		controladorPantallaFormulario.setHijosDeclarados(listaHijos);
+		
 		Stage stage = (Stage) volverAtras2.getScene().getWindow();
-        stage.close(); // Cierra la ventana modal
+		
+        stage.close(); // Cierra la ventana modal*/
 	}
 	
 	
@@ -125,7 +131,7 @@ public class DeclararHijosController {
 		hijo.setSexo(this.getValueSexo() );
 		
 		listaHijos.add(hijo);
-		
+		System.out.println("Se agregó un hijo AAAAAAAAAAAA");
 	}
 	
 	
