@@ -72,7 +72,9 @@ public class GestorPoliza {
 		
 		poliza.setNroPoliza(generarNroPoliza(dto));
 		
-		poliza.setProductorAsociado(App.getUsuarioLogeado());
+		UsuarioDAO d=new UsuarioDAO();
+		//System.out.println("h");
+		poliza.setProductorAsociado(d.getById(App.getUsuarioLogeado().getIdUsuario()).get());
 		
 		return poliza;
 	}
@@ -99,7 +101,9 @@ public class GestorPoliza {
 		validarDTO(dto);
 		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
-		dao.updateInstance(poliza);
+		//dao.altaPoliza(poliza);
+		//dao.updateInstance(poliza);
+		dao.saveInstance(poliza);
 		return poliza;
 	}
 	

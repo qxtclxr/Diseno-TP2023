@@ -40,8 +40,8 @@ public class Poliza {
 	@Column(nullable = false)
 	private LocalDateTime fechaInicio;
 	
-	@Column(nullable = false)
-	private LocalDateTime fechaFin;
+	//@Column(nullable = false)
+	//private LocalDateTime fechaFin;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
@@ -73,57 +73,57 @@ public class Poliza {
 	
 	//relaciones // Factores de calculo
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idFactorRiesgo", referencedColumnName="idFactorRiesgoLocalidad",foreignKey= @ForeignKey(name="FK_factor_riesgo_en_poliza"))
 	private PorcentajeRiesgoLocalidad factorRiesgoLoc;
 	//ver si esta bien este cascade como en caso pago
 	
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idPorcentajeDescPorUnidad",referencedColumnName="idPorcentajeDescPorUnidad", foreignKey= @ForeignKey(name="FK_porc_unidad_en_poliza"))
 	private PorcentajeDescPorUnidad porcDescuentoPorU;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idPorcCantSin",referencedColumnName="idPorcCantSin", foreignKey= @ForeignKey(name="FK_por_siniestros_en_poliza"))
 	private PorcentajeCantSiniestros porcCantSiniestros;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idRangoKMRealizados",referencedColumnName="idPorcentajeKMRealizados", foreignKey= @ForeignKey(name="FK_porc_km_realizados_en_poliza"))
 	private PorcentajeKMRealizados porcKMRealizados;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idValorDerechosDeEmision",referencedColumnName="idValorDerechosDeEmision", foreignKey= @ForeignKey(name="FK_valor_derechos_en_poliza"))
 	private ValorDerechosDeEmision valorDerechosDeEmision;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idPorcAjusteHijos", referencedColumnName="idPorcentajeAjusteHijos",foreignKey= @ForeignKey(name="FK_porc_hijo_en_poliza"))
 	private PorcentajeAjusteHijos porcAjustePorHijo;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idPorcEstadRobo", referencedColumnName="idPorcEstadRobo",foreignKey= @ForeignKey(name="FK_porc_robo_en_poliza"))
 	private PorcentajeEstadisticaRobo porcEstRobo;
 	
 	//ver el eager de los factores
 	
 	//Este puede traer problemas
-	@ManyToMany(fetch= FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.ALL})
+	@ManyToMany(fetch= FetchType.EAGER,cascade = { CascadeType.MERGE})
 	private List<PorcentajeMedidaDeSeguridad> porcMedidaSeguridad;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval = true)
 	private List<ModificacionPoliza> modificaciones;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="porCobertura", referencedColumnName="idPorcentajeCobertura", foreignKey= @ForeignKey(name="FK_Por_cobertura_Poliza"))
 	private PorcentajeCobertura porcCobertura;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval = true)
 	private List<HijoDeclarado> hijosDeclarados;
 	
 	//ver Como embeberlo
 	@Embedded
 	private Vehiculo vehiculoAsegurado;
 	
-	@OneToMany(fetch= FetchType.LAZY, mappedBy="polizaAsociada",cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="polizaAsociada",cascade = CascadeType.MERGE, orphanRemoval = true)
 	private List<Cuota> cuotasAsociadas;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -172,7 +172,7 @@ public class Poliza {
 	}
 
 
-
+/*
 	@Override
 	public String toString() {
 		return "Poliza [idPoliza=" + idPoliza + ", nroPoliza=" + nroPoliza + ", sumaAsegurada=" + sumaAsegurada
@@ -185,7 +185,7 @@ public class Poliza {
 				+ porcMedidaSeguridad + ", modificaciones=" + modificaciones + ", porcCobertura=" + porcCobertura
 				+ ", hijosDeclarados=" + hijosDeclarados + ", vehiculoAsegurado=" + vehiculoAsegurado
 				+ ", cuotasAsociadas=" + cuotasAsociadas + ", productorAsociado=" + productorAsociado + "]";
-	}
+	}*/
 
 
 
@@ -207,9 +207,9 @@ public class Poliza {
 
 
 
-	public LocalDateTime getFechaFin() {
+	/*public LocalDateTime getFechaFin() {
 		return fechaFin;
-	}
+	}*/
 
 
 
@@ -325,11 +325,10 @@ public class Poliza {
 		this.fechaInicio = fechaInicio;
 	}
 
-
-
+/*
 	public void setFechaFin(LocalDateTime fechaFin) {
 		this.fechaFin = fechaFin;
-	}
+	}*/
 
 
 
