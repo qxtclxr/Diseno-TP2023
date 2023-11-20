@@ -110,7 +110,8 @@ public class AltaPolizaFormularioCoberturaController {
 	private void cargarDatosFormulario() throws ObjetoNoEncontradoException {
 		poliza.setCobertura(coberturasMap.get(coberturas.getSelectedToggle()));
 		poliza.setTipoPoliza((tipoPago.getValue().toString().equals("Mensual"))?TipoPoliza.MENSUAL:TipoPoliza.SEMESTRAL);
-		poliza.setFechaInicio(fechaInicioVigencia.getValue().atStartOfDay());
+		poliza.setFechaInicio(fechaInicioVigencia.getValue());
+		poliza.setFechaFin(poliza.getFechaFin().plusMonths(1));
 		this.cargarDatosSobreCobro();
 	}
 

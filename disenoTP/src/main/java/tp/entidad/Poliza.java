@@ -1,5 +1,6 @@
 package tp.entidad;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -38,10 +39,10 @@ public class Poliza {
 	private Float sumaAsegurada;
 
 	@Column(nullable = false)
-	private LocalDateTime fechaInicio;
+	private LocalDate fechaInicio;
 	
 	@Column(nullable = false)
-	private LocalDateTime fechaFin;
+	private LocalDate fechaFin;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
@@ -201,13 +202,13 @@ public class Poliza {
 
 
 
-	public LocalDateTime getFechaInicio() {
+	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
 
 
 
-	public LocalDateTime getFechaFin() {
+	public LocalDate getFechaFin() {
 		return fechaFin;
 	}
 
@@ -321,13 +322,13 @@ public class Poliza {
 
 
 
-	public void setFechaInicio(LocalDateTime fechaInicio) {
+	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
 
 
-	public void setFechaFin(LocalDateTime fechaFin) {
+	public void setFechaFin(LocalDate fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 

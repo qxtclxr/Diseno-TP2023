@@ -103,7 +103,7 @@ public class AltaPolizaConfirmarController {
 	private void verCoutasClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
 	    //DeclararHijosController declararHijosC = new DeclararHijosController();
-	    VerCuotasController verCuotasC = new VerCuotasController();
+	    VerCuotasController verCuotasC = new VerCuotasController(poliza);
 	    
 	    //declararHijosC.setListaHijos(this.poliza.getHijosDeclarados()); ///////
 	    
@@ -166,23 +166,17 @@ public class AltaPolizaConfirmarController {
 		
 		apellido.setText(poliza.getCliente().getApellido());
 		nombre.setText(poliza.getCliente().getNombre());
-		/* 
-
-		
-		
-		
-
-		
-		*/
 		modelo.setText(poliza.getVehiculo().getModelo().getModelo().getNombre());
 		direccionDeRiesgo.setText(poliza.getLocalidad().getNombre()+ ", "+ poliza.getLocalidad().getProvincia().getNombre());
 		marca.setText(poliza.getVehiculo().getModelo().getModelo().getMarca().getNombre());
 		patente.setText(poliza.getVehiculo().getPatente());
 		motor.setText(poliza.getVehiculo().getMotor());
 		chasis.setText(poliza.getVehiculo().getChasis());
-		inicioVigencia.setText( poliza.getFechaInicio().toString() );
-		finalVigencia.setText(  poliza.getFechaInicio().plusMonths(1).toString()  );
-		
+		inicioVigencia.setText(poliza.getFechaInicio().toString());
+		finalVigencia.setText(poliza.getFechaFin().toString());
+		sumaAsegurada.setText(String.valueOf(poliza.getSumaAsegurada()));
+		premio.setText(String.valueOf(poliza.getPremio()));
+		importePorDescuento.setText(String.valueOf(poliza.getDescuento()));
 	}
 	
 	

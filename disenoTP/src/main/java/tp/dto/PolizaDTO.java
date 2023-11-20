@@ -1,14 +1,14 @@
 package tp.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import tp.entidad.TipoPoliza;
 
 public class PolizaDTO {
 	
 	private float sumaAsegurada;
-	private LocalDateTime fechaInicio;
-	private LocalDateTime fechaFin;
+	private LocalDate fechaInicio;
+	private LocalDate fechaFin;
 	private TipoPoliza tipoPoliza;
 	private List<HijoDeclaradoDTO> hijosDeclarados;
 	private List<CuotaDTO> cuotas;
@@ -30,16 +30,16 @@ public class PolizaDTO {
 	public void setSumaAsegurada(float sumaAsegurada) {
 		this.sumaAsegurada = sumaAsegurada;
 	}
-	public LocalDateTime getFechaInicio() {
+	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
-	public void setFechaInicio(LocalDateTime fechaInicio) {
+	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
-	public LocalDateTime getFechaFin() {
+	public LocalDate getFechaFin() {
 		return fechaFin;
 	}
-	public void setFechaFin(LocalDateTime fechaFin) {
+	public void setFechaFin(LocalDate fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 	public TipoPoliza getTipoPoliza() {

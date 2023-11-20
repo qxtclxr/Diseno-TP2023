@@ -1,12 +1,12 @@
 package tp.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import tp.entidad.EstadoCuota;
 
 public class CuotaDTO {
 	//private int id; //Esto quiza sirva despues
-	private LocalDateTime fechaVencimiento;
+	private LocalDate fechaVencimiento;
 	private float importeTotal;
 	private EstadoCuota estado;
 	private float interesAsociado = 0F;
@@ -17,10 +17,10 @@ public class CuotaDTO {
 	public void setInteresAsociado(float interesAsociado) {
 		this.interesAsociado = interesAsociado;
 	}
-	public LocalDateTime getFechaVencimiento() {
+	public LocalDate getFechaVencimiento() {
 		return fechaVencimiento;
 	}
-	public void setFechaVencimiento(LocalDateTime fechaVencimiento) {
+	public void setFechaVencimiento(LocalDate fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 	public float getImporteTotal() {
