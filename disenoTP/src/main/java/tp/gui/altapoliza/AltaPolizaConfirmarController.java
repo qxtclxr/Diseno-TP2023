@@ -81,8 +81,7 @@ public class AltaPolizaConfirmarController {
 	
 	@FXML
 	private AnchorPane rootPane2; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
-/*
-	@FXML  HACE LO MISMO Q EL DE ABAJO PERO ESTE LO HARIA OSCURECIENDO LA PAGINA, HAY Q CHEQEUAR
+	@FXML  //HACE LO MISMO Q EL DE ABAJO PERO ESTE LO HARIA OSCURECIENDO LA PAGINA, HAY Q CHEQEUAR
 	private void verCoutasClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
 	    //DeclararHijosController declararHijosC = new DeclararHijosController();
@@ -115,9 +114,9 @@ public class AltaPolizaConfirmarController {
 	    // Mostrar la ventana modal y esperar hasta que se cierre
 	    modalStage.setOnHidden(event -> rootPane2.getChildren().remove(overlay)); // Remover el overlay cuando se cierra la ventana modal
 	    modalStage.showAndWait();
-	}*/
+	}
 	
-	
+	/*
 	@FXML
 	private void verCoutasClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
@@ -142,7 +141,7 @@ public class AltaPolizaConfirmarController {
 	    
 	    // Mostrar la ventana modal y esperar hasta que se cierre
 	    modalStage.showAndWait();
-	}
+	}*/
 	
 	
 	private void mostrarDatosPoliza( ) {
