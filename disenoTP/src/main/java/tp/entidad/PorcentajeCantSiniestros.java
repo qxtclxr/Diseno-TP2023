@@ -23,7 +23,7 @@ public class PorcentajeCantSiniestros {
 	
 	//relaciones
 	
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idRangoCantSiniestros",referencedColumnName="idRangoCantSiniestros" ,foreignKey= @ForeignKey(name="FK_rango_en_cant_siniestros"))
 	private RangoCantSiniestros rangoAsociado;
 	

@@ -26,7 +26,7 @@ public class PorcentajeAjusteHijos {
 	@JoinColumn(name="idUsuario",referencedColumnName="idUsuario" ,foreignKey= @ForeignKey(name="FK_usuario_en_porcentaje_cant_hijos"))
 	private Usuario modificadoPor;
 	
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idRangoAjusteHijos",referencedColumnName="idRangoAjusteHijos" ,foreignKey= @ForeignKey(name="FK_ajuste_en_por_hijos"))
 	private AjusteHijos ajusteAsociado;
 	

@@ -6,6 +6,7 @@ import java.util.Objects;
 import jakarta.persistence.*;
 import tp.entidad.*;
 
+@Deprecated
 @Entity
 @Table(name="respuestaSeguridad")
 public class RespuestaSeguridad {

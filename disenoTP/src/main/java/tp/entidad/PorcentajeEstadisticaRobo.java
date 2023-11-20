@@ -24,7 +24,7 @@ public class PorcentajeEstadisticaRobo {
 	
 	//relaciones
 	
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idAnioModelo",referencedColumnName="idAnioModelo" ,foreignKey= @ForeignKey(name="FK_anio_porcentajeRobo"))
 	private AnioModelo anioModeloAsociado;
 	

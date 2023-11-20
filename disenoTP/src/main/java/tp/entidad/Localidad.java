@@ -27,10 +27,10 @@ public class Localidad implements FactorCaracteristico{
 	
 	@OneToOne
 	@JoinColumn(name="idValorActualFactorRiesgo")
-	private FactorRiesgoLocalidad valorActualFactorRiesgo;
+	private PorcentajeRiesgoLocalidad valorActualFactorRiesgo;
 	
 	@OneToMany(fetch= FetchType.LAZY,mappedBy="localidadAsociada", cascade = CascadeType.ALL)
-	private List<FactorRiesgoLocalidad> valoresPasadosFactorRiesgo;
+	private List<PorcentajeRiesgoLocalidad> valoresPasadosFactorRiesgo;
 	
 	
 	public Localidad() {
@@ -84,12 +84,12 @@ public class Localidad implements FactorCaracteristico{
 	}
 
 
-	public FactorRiesgoLocalidad getValorActualFactorRiesgo() {
+	public PorcentajeRiesgoLocalidad getValorActualFactorRiesgo() {
 		return valorActualFactorRiesgo;
 	}
 
 
-	public List<FactorRiesgoLocalidad> getValoresPasadosFactorRiesgo() {
+	public List<PorcentajeRiesgoLocalidad> getValoresPasadosFactorRiesgo() {
 		return valoresPasadosFactorRiesgo;
 	}
 
@@ -109,12 +109,12 @@ public class Localidad implements FactorCaracteristico{
 	}
 
 
-	public void setValorActualFactorRiesgo(FactorRiesgoLocalidad valorActualFactorRiesgo) {
+	public void setValorActualFactorRiesgo(PorcentajeRiesgoLocalidad valorActualFactorRiesgo) {
 		this.valorActualFactorRiesgo = valorActualFactorRiesgo;
 	}
 
 
-	public void setValoresPasadosFactorRiesgo(List<FactorRiesgoLocalidad> valoresPasadosFactorRiesgo) {
+	public void setValoresPasadosFactorRiesgo(List<PorcentajeRiesgoLocalidad> valoresPasadosFactorRiesgo) {
 		this.valoresPasadosFactorRiesgo = valoresPasadosFactorRiesgo;
 	}
 	

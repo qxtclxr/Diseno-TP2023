@@ -22,7 +22,7 @@ public class PorcentajeKMRealizados {
 	
 	
 	//relaciones
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idRangoKMRealizados",referencedColumnName="idRangoKMRealizados" ,foreignKey= @ForeignKey(name="FK_rango_en_por_km"))
 	private RangoKMRealizados rangoAsociado;
 	

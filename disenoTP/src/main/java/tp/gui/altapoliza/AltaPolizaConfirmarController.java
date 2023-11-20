@@ -66,9 +66,6 @@ public class AltaPolizaConfirmarController {
     	formularioPolizaCoberturaC.mostrarDatos();
     	
     	App.switchScreenTo(form);
-		
-		
-		
 	}
 	
 	private void mostrarDatosPoliza( ) {

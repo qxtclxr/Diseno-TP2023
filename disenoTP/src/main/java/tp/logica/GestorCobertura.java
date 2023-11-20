@@ -23,9 +23,14 @@ public class GestorCobertura {
 		return dto;
 	}
 	
-	public static List<CoberturaDTO> getAll(){
+	public static List<Cobertura> getAll(){
 		CoberturaDAO dao = new CoberturaDAO();
 		List<Cobertura> all = dao.getAll();
+		return all;
+	}
+	
+	public static List<CoberturaDTO> getAllDTOs(){
+		List<Cobertura> all = getAll();
 		List<CoberturaDTO> allDTOs = all.stream().map(obj -> getDTO(obj)).collect(Collectors.toList());
 		return allDTOs;
 	}

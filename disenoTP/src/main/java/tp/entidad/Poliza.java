@@ -75,7 +75,7 @@ public class Poliza {
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="idFactorRiesgo", referencedColumnName="idFactorRiesgoLocalidad",foreignKey= @ForeignKey(name="FK_factor_riesgo_en_poliza"))
-	private FactorRiesgoLocalidad factorRiesgoLoc;
+	private PorcentajeRiesgoLocalidad factorRiesgoLoc;
 	//ver si esta bien este cascade como en caso pago
 	
 	
@@ -391,7 +391,7 @@ public class Poliza {
 
 
 
-	public FactorRiesgoLocalidad getFactorRiesgoLoc() {
+	public PorcentajeRiesgoLocalidad getFactorRiesgoLoc() {
 		return factorRiesgoLoc;
 	}
 
@@ -445,7 +445,7 @@ public class Poliza {
 
 
 
-	public void setFactorRiesgoLoc(FactorRiesgoLocalidad factorRiesgoLoc) {
+	public void setFactorRiesgoLoc(PorcentajeRiesgoLocalidad factorRiesgoLoc) {
 		this.factorRiesgoLoc = factorRiesgoLoc;
 	}
 

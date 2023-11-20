@@ -135,7 +135,7 @@ public class GestorPoliza {
 		FactorCaracteristicoDTO factores = new FactorCaracteristicoDTO();
 		factores.setPorcentajeCobertura(GestorCobertura.getPorcentajeCoberturaActual(dto.getCobertura()));
 		factores.setPorcentajeRiesgoLocalidad(GestorLocalizacion.getPorcentajeRiesgoLocalidadActual(dto.getLocalidad()));
-		factores.setPorcentajeEstadisticaRobo(GestorVehiculo.getPorcentajeEstadisticaRoboActualActual(dto.getVehiculo().getModelo()));
+		factores.setPorcentajeEstadisticaRobo(GestorVehiculo.getPorcentajeEstadisticaRoboActual(dto.getVehiculo().getModelo()));
 		factores.setPorcentajeKm(GestorRangoKMRealizados.getPorcentajeKMRealizadosActual(dto.getKmRealizados()));
 		factores.setPorcentajeSiniestros(GestorRangoCantSiniestros.getPorcentajeCantSiniestrosActual(dto.getCantidadSiniestros()));
 		factores.setPorcentajeHijos(GestorAjusteHijos.getPorcentajeAjusteHijosActual());

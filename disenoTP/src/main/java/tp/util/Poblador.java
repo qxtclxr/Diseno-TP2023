@@ -1,25 +1,206 @@
 package tp.util;
 
 import tp.entidad.*;
-import tp.exception.ObjetoNoEncontradoException;
-import tp.logica.GestorLocalizacion;
+import tp.logica.*;
 import tp.dao.*;
+import tp.exception.ObjetoNoEncontradoException;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Random;
+
 
 public class Poblador {
 	
 	public static void poblar() {
-		
-		
 		try {
+			poblarAjusteHijos();
 			poblarPaises();
 			poblarProvinciasArgentinas();
 			poblarAutos();
 			poblarKms();
+			poblarPorcentajeKm();
 			poblarSiniestros();
+			poblarPorcentajeSiniestros();
+			poblarCobertura();
+			poblarPorcentajeCobertura();
+			poblarDescuentoPorUnidad();
+			poblarPorcentajeRobo();
+			poblarMedidasDeSeguridad();
+			poblarPorcentajesMedidas();
+			poblarPorcentajeLocalidad();
 		} catch (ObjetoNoEncontradoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void poblarPorcentajeLocalidad() {
+		PorcentajeRiesgoLocalidadDAO dao = new PorcentajeRiesgoLocalidadDAO();
+		LocalidadDAO daoLocal = new LocalidadDAO();
+		List<Localidad> entidades = daoLocal.getAll();
+		Random rand = new Random();
+		float valor = rand.nextFloat(5);
+		for(Localidad entidad : entidades) {
+			PorcentajeRiesgoLocalidad porc = new PorcentajeRiesgoLocalidad();
+			porc.setValorNumerico(valor++);
+			porc.setLocalidadAsociada(entidad);
+			porc.setFechaModificacion(LocalDateTime.now());
+			entidad.setValorActualFactorRiesgo(porc);
+			dao.saveInstance(porc);
+		}
+	}
+	
+	public static void poblarPorcentajesMedidas() {
+		PorcentajeMedidaDeSeguridadDAO dao = new PorcentajeMedidaDeSeguridadDAO();
+		List<MedidaDeSeguridad> entidades = GestorMedidaDeSeguridad.getAll(); 
+		float valor = 1;
+		for(MedidaDeSeguridad entidad : entidades) {
+			PorcentajeMedidaDeSeguridad porc = new PorcentajeMedidaDeSeguridad();
+			porc.setValorNumerico(valor++);
+			porc.setMedidaAsociada(entidad);
+			porc.setFechaModificacion(LocalDateTime.now());
+			entidad.setValorActualPorcMedidaDeSeg(porc);
+			dao.saveInstance(porc);
+		}
+	}
+	
+	public static void poblarMedidasDeSeguridad() {
+		MedidaDeSeguridadDAO dao = new MedidaDeSeguridadDAO();
+		
+		MedidaDeSeguridad medida = new MedidaDeSeguridad();
+		medida.setPregunta("Se guarda en Garage?");
+		dao.saveInstance(medida);
+		
+		medida = new MedidaDeSeguridad();
+		medida.setPregunta("Tiene alarma?");
+		dao.saveInstance(medida);
+		
+		medida = new MedidaDeSeguridad();
+		medida.setPregunta("Posee dispositivo de rastreo vehicular?");
+		dao.saveInstance(medida);
+		
+		medida = new MedidaDeSeguridad();
+		medida.setPregunta("Posee tuercas antirobo en las cuatro cuerdas?");
+		dao.saveInstance(medida);
+		
+	}
+	
+	public static void poblarPorcentajeRobo() {
+		PorcentajeEstadisticaRoboDAO dao = new PorcentajeEstadisticaRoboDAO();
+		AnioModeloDAO daoAnio = new AnioModeloDAO();
+		List<AnioModelo> entidades = daoAnio.getAll();
+		Random rand = new Random();
+		float valor = rand.nextFloat(5);
+		for(AnioModelo entidad : entidades) {
+			PorcentajeEstadisticaRobo porc = new PorcentajeEstadisticaRobo();
+			porc.setValorNumerico(valor++);
+			porc.setAnioModeloAsociado(entidad);
+			porc.setFechaModificacion(LocalDateTime.now());
+			entidad.setValorActualPorcentajeEstadisticaRobo(porc);
+			dao.saveInstance(porc);
+		}
+	}
+	
+	public static void poblarPorcentajeKm() {
+		PorcentajeKMRealizadosDAO dao = new PorcentajeKMRealizadosDAO();
+		List<RangoKMRealizados> entidades = GestorRangoKMRealizados.getAll();
+		float valor = 1;
+		for(RangoKMRealizados entidad : entidades) {
+			PorcentajeKMRealizados porc = new PorcentajeKMRealizados();
+			porc.setValorNumerico(valor++);
+			porc.setRangoAsociado(entidad);
+			porc.setFechaModificacion(LocalDateTime.now());
+			entidad.setValorActualPorcentajeKMRealizados(porc);
+			dao.saveInstance(porc);
+		}
+	}
+	
+	public static void poblarPorcentajeCobertura() {
+		PorcentajeCoberturaDAO dao = new PorcentajeCoberturaDAO();
+		List<Cobertura> entidades = GestorCobertura.getAll();
+		float valor = 1;
+		for(Cobertura entidad : entidades) {
+			PorcentajeCobertura porc = new PorcentajeCobertura();
+			porc.setValorNumerico(valor++);
+			porc.setCoberturaAsociada(entidad);
+			porc.setFechaModificacion(LocalDateTime.now());
+			entidad.setValorActualPorcentajeCobertura(porc);
+			dao.saveInstance(porc);
+		}
+	}
+	
+	public static void poblarCobertura() {
+		CoberturaDAO dao = new CoberturaDAO();
+		
+		Cobertura cobertura = new Cobertura();
+		cobertura.setDescripcion("");
+		cobertura.setTipoCobertura("Responsabilidad Civil");
+		dao.saveInstance(cobertura);
+		
+		cobertura = new Cobertura();
+		cobertura.setDescripcion("");
+		cobertura.setTipoCobertura("Resp. Civil + Robo o Incendio Total");
+		dao.saveInstance(cobertura);
+		
+		cobertura = new Cobertura();
+		cobertura.setDescripcion("");
+		cobertura.setTipoCobertura("Todo Total");
+		dao.saveInstance(cobertura);
+		
+		cobertura = new Cobertura();
+		cobertura.setDescripcion("");
+		cobertura.setTipoCobertura("Terceros Completos");
+		dao.saveInstance(cobertura);
+		
+		cobertura = new Cobertura();
+		cobertura.setDescripcion("");
+		cobertura.setTipoCobertura("Todo Riesgo con Franquicia");
+		dao.saveInstance(cobertura);
+		
+	}
+	
+	public static void poblarPorcentajeSiniestros() {
+		PorcentajeCantSiniestrosDAO dao = new PorcentajeCantSiniestrosDAO();
+		List<RangoCantSiniestros> entidades = GestorRangoCantSiniestros.getAll();
+		float valor = 1;
+		for(RangoCantSiniestros entidad : entidades) {
+			PorcentajeCantSiniestros porc = new PorcentajeCantSiniestros();
+			porc.setValorNumerico(valor++);
+			porc.setRangoAsociado(entidad);
+			porc.setFechaModificacion(LocalDateTime.now());
+			entidad.setValorActualPorcentajeCantSiniestros(porc);
+			dao.saveInstance(porc);
+		}
+	}
+	
+	public static void poblarDescuentoPorUnidad() {
+		PorcentajeDescPorUnidadDAO porcDao = new PorcentajeDescPorUnidadDAO();
+		DescuentoPorUnidadDAO descDao = new DescuentoPorUnidadDAO();
+		PorcentajeDescPorUnidad porc = new PorcentajeDescPorUnidad();
+		DescuentoPorUnidad desc = new DescuentoPorUnidad();
+		
+		descDao.saveInstance(desc);
+		
+		porc.setValorNumerico(2.5F);
+		porc.setFechaModificacion(LocalDateTime.now());
+		desc.setValorActualDescPorUnidad(porc);
+		porc.setDescAsociado(desc);
+		porcDao.saveInstance(porc);
+	}
+	
+	public static void poblarAjusteHijos() {
+		PorcentajeAjusteHijosDAO porcDao = new PorcentajeAjusteHijosDAO();
+		AjusteHijosDAO ajusteDao = new AjusteHijosDAO();
+		PorcentajeAjusteHijos porc = new PorcentajeAjusteHijos();
+		AjusteHijos ajuste = new AjusteHijos();
+		
+		ajusteDao.saveInstance(ajuste);
+		
+		porc.setValorNumerico(2.5F);
+		porc.setFechaModificacion(LocalDateTime.now());
+		ajuste.setValorActualPorcentajeCantHijos(porc);
+		porc.setAjusteAsociado(ajuste);
+		porcDao.saveInstance(porc);
 		
 		
 	}
