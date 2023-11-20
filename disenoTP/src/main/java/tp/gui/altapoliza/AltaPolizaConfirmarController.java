@@ -1,11 +1,17 @@
 package tp.gui.altapoliza;
+
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import tp.app.App;
 import tp.dto.*;
 
@@ -37,7 +43,7 @@ public class AltaPolizaConfirmarController {
 	@FXML
 	private Label finalVigencia;
 	@FXML
-	private Label ultimoDiaDePago;
+	private Button ultimoDiaDePago;
 	@FXML
 	private Label sumaAsegurada;
 	@FXML
@@ -45,7 +51,7 @@ public class AltaPolizaConfirmarController {
 	@FXML
 	private Label importePorDescuento;
 	@FXML
-	private Label totalAbonar;
+	private Button totalAbonar;
 	
 	
 	public void setPolizaDTO(PolizaDTO p) {
@@ -67,6 +73,48 @@ public class AltaPolizaConfirmarController {
     	
     	App.switchScreenTo(form);
 	}
+	
+	
+	@FXML
+	private AnchorPane rootPane2; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
+
+	@FXML
+	private void verCoutasClicked(ActionEvent action) throws IOException {
+	    FXMLLoader loader = new FXMLLoader();
+	    //DeclararHijosController declararHijosC = new DeclararHijosController();
+	    VerCuotasController verCuotasC = new VerCuotasController();
+	    
+	    //declararHijosC.setListaHijos(this.poliza.getHijosDeclarados()); ///////
+	    
+	    loader.setController(verCuotasC);
+	    loader.setLocation(getClass().getResource("../altapoliza/VerCuotas.fxml"));
+
+	    // Cargar el formulario en un AnchorPane
+	    AnchorPane form = loader.load();
+
+	    // Crear un nuevo Stage (ventana) para mostrar el formulario como modal
+	    Stage modalStage = new Stage();
+	    modalStage.initModality(Modality.APPLICATION_MODAL);
+	    modalStage.setTitle("Ver Cuotas");
+
+	    // Configurar el formulario en la nueva ventana modal
+	    Scene scene = new Scene(form);
+
+	    // Crear un Pane transparente para oscurecer el fondo
+	    Pane overlay = new Pane();
+	    overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);"); // Color negro con opacidad del 50%
+	    overlay.setPrefSize(rootPane2.getWidth(), rootPane2.getHeight());
+	    rootPane2.getChildren().add(overlay);
+
+	    modalStage.setScene(scene);
+
+	    // Mostrar la ventana modal y esperar hasta que se cierre
+	    modalStage.setOnHidden(event -> rootPane2.getChildren().remove(overlay)); // Remover el overlay cuando se cierra la ventana modal
+	    modalStage.showAndWait();
+	}
+	
+	
+	
 	
 	private void mostrarDatosPoliza( ) {
 		
