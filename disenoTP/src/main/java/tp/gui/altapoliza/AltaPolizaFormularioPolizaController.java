@@ -155,7 +155,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 		FXMLLoader loader = new FXMLLoader();
 		AltaPolizaFormularioCoberturaController formularioCoberturaC = new AltaPolizaFormularioCoberturaController();
-		formularioCoberturaC.setPolizaDTO(this.poliza);
+		formularioCoberturaC.setPolizaDTO(this.poliza, this);
 		loader.setController(formularioCoberturaC);
 		loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
     	AnchorPane form = loader.load();
@@ -181,7 +181,14 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
     	App.switchScreenTo(form);
     	
 	}
-		
+	
+	//PROBAMOS - TECHO
+	
+	public void actualizarDatos(){
+		this.motor.setText("SANTI123456");
+		this.chasis.setText(poliza.getVehiculo().getChasis());
+	}
+	///PROBAMOS - PISO	
 	
 	public void setHijosDeclarados(List<HijoDeclaradoDTO> l) {
 		poliza.setHijosDeclarados(l);
