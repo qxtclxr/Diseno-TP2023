@@ -246,13 +246,14 @@
             <Label fx:id="errorMotorYaExiste" layoutX="15.0" layoutY="545.0" prefHeight="18.0" prefWidth="179.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorChasisYaExiste" layoutX="281.0" layoutY="545.0" prefHeight="18.0" prefWidth="179.0" text="Ya existe una póliza vigente con tal valor" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorKmsRealizadosPorAnio" layoutX="819.0" layoutY="373.0" text="El campo esta incompleto" textFill="RED" visible="false" />
-            <Label fx:id="errorFormatoMotor" layoutX="15.0" layoutY="562.0" prefHeight="18.0" prefWidth="179.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
-            <Label fx:id="errorFormatoChasis" layoutX="281.0" layoutY="562.0" prefHeight="18.0" prefWidth="179.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
-            <Label fx:id="errorFormatoPatente" layoutX="549.0" layoutY="545.0" prefHeight="18.0" prefWidth="180.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorFormatoMotor" layoutX="15.0" layoutY="562.0" prefHeight="50.0" prefWidth="179.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorFormatoChasis" layoutX="281.0" layoutY="562.0" prefHeight="50.0" prefWidth="179.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorFormatoPatente" layoutX="549.0" layoutY="545.0" prefHeight="40.0" prefWidth="180.0" text="El campo no cumple con el formato requerido" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorNroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="373.0" text="El campo esta incompleto" textFill="RED" visible="false" />
             <Label fx:id="contadorHijosDeclarados" layoutX="1093.0" layoutY="553.0" text="Label" />
             <Label fx:id="errorFaltaProvincia" layoutX="15.0" layoutY="430.0" prefHeight="58.0" prefWidth="179.0" text="Para seleccionar una localidad, debe haber seleccionado la provincia" textFill="RED" visible="false" wrapText="true" />
-            <Label fx:id="errorFaltaMarca" layoutX="281.0" layoutY="459.0" text="Para seleccionar un modelo, debe haber seleccionado una marca" textFill="RED" visible="false" />
+            <Label fx:id="errorFaltaMarca" layoutX="281.0" layoutY="459.0" text="Para seleccionar un modelo, debe haber seleccionado una marca" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="errorFaltaVehiculo" layoutX="281.0" layoutY="476.0" text="Para seleccionar un año, debe haber seleccionado un modelo" textFill="RED" visible="false" />
             <Label fx:id="errorFaltaModelo" layoutX="281.0" layoutY="476.0" text="Para seleccionar un año, debe haber seleccionado un modelo" textFill="RED" visible="false" />
             <HBox layoutX="14.0" layoutY="145.0" prefHeight="50.0" prefWidth="1252.0" style="-fx-border-color: gray; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-color: white;">
                <children>

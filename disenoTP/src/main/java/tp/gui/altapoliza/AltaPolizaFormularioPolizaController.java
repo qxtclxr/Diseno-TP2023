@@ -110,28 +110,8 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	 private Label errorFaltaModelo;
 	 @FXML
 	 private Label errorFaltaMarca;
-	 
-	 @FXML
-	 private Label rojoDomicilioRiesgo;
-	 
-	 @FXML
-	 private Label rojoPatente;
-	 
-	 @FXML
-	 private Label rojoMarca;
-	 @FXML
-	 private Label rojoKM;
-	 
-	 @FXML
-	 private Label rojoNroSiniestro;
-	 
-	 @FXML
-	 private Label rojoMotor;
-	 
-	 @FXML
-	 private Label rojoChasis;
-	 
-	 /*
+
+  /*
 	public void mostrarDatosPoliza( ) {
 		
 		motor.setText(poliza.getVehiculo().getMotor());
@@ -146,7 +126,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		nroDeSiniestrosUltAnio.setValue(poliza.getCantidadSiniestros().getNombre());
 		
 	}
-	*/
+  */
 	 
 	public void setClienteDTO(ClienteDTO clienteDTO) throws IOException {
 		poliza.setCliente(clienteDTO);
@@ -197,22 +177,30 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	public void setHijosDeclarados(List<HijoDeclaradoDTO> l) {
 		poliza.setHijosDeclarados(l);
 	}
-
 	
 	@FXML
 	private void declararHijosClicked(ActionEvent action) throws IOException {
+	    FXMLLoader loader = new FXMLLoader();
+	    DeclararHijosController declararHijosC = new DeclararHijosController();
+	    declararHijosC.setListaHijos(this.poliza.getHijosDeclarados());
+	    loader.setController(declararHijosC);
+	    loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
 
-		FXMLLoader loader = new FXMLLoader();
-		DeclararHijosController declararHijosC = new DeclararHijosController();
-		declararHijosC.setListaHijos(this.poliza.getHijosDeclarados());
-    	loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
-    	AnchorPane form = loader.load();
-    	declararHijosC = loader.getController();
-    	
-    	App.switchScreenTo(form);
+	    // Cargar el formulario en un AnchorPane
+	    AnchorPane form = loader.load();
+
+	    // Crear un nuevo Stage (ventana) para mostrar el formulario como modal
+	    Stage modalStage = new Stage();
+	    modalStage.initModality(Modality.APPLICATION_MODAL);
+	    modalStage.setTitle("Declarar Hijos");
+
+	    // Configurar el formulario en la nueva ventana modal
+	    Scene scene = new Scene(form);
+	    modalStage.setScene(scene);
+	    
+	    // Mostrar la ventana modal y esperar hasta que se cierre
+	    modalStage.showAndWait();
 	}
-
-
 	
 	private void setErroresFalse() {
 		errorNroDeSiniestrosUltAnio.setVisible(false);
@@ -496,10 +484,15 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		//Comprueba domicilio de riesgo - Pruebo si se pone de rojo el fondo en la segunda linea del if
 	    if ((provincia.getValue() == null || localidad.getValue()==null) || localidad.getValue().toString().isEmpty() || provincia.getValue().toString().isEmpty()) {
 	        errorDomicilioRiesgo.setVisible(true);
-	        rojoDomicilioRiesgo.setOpacity(0.1);
+	        //rojoDomicilioRiesgo.setOpacity(0.1);
+	        provincia.setStyle("-fx-background-color: #fa8e8e;");
+	        localidad.setStyle("-fx-background-color: #fa8e8e;");
 	        datosValidos = false;
 	    } else {
 	       errorDomicilioRiesgo.setVisible(false);
+	        provincia.setStyle("-fx-background-color: white;");
+	        localidad.setStyle("-fx-background-color: white;");
+
 	    }
 	    
 	    //Comprueba marca vehiculo y anio
@@ -507,45 +500,57 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    		|| (marca.getValue().toString().isEmpty() || modelo.getValue().toString().isEmpty() || anio.getValue().toString().isEmpty())) {
 	    	
 	    	errorMarcaVehiculoAnio.setVisible(true);
-	    	rojoMarca.setOpacity(0.1);
+	    	//rojoMarca.setOpacity(0.1);
+	    	marca.setStyle("-fx-background-color: #fa8e8e;");
+	    	modelo.setStyle("-fx-background-color: #fa8e8e;");
+	    	anio.setStyle("-fx-background-color: #fa8e8e;");
 	    	datosValidos = false;
 	    }
 	    else {
 	    	errorMarcaVehiculoAnio.setVisible(false);
+	    	marca.setStyle("-fx-background-color: white;");
+	    	modelo.setStyle("-fx-background-color: white;");
+	    	anio.setStyle("-fx-background-color: white;");
 	    }
 	    
 	    //comprueba nroDeSiniestrosUltAnio
 	    
 	    if(nroDeSiniestrosUltAnio.getValue()==null || nroDeSiniestrosUltAnio.getValue().toString().isEmpty() ) {
 	    	errorNroDeSiniestrosUltAnio.setVisible(true);
-	    	rojoNroSiniestro.setOpacity(0.1);
+	    	//rojoNroSiniestro.setOpacity(0.1);
+	    	nroDeSiniestrosUltAnio.setStyle("-fx-background-color: #fa8e8e;");
 	    	datosValidos = false;
 	    }else {
 	    	errorNroDeSiniestrosUltAnio.setVisible(false);
+	    	nroDeSiniestrosUltAnio.setStyle("-fx-background-color: white;");
 	    }
 		
 	    //comprueba KmsRealizadosPorAnio
 	    
 	    if(kmsRealizadosPorAnio.getValue()==null || kmsRealizadosPorAnio.getValue().toString().isEmpty() ) {
 	    	errorKmsRealizadosPorAnio.setVisible(true);
-	    	rojoKM.setOpacity(0.1);
+	    	//rojoKM.setOpacity(0.1);
+	    	kmsRealizadosPorAnio.setStyle("-fx-background-color: #fa8e8e;");
 	    	datosValidos = false;
 	    }else {
 	    	errorKmsRealizadosPorAnio.setVisible(false);
+	    	kmsRealizadosPorAnio.setStyle("-fx-background-color: white;");
 	    }
 	    
 	    //comprueba el motor
 	    
 	    if(motor.getText() == null) {
 	    	errorFormatoMotor.setVisible(true);
-	    	rojoMotor.setOpacity(0.1);
+	    	//rojoMotor.setOpacity(0.1);
+	    	motor.setStyle("-fx-background-color: #fa8e8e;");
 	    	datosValidos = false;
 	    }else {
 	    	errorFormatoMotor.setVisible(false);
 	    	
 	    	if(this.motorYaExiste(motor.getText())){
 	    		errorMotorYaExiste.setVisible(true);
-	    		rojoMotor.setOpacity(0.1);
+	    		//rojoMotor.setOpacity(0.1);
+	    		motor.setStyle("-fx-background-color: #fa8e8e;");
 	    		datosValidos = false;
 	    	}
 	    	else {
@@ -554,36 +559,44 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    	
 	    	if(!this.motorFormatoCorrecto(motor.getText())) {
 	    		errorFormatoMotor.setVisible(true);
-	    		rojoMotor.setOpacity(0.1);
+	    		//rojoMotor.setOpacity(0.1);
+	    		motor.setStyle("-fx-background-color: #fa8e8e;");
 	    		datosValidos = false;
 	    	}else {
 	    		errorFormatoMotor.setVisible(false);
+	    		motor.setStyle("-fx-background-color: white;");
 	    	}
 	    	
 	    	//comprueba el chasis
 	    	
 		    if(chasis.getText() == null) {
 		    	errorFormatoChasis.setVisible(true);
-		    	rojoChasis.setOpacity(0.1);
+		    	chasis.setStyle("-fx-background-color: #fa8e8e;");
+		    	//rojoChasis.setOpacity(0.1);
 		    	datosValidos = false;
 		    }else {
 		    	errorFormatoChasis.setVisible(false);
+		    	chasis.setStyle("-fx-background-color: white;");
 		    	
 		    	if(this.chasisYaExiste(chasis.getText())){
 		    		errorChasisYaExiste.setVisible(true);
-		    		rojoChasis.setOpacity(0.1);
+		    		//rojoChasis.setOpacity(0.1);
+		    		chasis.setStyle("-fx-background-color: #fa8e8e;");
 		    		datosValidos = false;
 		    	}
 		    	else {
 		    		errorChasisYaExiste.setVisible(false);
+		    		chasis.setStyle("-fx-background-color: white;");
 		    	}
 		    	
 		    	if(!this.chasisFormatoCorrecto(chasis.getText())) {
 		    		errorFormatoChasis.setVisible(true);
-		    		rojoChasis.setOpacity(0.1);
+		    		//rojoChasis.setOpacity(0.1);
+		    		chasis.setStyle("-fx-background-color: #fa8e8e;");
 		    		datosValidos = false;
 		    	}else {
 		    		errorFormatoChasis.setVisible(false);
+		    		chasis.setStyle("-fx-background-color: white;");
 		    	}
 		    	
 	    	
@@ -591,16 +604,20 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    	
 	    	if(patente.getText()==null) {
 	    		errorFormatoPatente.setVisible(true);
-	    		rojoPatente.setOpacity(0.1);
+	    		//rojoPatente.setOpacity(0.1);
+	    		patente.setStyle("-fx-background-color: #fa8e8e;");
 	    		datosValidos = false;
 	    	}
 	    	else {
 	    		if(!this.patenteFormatoCorrecto(patente.getText())) {
 		    		errorFormatoPatente.setVisible(true);
-		    		rojoPatente.setOpacity(0.1);
+		    		//rojoPatente.setOpacity(0.1);
+		    		patente.setStyle("-fx-background-color: #fa8e8e;");
 		    		datosValidos = false;
 	    		}else {
 	    			errorFormatoPatente.setVisible(false);
+		    		patente.setStyle("-fx-background-color: white;");
+
 	    		}
 	    	}
 	    	
