@@ -28,7 +28,7 @@ public class App extends Application {
     	PolizaDAO dao = new PolizaDAO();
       
     	//IMPORTANTE: Solo descomentar esto para poblar la base de datos.
-    	Poblador.poblar();
+    	//Poblador.poblar();
     	launch();
     }
 
