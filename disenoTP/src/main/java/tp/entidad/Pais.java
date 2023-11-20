@@ -19,6 +19,9 @@ public class Pais {
 	@Column(nullable = false, unique=true)
 	private String nombre;
 	
+	@Column(nullable=false)
+	private long secuenciaCliente;
+	
 	public Pais() {
 		super();
 	}
@@ -69,6 +72,15 @@ public class Pais {
 	public void setCodPais(String codPais) {
 		this.codPais = codPais;
 	}
+
+	public long getSecuenciaCliente() {
+		return secuenciaCliente;
+	}
+
+	public void setSecuenciaCliente(long secuenciaCliente) {
+		this.secuenciaCliente = secuenciaCliente;
+	}
+	
 	
 
 }
