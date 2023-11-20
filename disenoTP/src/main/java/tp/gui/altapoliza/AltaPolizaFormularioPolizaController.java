@@ -1,8 +1,10 @@
 package tp.gui.altapoliza;
 
 import tp.dto.*;
+import tp.dto.*;
 import tp.logica.*;
 import tp.gui.buscarcliente.BuscarClienteController;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -23,7 +25,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import tp.app.App;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import tp.app.App; 
+
 
 public class AltaPolizaFormularioPolizaController implements Initializable{
 	
