@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -28,6 +30,7 @@ public class AltaPolizaConfirmarController {
 
 	private PolizaDTO poliza = new PolizaDTO();
 	
+	private AnchorPane anterior; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
 	
 	@FXML
 	private Label apellido;
@@ -60,42 +63,48 @@ public class AltaPolizaConfirmarController {
 	private Label importePorDescuento;
 	@FXML
 	private Button totalAbonar;
+	
 	@FXML
 	private AnchorPane rootPane2; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
-	
 	
 	public void setPolizaDTO(PolizaDTO p) {
 		this.poliza = p;
 	}
 	
-	@FXML
-	private void volverAtrasClicked(ActionEvent action) throws IOException {
-		
-		
-		FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
-   
-    	AnchorPane form = loader.load();
-    	
-    	AltaPolizaFormularioCoberturaController formularioPolizaCoberturaC = loader.getController();
-
-    	formularioPolizaCoberturaC.setPolizaDTOConfirmar(this.poliza, this);
-    	
-    	App.switchScreenTo(form);
-		
+	public void setAnterior(AnchorPane atras) {
+		this.anterior = atras;
 	}
 	
 	@FXML
-	public void confirmarCliqueado(){
+	private void volverAtrasClicked(ActionEvent action) throws IOException {
+		
+		/*
+		FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
+    	
+    	loader.setController(formAtras);
+    	
+    	AnchorPane form = loader.load();
+    	*/
+		System.out.println(anterior);
+    	App.switchScreenTo(anterior);
+	}
+	
+	@FXML
+	public void confirmarCliqueado() throws IOException{
 		try {
 			GestorPoliza.altaPoliza(poliza);
-			//
+			
+			this.alertaPolizaGuardada();
+			this.volverMenuPrincipal();
+			
+			/*
 			PolizaDAO dao = new PolizaDAO();
 			System.out.println("Poliza persistida!");
 			dao.getAll().stream().forEach(p -> System.out.println(p.getCuotasAsociadas()));
 			ClienteDAO daocli = new ClienteDAO();
 			daocli.getAll().stream().forEach(c -> System.out.println(c.getPolizas()));
-			//
+			*/
 		} catch (DatosObligatoriosAusentesException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,6 +118,21 @@ public class AltaPolizaConfirmarController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private void volverMenuPrincipal() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("../inicio/MenuPrincipal.fxml"));
+		Pane menuPrincipal = loader.load();
+		App.switchScreenTo(menuPrincipal);
+	}
+
+	private void alertaPolizaGuardada() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(null);
+		alert.setHeaderText("Poliza guardada"); // Use null to hide the header text
+        alert.setContentText("La poliza ha sido dada de alta con exito.");
+        alert.showAndWait();
 	}
 
 	@FXML  //HACE LO MISMO Q EL DE ABAJO PERO ESTE LO HARIA OSCURECIENDO LA PAGINA, HAY Q CHEQEUAR

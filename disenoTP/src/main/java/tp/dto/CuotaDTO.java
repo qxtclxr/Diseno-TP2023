@@ -6,11 +6,18 @@ import tp.entidad.EstadoCuota;
 
 public class CuotaDTO {
 	//private int id; //Esto quiza sirva despues
+	private int orden;
 	private LocalDate fechaVencimiento;
 	private float importeTotal;
 	private EstadoCuota estado;
 	private float interesAsociado = 0F;
-	
+		
+	public int getOrden() {
+		return orden;
+	}
+	public void setOrden(int orden) {
+		this.orden = orden;
+	}
 	public float getInteresAsociado() {
 		return interesAsociado;
 	}

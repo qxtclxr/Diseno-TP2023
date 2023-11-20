@@ -205,6 +205,7 @@ public class GestorPoliza {
 				cuota.setEstado(EstadoCuota.PENDIENTE);
 				cuota.setFechaVencimiento(dto.getFechaInicio().minusDays(1));
 				cuota.setImporteTotal(dto.getImporteTotal());
+				cuota.setOrden(1);
 				cuotaDtos.add(cuota);
 				break;
 			}
@@ -216,6 +217,7 @@ public class GestorPoliza {
 					cuota.setEstado(EstadoCuota.PENDIENTE);
 					cuota.setFechaVencimiento(fechaPrimerPago.plusMonths(i));
 					cuota.setImporteTotal(importeMensual);
+					cuota.setOrden(i+1);
 					cuotaDtos.add(cuota);
 				}
 				break;

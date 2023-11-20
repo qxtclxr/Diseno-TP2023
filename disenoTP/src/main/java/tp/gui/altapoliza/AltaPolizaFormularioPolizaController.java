@@ -149,37 +149,26 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	@FXML
 	private void confirmarClicked(ActionEvent action) throws IOException {
 		
-		
 		if(this.validarDatos()) {
+			this.cargarDatosFormulario();
 			
-		this.cargarDatosFormulario();
-		
-		FXMLLoader loader = new FXMLLoader();
-		AltaPolizaFormularioCoberturaController formularioCoberturaC = new AltaPolizaFormularioCoberturaController();
-		formularioCoberturaC.setPolizaDTO(this.poliza, this);
-		loader.setController(formularioCoberturaC);
-		loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
-    	AnchorPane form = loader.load();
-    	//formularioCoberturaC = loader.getController();
-    	
-    	App.switchScreenTo(form);
-    	
+			FXMLLoader loader = new FXMLLoader();
+			AltaPolizaFormularioCoberturaController formularioCoberturaC = new AltaPolizaFormularioCoberturaController();
+			
+			formularioCoberturaC.setPolizaDTO(this.poliza);
+			loader.setController(formularioCoberturaC);
+			loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
+	    	AnchorPane form = loader.load();
+	    	//formularioCoberturaC = loader.getController();
+	    	formularioCoberturaC.setActual(form);
+	    	formularioCoberturaC.setAnterior(actual);
+	    	App.switchScreenTo(form);
 		}
-    	
-    	
 	}
 	
 	@FXML 
 	private void volverAtrasClicked( ActionEvent action ) throws IOException {
-		
-		FXMLLoader loader = new FXMLLoader();
-		BuscarClienteController buscarClienteC = new BuscarClienteController();
-		buscarClienteC.setClienteDTO(this.poliza.getCliente());
-    	loader.setLocation(getClass().getResource("../buscarcliente/BuscarCliente.fxml"));
-    	AnchorPane form = loader.load();
-    	buscarClienteC = loader.getController();
-    	
-    	App.switchScreenTo(form);
+    	App.switchScreenTo(anterior);
     	
 	}
 	
@@ -222,6 +211,10 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	@FXML
 	private AnchorPane rootPane; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
+
+	private AnchorPane actual;
+
+	private AnchorPane anterior;
 
 	@FXML
 	private void declararHijosClicked(ActionEvent action) throws IOException {
@@ -714,6 +707,14 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 		//this.cargarDatosFormulario();
 		
+	}
+
+	public void setActual(AnchorPane form) {
+		this.actual = form;
+	}
+
+	public void setAnterior(AnchorPane form) {
+		this.anterior = form;
 	}
 
 		

@@ -32,8 +32,12 @@ import tp.logica.GestorVehiculo;
 
 public class AltaPolizaFormularioCoberturaController {
 	
-	private PolizaDTO poliza;
+	private AnchorPane actual;
 	
+	//private AnchorPane anterior;
+	
+	private PolizaDTO poliza;
+
 	private Map<RadioButton,CoberturaDTO> coberturasMap = new HashMap<>();
 	@FXML
 	private VBox coberturasBox;
@@ -69,29 +73,19 @@ public class AltaPolizaFormularioCoberturaController {
 	@FXML
 	private Text columnaAnio;
 
-	private AltaPolizaFormularioPolizaController controladorFormulario = new AltaPolizaFormularioPolizaController();
+	private AnchorPane anterior;
 
-	
-	private AltaPolizaConfirmarController controladorConfirmar = new AltaPolizaConfirmarController();
-
-	
-	
-	public void setPolizaDTO(PolizaDTO poliza1, AltaPolizaFormularioPolizaController a ) {
+	public void setPolizaDTO(PolizaDTO poliza1) {
 		this.poliza = poliza1;
-		controladorFormulario = a;
-		
 	}
 	
-	public void setPolizaDTOConfirmar(PolizaDTO poliza1, AltaPolizaConfirmarController b ) {
-		this.poliza = poliza1;
-		controladorConfirmar = b;
+	public void setActual(AnchorPane actual) {
+		this.actual = actual;
 	}
-
 	
 	public AltaPolizaFormularioCoberturaController() {
 		super();
 	}
-	
 	
 	public void setCoberturas() {
 		List<CoberturaDTO> dtos = GestorCobertura.getAllDTOs();
@@ -113,24 +107,7 @@ public class AltaPolizaFormularioCoberturaController {
 	
 	@FXML
 	private void volverAtrasClicked(ActionEvent action) throws IOException {
-		
-		
-		FXMLLoader loader = new FXMLLoader();
-    	
-    	AltaPolizaFormularioPolizaController formularioPolizaC = new AltaPolizaFormularioPolizaController();
-    	
-    	formularioPolizaC.setPolizaDTO(this.poliza);
-    	
-    	
-    	loader.setController(formularioPolizaC);
-    	
-    	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
-    	AnchorPane form = loader.load();
-    	//formularioPolizaC.setPolizaDTO(this.poliza);
-    	controladorFormulario.actualizarDatos();
-    	//formularioPolizaC.mostrarDatosPoliza();
-    	
-    	App.switchScreenTo(form);
+    	App.switchScreenTo(anterior);
 	}
 
 	
@@ -153,12 +130,14 @@ public class AltaPolizaFormularioCoberturaController {
 			
 			AltaPolizaConfirmarController confirmar = new AltaPolizaConfirmarController();
 			
-			confirmar.setPolizaDTO(this.poliza);
+			confirmar.setPolizaDTO(poliza);
 			
 			loader.setController(confirmar); //chequear
 			
 			loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaConfirmar.fxml"));
 			AnchorPane form = loader.load();
+			
+			confirmar.setAnterior(actual);
 			
 			App.switchScreenTo(form);
 		}
@@ -238,6 +217,10 @@ public class AltaPolizaFormularioCoberturaController {
     	
     	
 		
+	}
+
+	public void setAnterior(AnchorPane anterior) {
+		this.anterior = anterior;
 	}
 	
 }
