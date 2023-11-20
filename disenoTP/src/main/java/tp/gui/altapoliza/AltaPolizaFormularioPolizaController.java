@@ -61,7 +61,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	private Text columnaDirec;
 	
 	@FXML
-	private TextFlow sumaAsegurada;
+	private Text sumaAsegurada;
 	
 	@FXML
 	private Button declararHijos;
@@ -126,23 +126,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	 private Label errorFaltaModelo;
 	 @FXML
 	 private Label errorFaltaMarca;
-
-  /*
-	public void mostrarDatosPoliza( ) {
-		
-		motor.setText(poliza.getVehiculo().getMotor());
-		chasis.setText(poliza.getVehiculo().getChasis());
-		patente.setText(poliza.getVehiculo().getPatente());
-		localidad.setValue(poliza.getLocalidad().getNombre());
-		provincia.setValue(poliza.getLocalidad().getProvincia().getNombre());
-		marca.setValue(poliza.getVehiculo().getModelo().getModelo().getMarca());
-		modelo.setValue(poliza.getVehiculo().getModelo().getModelo().getNombre());
-		anio.setValue(Integer.toString(poliza.getVehiculo().getModelo().getAnio()));
-		kmsRealizadosPorAnio.setValue(poliza.getKmRealizados().getNombre());
-		nroDeSiniestrosUltAnio.setValue(poliza.getCantidadSiniestros().getNombre());
-		
-	}
-  */
 	 
 	public void setMedidas() {
 		List<MedidaDeSeguridadDTO> medidas = GestorMedidaDeSeguridad.getAllDTOs();
@@ -359,10 +342,10 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	@FXML
 	private void setSumaAsegurada() {
-		sumaAsegurada.getChildren().clear();
+		sumaAsegurada.setText(null);
 		AnioModeloDTO anioSelect = anio.getValue();
 		if(anioSelect!=null) {
-			sumaAsegurada.getChildren().add(new Text(String.valueOf(anioSelect.getValoracion())));
+			sumaAsegurada.setText(String.valueOf(anioSelect.getValoracion()));
 		}
 	}
 	
@@ -514,7 +497,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		columnaApellido.setText(cliente.getApellido());
 		columnaTipoDoc.setText(cliente.getTipoDocumento().toString());
 		columnaNroDoc.setText(cliente.getNroDocumento());
-		//columnaDirec.setText(cliente.getDomicilio().toString());		
+		columnaDirec.setText(cliente.getDomicilio().toString());		
 	}
 	
 	public boolean validarDatos( ) {

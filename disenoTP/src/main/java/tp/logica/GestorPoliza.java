@@ -1,5 +1,6 @@
 package tp.logica;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,12 +102,9 @@ public class GestorPoliza {
 		validarDTO(dto);
 		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
-		//dao.altaPoliza(poliza);
-		//dao.updateInstance(poliza);
 		dao.saveInstance(poliza);
 		return poliza;
 	}
-	
 	
 	public static float calcularPremio(PolizaDTO dto) {
 		FactorCaracteristicoDTO factores = dto.getFactores();
@@ -210,7 +208,7 @@ public class GestorPoliza {
 			}
 			case MENSUAL: {
 				float importeMensual = dto.getImporteTotal() / 6;
-				LocalDateTime fechaPrimerPago = dto.getFechaInicio().minusDays(1);
+				LocalDate fechaPrimerPago = dto.getFechaInicio().minusDays(1);
 				for(int i = 0 ; i < 6 ; i++) {
 					CuotaDTO cuota = new CuotaDTO();
 					cuota.setEstado(EstadoCuota.PENDIENTE);

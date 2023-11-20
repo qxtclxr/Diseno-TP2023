@@ -1,5 +1,6 @@
 package tp.entidad;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +21,7 @@ public class Cuota {
 	private float premio;
 	
 	@Column(nullable = false)
-	private LocalDateTime fechaVencimiento;
+	private LocalDate fechaVencimiento;
 	
 	//ver si estos estan bien
 	@Column(nullable = false)
@@ -103,7 +104,7 @@ public class Cuota {
 		return premio;
 	}
 
-	public LocalDateTime getFechaVencimiento() {
+	public LocalDate getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
@@ -147,7 +148,7 @@ public class Cuota {
 		this.premio = premio;
 	}
 
-	public void setFechaVencimiento(LocalDateTime fechaVencimiento) {
+	public void setFechaVencimiento(LocalDate fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 

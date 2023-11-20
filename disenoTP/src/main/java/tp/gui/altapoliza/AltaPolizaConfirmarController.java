@@ -60,6 +60,7 @@ public class AltaPolizaConfirmarController {
 	@FXML
 	private AnchorPane rootPane2; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
 	
+	
 	public void setPolizaDTO(PolizaDTO p) {
 		this.poliza = p;
 	}
@@ -80,19 +81,29 @@ public class AltaPolizaConfirmarController {
 	}
 	
 	@FXML
-	public void confirmarCliqueado()
-			throws DatosObligatoriosAusentesException,
-			ValoresParaVehiculoExistentesException,
-			AutoMuyViejoParaCoberturaElegidaException,
-			ObjetoNoEncontradoException {
-		GestorPoliza.altaPoliza(poliza);
+	public void confirmarCliqueado(){
+		try {
+			GestorPoliza.altaPoliza(poliza);
+		} catch (DatosObligatoriosAusentesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ValoresParaVehiculoExistentesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AutoMuyViejoParaCoberturaElegidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ObjetoNoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	@FXML
+	@FXML  //HACE LO MISMO Q EL DE ABAJO PERO ESTE LO HARIA OSCURECIENDO LA PAGINA, HAY Q CHEQEUAR
 	private void verCoutasClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
 	    //DeclararHijosController declararHijosC = new DeclararHijosController();
-	    VerCuotasController verCuotasC = new VerCuotasController();
+	    VerCuotasController verCuotasC = new VerCuotasController(poliza);
 	    
 	    //declararHijosC.setListaHijos(this.poliza.getHijosDeclarados()); ///////
 	    
@@ -123,30 +134,49 @@ public class AltaPolizaConfirmarController {
 	    modalStage.showAndWait();
 	}
 	
-	
+	/*
+	@FXML
+	private void verCoutasClicked(ActionEvent action) throws IOException {
+	    FXMLLoader loader = new FXMLLoader();
+	    //DeclararHijosController declararHijosC = new DeclararHijosController();
+	    VerCuotasController verCuotasC = new VerCuotasController();
+	    //declararHijosC.setListaHijos(this.poliza.getHijosDeclarados());
+	    //
+	    loader.setController(verCuotasC);
+	    loader.setLocation(getClass().getResource("../altapoliza/VerCuotas.fxml"));
+
+	    // Cargar el formulario en un AnchorPane
+	    AnchorPane form = loader.load();
+
+	    // Crear un nuevo Stage (ventana) para mostrar el formulario como modal
+	    Stage modalStage = new Stage();
+	    modalStage.initModality(Modality.APPLICATION_MODAL);
+	    modalStage.setTitle("Ver Cuotas");
+
+	    // Configurar el formulario en la nueva ventana modal
+	    Scene scene = new Scene(form);
+	    modalStage.setScene(scene);
+	    
+	    // Mostrar la ventana modal y esperar hasta que se cierre
+	    modalStage.showAndWait();
+	}*/
 	
 	
 	private void mostrarDatosPoliza( ) {
 		
 		apellido.setText(poliza.getCliente().getApellido());
 		nombre.setText(poliza.getCliente().getNombre());
-		/* 
-
-		
-		
-		
-
-		
-		*/
 		modelo.setText(poliza.getVehiculo().getModelo().getModelo().getNombre());
 		direccionDeRiesgo.setText(poliza.getLocalidad().getNombre()+ ", "+ poliza.getLocalidad().getProvincia().getNombre());
 		marca.setText(poliza.getVehiculo().getModelo().getModelo().getMarca().getNombre());
 		patente.setText(poliza.getVehiculo().getPatente());
 		motor.setText(poliza.getVehiculo().getMotor());
 		chasis.setText(poliza.getVehiculo().getChasis());
-		inicioVigencia.setText( poliza.getFechaInicio().toString() );
-		finalVigencia.setText(  poliza.getFechaInicio().plusMonths(1).toString()  );
-		
+		inicioVigencia.setText(poliza.getFechaInicio().toString());
+		finalVigencia.setText(poliza.getFechaFin().toString());
+		sumaAsegurada.setText(String.valueOf(poliza.getSumaAsegurada()));
+		premio.setText(String.valueOf(poliza.getPremio()));
+		importePorDescuento.setText(String.valueOf(poliza.getDescuento()));
 	}
 	
 	

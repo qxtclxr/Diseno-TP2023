@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -42,7 +42,6 @@
             <ComboBox fx:id="marca" layoutX="281.0" layoutY="345.0" onAction="#onActionMarca" prefWidth="180.0" promptText="Ingrese una marca" />
             <ComboBox fx:id="kmsRealizadosPorAnio" layoutX="819.0" layoutY="345.0" prefWidth="180.0" />
             <ComboBox fx:id="nroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="345.0" prefWidth="180.0" />
-            <TextFlow fx:id="sumaAsegurada" layoutX="549.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" />
             <ComboBox fx:id="localidad" disable="true" layoutX="14.0" layoutY="381.0" onShowing="#setLocalidades" prefWidth="180.0" promptText="Ingrese una localidad" />
             <ComboBox fx:id="modelo" disable="true" layoutX="281.0" layoutY="381.0" onAction="#onActionModelo" onShowing="#setModelos" prefWidth="180.0" promptText="Ingrese un modelo" />
             <ComboBox fx:id="anio" disable="true" layoutX="281.0" layoutY="417.0" onAction="#setSumaAsegurada" onShowing="#setAnios" prefWidth="180.0" promptText="Ingrese un anio" />
@@ -286,6 +285,17 @@
                   </VBox>
                </children>
             </HBox>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIGHTGRAY" height="25.0" layoutX="549.0" layoutY="345.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="180.0" />
+            <Text fx:id="sumaAsegurada" layoutX="570.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="156.5595703125">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="557.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
