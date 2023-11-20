@@ -1,5 +1,5 @@
 package tp.gui.altapoliza;
-
+import javafx.beans.property.SimpleStringProperty;
 import tp.app.App;
 import tp.dto.*;
 import tp.entidad.*;
@@ -19,8 +19,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class DeclararHijosController {
 	
@@ -30,7 +35,8 @@ public class DeclararHijosController {
 	private Label errorEstadoCivil;
 	@FXML
 	private Label errorFechaNacimiento;
-	
+	@FXML 
+	private TableView tablaDeHijos;
 	
 	@FXML
 	private ComboBox sexo;
@@ -42,6 +48,13 @@ public class DeclararHijosController {
 	private Button volverAtras2;
 	@FXML 
 	private DatePicker fechaNacimiento;
+	@FXML
+	private TableColumn columnaFechaNacimiento = new TableColumn();
+	@FXML
+	private TableColumn columnaSexo = new TableColumn();
+	@FXML
+	private TableColumn columnaEstadoCivil = new TableColumn();
+	
 	
 	private List<HijoDeclaradoDTO> listaHijos;
 	
@@ -72,10 +85,39 @@ public class DeclararHijosController {
         stage.close(); // Cierra la ventana modal*/
 	}
 	
-	
+	private void actualizarDatos() {
+		
+        ObservableList<HijoDeclaradoDTO> datosTabla = FXCollections.observableArrayList(listaHijos);
+        tablaDeHijos.setItems(datosTabla);
+		
+	}
+
 	
 	@FXML
 	public void initialize() {
+		
+        // Configurar las columnas
+        columnaFechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+        columnaSexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
+        columnaEstadoCivil.setCellValueFactory(new PropertyValueFactory<>("estadoCivil"));
+
+        // Configurar las celdas de la columna de fecha de nacimiento para formatear la fecha
+        columnaFechaNacimiento.setCellFactory(column -> {
+            return new TableCell<HijoDeclaradoDTO, LocalDate>() {
+                @Override
+                protected void updateItem(LocalDate fechaNac, boolean empty) {
+                    super.updateItem(fechaNac, empty);
+                    if (empty || fechaNac == null) {
+                        setText(null);
+                    } else {
+                        setText(fechaNac.toString()); // Puedes personalizar el formato aquí si es necesario
+                    }
+                }
+            };
+        });
+        
+        this.actualizarDatos();
+		
 		
 		ObservableList<String> opEstadoCivil = FXCollections.observableArrayList("Casado/a","Soltero/a","Viudo/a","Divorciado/a");
 		ObservableList<String> opSexo = FXCollections.observableArrayList("Hombre", "Mujer");
@@ -132,6 +174,7 @@ public class DeclararHijosController {
 		
 		listaHijos.add(hijo);
 		System.out.println("Se agregó un hijo AAAAAAAAAAAA");
+		this.actualizarDatos();
 	}
 	
 	
