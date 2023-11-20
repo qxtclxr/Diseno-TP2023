@@ -11,6 +11,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.ParameterExpression;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import tp.entidad.Cuota;
 import tp.entidad.Poliza;
 
 public class PolizaDAO extends AbstractDAO<Poliza> {
@@ -73,6 +74,11 @@ public class PolizaDAO extends AbstractDAO<Poliza> {
 		try {
 			t.begin();
 			//em.merge(p.getVehiculoAsegurado().getAnioModelo());
+			
+			for(Cuota c:p.getCuotasAsociadas()) {
+				c.setPolizaAsociada(p);
+			}
+			p.getCliente().getPolizas().add(p);
 			em.persist(p);
 			em.merge(p.getCliente());
 			t.commit();
