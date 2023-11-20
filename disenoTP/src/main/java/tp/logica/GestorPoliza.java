@@ -22,6 +22,8 @@ public class GestorPoliza {
 		
 		poliza.setFechaInicio(dto.getFechaInicio());
 		
+		poliza.setFechaFin(dto.getFechaFin());
+		
 		poliza.setEstado(EstadoPoliza.GENERADA);
 		
 		poliza.setTipoPoliza(dto.getTipoPoliza());
@@ -74,7 +76,6 @@ public class GestorPoliza {
 		poliza.setNroPoliza(generarNroPoliza(dto));
 		
 		UsuarioDAO d=new UsuarioDAO();
-		//System.out.println("h");
 		poliza.setProductorAsociado(d.getById(App.getUsuarioLogeado().getIdUsuario()).get());
 		
 		return poliza;
@@ -102,7 +103,8 @@ public class GestorPoliza {
 		validarDTO(dto);
 		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
-		dao.saveInstance(poliza);
+		dao.altaPoliza(poliza);
+		System.out.println("Poliza persistida!");
 		return poliza;
 	}
 	

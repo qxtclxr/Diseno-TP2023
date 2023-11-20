@@ -54,8 +54,6 @@ public class Poblador {
 		user.setTipoDocumento(TipoDocumento.DNI);
 		user.setSucursalAsociada(suc);
 		dao.updateInstance(user);
-		
-		App.setUsuarioLogeado(dao.getAll().get(0));
 	}
 	
 	public static void poblarCliente() {

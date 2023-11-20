@@ -49,7 +49,7 @@ public class Cuota {
 	@JoinColumn(name = "id_pago", referencedColumnName="idPago",foreignKey= @ForeignKey(name ="PAGO_EN_CUOTA_FK"))
 	private Pago pagoAsociado;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_poliza",referencedColumnName="idPoliza" ,foreignKey= @ForeignKey(name ="POLIZA_EN_CUOTA_FK"))
 	private Poliza polizaAsociada;
 	

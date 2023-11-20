@@ -107,36 +107,33 @@ public class Poliza {
 	//ver el eager de los factores
 	
 	//Este puede traer problemas
-	@ManyToMany(fetch= FetchType.EAGER,cascade = { CascadeType.MERGE})
+	@ManyToMany(fetch= FetchType.EAGER,cascade = {CascadeType.MERGE})
 	private List<PorcentajeMedidaDeSeguridad> porcMedidaSeguridad;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ModificacionPoliza> modificaciones;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="porCobertura", referencedColumnName="idPorcentajeCobertura", foreignKey= @ForeignKey(name="FK_Por_cobertura_Poliza"))
 	private PorcentajeCobertura porcCobertura;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HijoDeclarado> hijosDeclarados;
 	
 	//ver Como embeberlo
 	@Embedded
 	private Vehiculo vehiculoAsegurado;
 	
-	@OneToMany(fetch= FetchType.LAZY, mappedBy="polizaAsociada",cascade = CascadeType.MERGE, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="polizaAsociada",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Cuota> cuotasAsociadas;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="productor", referencedColumnName="idUsuario", foreignKey= @ForeignKey(name="FK_productor_poliza"))
+	@ManyToOne(fetch=FetchType.LAZY,cascade = CascadeType.MERGE)
+	@JoinColumn(name="productor", referencedColumnName="idUsuario", foreignKey= @ForeignKey(name="FK_productor_poliza") )
 	private Usuario productorAsociado;
-	
 	
 	public Poliza() {
 		super();
 	}
-
-
 
 	@Override
 	public int hashCode() {

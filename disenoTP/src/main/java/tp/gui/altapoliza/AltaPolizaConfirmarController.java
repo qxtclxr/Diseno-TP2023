@@ -163,7 +163,6 @@ public class AltaPolizaConfirmarController {
 	
 	
 	private void mostrarDatosPoliza( ) {
-		
 		apellido.setText(poliza.getCliente().getApellido());
 		nombre.setText(poliza.getCliente().getNombre());
 		modelo.setText(poliza.getVehiculo().getModelo().getModelo().getNombre());

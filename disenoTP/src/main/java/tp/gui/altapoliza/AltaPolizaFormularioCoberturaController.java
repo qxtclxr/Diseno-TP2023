@@ -19,8 +19,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import tp.app.App;
 import tp.dto.PolizaDTO;
+import tp.entidad.Cliente;
 import tp.entidad.TipoPoliza;
 import tp.exception.ObjetoNoEncontradoException;
 import tp.logica.GestorCobertura;
@@ -52,7 +54,18 @@ public class AltaPolizaFormularioCoberturaController {
 	private Label errorTipoPago;
 	@FXML
 	private Label errorMayor5anios;
-	
+	@FXML
+	private Text columnaCliente;
+	@FXML
+	private Text columnaApellido;
+	@FXML
+	private Text columnaNombre;
+	@FXML
+	private Text columnaMarca;
+	@FXML
+	private Text columnaModelo;
+	@FXML
+	private Text columnaAnio;
 	
 	public void setPolizaDTO(PolizaDTO poliza1) {
 		this.poliza = poliza1;
@@ -111,7 +124,7 @@ public class AltaPolizaFormularioCoberturaController {
 		poliza.setCobertura(coberturasMap.get(coberturas.getSelectedToggle()));
 		poliza.setTipoPoliza((tipoPago.getValue().toString().equals("Mensual"))?TipoPoliza.MENSUAL:TipoPoliza.SEMESTRAL);
 		poliza.setFechaInicio(fechaInicioVigencia.getValue());
-		poliza.setFechaFin(poliza.getFechaFin().plusMonths(1));
+		poliza.setFechaFin(poliza.getFechaInicio().plusMonths(1));
 		this.cargarDatosSobreCobro();
 	}
 
@@ -183,10 +196,23 @@ public class AltaPolizaFormularioCoberturaController {
 	}
 	
 	@FXML
+	public void mostrarResumenDeDatos() {
+		ClienteDTO cliente = poliza.getCliente();
+		AnioModeloDTO anioModelo = poliza.getVehiculo().getModelo();
+		columnaCliente.setText(cliente.getNroCliente());
+		columnaApellido.setText(cliente.getApellido());
+		columnaNombre.setText(cliente.getNombre());
+		columnaMarca.setText(anioModelo.getModelo().getMarca().getText());
+		columnaModelo.setText(anioModelo.getModelo().getText());
+		columnaAnio.setText(String.valueOf(anioModelo.getAnio()));
+	}
+	
+	@FXML
 	public void initialize() {
 		
 		this.setCoberturas();
-	
+		this.mostrarResumenDeDatos();
+		
 		ObservableList<String> opTipoPago = FXCollections.observableArrayList("Mensual","Semestral");
 		tipoPago.setItems(opTipoPago);
 		

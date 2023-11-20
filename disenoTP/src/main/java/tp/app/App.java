@@ -29,7 +29,8 @@ public class App extends Application {
     	
       
     	//IMPORTANTE: Solo descomentar esto para poblar la base de datos.
-    	//Poblador.poblar();
+    	Poblador.poblar();
+    	App.setUsuarioLogeado(null);
     	launch();
     }
 
@@ -70,6 +71,8 @@ public class App extends Application {
 	}
 
 	public static void setUsuarioLogeado(Usuario usuarioLogeado) {
-		App.usuarioLogeado = usuarioLogeado;
+		UsuarioDAO dao = new UsuarioDAO();
+		App.usuarioLogeado = dao.getAll().get(0);
+		//App.usuarioLogeado = usuarioLogeado;
 	}
 }

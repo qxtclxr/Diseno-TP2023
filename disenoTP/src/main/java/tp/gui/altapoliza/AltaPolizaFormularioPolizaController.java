@@ -246,8 +246,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    modalStage.showAndWait();
 	}
 
-
-
 	
 	private void setErroresFalse() {
 		errorNroDeSiniestrosUltAnio.setVisible(false);
