@@ -73,7 +73,9 @@ public class GestorPoliza {
 		
 		poliza.setNroPoliza(generarNroPoliza(dto));
 		
-		poliza.setProductorAsociado(App.getUsuarioLogeado());
+		UsuarioDAO d=new UsuarioDAO();
+		//System.out.println("h");
+		poliza.setProductorAsociado(d.getById(App.getUsuarioLogeado().getIdUsuario()).get());
 		
 		return poliza;
 	}
