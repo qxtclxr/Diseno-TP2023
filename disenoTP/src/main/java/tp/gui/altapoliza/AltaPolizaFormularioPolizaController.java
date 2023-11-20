@@ -33,7 +33,7 @@ import javafx.stage.Stage;
 import tp.app.App;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+import java.util.ArrayList;
 
 public class AltaPolizaFormularioPolizaController implements Initializable{
 	
@@ -156,7 +156,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		
 		FXMLLoader loader = new FXMLLoader();
 		AltaPolizaFormularioCoberturaController formularioCoberturaC = new AltaPolizaFormularioCoberturaController();
-		formularioCoberturaC.setPolizaDTO(this.poliza);
+		formularioCoberturaC.setPolizaDTO(this.poliza, this);
 		loader.setController(formularioCoberturaC);
 		loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioCobertura.fxml"));
     	AnchorPane form = loader.load();
@@ -183,10 +183,19 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
     	
 	}
 	
+	//PROBAMOS - TECHO
+	
+	public void actualizarDatos(){
+		this.motor.setText("SANTI123456");
+		this.chasis.setText(poliza.getVehiculo().getChasis());
+	}
+	///PROBAMOS - PISO	
+	
 	public void setHijosDeclarados(List<HijoDeclaradoDTO> l) {
 		poliza.setHijosDeclarados(l);
+		this.setContadorHijosDeclarados();
 	}
-	/*
+	/* ESTA ES LA VERSION VIEJA DE LO QUE ESTA ABAJO
 	@FXML
 	private void declararHijosClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
@@ -218,7 +227,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	private void declararHijosClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
 	    DeclararHijosController declararHijosC = new DeclararHijosController();
-	    declararHijosC.setListaHijos(this.poliza.getHijosDeclarados());
+	    declararHijosC.setListaHijos(this.poliza.getHijosDeclarados(), this);
 	    loader.setController(declararHijosC);
 	    loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
 
@@ -372,12 +381,15 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	}
 	 */
 	
+	private void setListaHijosDeclarados(){
+		List<HijoDeclaradoDTO> a = new ArrayList<HijoDeclaradoDTO>();
+		poliza.setHijosDeclarados(a);
+		this.setContadorHijosDeclarados();
+	}
 	
 	
 	private void setContadorHijosDeclarados() {
-		//saca de alguna manera de la base de datos cuantos hijos declarados tiene
-		int hijosDeclarados = 0;
-		contadorHijosDeclarados.setText("Hijos declarados: "+ hijosDeclarados );
+		contadorHijosDeclarados.setText("Hijos Declarados: " + poliza.getHijosDeclarados().size());
 	}
 	
 	
@@ -687,10 +699,12 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		this.setMarcas();
 		
 		this.setProvincia();
-		
+    
 		this.setMedidas();
+
+		this.setListaHijosDeclarados();
 		
-		this.setContadorHijosDeclarados();
+		//this.setContadorHijosDeclarados();
 		
 		this.setKms();
 		

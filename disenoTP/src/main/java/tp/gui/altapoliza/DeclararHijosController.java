@@ -1,5 +1,5 @@
 package tp.gui.altapoliza;
-
+import javafx.beans.property.SimpleStringProperty;
 import tp.app.App;
 import tp.dto.*;
 import tp.entidad.*;
@@ -19,7 +19,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class DeclararHijosController {
 	
@@ -29,7 +35,8 @@ public class DeclararHijosController {
 	private Label errorEstadoCivil;
 	@FXML
 	private Label errorFechaNacimiento;
-	
+	@FXML 
+	private TableView tablaDeHijos;
 	
 	@FXML
 	private ComboBox sexo;
@@ -37,18 +44,30 @@ public class DeclararHijosController {
 	private ComboBox estadoCivil;
 	@FXML
 	private Button agregarHijo;
+	@FXML
+	private Button volverAtras2;
 	@FXML 
 	private DatePicker fechaNacimiento;
+	@FXML
+	private TableColumn columnaFechaNacimiento = new TableColumn();
+	@FXML
+	private TableColumn columnaSexo = new TableColumn();
+	@FXML
+	private TableColumn columnaEstadoCivil = new TableColumn();
+	
 	
 	private List<HijoDeclaradoDTO> listaHijos;
 	
+	private AltaPolizaFormularioPolizaController controladorPantallaFormulario = new AltaPolizaFormularioPolizaController();
 	
-	public void setListaHijos(List<HijoDeclaradoDTO> l) {
+	public void setListaHijos(List<HijoDeclaradoDTO> l, AltaPolizaFormularioPolizaController a ) {
 		listaHijos = l;
+		controladorPantallaFormulario = a;
 	}
 	
 	@FXML
-	public void volverAtrasClicked( ActionEvent action ) throws IOException{
+	void volverAtrasClicked2( ActionEvent action ) {
+		/*
 		FXMLLoader loader = new FXMLLoader();
     	AltaPolizaFormularioPolizaController altaPolizaC = new AltaPolizaFormularioPolizaController();
     	altaPolizaC.setHijosDeclarados(listaHijos);
@@ -58,12 +77,48 @@ public class DeclararHijosController {
     	AnchorPane form = loader.load();
     	
     	App.switchScreenTo(form);
+		*/
+		controladorPantallaFormulario.setHijosDeclarados(listaHijos);
+		
+		Stage stage = (Stage) volverAtras2.getScene().getWindow();
+		
+        stage.close(); // Cierra la ventana modal*/
 	}
 	
+	private void actualizarDatos() {
+		
+        ObservableList<HijoDeclaradoDTO> datosTabla = FXCollections.observableArrayList(listaHijos);
+        tablaDeHijos.setItems(datosTabla);
 	
+        
+	}
+
 	
 	@FXML
 	public void initialize() {
+		
+        // Configurar las columnas
+        columnaFechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+        columnaSexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
+        columnaEstadoCivil.setCellValueFactory(new PropertyValueFactory<>("estadoCivil"));
+
+        // Configurar las celdas de la columna de fecha de nacimiento para formatear la fecha
+        columnaFechaNacimiento.setCellFactory(column -> {
+            return new TableCell<HijoDeclaradoDTO, LocalDate>() {
+                @Override
+                protected void updateItem(LocalDate fechaNac, boolean empty) {
+                    super.updateItem(fechaNac, empty);
+                    if (empty || fechaNac == null) {
+                        setText(null);
+                    } else {
+                        setText(fechaNac.toString()); // Puedes personalizar el formato aquí si es necesario
+                    }
+                }
+            };
+        });
+        
+        this.actualizarDatos();
+		
 		
 		ObservableList<String> opEstadoCivil = FXCollections.observableArrayList("Casado/a","Soltero/a","Viudo/a","Divorciado/a");
 		ObservableList<String> opSexo = FXCollections.observableArrayList("Hombre", "Mujer");
@@ -119,36 +174,46 @@ public class DeclararHijosController {
 		hijo.setSexo(this.getValueSexo() );
 		
 		listaHijos.add(hijo);
-		
+		System.out.println("Se agrego: "+ fechaNacimiento.getValue()+ " "+ this.getValueEstadoCivil()+ " "+ this.getValueSexo());
+		this.actualizarDatos();
 	}
 	
 	
 	@FXML
 	public void agregarHijoClicked() {
-		this.validarDatos();
-		this.addHijo();
+		if(this.validarDatos()) {
+			this.addHijo();
+		}
+		
 	}
 	@FXML
-	public void validarDatos() {
+	public boolean validarDatos() {
+		
+		boolean validacionExitosa=true;
+		
 		
 	    if (sexo.getValue() == null || sexo.getValue().toString().isEmpty()) {
 	        errorSexo.setVisible(true);
+	        validacionExitosa=false;
 	    } else {
 	        errorSexo.setVisible(false);
 	    }
 
 	    if (estadoCivil.getValue() == null || estadoCivil.getValue().toString().isEmpty()) {
 	        errorEstadoCivil.setVisible(true);
+	        validacionExitosa=false;
 	    } else {
 	        errorEstadoCivil.setVisible(false);
 	    }
 
 	    if (fechaNacimiento.getValue() == null || !(Period.between(fechaNacimiento.getValue(), LocalDate.now()).getYears() >= 18 && Period.between(fechaNacimiento.getValue(), LocalDate.now()).getYears() <= 30)) {
 	        errorFechaNacimiento.setVisible(true);
+	        validacionExitosa=false;
 	    } else {
 	        errorFechaNacimiento.setVisible(false);
 	    }
 	    
+	    return validacionExitosa;
 	}
 
 	

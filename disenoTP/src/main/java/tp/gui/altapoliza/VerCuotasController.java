@@ -28,11 +28,14 @@ public class VerCuotasController implements Initializable{
 	
 	@FXML
 	void volverAtrasCliqueado(ActionEvent evento) throws IOException {
+		/*
 		Parent root = FXMLLoader.load((getClass().getResource("../inicio/MenuPrincipal.fxml")));
-    	
     	Stage window = (Stage)volverAtras.getScene().getWindow();
     	window.setTitle("MenuPrincipal");
     	window.setScene(new Scene(root));
+    	*/
+		Stage stage = (Stage) volverAtras.getScene().getWindow();
+        stage.close(); // Cierra la ventana modal
 	}
 
 	@Override

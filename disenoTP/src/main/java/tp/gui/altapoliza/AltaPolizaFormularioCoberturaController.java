@@ -20,6 +20,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import tp.app.App;
 import tp.dto.PolizaDTO;
 import tp.entidad.Cliente;
@@ -54,6 +55,7 @@ public class AltaPolizaFormularioCoberturaController {
 	private Label errorTipoPago;
 	@FXML
 	private Label errorMayor5anios;
+
 	@FXML
 	private Text columnaCliente;
 	@FXML
@@ -66,9 +68,23 @@ public class AltaPolizaFormularioCoberturaController {
 	private Text columnaModelo;
 	@FXML
 	private Text columnaAnio;
+
+	private AltaPolizaFormularioPolizaController controladorFormulario = new AltaPolizaFormularioPolizaController();
+
 	
-	public void setPolizaDTO(PolizaDTO poliza1) {
+	private AltaPolizaConfirmarController controladorConfirmar = new AltaPolizaConfirmarController();
+
+	
+	
+	public void setPolizaDTO(PolizaDTO poliza1, AltaPolizaFormularioPolizaController a ) {
 		this.poliza = poliza1;
+		controladorFormulario = a;
+		
+	}
+	
+	public void setPolizaDTOConfirmar(PolizaDTO poliza1, AltaPolizaConfirmarController b ) {
+		this.poliza = poliza1;
+		controladorConfirmar = b;
 	}
 
 	
@@ -111,14 +127,12 @@ public class AltaPolizaFormularioCoberturaController {
     	loader.setLocation(getClass().getResource("../altapoliza/AltaPolizaFormularioPoliza.fxml"));
     	AnchorPane form = loader.load();
     	//formularioPolizaC.setPolizaDTO(this.poliza);
-    	//
-    	
+    	controladorFormulario.actualizarDatos();
     	//formularioPolizaC.mostrarDatosPoliza();
     	
     	App.switchScreenTo(form);
-		
 	}
-	
+
 	
 	private void cargarDatosFormulario() throws ObjetoNoEncontradoException {
 		poliza.setCobertura(coberturasMap.get(coberturas.getSelectedToggle()));
@@ -225,7 +239,5 @@ public class AltaPolizaFormularioCoberturaController {
     	
 		
 	}
-	
-	
 	
 }
