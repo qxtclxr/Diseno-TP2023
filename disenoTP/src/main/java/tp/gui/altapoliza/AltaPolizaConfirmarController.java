@@ -80,7 +80,6 @@ public class AltaPolizaConfirmarController {
     	AltaPolizaFormularioCoberturaController formularioPolizaCoberturaC = loader.getController();
 
     	formularioPolizaCoberturaC.setPolizaDTOConfirmar(this.poliza, this);
-    	formularioPolizaCoberturaC.mostrarDatos();
     	
     	App.switchScreenTo(form);
 		
