@@ -24,6 +24,7 @@ public class Sucursal {
 	private List<Usuario> productores;
 	
 	public Sucursal() {
+		super();
 		
 	}
 
