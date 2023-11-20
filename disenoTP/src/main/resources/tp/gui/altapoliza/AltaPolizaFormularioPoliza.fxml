@@ -6,10 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -27,22 +24,6 @@
                   <Font name="Franklin Gothic Demi" size="60.0" />
                </font>
             </Text>
-            <TableView layoutX="14.0" layoutY="145.0" prefHeight="50.0" prefWidth="1252.0">
-              <columns>
-                <TableColumn fx:id="nroCliente" prefWidth="75.0" text="Número de cliente" />
-                <TableColumn fx:id="apellido" prefWidth="75.0" text="Apellido" />
-                  <TableColumn fx:id="nombre" prefWidth="75.0" text="Nombre" />
-                  <TableColumn fx:id="tipoDni" prefWidth="75.0" text="Tipo de documento" />
-                  <TableColumn fx:id="nroDocumento" prefWidth="75.0" text="Número de documento" />
-                  <TableColumn fx:id="direccion" prefWidth="75.0" text="Dirección" />
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-               <effect>
-                  <Blend />
-               </effect>
-            </TableView>
             <Text layoutX="14.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente seleccionado">
                <font>
                   <Font name="Franklin Gothic Demi" size="20.0" />
@@ -58,14 +39,14 @@
                   <Font name="Franklin Gothic Medium Italic" size="13.0" />
                </font>
             </Text>
-            <ComboBox fx:id="provincia" layoutX="14.0" layoutY="345.0" prefWidth="180.0" promptText="Ingrese una provincia" />
-            <ComboBox fx:id="marca" layoutX="281.0" layoutY="345.0" prefWidth="180.0" promptText="Ingrese una marca" />
+            <ComboBox fx:id="provincia" layoutX="14.0" layoutY="345.0" onAction="#habilitarLocalidad" prefWidth="180.0" promptText="Ingrese una provincia" />
+            <ComboBox fx:id="marca" layoutX="281.0" layoutY="345.0" onAction="#habilitarModelo" prefWidth="180.0" promptText="Ingrese una marca" />
             <ComboBox fx:id="kmsRealizadosPorAnio" layoutX="819.0" layoutY="345.0" prefWidth="180.0" />
             <ComboBox fx:id="nroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="345.0" prefWidth="180.0" />
             <TextFlow fx:id="sumaAsegurada" layoutX="549.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" />
-            <ComboBox fx:id="localidad" layoutX="14.0" layoutY="381.0" onShowing="#setLocalidades" prefWidth="180.0" promptText="Ingrese una localidad" />
-            <ComboBox fx:id="modelo" layoutX="281.0" layoutY="381.0" onShowing="#setModelos" prefWidth="180.0" promptText="Ingrese un modelo" />
-            <ComboBox fx:id="anio" layoutX="281.0" layoutY="417.0" onAction="#setSumaAsegurada" onShowing="#setAnios" prefWidth="180.0" promptText="Ingrese un anio" />
+            <ComboBox fx:id="localidad" disable="true" layoutX="14.0" layoutY="381.0" onAction="#habilitarLocalidad" onShowing="#setLocalidades" prefWidth="180.0" promptText="Ingrese una localidad" />
+            <ComboBox fx:id="modelo" disable="true" layoutX="281.0" layoutY="381.0" onAction="#habilitarAnio" onShowing="#setModelos" prefWidth="180.0" promptText="Ingrese un modelo" />
+            <ComboBox fx:id="anio" disable="true" layoutX="281.0" layoutY="417.0" onAction="#setSumaAsegurada" onShowing="#setAnios" prefWidth="180.0" promptText="Ingrese un anio" />
             <TextField fx:id="motor" layoutX="14.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField fx:id="chasis" layoutX="281.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField fx:id="patente" layoutX="549.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
@@ -264,6 +245,70 @@
             <Label fx:id="errorFaltaProvincia" layoutX="15.0" layoutY="430.0" prefHeight="58.0" prefWidth="179.0" text="Para seleccionar una localidad, debe haber seleccionado la provincia" textFill="RED" visible="false" wrapText="true" />
             <Label fx:id="errorFaltaMarca" layoutX="281.0" layoutY="459.0" text="Para seleccionar un modelo, debe haber seleccionado una marca" textFill="RED" visible="false" />
             <Label fx:id="errorFaltaModelo" layoutX="281.0" layoutY="476.0" text="Para seleccionar un año, debe haber seleccionado un modelo" textFill="RED" visible="false" />
+            <HBox layoutX="14.0" layoutY="145.0" prefHeight="50.0" prefWidth="1252.0" style="-fx-border-color: gray; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-color: white;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: gray;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Número de cliente">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="columnaCliente" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: gray;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="columnaApellido" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: gray;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="columnaNombre" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: gray;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Documento">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="columnaTipoDoc" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: gray;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Número de Documento">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="columnaNroDoc" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: gray;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Direccion">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="columnaDirec" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </children>

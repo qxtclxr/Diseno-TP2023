@@ -1,29 +1,19 @@
 package tp.gui.altapoliza;
 
-import java.util.ArrayList;
-import tp.gui.buscarcliente.*;
 import tp.dto.*;
 import tp.logica.*;
-import tp.entidad.*;
-import tp.exception.ObjetoNoEncontradoException;
 import tp.gui.buscarcliente.BuscarClienteController;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,18 +32,17 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	private PolizaDTO poliza = new PolizaDTO();
 	
 	@FXML
-	private TableColumn nroCliente;
+	private Text columnaCliente;
 	@FXML
-	private TableColumn apellido;
+	private Text columnaNombre;
 	@FXML
-	private TableColumn nombre;
+	private Text columnaApellido;
 	@FXML
-	private TableColumn tipoDni;
-	
+	private Text columnaTipoDoc;
 	@FXML
-	private TableColumn nroDocumento;
+	private Text columnaNroDoc;
 	@FXML
-	private TableColumn direccion;
+	private Text columnaDirec;
 	
 	@FXML
 	private TextFlow sumaAsegurada;
@@ -266,7 +255,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	@FXML
 	private void setModelos() {
-		
 		try {
 			MarcaDTO marcaSelect = marca.getValue();
 			if(marcaSelect!=null) {
@@ -281,12 +269,10 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@FXML
 	private void setAnios()  {
-		System.out.println("ah");
 		try {
 			ModeloDTO modeloSelect = modelo.getValue();
 			if(modelo!=null) {
@@ -475,14 +461,13 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	}
 	
 	public void mostrarCliente( ) {
-		
-		nroCliente.setText(poliza.getCliente().getNroCliente());
-		nombre.setText(poliza.getCliente().getNombre());
-		apellido.setText(poliza.getCliente().getApellido());
-		tipoDni.setText(poliza.getCliente().getTipoDocumento().toString());
-		nroDocumento.setText(poliza.getCliente().getNroDocumento());
-		//direccion.setText(poliza.getCliente().);
-		
+		ClienteDTO cliente = poliza.getCliente();
+		columnaCliente.setText(cliente.getNroCliente());
+		columnaNombre.setText(cliente.getNombre());
+		columnaApellido.setText(cliente.getApellido());
+		columnaTipoDoc.setText(cliente.getTipoDocumento().toString());
+		columnaNroDoc.setText(cliente.getNroDocumento());
+		//columnaDirec.setText(cliente.getDomicilio().toString());		
 	}
 	
 	public boolean validarDatos( ) {
@@ -606,6 +591,18 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	public void setSiniestros() {
 		ObservableList<RangoCantSiniestrosDTO> opNroSiniestrosUltAnio = FXCollections.observableArrayList(GestorRangoCantSiniestros.getAllDTOs());
 		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
+	}
+	
+	public void habilitarLocalidad() {
+		localidad.setDisable(false);
+	}
+	
+	public void habilitarModelo() {
+		modelo.setDisable(false);
+	}
+	
+	public void habilitarAnio() {
+		anio.setDisable(false);
 	}
 	
 	@Override

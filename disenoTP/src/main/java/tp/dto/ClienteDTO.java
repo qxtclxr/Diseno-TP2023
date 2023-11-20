@@ -40,5 +40,11 @@ public class ClienteDTO {
 	public void setNroDocumento(String nroDocumento) {
 		this.nroDocumento = nroDocumento;
 	}
-
+	public DomicilioDTO getDomicilio() {
+		return domicilio;
+	}
+	public void setDomicilio(DomicilioDTO domicilio) {
+		this.domicilio = domicilio;
+	}
+	
 }
