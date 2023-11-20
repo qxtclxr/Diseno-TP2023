@@ -7,8 +7,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="432.0" prefWidth="768.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
@@ -41,9 +39,9 @@
       <TableView fx:id="tablaDeHijos" layoutX="102.0" layoutY="170.0" prefHeight="223.0" prefWidth="596.0">
         <columns>
           <TableColumn prefWidth="39.0" />
-          <TableColumn prefWidth="185.0" text="Nombre" />
-            <TableColumn prefWidth="185.0" text="Sexo" />
-            <TableColumn prefWidth="185.0" text="Estado Civil" />
+          <TableColumn fx:id="columnaFechaNacimiento" prefWidth="185.0" text="Fecha de Nacimiento" />
+            <TableColumn fx:id="columnaSexo" prefWidth="185.0" text="Sexo" />
+            <TableColumn fx:id="columnaEstadoCivil" prefWidth="185.0" text="Estado Civil" />
         </columns>
       </TableView>
       <Button fx:id="volverAtras2" layoutX="22.0" layoutY="393.0" mnemonicParsing="false" onAction="#volverAtrasClicked2" text="Volver atras" />
@@ -67,10 +65,5 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <VBox layoutX="14.0" layoutY="148.0" prefHeight="225.0" prefWidth="743.0">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-         </children>
-      </VBox>
    </children>
 </AnchorPane>

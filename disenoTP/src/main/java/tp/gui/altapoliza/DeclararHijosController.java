@@ -49,11 +49,11 @@ public class DeclararHijosController {
 	private DatePicker fechaNacimiento;
 
 	@FXML
-	private TableColumn columnaFechaNacimiento = new TableColumn();
+	private TableColumn<HijoDeclaradoDTO, LocalDate> columnaFechaNacimiento = new TableColumn();
 	@FXML
-	private TableColumn columnaSexo = new TableColumn();
+	private TableColumn<HijoDeclaradoDTO, String> columnaSexo = new TableColumn();
 	@FXML
-	private TableColumn columnaEstadoCivil = new TableColumn();
+	private TableColumn<HijoDeclaradoDTO, String> columnaEstadoCivil = new TableColumn();
 	
 	@FXML 
 	private TableView<HijoDeclaradoDTO> tablaDeHijos;
@@ -133,9 +133,8 @@ public class DeclararHijosController {
 		sexo.setItems(opSexo);
 		estadoCivil.setItems(opEstadoCivil);
 		
-		
-
 	}
+	
 	
 	private EstadoCivil getValueEstadoCivil() {
 		

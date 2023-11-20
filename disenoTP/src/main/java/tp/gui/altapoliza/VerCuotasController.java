@@ -66,7 +66,7 @@ public class VerCuotasController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	montoAPagar.setText(String.valueOf(poliza.getImporteTotal()));
-        columnaCuota.setCellValueFactory(null); // Configura según tus necesidades
+        columnaCuota.setCellValueFactory(null); // Configura según tus necesidades FALTA CARGARLE ACA EL NUMERO 
         columnaMonto.setCellValueFactory(cellData -> {
             float importeTotal = cellData.getValue().getImporteTotal();
             return new SimpleFloatProperty(importeTotal).asObject();
