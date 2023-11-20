@@ -28,6 +28,10 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp.app.App;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
+
 
 public class AltaPolizaFormularioPolizaController implements Initializable{
 	
@@ -181,7 +185,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	public void setHijosDeclarados(List<HijoDeclaradoDTO> l) {
 		poliza.setHijosDeclarados(l);
 	}
-	
+	/*
 	@FXML
 	private void declararHijosClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
@@ -204,7 +208,45 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    
 	    // Mostrar la ventana modal y esperar hasta que se cierre
 	    modalStage.showAndWait();
+	}*/
+	
+	@FXML
+	private AnchorPane rootPane; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
+
+	@FXML
+	private void declararHijosClicked(ActionEvent action) throws IOException {
+	    FXMLLoader loader = new FXMLLoader();
+	    DeclararHijosController declararHijosC = new DeclararHijosController();
+	    declararHijosC.setListaHijos(this.poliza.getHijosDeclarados());
+	    loader.setController(declararHijosC);
+	    loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
+
+	    // Cargar el formulario en un AnchorPane
+	    AnchorPane form = loader.load();
+
+	    // Crear un nuevo Stage (ventana) para mostrar el formulario como modal
+	    Stage modalStage = new Stage();
+	    modalStage.initModality(Modality.APPLICATION_MODAL);
+	    modalStage.setTitle("Declarar Hijos");
+
+	    // Configurar el formulario en la nueva ventana modal
+	    Scene scene = new Scene(form);
+
+	    // Crear un Pane transparente para oscurecer el fondo
+	    Pane overlay = new Pane();
+	    overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);"); // Color negro con opacidad del 50%
+	    overlay.setPrefSize(rootPane.getWidth(), rootPane.getHeight());
+	    rootPane.getChildren().add(overlay);
+
+	    modalStage.setScene(scene);
+
+	    // Mostrar la ventana modal y esperar hasta que se cierre
+	    modalStage.setOnHidden(event -> rootPane.getChildren().remove(overlay)); // Remover el overlay cuando se cierra la ventana modal
+	    modalStage.showAndWait();
 	}
+
+
+
 	
 	private void setErroresFalse() {
 		errorNroDeSiniestrosUltAnio.setVisible(false);

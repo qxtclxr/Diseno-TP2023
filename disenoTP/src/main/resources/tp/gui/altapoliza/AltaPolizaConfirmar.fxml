@@ -13,7 +13,7 @@
    <children>
       <SplitPane dividerPositions="0.20072383073496655" layoutX="-110.0" layoutY="-17.0" orientation="VERTICAL" prefHeight="680.0" prefWidth="1280.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane fx:id="rootPane2" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <Label layoutX="140.0" layoutY="46.0" text="Alta de pólizas">
                      <font>
@@ -137,11 +137,11 @@
                         <Label fx:id="direccionDeRiesgo" text="Label" translateX="10.0" GridPane.columnIndex="3" />
                         <Label fx:id="inicioVigencia" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                         <Label fx:id="finalVigencia" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <Label fx:id="ultimoDiaDePago" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                         <Label fx:id="sumaAsegurada" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                         <Label fx:id="premio" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                         <Label fx:id="importePorDescuento" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                        <Label fx:id="totalAbonar" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                        <Button fx:id="ultimoDiaDePago" mnemonicParsing="false" onAction="#verCoutasClicked" text="Ver cuotas" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Button fx:id="totalAbonar" mnemonicParsing="false" text="Ver cuotas" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
                      </children>
                   </GridPane>
                   <Button layoutX="158.0" layoutY="515.0" mnemonicParsing="false" text="Confirmar" />
