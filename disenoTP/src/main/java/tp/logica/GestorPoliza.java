@@ -99,10 +99,9 @@ public class GestorPoliza {
 		validarDTO(dto);
 		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
-		dao.updateInstance(poliza);
+		dao.saveInstance(poliza);
 		return poliza;
 	}
-	
 	
 	public static float calcularPremio(PolizaDTO dto) {
 		FactorCaracteristicoDTO factores = dto.getFactores();
