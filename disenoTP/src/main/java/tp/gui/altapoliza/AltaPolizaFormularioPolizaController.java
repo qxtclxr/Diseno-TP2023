@@ -3,6 +3,7 @@ package tp.gui.altapoliza;
 import tp.dto.*;
 import tp.logica.*;
 import tp.gui.buscarcliente.BuscarClienteController;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -23,6 +24,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import tp.app.App;
 
 public class AltaPolizaFormularioPolizaController implements Initializable{
@@ -640,15 +643,18 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
 	}
 	
-	public void habilitarLocalidad() {
+	public void onActionProvincia() {
+		localidad.getSelectionModel().clearSelection();
 		localidad.setDisable(false);
 	}
 	
-	public void habilitarModelo() {
+	public void onActionMarca() {
+		modelo.getSelectionModel().clearSelection();
 		modelo.setDisable(false);
 	}
 	
-	public void habilitarAnio() {
+	public void onActionModelo() {
+		anio.getSelectionModel().clearSelection();
 		anio.setDisable(false);
 	}
 	

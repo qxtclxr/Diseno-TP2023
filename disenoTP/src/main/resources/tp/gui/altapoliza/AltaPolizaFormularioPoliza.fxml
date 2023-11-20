@@ -40,13 +40,13 @@
                   <Font name="Franklin Gothic Medium Italic" size="13.0" />
                </font>
             </Text>
-            <ComboBox fx:id="provincia" layoutX="14.0" layoutY="345.0" onAction="#habilitarLocalidad" prefWidth="180.0" promptText="Ingrese una provincia" />
-            <ComboBox fx:id="marca" layoutX="281.0" layoutY="345.0" onAction="#habilitarModelo" prefWidth="180.0" promptText="Ingrese una marca" />
+            <ComboBox fx:id="provincia" layoutX="14.0" layoutY="345.0" onAction="#onActionProvincia" prefWidth="180.0" promptText="Ingrese una provincia" />
+            <ComboBox fx:id="marca" layoutX="281.0" layoutY="345.0" onAction="#onActionMarca" prefWidth="180.0" promptText="Ingrese una marca" />
             <ComboBox fx:id="kmsRealizadosPorAnio" layoutX="819.0" layoutY="345.0" prefWidth="180.0" />
             <ComboBox fx:id="nroDeSiniestrosUltAnio" layoutX="1087.0" layoutY="345.0" prefWidth="180.0" />
             <TextFlow fx:id="sumaAsegurada" layoutX="549.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #dbd9d9;" />
-            <ComboBox fx:id="localidad" disable="true" layoutX="14.0" layoutY="381.0" onAction="#habilitarLocalidad" onShowing="#setLocalidades" prefWidth="180.0" promptText="Ingrese una localidad" />
-            <ComboBox fx:id="modelo" disable="true" layoutX="281.0" layoutY="381.0" onAction="#habilitarAnio" onShowing="#setModelos" prefWidth="180.0" promptText="Ingrese un modelo" />
+            <ComboBox fx:id="localidad" disable="true" layoutX="14.0" layoutY="381.0" onShowing="#setLocalidades" prefWidth="180.0" promptText="Ingrese una localidad" />
+            <ComboBox fx:id="modelo" disable="true" layoutX="281.0" layoutY="381.0" onAction="#onActionModelo" onShowing="#setModelos" prefWidth="180.0" promptText="Ingrese un modelo" />
             <ComboBox fx:id="anio" disable="true" layoutX="281.0" layoutY="417.0" onAction="#setSumaAsegurada" onShowing="#setAnios" prefWidth="180.0" promptText="Ingrese un anio" />
             <TextField fx:id="motor" layoutX="14.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
             <TextField fx:id="chasis" layoutX="281.0" layoutY="521.0" prefHeight="25.0" prefWidth="180.0" promptText="Ingrese un dato..." />
