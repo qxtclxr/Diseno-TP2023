@@ -131,6 +131,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	 @FXML
 	 private Label rojoChasis;
 	 
+	 /*
 	public void mostrarDatosPoliza( ) {
 		
 		motor.setText(poliza.getVehiculo().getMotor());
@@ -209,9 +210,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
     	declararHijosC = loader.getController();
     	
     	App.switchScreenTo(form);
-		
-		
-		
 	}
 
 
