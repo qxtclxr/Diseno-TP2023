@@ -7,9 +7,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="factorRiesgoLocalidad")
-public class FactorRiesgoLocalidad {
+public class PorcentajeRiesgoLocalidad {
 	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idFactorRiesgoLocalidad")
@@ -42,7 +41,7 @@ public class FactorRiesgoLocalidad {
 	  }
 	
 	
-	public FactorRiesgoLocalidad() {
+	public PorcentajeRiesgoLocalidad() {
 		super();
 	}
 
@@ -59,13 +58,13 @@ public class FactorRiesgoLocalidad {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FactorRiesgoLocalidad other = (FactorRiesgoLocalidad) obj;
+		PorcentajeRiesgoLocalidad other = (PorcentajeRiesgoLocalidad) obj;
 		return idFactorRiesgoLocalidad == other.idFactorRiesgoLocalidad;
 	}
 
 	@Override
 	public String toString() {
-		return "FactorRiesgoLocalidad [idFactorRiesgoLocalidad=" + idFactorRiesgoLocalidad + ", valorNumerico="
+		return "PorcentajeRiesgoLocalidad [idFactorRiesgoLocalidad=" + idFactorRiesgoLocalidad + ", valorNumerico="
 				+ valorNumerico + ", fechaModificacion=" + fechaModificacion + ", modificadoPor=" + modificadoPor + "]";
 	}
 	

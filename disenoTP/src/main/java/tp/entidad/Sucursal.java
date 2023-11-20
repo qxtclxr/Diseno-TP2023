@@ -20,7 +20,7 @@ public class Sucursal {
 	@Column(nullable=false)
 	private long secuenciaDePoliza;
 	
-	@OneToMany(fetch= FetchType.LAZY, mappedBy="sucursalAsociada",cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="sucursalAsociada",cascade = CascadeType.ALL)
 	private List<Usuario> productores;
 	
 	public Sucursal() {

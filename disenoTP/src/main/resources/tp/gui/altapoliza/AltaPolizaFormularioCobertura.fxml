@@ -107,53 +107,7 @@
                   </Label>
                </children>
             </HBox>
-            <VBox layoutX="14.0" layoutY="345.0" prefHeight="200.0" prefWidth="400.0" spacing="10.0">
-               <children>
-                  <RadioButton fx:id="respCivil" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Responsabilidad Civil">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="tipoDeCobertura" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="respCivilRoboIncendioTotal" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Responsabilidad Civil + Robo o Incendio Total" toggleGroup="$tipoDeCobertura">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </RadioButton>
-                  <RadioButton fx:id="todoTotal" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Todo Total" toggleGroup="$tipoDeCobertura">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </RadioButton>
-                  <RadioButton fx:id="tercerosCompletos" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Terceros Completos" toggleGroup="$tipoDeCobertura">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </RadioButton>
-                  <RadioButton fx:id="todoRiesgoConFranquicia" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" text="Todo Riesgo con Franquicia" toggleGroup="$tipoDeCobertura">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </RadioButton>
-               </children>
-            </VBox>
+            <VBox fx:id="coberturasBox" layoutX="14.0" layoutY="345.0" prefHeight="200.0" prefWidth="400.0" spacing="10.0" />
             <DatePicker fx:id="fechaInicioVigencia" layoutX="440.0" layoutY="345.0" prefHeight="20.0" prefWidth="400.0" />
             <ComboBox fx:id="tipoPago" layoutX="866.0" layoutY="345.0" prefWidth="400.0" />
             <Label fx:id="errorTipoCobertura" layoutX="22.0" layoutY="550.0" text="El campo esta incompleto" textFill="RED" visible="false" />
@@ -229,5 +183,10 @@
             </HBox>
          </children>
       </AnchorPane>
+      <RadioButton layoutX="455.0" layoutY="-55.0" mnemonicParsing="false" text="RadioButton">
+         <toggleGroup>
+            <ToggleGroup fx:id="coberturas" />
+         </toggleGroup>
+      </RadioButton>
    </children>
 </AnchorPane>

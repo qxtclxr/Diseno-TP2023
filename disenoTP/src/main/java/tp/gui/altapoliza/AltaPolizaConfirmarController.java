@@ -13,7 +13,15 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp.app.App;
+import tp.dao.ClienteDAO;
+import tp.dao.PolizaDAO;
 import tp.dto.*;
+import tp.entidad.Poliza;
+import tp.exception.AutoMuyViejoParaCoberturaElegidaException;
+import tp.exception.DatosObligatoriosAusentesException;
+import tp.exception.ObjetoNoEncontradoException;
+import tp.exception.ValoresParaVehiculoExistentesException;
+import tp.logica.GestorPoliza;
 
 
 public class AltaPolizaConfirmarController {
@@ -52,7 +60,8 @@ public class AltaPolizaConfirmarController {
 	private Label importePorDescuento;
 	@FXML
 	private Button totalAbonar;
-	
+	@FXML
+	private AnchorPane rootPane2; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
 	
 	
 	public void setPolizaDTO(PolizaDTO p) {
@@ -69,21 +78,44 @@ public class AltaPolizaConfirmarController {
     	AnchorPane form = loader.load();
     	
     	AltaPolizaFormularioCoberturaController formularioPolizaCoberturaC = loader.getController();
+
     	formularioPolizaCoberturaC.setPolizaDTOConfirmar(this.poliza, this);
-    	formularioPolizaCoberturaC.mostrarDatos();
     	
     	App.switchScreenTo(form);
 		
 	}
 	
-	
 	@FXML
-	private AnchorPane rootPane2; // Referencia al pane principal de AltaPolizaFormularioPoliza.fxml
+	public void confirmarCliqueado(){
+		try {
+			GestorPoliza.altaPoliza(poliza);
+			//
+			PolizaDAO dao = new PolizaDAO();
+			System.out.println("Poliza persistida!");
+			dao.getAll().stream().forEach(p -> System.out.println(p.getCuotasAsociadas()));
+			ClienteDAO daocli = new ClienteDAO();
+			daocli.getAll().stream().forEach(c -> System.out.println(c.getPolizas()));
+			//
+		} catch (DatosObligatoriosAusentesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ValoresParaVehiculoExistentesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AutoMuyViejoParaCoberturaElegidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ObjetoNoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	@FXML  //HACE LO MISMO Q EL DE ABAJO PERO ESTE LO HARIA OSCURECIENDO LA PAGINA, HAY Q CHEQEUAR
 	private void verCoutasClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
 	    //DeclararHijosController declararHijosC = new DeclararHijosController();
-	    VerCuotasController verCuotasC = new VerCuotasController();
+	    VerCuotasController verCuotasC = new VerCuotasController(poliza);
 	    
 	    //declararHijosC.setListaHijos(this.poliza.getHijosDeclarados()); ///////
 	    
@@ -143,26 +175,19 @@ public class AltaPolizaConfirmarController {
 	
 	
 	private void mostrarDatosPoliza( ) {
-		
 		apellido.setText(poliza.getCliente().getApellido());
 		nombre.setText(poliza.getCliente().getNombre());
-		/* 
-
-		
-		
-		
-
-		
-		*/
 		modelo.setText(poliza.getVehiculo().getModelo().getModelo().getNombre());
 		direccionDeRiesgo.setText(poliza.getLocalidad().getNombre()+ ", "+ poliza.getLocalidad().getProvincia().getNombre());
 		marca.setText(poliza.getVehiculo().getModelo().getModelo().getMarca().getNombre());
 		patente.setText(poliza.getVehiculo().getPatente());
 		motor.setText(poliza.getVehiculo().getMotor());
 		chasis.setText(poliza.getVehiculo().getChasis());
-		inicioVigencia.setText( poliza.getFechaInicio().toString() );
-		finalVigencia.setText(  poliza.getFechaInicio().plusMonths(1).toString()  );
-		
+		inicioVigencia.setText(poliza.getFechaInicio().toString());
+		finalVigencia.setText(poliza.getFechaFin().toString());
+		sumaAsegurada.setText(String.valueOf(poliza.getSumaAsegurada()));
+		premio.setText(String.valueOf(poliza.getPremio()));
+		importePorDescuento.setText(String.valueOf(poliza.getDescuento()));
 	}
 	
 	

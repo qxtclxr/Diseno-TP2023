@@ -22,6 +22,7 @@ public class App extends Application {
 	private static Usuario usuarioLogeado = new Usuario();
 	
     public static void main(String[] args) {
+    	
     	EntityManagerUtil.createEntityManagerFactory();
       
     	//Se crea un dao para que inicialice la conexion.
@@ -29,6 +30,7 @@ public class App extends Application {
       
     	//IMPORTANTE: Solo descomentar esto para poblar la base de datos.
     	//Poblador.poblar();
+    	App.setUsuarioLogeado(null);
     	launch();
     }
 
@@ -69,6 +71,8 @@ public class App extends Application {
 	}
 
 	public static void setUsuarioLogeado(Usuario usuarioLogeado) {
-		App.usuarioLogeado = usuarioLogeado;
+		UsuarioDAO dao = new UsuarioDAO();
+		App.usuarioLogeado = dao.getAll().get(0);
+		//App.usuarioLogeado = usuarioLogeado;
 	}
 }
