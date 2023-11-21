@@ -61,11 +61,8 @@ public class DeclararHijosController {
 	
 	private List<HijoDeclaradoDTO> listaHijos;
 	
-	private AltaPolizaFormularioPolizaController controladorPantallaFormulario = new AltaPolizaFormularioPolizaController();
-	
-	public void setListaHijos(List<HijoDeclaradoDTO> l, AltaPolizaFormularioPolizaController a ) {
+	public void setListaHijos(List<HijoDeclaradoDTO> l) {
 		listaHijos = l;
-		controladorPantallaFormulario = a;
 	}
 	
 	@FXML
@@ -81,7 +78,6 @@ public class DeclararHijosController {
     	
     	App.switchScreenTo(form);
 		*/
-		controladorPantallaFormulario.setHijosDeclarados(listaHijos);
 		
 		Stage stage = (Stage) volverAtras2.getScene().getWindow();
 		
@@ -180,7 +176,6 @@ public class DeclararHijosController {
 		hijo.setSexo(this.getValueSexo() );
 		
 		listaHijos.add(hijo);
-		System.out.println("Se agrego: "+ fechaNacimiento.getValue()+ " "+ this.getValueEstadoCivil()+ " "+ this.getValueSexo());
 		this.actualizarDatos();
 	}
 	

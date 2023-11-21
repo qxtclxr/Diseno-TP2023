@@ -26,14 +26,6 @@ public class HijoDeclarado {
 	private EstadoCivil estadoCivil;
 	
 	
-	@Column(nullable = true)
-	private String documento;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = true)
-	private TipoDocumento tipoDocumento;
-	
-	
 	@Column(nullable=false)
 	private LocalDate fechaNacimiento;
 	
@@ -61,7 +53,7 @@ public class HijoDeclarado {
 	@Override
 	public String toString() {
 		return "HijoDeclarado [idHijoDeclarado=" + idHijoDeclarado + ", sexo=" + sexo + ", estadoCivil=" + estadoCivil
-				+ ", documento=" + documento + ", tipoDocumento=" + tipoDocumento + ", fechaNacimiento="
+				+ ", fechaNacimiento="
 				+ fechaNacimiento + "]";
 	}
 	
@@ -78,14 +70,6 @@ public class HijoDeclarado {
 		return estadoCivil;
 	}
 
-	public String getDocumento() {
-		return documento;
-	}
-
-	public TipoDocumento getTipoDocumento() {
-		return tipoDocumento;
-	}
-
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
@@ -100,14 +84,6 @@ public class HijoDeclarado {
 
 	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
-	}
-
-	public void setDocumento(String documento) {
-		this.documento = documento;
-	}
-
-	public void setTipoDocumento(TipoDocumento tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
 	}
 
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {

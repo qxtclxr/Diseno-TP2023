@@ -77,7 +77,6 @@ public class AltaPolizaConfirmarController {
 	
 	@FXML
 	private void volverAtrasClicked(ActionEvent action) throws IOException {
-		System.out.println(anterior);
     	App.switchScreenTo(anterior);
 	}
 	
@@ -208,9 +207,7 @@ public class AltaPolizaConfirmarController {
 	
 	@FXML
 	public void initialize( ) {
-		
 		this.mostrarDatosPoliza();
-		
 	}
 	
 	

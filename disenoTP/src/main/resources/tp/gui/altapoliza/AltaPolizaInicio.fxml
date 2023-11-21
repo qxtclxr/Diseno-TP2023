@@ -19,7 +19,7 @@
             <Font name="Franklin Gothic Medium" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="addClientButton" layoutX="371.0" layoutY="375.0" mnemonicParsing="false" onAction="#addClient" prefHeight="51.0" prefWidth="538.0" text="Alta de cliente" textAlignment="CENTER">
+      <Button fx:id="addClientButton" disable="true" layoutX="371.0" layoutY="375.0" mnemonicParsing="false" onAction="#addClient" prefHeight="51.0" prefWidth="538.0" text="Alta de cliente" textAlignment="CENTER">
          <font>
             <Font name="Franklin Gothic Demi" size="21.0" />
          </font>

@@ -53,7 +53,6 @@ public class BuscarClienteController {
 
 	    @FXML
 	    private void handleExit(ActionEvent event) throws IOException {
-	    	System.out.println(anterior);
 	    	App.switchScreenTo(anterior);
 	    }
 	    

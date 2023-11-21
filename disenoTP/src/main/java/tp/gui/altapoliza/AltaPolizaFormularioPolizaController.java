@@ -43,8 +43,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	private Map<CheckBox,MedidaDeSeguridadDTO> medidasMap = new HashMap<>();
 	
-	private List<HijoDeclaradoDTO> hijosDeclarados = new ArrayList<>();
-	
 	@FXML
 	private VBox medidasBox;	
 	@FXML
@@ -219,7 +217,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	private void declararHijosClicked(ActionEvent action) throws IOException {
 	    FXMLLoader loader = new FXMLLoader();
 	    DeclararHijosController declararHijosC = new DeclararHijosController();
-	    declararHijosC.setListaHijos(this.poliza.getHijosDeclarados(), this);
+	    declararHijosC.setListaHijos(this.poliza.getHijosDeclarados());
 	    loader.setController(declararHijosC);
 	    loader.setLocation(getClass().getResource("../altapoliza/DeclararHijos.fxml"));
 
@@ -245,6 +243,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    // Mostrar la ventana modal y esperar hasta que se cierre
 	    modalStage.setOnHidden(event -> rootPane.getChildren().remove(overlay)); // Remover el overlay cuando se cierra la ventana modal
 	    modalStage.showAndWait();
+	    this.setContadorHijosDeclarados();
 	}
 
 	
@@ -487,8 +486,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 				filter(entry -> entry.getKey().isSelected()).
 				map(entry -> entry.getValue()).
 				toList());
-		
-		poliza.setHijosDeclarados(hijosDeclarados);
 		
 	}
 	
