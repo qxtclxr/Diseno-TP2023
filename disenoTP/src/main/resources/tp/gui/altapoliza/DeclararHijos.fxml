@@ -66,7 +66,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="agregarHijo1" layoutX="663.0" layoutY="138.0" mnemonicParsing="false" onAction="#agregarHijoClicked" style="-fx-background-color: RED; -fx-border-color: LIGHTGRAY;" text="Eliminar hijo" textFill="WHITE">
+      <Button fx:id="eliminarHijo" layoutX="663.0" layoutY="138.0" mnemonicParsing="false" onAction="#eliminarHijoClicked" style="-fx-background-color: RED; -fx-border-color: LIGHTGRAY;" text="Eliminar hijo" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
