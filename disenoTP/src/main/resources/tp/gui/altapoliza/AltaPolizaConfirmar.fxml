@@ -208,23 +208,23 @@
                </font></Label>
             <Label fx:id="inicioVigencia" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
-                  <Font name="Franklin Gothic Medium" size="14.0" />
+                  <Font size="13.0" />
                </font></Label>
             <Label fx:id="finalVigencia" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
-                  <Font name="Franklin Gothic Medium" size="14.0" />
+                  <Font size="13.0" />
                </font></Label>
             <Label fx:id="sumaAsegurada" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <font>
-                  <Font name="Franklin Gothic Medium" size="14.0" />
+                  <Font size="13.0" />
                </font></Label>
             <Label fx:id="premio" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
                <font>
-                  <Font name="Franklin Gothic Medium" size="14.0" />
+                  <Font size="13.0" />
                </font></Label>
             <Label fx:id="importePorDescuento" text="Label" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
                <font>
-                  <Font name="Franklin Gothic Medium" size="14.0" />
+                  <Font size="13.0" />
                </font></Label>
             <Button fx:id="ultimoDiaDePago" mnemonicParsing="false" onAction="#verCoutasClicked" text="Ver cuotas" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>

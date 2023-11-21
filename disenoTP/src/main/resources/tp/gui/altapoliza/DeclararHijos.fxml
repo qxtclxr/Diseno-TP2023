@@ -17,34 +17,35 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <DatePicker fx:id="fechaNacimiento" layoutX="14.0" layoutY="95.0" />
-      <ComboBox fx:id="sexo" layoutX="222.0" layoutY="95.0" prefWidth="150.0" promptText="Seleccione un sexo..." />
-      <Label layoutX="222.0" layoutY="78.0" text="Sexo">
+      <DatePicker fx:id="fechaNacimiento" layoutX="14.0" layoutY="95.0" prefWidth="200.0" />
+      <ComboBox fx:id="sexo" layoutX="230.0" layoutY="95.0" prefWidth="200.0" promptText="Seleccione un sexo..." />
+      <Label layoutX="230.0" layoutY="78.0" text="Sexo">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="estadoCivil" layoutX="413.0" layoutY="95.0" prefWidth="150.0" promptText="Seleccione un estado civil..." />
-      <Label layoutX="413.0" layoutY="78.0" text="Estado Civil">
+      <ComboBox fx:id="estadoCivil" layoutX="446.0" layoutY="95.0" prefWidth="200.0" promptText="Seleccione un estado civil..." />
+      <Label layoutX="446.0" layoutY="78.0" text="Estado Civil">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="agregarHijo" layoutX="601.0" layoutY="87.0" mnemonicParsing="false" onAction="#agregarHijoClicked" text="Agregar Hijo" />
-      <Label layoutX="326.0" layoutY="138.0" text="Hijos Declarados">
+      <Button fx:id="agregarHijo" layoutX="663.0" layoutY="94.0" mnemonicParsing="false" onAction="#agregarHijoClicked" style="-fx-background-color: LIGHTGREEN; -fx-border-color: LIGHTGRAY;" text="Agregar Hijo">
          <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tablaDeHijos" layoutX="102.0" layoutY="170.0" prefHeight="223.0" prefWidth="596.0">
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TableView fx:id="tablaDeHijos" layoutX="14.0" layoutY="138.0" prefHeight="238.0" prefWidth="743.0" AnchorPane.rightAnchor="14.0">
         <columns>
-          <TableColumn prefWidth="39.0" />
-          <TableColumn fx:id="columnaFechaNacimiento" prefWidth="185.0" text="Fecha de Nacimiento" />
-            <TableColumn fx:id="columnaSexo" prefWidth="185.0" text="Sexo" />
-            <TableColumn fx:id="columnaEstadoCivil" prefWidth="185.0" text="Estado Civil" />
+          <TableColumn maxWidth="95.0" minWidth="26.0" prefWidth="88.0" />
+          <TableColumn fx:id="columnaFechaNacimiento" maxWidth="342.0" minWidth="100.0" prefWidth="218.0" text="Fecha de Nacimiento" />
+            <TableColumn fx:id="columnaSexo" maxWidth="264.0" minWidth="4.0" prefWidth="218.0" text="Sexo" />
+            <TableColumn fx:id="columnaEstadoCivil" maxWidth="363.0" minWidth="0.0" prefWidth="218.0" text="Estado Civil" />
         </columns>
       </TableView>
-      <Button fx:id="volverAtras2" layoutX="22.0" layoutY="393.0" mnemonicParsing="false" onAction="#volverAtrasClicked2" text="Volver atras" />
+      <Button fx:id="volverAtras2" layoutX="11.0" layoutY="391.0" mnemonicParsing="false" onAction="#volverAtrasClicked2" style="-fx-background-color: #7c6eff; -fx-border-color: gray;" text="Volver atras" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <Label fx:id="errorSexo" layoutX="229.0" layoutY="112.0" text="El campo esta incompleto" textFill="RED" visible="false">
          <font>
             <Font size="10.0" />
