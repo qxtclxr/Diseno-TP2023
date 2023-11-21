@@ -102,6 +102,10 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	@FXML
 	private Label errorMotorYaExiste;
+	
+	@FXML
+	private Label errorPatenteYaExiste;
+	
 	@FXML 
 	private Label errorFormatoMotor;
 	
@@ -513,8 +517,8 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	        datosValidos = false;
 	    } else {
 	       errorDomicilioRiesgo.setVisible(false);
-	        provincia.setStyle("-fx-background-color: white;");
-	        localidad.setStyle("-fx-background-color: white;");
+	        provincia.setStyle("");
+	        localidad.setStyle("");
 
 	    }
 	    
@@ -531,9 +535,9 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    }
 	    else {
 	    	errorMarcaVehiculoAnio.setVisible(false);
-	    	marca.setStyle("-fx-background-color: white;");
-	    	modelo.setStyle("-fx-background-color: white;");
-	    	anio.setStyle("-fx-background-color: white;");
+	    	marca.setStyle("");
+	    	modelo.setStyle("");
+	    	anio.setStyle("");
 	    }
 	    
 	    //comprueba nroDeSiniestrosUltAnio
@@ -545,7 +549,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    	datosValidos = false;
 	    }else {
 	    	errorNroDeSiniestrosUltAnio.setVisible(false);
-	    	nroDeSiniestrosUltAnio.setStyle("-fx-background-color: white;");
+	    	nroDeSiniestrosUltAnio.setStyle("");
 	    }
 		
 	    //comprueba KmsRealizadosPorAnio
@@ -557,100 +561,102 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    	datosValidos = false;
 	    }else {
 	    	errorKmsRealizadosPorAnio.setVisible(false);
-	    	kmsRealizadosPorAnio.setStyle("-fx-background-color: white;");
+	    	kmsRealizadosPorAnio.setStyle("");
 	    }
 	    
-	    //comprueba el motor
+	    datosValidos &= this.validarMotor();
+	    	
+	    datosValidos &= this.validarChasis();
+		    	
+	    datosValidos &= this.validarPatente();
 	    
+		return datosValidos;
+	}
+	
+	private boolean validarPatente() {
+		errorFormatoPatente.setVisible(false);
+		errorPatenteYaExiste.setVisible(false);
+		patente.setStyle("");
+		
+		if(patente.getText()==null) {
+    		errorFormatoPatente.setVisible(true);
+    		//rojoPatente.setOpacity(0.1);
+    		patente.setStyle("-fx-background-color: #fa8e8e;");
+    		return false;
+    	}
+    	
+		if(!this.patenteFormatoCorrecto(patente.getText())) {
+    		errorFormatoPatente.setVisible(true);
+    		//rojoPatente.setOpacity(0.1);
+    		patente.setStyle("-fx-background-color: #fa8e8e;");
+    		return false;
+		}
+		
+		if(GestorVehiculo.existePatente(patente.getText())) {
+    		errorPatenteYaExiste.setVisible(true);
+    		//rojoPatente.setOpacity(0.1);
+    		patente.setStyle("-fx-background-color: #fa8e8e;");
+    		return false;
+		}	
+    	
+		return true;
+	}
+
+	private boolean validarMotor() {
+		errorFormatoMotor.setVisible(false);
+		errorMotorYaExiste.setVisible(false);
+		motor.setStyle("");
+		
 	    if(motor.getText() == null) {
 	    	errorFormatoMotor.setVisible(true);
 	    	//rojoMotor.setOpacity(0.1);
 	    	motor.setStyle("-fx-background-color: #fa8e8e;");
-	    	datosValidos = false;
-	    }else {
-	    	errorFormatoMotor.setVisible(false);
-	    	
-	    	if(this.motorYaExiste(motor.getText())){
-	    		errorMotorYaExiste.setVisible(true);
-	    		//rojoMotor.setOpacity(0.1);
-	    		motor.setStyle("-fx-background-color: #fa8e8e;");
-	    		datosValidos = false;
-	    	}
-	    	else {
-	    		errorMotorYaExiste.setVisible(false);
-	    	}
-	    	
-	    	if(!this.motorFormatoCorrecto(motor.getText())) {
-	    		errorFormatoMotor.setVisible(true);
-	    		//rojoMotor.setOpacity(0.1);
-	    		motor.setStyle("-fx-background-color: #fa8e8e;");
-	    		datosValidos = false;
-	    	}else {
-	    		errorFormatoMotor.setVisible(false);
-	    		motor.setStyle("-fx-background-color: white;");
-	    	}
-	    	
-	    	//comprueba el chasis
-	    	
-		    if(chasis.getText() == null) {
-		    	errorFormatoChasis.setVisible(true);
-		    	chasis.setStyle("-fx-background-color: #fa8e8e;");
-		    	//rojoChasis.setOpacity(0.1);
-		    	datosValidos = false;
-		    }else {
-		    	errorFormatoChasis.setVisible(false);
-		    	chasis.setStyle("-fx-background-color: white;");
-		    	
-		    	if(this.chasisYaExiste(chasis.getText())){
-		    		errorChasisYaExiste.setVisible(true);
-		    		//rojoChasis.setOpacity(0.1);
-		    		chasis.setStyle("-fx-background-color: #fa8e8e;");
-		    		datosValidos = false;
-		    	}
-		    	else {
-		    		errorChasisYaExiste.setVisible(false);
-		    		chasis.setStyle("-fx-background-color: white;");
-		    	}
-		    	
-		    	if(!this.chasisFormatoCorrecto(chasis.getText())) {
-		    		errorFormatoChasis.setVisible(true);
-		    		//rojoChasis.setOpacity(0.1);
-		    		chasis.setStyle("-fx-background-color: #fa8e8e;");
-		    		datosValidos = false;
-		    	}else {
-		    		errorFormatoChasis.setVisible(false);
-		    		chasis.setStyle("-fx-background-color: white;");
-		    	}
-		    	
-	    	
-	    	//comprueba la patente - Prueba de setear color rojo el fondo
-	    	
-	    	if(patente.getText()==null) {
-	    		errorFormatoPatente.setVisible(true);
-	    		//rojoPatente.setOpacity(0.1);
-	    		patente.setStyle("-fx-background-color: #fa8e8e;");
-	    		datosValidos = false;
-	    	}
-	    	else {
-	    		if(!this.patenteFormatoCorrecto(patente.getText())) {
-		    		errorFormatoPatente.setVisible(true);
-		    		//rojoPatente.setOpacity(0.1);
-		    		patente.setStyle("-fx-background-color: #fa8e8e;");
-		    		datosValidos = false;
-	    		}else {
-	    			errorFormatoPatente.setVisible(false);
-		    		patente.setStyle("-fx-background-color: white;");
-
-	    		}
-	    	}
-	    	
-	    	
-	    	
+	    	return false;
 	    }
 	    
-	   }
-		    
-		return datosValidos;
+	    if(this.motorYaExiste(motor.getText())){
+    		errorMotorYaExiste.setVisible(true);
+    		//rojoMotor.setOpacity(0.1);
+    		motor.setStyle("-fx-background-color: #fa8e8e;");
+    		return false;
+    	}
+	    if(!this.motorFormatoCorrecto(motor.getText())) {
+    		errorFormatoMotor.setVisible(true);
+    		//rojoMotor.setOpacity(0.1);
+    		motor.setStyle("-fx-background-color: #fa8e8e;");
+    		return false;
+    	}	
+	    
+	    return true;
+	}
+
+	public boolean validarChasis() {
+		errorFormatoChasis.setVisible(false);
+		errorChasisYaExiste.setVisible(false);
+    	chasis.setStyle("");
+		
+		if(chasis.getText() == null) {
+	    	errorFormatoChasis.setVisible(true);
+	    	chasis.setStyle("-fx-background-color: #fa8e8e;");
+	    	//rojoChasis.setOpacity(0.1);
+	    	return false;
+	    }
+	    	
+    	if(this.chasisYaExiste(chasis.getText())){
+    		errorChasisYaExiste.setVisible(true);
+    		//rojoChasis.setOpacity(0.1);
+    		chasis.setStyle("-fx-background-color: #fa8e8e;");
+    		return false;
+    	}
+	    	
+    	if(!this.chasisFormatoCorrecto(chasis.getText())) {
+    		errorFormatoChasis.setVisible(true);
+    		//rojoChasis.setOpacity(0.1);
+    		chasis.setStyle("-fx-background-color: #fa8e8e;");
+    		return false;
+    	}
+    	
+    	return true;
 	}
 
 	public void setKms() {
@@ -671,6 +677,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	public void onActionMarca() {
 		modelo.getSelectionModel().clearSelection();
 		modelo.setDisable(false);
+		anio.setDisable(true);
 	}
 	
 	public void onActionModelo() {

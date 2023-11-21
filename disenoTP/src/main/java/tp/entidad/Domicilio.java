@@ -3,9 +3,6 @@ package tp.entidad;
 
 import java.util.Objects;
 
-import org.hibernate.query.sqm.FetchClauseType;
-import tp.entidad.*;
-
 import jakarta.persistence.*;
 
 @Entity

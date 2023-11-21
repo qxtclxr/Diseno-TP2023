@@ -143,6 +143,7 @@ public class AltaPolizaFormularioCoberturaController {
 			App.switchScreenTo(form);
 		}
 	}
+	
 	@FXML
 	public boolean validarDatos( ) {
 		
@@ -161,7 +162,7 @@ public class AltaPolizaFormularioCoberturaController {
 	        validacionExitosa = false;
 	    } else {
 	    	errorTipoPago.setVisible(false);
-	        tipoPago.setStyle("-fx-control-inner-background: white;");
+	        tipoPago.setStyle("");
 
 	    }
 		
@@ -176,7 +177,7 @@ public class AltaPolizaFormularioCoberturaController {
 	    	errorFechaInicioVigencia1.setVisible(false);
 	    	errorFechaInicioVigencia2.setVisible(false);
 	    	errorFechaInicioVigencia3.setVisible(false);
-	    	fechaInicioVigencia.setStyle("-fx-control-inner-background: white;");
+	    	fechaInicioVigencia.setStyle("");
 	    }
 	    
 		return validacionExitosa;

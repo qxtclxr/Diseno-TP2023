@@ -248,8 +248,20 @@ public class Poblador {
 		PorcentajeDescPorUnidad porc = new PorcentajeDescPorUnidad();
 		DescuentoPorUnidad desc = new DescuentoPorUnidad();
 		
+		desc.setDesdeCantU(0);
 		descDao.updateInstance(desc);
 		
+		porc.setValorNumerico(0F);
+		porc.setFechaModificacion(LocalDateTime.now());
+		desc.setValorActualDescPorUnidad(porc);
+		porc.setDescAsociado(desc);
+		porcDao.updateInstance(porc);
+		
+		desc = new DescuentoPorUnidad();
+		desc.setDesdeCantU(1);
+		descDao.updateInstance(desc);
+		
+		porc = new PorcentajeDescPorUnidad();
 		porc.setValorNumerico(2.5F);
 		porc.setFechaModificacion(LocalDateTime.now());
 		desc.setValorActualDescPorUnidad(porc);
