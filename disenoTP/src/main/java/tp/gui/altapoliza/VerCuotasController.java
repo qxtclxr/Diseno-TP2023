@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import tp.dto.CuotaDTO;
 import tp.dto.PolizaDTO;
 import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.beans.property.SimpleObjectProperty;
@@ -66,7 +67,10 @@ public class VerCuotasController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	montoAPagar.setText(String.valueOf(poliza.getImporteTotal()));
-        columnaCuota.setCellValueFactory(null); // Configura según tus necesidades FALTA CARGARLE ACA EL NUMERO 
+        columnaCuota.setCellValueFactory(cellData -> {
+            int orden = cellData.getValue().getOrden();
+            return new SimpleIntegerProperty(orden).asObject();
+        });
         columnaMonto.setCellValueFactory(cellData -> {
             float importeTotal = cellData.getValue().getImporteTotal();
             return new SimpleFloatProperty(importeTotal).asObject();

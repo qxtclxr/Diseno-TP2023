@@ -6,30 +6,42 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="11.0" layoutY="12.0" prefHeight="432.0" prefWidth="427.0">
+      <AnchorPane prefHeight="432.0" prefWidth="427.0">
          <children>
             <TableView fx:id="tablaCuotas" layoutX="14.0" layoutY="84.0" prefHeight="243.0" prefWidth="395.0">
               <columns>
-                <TableColumn fx:id="columnaCuota" prefWidth="75.0" text="Cuota" />
-                <TableColumn fx:id="columnaMonto" prefWidth="153.0" text="Monto a abonar" />
+                <TableColumn fx:id="columnaCuota" prefWidth="49.0" text="Cuota" />
+                <TableColumn fx:id="columnaMonto" prefWidth="179.0" text="Monto a abonar" />
                   <TableColumn fx:id="columnaUltimoDiaPago" prefWidth="165.0" text="Ultimo día de pago" />
               </columns>
             </TableView>
             <Label layoutX="14.0" layoutY="14.0" text="Cuotas">
                <font>
-                  <Font name="Arial Bold" size="45.0" />
+                  <Font name="Franklin Gothic Demi" size="49.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="341.0" text="Monto Total:">
+            <Label layoutX="14.0" layoutY="346.0" prefHeight="22.0" prefWidth="107.0" text="Monto Total:">
                <font>
-                  <Font name="Arial" size="19.0" />
+                  <Font name="Franklin Gothic Medium" size="19.0" />
                </font>
             </Label>
-            <Button fx:id="volverAtras" layoutX="14.0" layoutY="393.0" mnemonicParsing="false" onAction="#volverAtrasCliqueado" text="Volver atrás" />
-            <Label fx:id="montoAPagar" layoutX="127.0" layoutY="343.0" prefHeight="22.0" prefWidth="174.0" />
+            <Button fx:id="volverAtras" layoutX="14.0" layoutY="391.0" mnemonicParsing="false" onAction="#volverAtrasCliqueado" style="-fx-background-color: #9385ff; -fx-border-color: gray;" text="Volver atrás" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label fx:id="montoAPagar" layoutX="138.0" layoutY="345.0" prefHeight="25.0" prefWidth="174.0" text="Text">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font></Label>
+            <Text layoutX="124.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+            </Text>
          </children></AnchorPane>
    </children>
 </AnchorPane>
