@@ -47,7 +47,8 @@ public class DeclararHijosController {
 	private Button volverAtras2;
 	@FXML 
 	private DatePicker fechaNacimiento;
-
+	@FXML
+    private Button eliminarHijo = new Button();
 	@FXML
 	private TableColumn<HijoDeclaradoDTO, LocalDate> columnaFechaNacimiento = new TableColumn();
 	@FXML
@@ -90,6 +91,13 @@ public class DeclararHijosController {
         tablaDeHijos.setItems(datosTabla);
         tablaDeHijos.refresh(); 
         
+        if(listaHijos.size() > 0) {
+        	eliminarHijo.setDisable(false);
+        }else {
+        	eliminarHijo.setDisable(true);
+        }
+        
+     
 	}
 
 	
@@ -119,6 +127,8 @@ public class DeclararHijosController {
                 }
             };
         });
+        
+        eliminarHijo.setDisable(true);
         
         this.actualizarDatos();
 		
@@ -216,7 +226,17 @@ public class DeclararHijosController {
 	    
 	    return validacionExitosa;
 	}
+	
 
 	
+	@FXML
+	private void eliminarHijoClicked() {
+		HijoDeclaradoDTO p = (HijoDeclaradoDTO) tablaDeHijos.getSelectionModel().getSelectedItem();
+        listaHijos.remove(p);
+		this.actualizarDatos();
+        
+	}
+	
+    
 	
 }

@@ -67,6 +67,9 @@
          </font>
       </Label>
       <Label fx:id="errorFechaNacimiento" layoutX="14.0" layoutY="122.0" prefHeight="51.0" prefWidth="161.0" text="La fecha de nacimiento debe corresponder a una edad entre 18 y 30 anios" textFill="RED" visible="false" wrapText="true">
+
+      <Button fx:id="eliminarHijo" layoutX="663.0" layoutY="138.0" mnemonicParsing="false" onAction="#eliminarHijoClicked" text="Eliminar hijo" textFill="WHITE">
+
          <font>
             <Font size="10.0" />
          </font>
