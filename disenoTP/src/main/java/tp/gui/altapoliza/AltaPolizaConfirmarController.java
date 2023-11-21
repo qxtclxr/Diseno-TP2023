@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp.app.App;
@@ -118,10 +119,13 @@ public class AltaPolizaConfirmarController {
 	}
 
 	private void alertaPolizaGuardada() {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle(null);
-		alert.setHeaderText("Poliza guardada"); // Use null to hide the header text
-        alert.setContentText("La poliza ha sido dada de alta con exito.");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Poliza guardada");
+        alert.setHeaderText(null);
+        alert.setContentText("La poliza ha sido dada de alta con éxito.");
+        alert.getDialogPane().getChildren().stream()
+                .filter(node -> node instanceof Label)
+                .forEach(node -> ((Label) node).setFont(Font.font("Franklin Gothic Medium", 14)));
         alert.showAndWait();
 	}
 

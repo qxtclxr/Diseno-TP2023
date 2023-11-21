@@ -31,11 +31,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="agregarHijo" layoutX="663.0" layoutY="94.0" mnemonicParsing="false" onAction="#agregarHijoClicked" style="-fx-background-color: LIGHTGREEN; -fx-border-color: LIGHTGRAY;" text="Agregar Hijo">
+      <Button fx:id="agregarHijo" layoutX="663.0" layoutY="94.0" mnemonicParsing="false" onAction="#agregarHijoClicked" text="Agregar Hijo">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <TableView fx:id="tablaDeHijos" layoutX="14.0" layoutY="178.0" prefHeight="198.0" prefWidth="743.0" AnchorPane.rightAnchor="14.0">
+      <TableView fx:id="tablaDeHijos" layoutX="14.0" layoutY="185.0" prefHeight="191.0" prefWidth="743.0" AnchorPane.rightAnchor="14.0">
         <columns>
           <TableColumn fx:id="columnaFechaNacimiento" maxWidth="342.0" minWidth="100.0" prefWidth="247.0" text="Fecha de Nacimiento" />
             <TableColumn fx:id="columnaSexo" maxWidth="264.0" minWidth="4.0" prefWidth="247.0" text="Sexo" />
@@ -46,31 +46,31 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Label fx:id="errorSexo" layoutX="229.0" layoutY="112.0" text="El campo esta incompleto" textFill="RED" visible="false">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label fx:id="errorEstadoCivil" layoutX="420.0" layoutY="112.0" text="El campo esta incompleto" textFill="RED" visible="false">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label fx:id="errorFechaNacimiento" layoutX="21.0" layoutY="112.0" prefHeight="51.0" prefWidth="161.0" text="La fecha de nacimiento debe corresponder a una edad entre 18 y 30 anios" textFill="RED" visible="false" wrapText="true">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
       <Label layoutX="14.0" layoutY="14.0" text="Declarar Hijos">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="agregarHijo1" layoutX="663.0" layoutY="138.0" mnemonicParsing="false" onAction="#agregarHijoClicked" style="-fx-background-color: RED; -fx-border-color: LIGHTGRAY;" text="Eliminar hijo" textFill="WHITE">
+      <Button fx:id="agregarHijo1" layoutX="663.0" layoutY="137.0" mnemonicParsing="false" onAction="#agregarHijoClicked" text="Eliminar hijo">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Label fx:id="errorSexo" layoutX="230.0" layoutY="122.0" text="El campo esta incompleto" textFill="RED" visible="false">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorEstadoCivil" layoutX="446.0" layoutY="122.0" text="El campo esta incompleto" textFill="RED" visible="false">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorFechaNacimiento" layoutX="14.0" layoutY="122.0" prefHeight="51.0" prefWidth="161.0" text="La fecha de nacimiento debe corresponder a una edad entre 18 y 30 anios" textFill="RED" visible="false" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
       <Text fill="#bc0000" layoutX="384.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para eliminar un hijo, seleccione una fila y presione:" />
    </children>
 </AnchorPane>
