@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="432.0" prefWidth="768.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -34,12 +35,11 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <TableView fx:id="tablaDeHijos" layoutX="14.0" layoutY="138.0" prefHeight="238.0" prefWidth="743.0" AnchorPane.rightAnchor="14.0">
+      <TableView fx:id="tablaDeHijos" layoutX="14.0" layoutY="178.0" prefHeight="198.0" prefWidth="743.0" AnchorPane.rightAnchor="14.0">
         <columns>
-          <TableColumn maxWidth="95.0" minWidth="26.0" prefWidth="88.0" />
-          <TableColumn fx:id="columnaFechaNacimiento" maxWidth="342.0" minWidth="100.0" prefWidth="218.0" text="Fecha de Nacimiento" />
-            <TableColumn fx:id="columnaSexo" maxWidth="264.0" minWidth="4.0" prefWidth="218.0" text="Sexo" />
-            <TableColumn fx:id="columnaEstadoCivil" maxWidth="363.0" minWidth="0.0" prefWidth="218.0" text="Estado Civil" />
+          <TableColumn fx:id="columnaFechaNacimiento" maxWidth="342.0" minWidth="100.0" prefWidth="247.0" text="Fecha de Nacimiento" />
+            <TableColumn fx:id="columnaSexo" maxWidth="264.0" minWidth="4.0" prefWidth="247.0" text="Sexo" />
+            <TableColumn fx:id="columnaEstadoCivil" maxWidth="363.0" minWidth="0.0" prefWidth="248.0" text="Estado Civil" />
         </columns>
       </TableView>
       <Button fx:id="volverAtras2" layoutX="11.0" layoutY="391.0" mnemonicParsing="false" onAction="#volverAtrasClicked2" style="-fx-background-color: #7c6eff; -fx-border-color: gray;" text="Volver atras" textFill="WHITE">
@@ -66,5 +66,11 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
+      <Button fx:id="agregarHijo1" layoutX="663.0" layoutY="138.0" mnemonicParsing="false" onAction="#agregarHijoClicked" style="-fx-background-color: RED; -fx-border-color: LIGHTGRAY;" text="Eliminar hijo" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text fill="#bc0000" layoutX="384.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para eliminar un hijo, seleccione una fila y presione:" />
    </children>
 </AnchorPane>
