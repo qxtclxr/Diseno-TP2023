@@ -22,15 +22,30 @@ public class LoginController {
 	private TextField user;
 	@FXML
 	private PasswordField pass;
-
+	
+	@FXML
+	private boolean validar() {
+		boolean valid = true;
+		if(user.getText()=="") {
+			user.setStyle("-fx-background-color: #fa8e8e;");
+			valid &= false;
+		}
+		if(pass.getText()=="") {
+			pass.setStyle("-fx-background-color: #fa8e8e;");
+			valid &= false;
+		}
+		return valid;
+	}
+	
 	@FXML
 	void accederCliqueado(ActionEvent evento) throws IOException {
-		
-		App.setUsuarioLogeado(user.getText(), pass.getText());
-		
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("MenuPrincipal.fxml"));
-		Pane menuPrincipal = loader.load();
-		App.switchScreenTo(menuPrincipal);
+		if(validar()) {
+			App.setUsuarioLogeado(user.getText(), pass.getText());
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("MenuPrincipal.fxml"));
+			Pane menuPrincipal = loader.load();
+			App.switchScreenTo(menuPrincipal);
+		}
 	}
 }

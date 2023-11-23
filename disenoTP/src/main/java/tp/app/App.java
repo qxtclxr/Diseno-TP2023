@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -35,6 +36,7 @@ public class App extends Application {
 		try {
 			this.primaryStage = primaryStage;
 			this.primaryStage.setTitle("El Asegurado SRL");
+			this.setIcon();
 			this.showMainFrame();
 			this.showIngresoSistema();
 		}catch(Exception e) {
@@ -62,6 +64,11 @@ public class App extends Application {
 		mainFrame.setCenter(parent);
 	}
 
+	private void setIcon() {
+		Image image = new Image("logo/key.png");
+		primaryStage.getIcons().add(image);
+	}
+	
 	public static Usuario getUsuarioLogeado() {
 		return usuarioLogeado;
 	}
