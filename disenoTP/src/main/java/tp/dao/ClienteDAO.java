@@ -49,7 +49,5 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 	    List<Cliente> ret= tq.getResultList();
 	    return ret;
 	    
-	    
-	    
 	}
 }

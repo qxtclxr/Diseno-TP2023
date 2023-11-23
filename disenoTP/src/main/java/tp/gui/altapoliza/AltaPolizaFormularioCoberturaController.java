@@ -205,6 +205,8 @@ public class AltaPolizaFormularioCoberturaController {
 	@FXML
 	public void initialize() {
 		
+		System.out.println(poliza.getVehiculo().getPatente());
+		
 		this.setCoberturas();
 		this.mostrarResumenDeDatos();
 		
@@ -216,9 +218,7 @@ public class AltaPolizaFormularioCoberturaController {
     	errorFechaInicioVigencia3.setVisible(false);
     	errorTipoPago.setVisible(false);
     	errorTipoCobertura.setVisible(false);
-    	
-    	
-		
+
 	}
 
 	public void setAnterior(AnchorPane anterior) {
