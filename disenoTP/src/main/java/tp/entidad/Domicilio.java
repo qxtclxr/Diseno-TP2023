@@ -30,12 +30,7 @@ public class Domicilio {
 	@Column(nullable = false)
 	private String codigoPostal;
 	
-	//relaciones
-	
-	@OneToOne(mappedBy="domicilio")
-	private Cliente cliente;
-	
-	@ManyToOne(fetch= FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch= FetchType.LAZY, cascade=CascadeType.MERGE)
 	@JoinColumn(name="idLocalidad", referencedColumnName="idLocalidad",foreignKey= @ForeignKey(name="FK_localidad_en_domicilio"))
 	private Localidad localidad;
 	//podria faltar un cascade
@@ -49,7 +44,7 @@ public class Domicilio {
 	@Override
 	public String toString() {
 		return "Domicilio [idDomicilio=" + idDomicilio + ", calle=" + calle + ", numero=" + numero + ", piso=" + piso
-				+ ", dpto=" + dpto + ", codigoPostal=" + codigoPostal + ", cliente=" + cliente + ", localidad="
+				+ ", dpto=" + dpto + ", codigoPostal=" + codigoPostal + ", localidad="
 				+ localidad + "]";
 	}
 
@@ -102,12 +97,6 @@ public class Domicilio {
 		return codigoPostal;
 	}
 
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-
 	public Localidad getLocalidad() {
 		return localidad;
 	}
@@ -140,11 +129,6 @@ public class Domicilio {
 
 	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
-	}
-
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 

@@ -31,12 +31,7 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 		return Optional.ofNullable(query.getSingleResult());
 	}
 	
-<<<<<<< HEAD
 	public List<Cliente> buscarCliente_legacy(String nroCliente, String apellido, String nombre, TipoDocumento tipoDoc, String nroDoc){
-=======
-	public List<Cliente> buscarCliente(String nroCliente, String apellido, String nombre, TipoDocumento tipoDoc, String nroDoc){
-		
->>>>>>> branch 'master' of https://github.com/qxtclxr/Diseno-TP2023
 		CriteriaBuilder cbuilder = this.getEntityManager().getCriteriaBuilder();
 	    CriteriaQuery<Cliente> cQuery = cbuilder.createQuery(Cliente.class);
 	    Root<Cliente> from = cQuery.from(Cliente.class);
@@ -60,7 +55,12 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 	    
 	}
 	
-	public List<Cliente> buscarCliente(String nroCliente, String[] apellidoTokens, String[] nombreTokens, TipoDocumento tipoDoc, String nroDoc){
+	public List<Cliente> buscarCliente(
+			String nroCliente,
+			String[] apellidoTokens,
+			String[] nombreTokens,
+			TipoDocumento tipoDoc,
+			String nroDoc){
 	    CriteriaBuilder cbuilder = this.getEntityManager().getCriteriaBuilder();
 	    CriteriaQuery<Cliente> cQuery = cbuilder.createQuery(Cliente.class);
 	    Root<Cliente> from = cQuery.from(Cliente.class);
@@ -69,8 +69,6 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 	    List<Predicate> predicates = new ArrayList<Predicate>();
 
 	    if (!(nombreTokens.length==0)) {
-	        // Busca coincidencias parciales
-	       // String[] nombreTokens = StringUtils.split(nombre);
 	        Expression<String> nombreExp = from.get("nombres");
 	        for (String token : nombreTokens) {
 	            predicates.add(cbuilder.like(nombreExp, "%" + token + "%"));
@@ -78,8 +76,6 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 	    }
 
 	    if (!(apellidoTokens.length==0)) {
-	        // Busca coincidencias parciales
-	        //String[] apellidoTokens = StringUtils.split(apellido);
 	        Expression<String> apellidoExp = from.get("apellido");
 	        for (String token : apellidoTokens) {
 	            predicates.add(cbuilder.like(apellidoExp, "%" + token + "%"));
@@ -87,19 +83,15 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 	    }
 
 	    if (!nroCliente.equals("")) {
-	        // Busca coincidencias parciales en el número de cliente
 	        predicates.add(cbuilder.like(from.get("nroCliente"), "%" + nroCliente + "%"));
 	    }
-
+	    
 	    if (!nroDoc.equals("") && tipoDoc != null) {
-	        // Busca coincidencias parciales en el número de documento y en el tipo de documento
 	        predicates.add(cbuilder.equal(from.get("tipoDocumento"), tipoDoc));
 	        predicates.add(cbuilder.like(from.get("nroDocumento"), "%" + nroDoc + "%"));
 	    } else if (!nroDoc.equals("")) {
-	        // Si no se proporciona un tipo de documento, solo busca por número de documento
 	        predicates.add(cbuilder.like(from.get("nroDocumento"), "%" + nroDoc + "%"));
 	    } else if (tipoDoc != null) {
-	        // Si no se proporciona un número de documento, solo busca por tipo de documento
 	        predicates.add(cbuilder.equal(from.get("tipoDocumento"), tipoDoc));
 	    }
 

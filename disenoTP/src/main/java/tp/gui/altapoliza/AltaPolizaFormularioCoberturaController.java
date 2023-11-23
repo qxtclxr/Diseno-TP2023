@@ -205,8 +205,6 @@ public class AltaPolizaFormularioCoberturaController {
 	@FXML
 	public void initialize() {
 		
-		System.out.println(poliza.getVehiculo().getPatente());
-		
 		this.setCoberturas();
 		this.mostrarResumenDeDatos();
 		

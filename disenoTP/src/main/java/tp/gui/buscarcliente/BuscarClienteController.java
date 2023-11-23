@@ -130,10 +130,17 @@ public class BuscarClienteController implements Initializable {
 			clientes = GestorCliente.buscarClienteDTO(this.getClienteDTO());
 			this.actualizarTabla();
 		}
-
+		
+		public void poblarTipoDoc() {
+			tipoDocCBox.setItems(FXCollections.observableArrayList(TipoDocumento.values()));
+		}
+		
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
 			inicializarTabla();
+			
+			poblarTipoDoc();
+			
 			clientesTable.setVisible(false);
 			noEncontradosMsg.setVisible(false);
 			confirmarButton.disableProperty().bind(clientesTable.getSelectionModel().selectedItemProperty().isNull());

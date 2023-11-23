@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
 
 public class GestorCliente {
 	
@@ -95,6 +96,11 @@ public class GestorCliente {
 		apellido = apellido == null ? "" : apellido;
 		nombre = nombre == null ? "" : nombre;
 		nroDoc = nroDoc == null ? "" : nroDoc;
-		return dao.buscarCliente(nroCliente,apellido,nombre,tipoDoc,nroDoc);
+		
+		//null tokeniza por whitespace, "" se tokeniza como []
+		String[] nombreTokens = StringUtils.split(nombre,null);
+		String[] apellidoTokens = StringUtils.split(apellido,null);
+		
+		return dao.buscarCliente(nroCliente,apellidoTokens,nombreTokens,tipoDoc,nroDoc);
 	}
 }

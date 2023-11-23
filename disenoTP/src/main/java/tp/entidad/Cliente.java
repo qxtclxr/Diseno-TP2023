@@ -67,17 +67,18 @@ public class Cliente {
 	
 	@Column(nullable = false)
 	private LocalDateTime fechaModificacionEstado;
+	
 	///Ver si aca le ponemos nullable o no
 	@Column
 	private int cantSiniestrosCliente;
 	
 	//Relaciones
 	
-	@OneToMany(fetch= FetchType.LAZY, mappedBy="cliente",cascade = CascadeType.PERSIST, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="cliente",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Poliza> polizas;
 	
-	@OneToOne
-	@JoinColumn(name="idDomicilio")
+	@ManyToOne(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="idDomicilio", referencedColumnName = "idDomicilio")
 	private Domicilio domicilio;
 	
 	public Cliente(){

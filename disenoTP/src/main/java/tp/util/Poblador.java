@@ -57,36 +57,93 @@ public class Poblador {
 	}
 	
 	public static void poblarCliente() {
-		Domicilio domicilio = new Domicilio();
-		DomicilioDAO daoDomi = new DomicilioDAO();
-		LocalidadDAO daoLocal = new LocalidadDAO();
-		domicilio.setCalle("Avenida Ramirez");
-		domicilio.setNumero("555");
-		domicilio.setLocalidad(daoLocal.getAll().get(0));
-		domicilio.setCodigoPostal("3100");
-		daoDomi.updateInstance(domicilio);
-		
 		ClienteDAO dao = new ClienteDAO();
-		Cliente cliente = new Cliente();
-		cliente.setNroCliente("123456789");
-		cliente.setNombres("Jorge Amor");
-		cliente.setApellido("Ameal");
-		cliente.setTipoDocumento(TipoDocumento.DNI);
-		cliente.setNroDocumento("33333333");
-		cliente.setTipoCliente(TipoCliente.NORMAL);
-		cliente.setNroCuil("22-33333333-6");
-		cliente.setFechaNacimiento(LocalDate.of(1966, 5, 22));
-		cliente.setCondicionIVA(TipoIVA.MONOTRIBUTISTA);
-		cliente.setCorreoElectronico("amor@hotmail.com");
-		cliente.setEstadoCivil(EstadoCivil.VIUDO);
-		cliente.setProfesion("Dirigente");
-		cliente.setAnioRegistro(LocalDateTime.now().withDayOfYear(1));
-		cliente.setSexo(Sexo.MASCULINO);
-		cliente.setFechaModificacionEstado(LocalDateTime.now());
-		cliente.setCantSiniestrosCliente(1);
-		cliente.setDomicilio(domicilio);
+		//DomicilioDAO daoDomi = new DomicilioDAO();
+		LocalidadDAO daoLocal = new LocalidadDAO();
 		
-		dao.updateInstance(cliente);
+		Domicilio domicilio1 = new Domicilio();
+		Cliente cliente1 = new Cliente();
+		domicilio1.setCalle("Avenida Ramirez");
+		domicilio1.setNumero("555");
+		domicilio1.setLocalidad(daoLocal.getAll().get(0));
+		domicilio1.setCodigoPostal("3100");
+		//daoDomi.saveInstance(domicilio1);
+		
+		cliente1.setNroCliente("123456789");
+		cliente1.setNombres("Jorge Amor");
+		cliente1.setApellido("Ameal");
+		cliente1.setTipoDocumento(TipoDocumento.DNI);
+		cliente1.setNroDocumento("33333333");
+		cliente1.setTipoCliente(TipoCliente.NORMAL);
+		cliente1.setNroCuil("22-33333333-6");
+		cliente1.setFechaNacimiento(LocalDate.of(1966, 5, 22));
+		cliente1.setCondicionIVA(TipoIVA.MONOTRIBUTISTA);
+		cliente1.setCorreoElectronico("amor@hotmail.com");
+		cliente1.setEstadoCivil(EstadoCivil.VIUDO);
+		cliente1.setProfesion("Dirigente");
+		cliente1.setAnioRegistro(LocalDateTime.now().withDayOfYear(1));
+		cliente1.setSexo(Sexo.MASCULINO);
+		cliente1.setFechaModificacionEstado(LocalDateTime.now());
+		cliente1.setCantSiniestrosCliente(1);
+		cliente1.setDomicilio(domicilio1);
+		dao.saveInstance(cliente1);
+		
+		Domicilio domicilio2 = new Domicilio();
+        domicilio2.setCalle("Avenida General Paz");
+        domicilio2.setNumero("123");
+        domicilio2.setLocalidad(daoLocal.getAll().get(2));
+        domicilio2.setCodigoPostal("3200");
+        //daoDomi.saveInstance(domicilio2);
+
+        // Crear un nuevo cliente
+        Cliente cliente2 = new Cliente();
+        cliente2.setNroCliente("123456790");
+        cliente2.setNombres("Maria de las Mercedes");
+        cliente2.setApellido("Gomez Gertz");
+        cliente2.setTipoDocumento(TipoDocumento.LE);
+        cliente2.setNroDocumento("44444444");
+        cliente2.setTipoCliente(TipoCliente.ACTIVO);
+        cliente2.setNroCuil("22-44444444-6");
+        cliente2.setFechaNacimiento(LocalDate.of(1980, 8, 15));
+        cliente2.setCondicionIVA(TipoIVA.RESPONSABLE_INSCRIPTO);
+        cliente2.setCorreoElectronico("maria@gmail.com");
+        cliente2.setEstadoCivil(EstadoCivil.CASADO);
+        cliente2.setProfesion("Arquitecta");
+        cliente2.setAnioRegistro(LocalDateTime.now().withDayOfYear(150));
+        cliente2.setSexo(Sexo.FEMENINO);
+        cliente2.setFechaModificacionEstado(LocalDateTime.now());
+        cliente2.setCantSiniestrosCliente(2);
+        cliente2.setDomicilio(domicilio2);
+        dao.saveInstance(cliente2);
+		
+        // Crear un nuevo domicilio
+        Domicilio domicilio3 = new Domicilio();
+        domicilio3.setCalle("25 de Mayo");
+        domicilio3.setNumero("789");
+        domicilio3.setLocalidad(daoLocal.getAll().get(3));
+        domicilio3.setCodigoPostal("3300");
+        //daoDomi.saveInstance(domicilio3);
+
+        // Crear un nuevo cliente
+        Cliente cliente3 = new Cliente();
+        cliente3.setNroCliente("123456791");
+        cliente3.setNombres("Carlos Luciano Albertino");
+        cliente3.setApellido("Rodriguez Paz");
+        cliente3.setTipoDocumento(TipoDocumento.LC);
+        cliente3.setNroDocumento("55555555");
+        cliente3.setTipoCliente(TipoCliente.PLATA);
+        cliente3.setNroCuil("22-55555555-6");
+        cliente3.setFechaNacimiento(LocalDate.of(1975, 3, 10));
+        cliente3.setCondicionIVA(TipoIVA.MONOTRIBUTISTA);
+        cliente3.setCorreoElectronico("carlos@gmail.com");
+        cliente3.setEstadoCivil(EstadoCivil.SOLTERO);
+        cliente3.setProfesion("Ingeniero");
+        cliente3.setAnioRegistro(LocalDateTime.now().withDayOfYear(200));
+        cliente3.setSexo(Sexo.MASCULINO);
+        cliente3.setFechaModificacionEstado(LocalDateTime.now());
+        cliente3.setCantSiniestrosCliente(0);
+        cliente3.setDomicilio(domicilio3);
+		dao.saveInstance(cliente3);
 	}
 	
 	public static void poblarDerechosDeEmision() {
