@@ -28,6 +28,7 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 	}
 	
 	public List<Cliente> buscarCliente(String nroCliente, String apellido, String nombre, TipoDocumento tipoDoc, String nroDoc){
+		
 		CriteriaBuilder cbuilder = this.getEntityManager().getCriteriaBuilder();
 	    CriteriaQuery<Cliente> cQuery = cbuilder.createQuery(Cliente.class);
 	    Root<Cliente> from = cQuery.from(Cliente.class);

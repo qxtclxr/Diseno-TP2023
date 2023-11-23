@@ -8,59 +8,80 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="680.0" prefWidth="1280.0">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Buscar Cliente">
+            <Label layoutX="14.0" layoutY="24.0" text="Buscar Cliente">
                <font>
-                  <Font name="System Bold" size="48.0" />
+                  <Font name="Franklin Gothic Demi" size="48.0" />
                </font>
             </Label>
-            <ComboBox layoutX="653.0" layoutY="124.0" prefWidth="150.0" />
-            <TextField layoutX="840.0" layoutY="124.0" prefHeight="25.0" prefWidth="184.0" />
-            <Button layoutX="1215.0" layoutY="123.0" mnemonicParsing="false" text="Buscar" />
-            <TableView layoutX="14.0" layoutY="180.0" prefHeight="428.0" prefWidth="1257.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+            <ComboBox fx:id="tipoDocCBox" layoutX="650.0" layoutY="124.0" prefWidth="192.0" promptText="Seleccione un tipo de documento..." />
+            <TextField fx:id="nroDocText" layoutX="862.0" layoutY="124.0" prefHeight="25.0" prefWidth="192.0" promptText="Ingrese un nro. de documento..." />
+            <Button fx:id="buscarButton" layoutX="1074.0" layoutY="123.0" mnemonicParsing="false" onAction="#buscarCliqueado" prefWidth="192.0" text="Buscar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <TableView fx:id="clientesTable" layoutX="14.0" layoutY="180.0" prefHeight="401.0" prefWidth="1252.0" visible="false" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
               <columns>
-                <TableColumn prefWidth="33.0" />
-                <TableColumn minWidth="0.0" prefWidth="215.0" text="Número de Cliente" />
-                  <TableColumn prefWidth="215.0" text="Apellido" />
-                  <TableColumn minWidth="5.0" prefWidth="215.0" text="Nombre" />
-                  <TableColumn minWidth="0.0" prefWidth="215.0" text="Tipo Documento" />
-                  <TableColumn prefWidth="215.0" text="Número Documento" />
+                <TableColumn fx:id="nroClienteColumn" minWidth="0.0" prefWidth="250.0" text="Número de Cliente" />
+                  <TableColumn fx:id="apellidoColumn" prefWidth="250.0" text="Apellido" />
+                  <TableColumn fx:id="nombreColumn" minWidth="5.0" prefWidth="250.0" text="Nombre" />
+                  <TableColumn fx:id="tipoDocColumn" minWidth="0.0" prefWidth="250.0" text="Tipo de documento" />
+                  <TableColumn fx:id="nroDocColumn" prefWidth="251.0" text="Número de documento" />
               </columns>
             </TableView>
-            <TextField layoutX="446.0" layoutY="124.0" prefHeight="25.0" prefWidth="184.0" />
-            <TextField layoutX="244.0" layoutY="123.0" prefHeight="25.0" prefWidth="184.0" />
-            <TextField layoutX="14.0" layoutY="123.0" prefHeight="25.0" prefWidth="184.0" />
-            <Label layoutX="14.0" layoutY="94.0" text="Número de cliente">
+            <TextField fx:id="nombreText" layoutX="438.0" layoutY="124.0" prefHeight="25.0" prefWidth="192.0" promptText="Ingrese un nombre..." />
+            <TextField fx:id="apellidoText" layoutX="226.0" layoutY="123.0" prefHeight="25.0" prefWidth="192.0" promptText="Ingrese un apellido..." />
+            <TextField fx:id="nroClienteText" layoutX="14.0" layoutY="123.0" prefHeight="25.0" prefWidth="192.0" promptText="Ingrese un numero de cliente..." />
+            <Label layoutX="14.0" layoutY="100.0" text="Número de cliente">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="244.0" layoutY="93.0" text="Apellido">
+            <Label layoutX="226.0" layoutY="100.0" text="Apellido">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="446.0" layoutY="93.0" text="Nombre">
+            <Label layoutX="438.0" layoutY="100.0" text="Nombre">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="653.0" layoutY="94.0" text="Tipo de documento">
+            <Label layoutX="650.0" layoutY="100.0" text="Tipo de documento">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="840.0" layoutY="93.0" text="Número de documento">
+            <Label layoutX="862.0" layoutY="100.0" text="Número de documento">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="confirmarButton" layoutX="14.0" layoutY="632.0" mnemonicParsing="false" onAction="#confirmarCliqueado" text="Confirmar" />
-            <Button fx:id="exitButton" layoutX="122.0" layoutY="632.0" mnemonicParsing="false" onAction="#handleExit" text="Cancelar" />
+            <Text fx:id="noEncontradosMsg" fill="#d74d4d" fontSmoothingType="LCD" layoutX="14.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No existen clientes que coincidan con los criterios ingresados. Pruebe ingresando otros criterios." visible="false">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="16.0" />
+               </font>
+            </Text>
+            <Button fx:id="confirmarButton" disable="true" layoutX="14.0" layoutY="627.0" mnemonicParsing="false" onAction="#confirmarCliqueado" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: #B6D7A8; -fx-border-color: gray;" text="Confirmar">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitButton" layoutX="168.0" layoutY="627.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="35.0" prefWidth="135.0" style="-fx-alignment: CENTER-LEFT; -fx-background-color: EA9999; -fx-border-color: gray;" text="Volver atras">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="13.0" />
+               </font>
+            </Button>
+            <Text fx:id="confirmarMsg" fill="#5b944e" fontSmoothingType="LCD" layoutX="14.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para seleccionar un cliente, haga click sobre la fila correspondiente y presione &quot;Confirmar&quot;." visible="false">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="16.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

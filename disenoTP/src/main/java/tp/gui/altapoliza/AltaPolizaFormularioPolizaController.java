@@ -666,18 +666,18 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	
 	public void onActionProvincia() {
 		localidad.getSelectionModel().clearSelection();
-		localidad.setDisable(false);
+		//localidad.setDisable(false);
 	}
 	
 	public void onActionMarca() {
 		modelo.getSelectionModel().clearSelection();
-		modelo.setDisable(false);
-		anio.setDisable(true);
+		//modelo.setDisable(false);
+		//anio.setDisable(true);
 	}
 	
 	public void onActionModelo() {
 		anio.getSelectionModel().clearSelection();
-		anio.setDisable(false);
+		//anio.setDisable(false);
 	}
 	
 	@Override
@@ -695,15 +695,13 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 
 		this.setListaHijosDeclarados();
 		
-		//this.setContadorHijosDeclarados();
-		
 		this.setKms();
 		
 		this.setSiniestros();
-	
-		//this.testDatosFormulario(); // deberia ser reeplazo por una funcion que tome los valores de poliza 
-		
-		//this.cargarDatosFormulario();
+
+		this.localidad.disableProperty().bind(provincia.getSelectionModel().selectedItemProperty().isNull());
+		this.modelo.disableProperty().bind(marca.getSelectionModel().selectedItemProperty().isNull());
+		this.anio.disableProperty().bind(modelo.getSelectionModel().selectedItemProperty().isNull());
 		
 	}
 

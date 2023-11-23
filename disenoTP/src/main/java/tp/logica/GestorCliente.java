@@ -9,6 +9,7 @@ import tp.exception.ObjetoNoEncontradoException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GestorCliente {
 	
@@ -78,4 +79,22 @@ public class GestorCliente {
 		return FacadeSistemaSiniestros.tieneSiniestrosUltimoAnio(cliente);
 	}
 	
+	public static List<ClienteDTO> buscarClienteDTO(ClienteDTO dto){
+		List<Cliente> clientes = buscarCliente(dto);
+		return clientes.stream().map(GestorCliente::getClienteDTO).collect(Collectors.toList());
+	}
+	
+	private static List<Cliente> buscarCliente(ClienteDTO dto){
+		ClienteDAO dao = new ClienteDAO();
+		String nroCliente = dto.getNroCliente(),
+				apellido = dto.getApellido(),
+				nombre = dto.getNombre(),
+				nroDoc = dto.getNroDocumento();
+		TipoDocumento tipoDoc = dto.getTipoDocumento();
+		nroCliente = nroCliente == null ? "" : nroCliente;
+		apellido = apellido == null ? "" : apellido;
+		nombre = nombre == null ? "" : nombre;
+		nroDoc = nroDoc == null ? "" : nroDoc;
+		return dao.buscarCliente(nroCliente,apellido,nombre,tipoDoc,nroDoc);
+	}
 }
