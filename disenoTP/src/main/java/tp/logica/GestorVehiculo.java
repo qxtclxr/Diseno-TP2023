@@ -11,7 +11,7 @@ import tp.dao.*;
 public class GestorVehiculo {
 	
 	public static boolean existePatente(String patente) {
-		if(patente==null) {
+		if(patente==null || patente=="") {
 			return false;
 		}
 		PolizaDAO dao = new PolizaDAO();

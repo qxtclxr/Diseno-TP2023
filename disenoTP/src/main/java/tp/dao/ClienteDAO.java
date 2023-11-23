@@ -31,7 +31,12 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 		return Optional.ofNullable(query.getSingleResult());
 	}
 	
+<<<<<<< HEAD
 	public List<Cliente> buscarCliente_legacy(String nroCliente, String apellido, String nombre, TipoDocumento tipoDoc, String nroDoc){
+=======
+	public List<Cliente> buscarCliente(String nroCliente, String apellido, String nombre, TipoDocumento tipoDoc, String nroDoc){
+		
+>>>>>>> branch 'master' of https://github.com/qxtclxr/Diseno-TP2023
 		CriteriaBuilder cbuilder = this.getEntityManager().getCriteriaBuilder();
 	    CriteriaQuery<Cliente> cQuery = cbuilder.createQuery(Cliente.class);
 	    Root<Cliente> from = cQuery.from(Cliente.class);
@@ -52,8 +57,6 @@ public class ClienteDAO extends AbstractDAO<Cliente> {
 	    TypedQuery<Cliente> tq =this.getEntityManager().createQuery(cQuery);
 	    List<Cliente> ret= tq.getResultList();
 	    return ret;
-	    
-	    
 	    
 	}
 	

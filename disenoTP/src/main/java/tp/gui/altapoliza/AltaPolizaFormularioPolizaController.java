@@ -577,13 +577,6 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		errorFormatoPatente.setVisible(false);
 		errorPatenteYaExiste.setVisible(false);
 		patente.setStyle("");
-		
-		if(patente.getText()==null) {
-    		errorFormatoPatente.setVisible(true);
-    		//rojoPatente.setOpacity(0.1);
-    		patente.setStyle("-fx-background-color: #fa8e8e;");
-    		return false;
-    	}
     	
 		if(!this.patenteFormatoCorrecto(patente.getText())) {
     		errorFormatoPatente.setVisible(true);
@@ -607,7 +600,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		errorMotorYaExiste.setVisible(false);
 		motor.setStyle("");
 		
-	    if(motor.getText() == null) {
+	    if(motor.getText() == "") {
 	    	errorFormatoMotor.setVisible(true);
 	    	//rojoMotor.setOpacity(0.1);
 	    	motor.setStyle("-fx-background-color: #fa8e8e;");
@@ -635,7 +628,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		errorChasisYaExiste.setVisible(false);
     	chasis.setStyle("");
 		
-		if(chasis.getText() == null) {
+		if(chasis.getText() == "") {
 	    	errorFormatoChasis.setVisible(true);
 	    	chasis.setStyle("-fx-background-color: #fa8e8e;");
 	    	//rojoChasis.setOpacity(0.1);
@@ -660,29 +653,31 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	}
 
 	public void setKms() {
-		ObservableList<RangoKMRealizadosDTO> opKmsRealizadosPorAnio = FXCollections.observableArrayList(GestorRangoKMRealizados.getAllDTOs());
+		ObservableList<RangoKMRealizadosDTO> opKmsRealizadosPorAnio =
+				FXCollections.observableArrayList(GestorRangoKMRealizados.getAllDTOs());
 		kmsRealizadosPorAnio.setItems(opKmsRealizadosPorAnio);
 	}
 	
 	public void setSiniestros() {
-		ObservableList<RangoCantSiniestrosDTO> opNroSiniestrosUltAnio = FXCollections.observableArrayList(GestorRangoCantSiniestros.getAllDTOs());
+		ObservableList<RangoCantSiniestrosDTO> opNroSiniestrosUltAnio =
+				FXCollections.observableArrayList(GestorRangoCantSiniestros.getAllDTOs());
 		nroDeSiniestrosUltAnio.setItems(opNroSiniestrosUltAnio);
 	}
 	
 	public void onActionProvincia() {
 		localidad.getSelectionModel().clearSelection();
-		localidad.setDisable(false);
+		//localidad.setDisable(false);
 	}
 	
 	public void onActionMarca() {
 		modelo.getSelectionModel().clearSelection();
-		modelo.setDisable(false);
-		anio.setDisable(true);
+		//modelo.setDisable(false);
+		//anio.setDisable(true);
 	}
 	
 	public void onActionModelo() {
 		anio.getSelectionModel().clearSelection();
-		anio.setDisable(false);
+		//anio.setDisable(false);
 	}
 	
 	@Override
@@ -700,15 +695,13 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 
 		this.setListaHijosDeclarados();
 		
-		//this.setContadorHijosDeclarados();
-		
 		this.setKms();
 		
 		this.setSiniestros();
-	
-		//this.testDatosFormulario(); // deberia ser reeplazo por una funcion que tome los valores de poliza 
-		
-		//this.cargarDatosFormulario();
+
+		this.localidad.disableProperty().bind(provincia.getSelectionModel().selectedItemProperty().isNull());
+		this.modelo.disableProperty().bind(marca.getSelectionModel().selectedItemProperty().isNull());
+		this.anio.disableProperty().bind(modelo.getSelectionModel().selectedItemProperty().isNull());
 		
 	}
 
