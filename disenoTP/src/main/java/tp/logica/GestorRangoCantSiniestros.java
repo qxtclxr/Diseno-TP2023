@@ -34,6 +34,12 @@ public class GestorRangoCantSiniestros {
 		return objeto;
 	}
 	
+	public static RangoCantSiniestrosDTO getDTO(int cantSiniestros)
+			throws ObjetoNoEncontradoException,
+			NoExisteRangoCantSiniestos {
+		return getDTO(getRangoCantSiniestros(cantSiniestros));
+	}
+	
 	public static RangoCantSiniestrosDTO getDTO(RangoCantSiniestros siniestros) {
 		RangoCantSiniestrosDTO dto = new RangoCantSiniestrosDTO();
 		dto.setId(siniestros.getIdRangoCantSiniestros());

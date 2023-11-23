@@ -88,10 +88,13 @@ public class GestorPoliza {
 		Sucursal sucursal = App.getUsuarioLogeado().getSucursalAsociada();
 		//format(%0<longitud>d,<numero>). <longitud> fija la longitud del String.
 		//Si <numero> no tiene los digitos para llenar la longitud, se hace padding con 0's
+		//Codigo correspondiente a sucursal
 		nroPoliza.append(String.format("%04d",sucursal.getCodigoSucursal()));
 		nroPoliza.append('-');
+		//Codigo serial de cliente con vehiculo (cambia por sucursal)
 		nroPoliza.append(String.format("%07d",dao.getSerialPoliza(sucursal)));
 		nroPoliza.append('-');
+		//Codigo de renovacion
 		nroPoliza.append(String.format("%02d",0));
 		return nroPoliza.toString();
 	}
@@ -100,7 +103,8 @@ public class GestorPoliza {
 			throws DatosObligatoriosAusentesException,
 			ValoresParaVehiculoExistentesException,
 			AutoMuyViejoParaCoberturaElegidaException,
-			ObjetoNoEncontradoException {
+			ObjetoNoEncontradoException,
+			FechaNacimientoHijoInvalidaException {
 		validarDTO(dto);
 		Poliza poliza = crearPoliza(dto);
 		PolizaDAO dao = new PolizaDAO();
@@ -197,39 +201,11 @@ public class GestorPoliza {
 		return algunaPolizaImpaga;
 	}
 	
-	public static List<CuotaDTO> generarCuotas(PolizaDTO dto){
-		List<CuotaDTO> cuotaDtos = new ArrayList<CuotaDTO>();
-		switch(dto.getTipoPoliza()) {
-			case SEMESTRAL: {
-				CuotaDTO cuota = new CuotaDTO();
-				cuota.setEstado(EstadoCuota.PENDIENTE);
-				cuota.setFechaVencimiento(dto.getFechaInicio().minusDays(1));
-				cuota.setImporteTotal(dto.getImporteTotal());
-				cuota.setOrden(1);
-				cuotaDtos.add(cuota);
-				break;
-			}
-			case MENSUAL: {
-				float importeMensual = dto.getImporteTotal() / 6;
-				LocalDate fechaPrimerPago = dto.getFechaInicio().minusDays(1);
-				for(int i = 0 ; i < 6 ; i++) {
-					CuotaDTO cuota = new CuotaDTO();
-					cuota.setEstado(EstadoCuota.PENDIENTE);
-					cuota.setFechaVencimiento(fechaPrimerPago.plusMonths(i));
-					cuota.setImporteTotal(importeMensual);
-					cuota.setOrden(i+1);
-					cuotaDtos.add(cuota);
-				}
-				break;
-			}
-		}
-		return cuotaDtos;
-	}
-	
 	public static void validarDTO(PolizaDTO dto)
 			throws DatosObligatoriosAusentesException,
 			ValoresParaVehiculoExistentesException,
-			AutoMuyViejoParaCoberturaElegidaException {
+			AutoMuyViejoParaCoberturaElegidaException,
+			FechaNacimientoHijoInvalidaException {
 		if(!datosObligatoriosPresentes(dto)) {
 			throw new DatosObligatoriosAusentesException();
 		}
@@ -240,6 +216,9 @@ public class GestorPoliza {
 		
 		if(!coberturaElegidaEsValida(dto)) {
 			throw new AutoMuyViejoParaCoberturaElegidaException();
+		}
+		if(!GestorHijoDeclarado.fechaNacimientoEsValida(dto.getHijosDeclarados())) {
+			throw new FechaNacimientoHijoInvalidaException();
 		}
 	}
 }

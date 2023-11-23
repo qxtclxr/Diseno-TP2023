@@ -31,6 +31,7 @@ import tp.entidad.Cliente;
 import tp.entidad.TipoPoliza;
 import tp.exception.ObjetoNoEncontradoException;
 import tp.logica.GestorCobertura;
+import tp.logica.GestorCuota;
 import tp.logica.GestorPoliza;
 import tp.logica.GestorVehiculo;
 
@@ -120,7 +121,8 @@ public class AltaPolizaFormularioCoberturaController {
 		poliza.setCobertura(coberturasMap.get(coberturas.getSelectedToggle()));
 		poliza.setTipoPoliza((tipoPago.getValue().toString().equals("Mensual"))?TipoPoliza.MENSUAL:TipoPoliza.SEMESTRAL);
 		poliza.setFechaInicio(fechaInicioVigencia.getValue());
-		poliza.setFechaFin(poliza.getFechaInicio().plusMonths(1));
+		//La vigencia de la poliza es siempre semestral independientemente del tipo de pago
+		poliza.setFechaFin(poliza.getFechaInicio().plusMonths(6));
 		this.cargarDatosSobreCobro();
 	}
 
@@ -191,7 +193,7 @@ public class AltaPolizaFormularioCoberturaController {
 	@FXML
 	public void cargarDatosSobreCobro() throws ObjetoNoEncontradoException{
 		GestorPoliza.calcularPremioDerechoDeEmisionYDescuentos(poliza);
-		poliza.setCuotas(GestorPoliza.generarCuotas(poliza));
+		poliza.setCuotas(GestorCuota.generarCuotas(poliza));
 	}
 	
 	@FXML
@@ -207,10 +209,16 @@ public class AltaPolizaFormularioCoberturaController {
 	}
 	
 	@FXML
+	public void inicializarFechaVigencia() {
+		this.fechaInicioVigencia.setValue(LocalDate.now().plusDays(1));
+	}
+	
+	@FXML
 	public void initialize() {
 		
 		this.setCoberturas();
 		this.mostrarResumenDeDatos();
+		this.inicializarFechaVigencia();
 		
 		ObservableList<String> opTipoPago = FXCollections.observableArrayList("Mensual","Semestral");
 		tipoPago.setItems(opTipoPago);
@@ -253,7 +261,6 @@ public class AltaPolizaFormularioCoberturaController {
 		if(alertaEstasSeguroSalir()) {
 			volverMenuPrincipal();
 		}
-		
 	}
 	
 }

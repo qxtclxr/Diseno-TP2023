@@ -1,6 +1,8 @@
 package tp.gui.altapoliza;
 
 import tp.dto.*;
+import tp.exception.NoExisteRangoCantSiniestos;
+import tp.exception.ObjetoNoEncontradoException;
 import tp.logica.*;
 import tp.gui.buscarcliente.BuscarClienteController;
 import javafx.scene.Scene;
@@ -684,29 +686,41 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 		//anio.setDisable(false);
 	}
 	
+	public void setSiniestrosDefault()
+			throws ObjetoNoEncontradoException,
+			NoExisteRangoCantSiniestos {
+		ClienteDTO cliente = poliza.getCliente();
+		RangoCantSiniestrosDTO siniestros = GestorCliente.getCantidadDeSiniestrosPorCliente(cliente);
+		this.nroDeSiniestrosUltAnio.setValue(siniestros);
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		this.mostrarCliente();
-		
-		this.setErroresFalse();
-		
-		this.setMarcas();
-		
-		this.setProvincia();
-    
-		this.setMedidas();
+		try {
+			this.mostrarCliente();
+			
+			this.setErroresFalse();
+			
+			this.setMarcas();
+			
+			this.setProvincia();
+	    
+			this.setMedidas();
 
-		this.setListaHijosDeclarados();
-		
-		this.setKms();
-		
-		this.setSiniestros();
+			this.setListaHijosDeclarados();
+			
+			this.setKms();
+			
+			this.setSiniestros();
 
-		this.localidad.disableProperty().bind(provincia.getSelectionModel().selectedItemProperty().isNull());
-		this.modelo.disableProperty().bind(marca.getSelectionModel().selectedItemProperty().isNull());
-		this.anio.disableProperty().bind(modelo.getSelectionModel().selectedItemProperty().isNull());
-		
+			this.setSiniestrosDefault();
+			
+			this.localidad.disableProperty().bind(provincia.getSelectionModel().selectedItemProperty().isNull());
+			this.modelo.disableProperty().bind(marca.getSelectionModel().selectedItemProperty().isNull());
+			this.anio.disableProperty().bind(modelo.getSelectionModel().selectedItemProperty().isNull());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void setActual(AnchorPane form) {

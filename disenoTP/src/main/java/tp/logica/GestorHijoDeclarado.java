@@ -45,6 +45,10 @@ public class GestorHijoDeclarado {
 		return aniosDeEdad >= HijoDeclaradoDTO.MIN_EDAD && aniosDeEdad <= HijoDeclaradoDTO.MAX_EDAD;
 	}
 	
+	public static boolean fechaNacimientoEsValida(List<HijoDeclaradoDTO> lista) {
+		return lista.stream().allMatch(hijo -> fechaDeNacimientoEsValida(hijo));
+	}
+	
 	public static boolean datosObligatoriosPresentes(HijoDeclaradoDTO dto) {
 		boolean datosPresentes = dto != null;
 		if(datosPresentes == false) {

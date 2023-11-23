@@ -23,6 +23,7 @@ import tp.dto.*;
 import tp.entidad.Poliza;
 import tp.exception.AutoMuyViejoParaCoberturaElegidaException;
 import tp.exception.DatosObligatoriosAusentesException;
+import tp.exception.FechaNacimientoHijoInvalidaException;
 import tp.exception.ObjetoNoEncontradoException;
 import tp.exception.ValoresParaVehiculoExistentesException;
 import tp.logica.GestorPoliza;
@@ -83,33 +84,16 @@ public class AltaPolizaConfirmarController {
 	}
 	
 	@FXML
-	public void confirmarCliqueado() throws IOException{
-		try {
-			GestorPoliza.altaPoliza(poliza);
-			
-			this.alertaPolizaGuardada();
-			this.volverMenuPrincipal();
-			
-			/*
-			PolizaDAO dao = new PolizaDAO();
-			System.out.println("Poliza persistida!");
-			dao.getAll().stream().forEach(p -> System.out.println(p.getCuotasAsociadas()));
-			ClienteDAO daocli = new ClienteDAO();
-			daocli.getAll().stream().forEach(c -> System.out.println(c.getPolizas()));
-			*/
-		} catch (DatosObligatoriosAusentesException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ValoresParaVehiculoExistentesException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (AutoMuyViejoParaCoberturaElegidaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ObjetoNoEncontradoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void confirmarCliqueado()
+			throws IOException,
+			DatosObligatoriosAusentesException,
+			ValoresParaVehiculoExistentesException,
+			AutoMuyViejoParaCoberturaElegidaException,
+			ObjetoNoEncontradoException,
+			FechaNacimientoHijoInvalidaException{
+		GestorPoliza.altaPoliza(poliza);
+		this.alertaPolizaGuardada();
+		this.volverMenuPrincipal();
 	}
 
 	private void volverMenuPrincipal() throws IOException {
