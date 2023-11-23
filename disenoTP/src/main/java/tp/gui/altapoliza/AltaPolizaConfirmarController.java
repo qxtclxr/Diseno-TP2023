@@ -84,16 +84,15 @@ public class AltaPolizaConfirmarController {
 	}
 	
 	@FXML
-	public void confirmarCliqueado()
-			throws IOException,
-			DatosObligatoriosAusentesException,
-			ValoresParaVehiculoExistentesException,
-			AutoMuyViejoParaCoberturaElegidaException,
-			ObjetoNoEncontradoException,
-			FechaNacimientoHijoInvalidaException{
-		GestorPoliza.altaPoliza(poliza);
-		this.alertaPolizaGuardada();
-		this.volverMenuPrincipal();
+	public void confirmarCliqueado(){
+		try {
+			GestorPoliza.altaPoliza(poliza);
+			this.alertaPolizaGuardada();
+			this.volverMenuPrincipal();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	private void volverMenuPrincipal() throws IOException {
