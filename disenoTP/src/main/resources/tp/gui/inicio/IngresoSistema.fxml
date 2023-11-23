@@ -4,13 +4,17 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.gui.inicio.IngresoSistemaController">
    <children>
-      <AnchorPane layoutX="-14.0" layoutY="-36.0" prefHeight="680.0" prefWidth="1280.0">
+      <AnchorPane prefHeight="680.0" prefWidth="1280.0">
          <children>
-            <Button fx:id="ingresoProductorButton" layoutX="536.0" layoutY="418.0" mnemonicParsing="false" onAction="#ingresoProductorCliqueado" prefHeight="25.0" prefWidth="224.0" text="Ingresar como productor" />
-            <ImageView fitHeight="150.0" fitWidth="593.0" layoutX="363.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="ingresoProductorButton" layoutX="537.0" layoutY="445.0" mnemonicParsing="false" onAction="#ingresoProductorCliqueado" prefHeight="25.0" prefWidth="224.0" text="Ingresar como productor">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <ImageView fitHeight="150.0" fitWidth="593.0" layoutX="371.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../logo/logo-el-asegurado.png" />
                </image>

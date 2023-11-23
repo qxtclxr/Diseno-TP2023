@@ -33,14 +33,13 @@ public class Poblador {
 			poblarPorcentajeLocalidad();
 			poblarDerechosDeEmision();
 			poblarCliente();
-			poblarUsuario();
 		} catch (ObjetoNoEncontradoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public static void poblarUsuario() {
+	public static Usuario poblarUsuario(String username, String pass) {
 		SucursalDAO daoSuc = new SucursalDAO();
 		Sucursal suc = new Sucursal();
 		suc.setSecuenciaDePoliza(0);
@@ -48,12 +47,13 @@ public class Poblador {
 		UsuarioDAO dao = new UsuarioDAO();
 		Usuario user = new Usuario();
 		user.setApellido("Perez");
-		user.setContrasenia("password");
-		user.setNickname("juanperez");
+		user.setContrasenia(pass);
+		user.setNickname(username);
 		user.setNombre("Juan");
 		user.setTipoDocumento(TipoDocumento.DNI);
 		user.setSucursalAsociada(suc);
 		dao.updateInstance(user);
+		return user;
 	}
 	
 	public static void poblarCliente() {

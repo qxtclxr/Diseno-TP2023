@@ -15,19 +15,6 @@
 <AnchorPane fx:id="panelBase" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.gui.inicio.MenuPrincipalController">
    <children>
       <BorderPane prefHeight="680.0" prefWidth="1280.0">
-         <top>
-            <Pane prefHeight="146.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Text layoutX="1156.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenid@, Usuario" />
-                  <ImageView fitHeight="126.0" fitWidth="496.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../logo/logo-el-asegurado.png" />
-                     </image>
-                  </ImageView>
-                  <Separator layoutY="145.0" prefWidth="1280.0" />
-               </children>
-            </Pane>
-         </top>
          <left>
             <Pane prefHeight="524.0" prefWidth="425.0" BorderPane.alignment="CENTER">
                <children>
@@ -217,6 +204,23 @@
                </children>
             </Pane>
          </bottom>
+         <top>
+            <AnchorPane prefHeight="132.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fx:id="bienvenidoMsg" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenid@," AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="120.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="126.0" fitWidth="496.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../logo/logo-el-asegurado.png" />
+                     </image>
+                  </ImageView>
+                  <Separator layoutY="145.0" prefWidth="1280.0" />
+               </children>
+            </AnchorPane>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>

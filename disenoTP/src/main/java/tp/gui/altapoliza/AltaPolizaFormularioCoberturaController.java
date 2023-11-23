@@ -11,14 +11,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import tp.app.App;
@@ -221,6 +225,35 @@ public class AltaPolizaFormularioCoberturaController {
 
 	public void setAnterior(AnchorPane anterior) {
 		this.anterior = anterior;
+	}
+	
+	public boolean alertaEstasSeguroSalir(){
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        
+        alert.setTitle("Confirmacion");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Estas seguro de que quieres salir?\nTus datos NO seran guardados");
+        alert.getDialogPane().getChildren().stream()
+                .filter(node -> node instanceof Label)
+                .forEach(node -> ((Label) node).setFont(Font.font("Franklin Gothic Medium", 14)));
+        
+        return alert.showAndWait()
+        		.filter(response -> response == ButtonType.OK)
+        		.isPresent();
+	}
+	
+	public void volverMenuPrincipal() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("../inicio/MenuPrincipal.fxml"));
+		Pane menuPrincipal = loader.load();
+		App.switchScreenTo(menuPrincipal);
+	}
+	
+	public void salirCliqueado() throws IOException {
+		if(alertaEstasSeguroSalir()) {
+			volverMenuPrincipal();
+		}
+		
 	}
 	
 }

@@ -27,8 +27,6 @@ public class App extends Application {
     	//IMPORTANTE: Solo descomentar esto para poblar la base de datos.
     	//Poblador.poblar();
     	
-    	App.setUsuarioLogeado(null);
-    	
     	launch();
     }
 
@@ -68,9 +66,7 @@ public class App extends Application {
 		return usuarioLogeado;
 	}
 
-	public static void setUsuarioLogeado(Usuario usuarioLogeado) {
-		UsuarioDAO dao = new UsuarioDAO();
-		App.usuarioLogeado = dao.getAll().get(0);
-		//App.usuarioLogeado = usuarioLogeado;
+	public static void setUsuarioLogeado(String user, String pass) {
+		App.usuarioLogeado = Poblador.poblarUsuario(user, pass);
 	}
 }

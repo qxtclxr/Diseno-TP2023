@@ -4,7 +4,9 @@ import tp.dto.*;
 import tp.logica.*;
 import tp.gui.buscarcliente.BuscarClienteController;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,6 +29,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
@@ -712,7 +716,34 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	public void setAnterior(AnchorPane form) {
 		this.anterior = form;
 	}
-
+	
+	public boolean alertaEstasSeguroSalir(){
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        
+        alert.setTitle("Confirmacion");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Estas seguro de que quieres salir?\nTus datos NO seran guardados");
+        alert.getDialogPane().getChildren().stream()
+                .filter(node -> node instanceof Label)
+                .forEach(node -> ((Label) node).setFont(Font.font("Franklin Gothic Medium", 14)));
+        
+        return alert.showAndWait()
+        		.filter(response -> response == ButtonType.OK)
+        		.isPresent();
+	}
+	
+	public void volverMenuPrincipal() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("../inicio/MenuPrincipal.fxml"));
+		Pane menuPrincipal = loader.load();
+		App.switchScreenTo(menuPrincipal);
+	}
+	
+	public void salirCliqueado() throws IOException {
+		if(alertaEstasSeguroSalir()) {
+			volverMenuPrincipal();
+		}
 		
+	}
 	
 }

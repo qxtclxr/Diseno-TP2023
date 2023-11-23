@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.gui.inicio.LoginController">
    <children>
-      <AnchorPane layoutX="-38.0" layoutY="-38.0" prefHeight="680.0" prefWidth="1280.0">
+      <AnchorPane prefHeight="680.0" prefWidth="1280.0">
          <children>
-          <Button fx:id="acceder" layoutX="640.0" layoutY="610.0" mnemonicParsing="false" onAction="#accederCliqueado" text="Acceder" />
-            <TextField layoutX="566.0" layoutY="252.0" />
-            <TextField layoutX="566.0" layoutY="348.0" />
-            <Text layoutX="566.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
-            <Text layoutX="566.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contrasenia" />
+          <Button fx:id="acceder" layoutX="605.0" layoutY="531.0" mnemonicParsing="false" onAction="#accederCliqueado" text="Login">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <TextField fx:id="user" layoutX="566.0" layoutY="363.0" promptText="Ingrese su usuario..." />
+            <Text fontSmoothingType="LCD" layoutX="566.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="13.0" />
+               </font></Text>
+            <Text fontSmoothingType="LCD" layoutX="566.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="13.0" />
+               </font></Text>
+            <PasswordField fx:id="pass" layoutX="566.0" layoutY="459.0" promptText="Ingrese su contraseña..." />
+            <ImageView fitHeight="150.0" fitWidth="593.0" layoutX="363.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../logo/logo-el-asegurado.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

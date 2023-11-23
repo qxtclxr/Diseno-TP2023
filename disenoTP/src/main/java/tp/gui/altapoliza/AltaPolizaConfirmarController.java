@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -214,8 +215,27 @@ public class AltaPolizaConfirmarController {
 		this.mostrarDatosPoliza();
 	}
 	
+	public boolean alertaEstasSeguroSalir(){
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        
+        alert.setTitle("Confirmacion");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Estas seguro de que quieres salir?\nTus datos NO seran guardados");
+        alert.getDialogPane().getChildren().stream()
+                .filter(node -> node instanceof Label)
+                .forEach(node -> ((Label) node).setFont(Font.font("Franklin Gothic Medium", 14)));
+        
+        return alert.showAndWait()
+        		.filter(response -> response == ButtonType.OK)
+        		.isPresent();
+	}
 	
-	
+	public void salirCliqueado() throws IOException {
+		if(alertaEstasSeguroSalir()) {
+			volverMenuPrincipal();
+		}
+		
+	}
 	
 }
 
