@@ -131,6 +131,7 @@ public class AltaPolizaConfirmarController {
 	    Stage modalStage = new Stage();
 	    modalStage.initModality(Modality.APPLICATION_MODAL);
 	    modalStage.setTitle("Ver Cuotas");
+	    modalStage.setResizable(false);
 
 	    // Configurar el formulario en la nueva ventana modal
 	    Scene scene = new Scene(form);

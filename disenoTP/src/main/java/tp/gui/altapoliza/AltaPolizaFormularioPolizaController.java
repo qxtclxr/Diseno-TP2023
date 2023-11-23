@@ -238,6 +238,7 @@ public class AltaPolizaFormularioPolizaController implements Initializable{
 	    Stage modalStage = new Stage();
 	    modalStage.initModality(Modality.APPLICATION_MODAL);
 	    modalStage.setTitle("Declarar Hijos");
+	    modalStage.setResizable(false);
 
 	    // Configurar el formulario en la nueva ventana modal
 	    Scene scene = new Scene(form);

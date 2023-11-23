@@ -37,6 +37,7 @@ public class App extends Application {
 			this.primaryStage = primaryStage;
 			this.primaryStage.setTitle("El Asegurado SRL");
 			this.setIcon();
+			this.primaryStage.setResizable(false);
 			this.showMainFrame();
 			this.showIngresoSistema();
 		}catch(Exception e) {
