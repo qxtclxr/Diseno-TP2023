@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -38,14 +40,21 @@ public class LoginController {
 	}
 	
 	@FXML
-	void accederCliqueado(ActionEvent evento) throws IOException {
+	private void accederCliqueado() throws IOException {
 		if(validar()) {
 			App.setUsuarioLogeado(user.getText(), pass.getText());
-			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("MenuPrincipal.fxml"));
 			Pane menuPrincipal = loader.load();
 			App.switchScreenTo(menuPrincipal);
 		}
 	}
+	
+	@FXML
+	private void handleOnKeyPressed(KeyEvent event) throws IOException {
+		if(event.getCode()==KeyCode.ENTER) {
+			this.accederCliqueado();
+		}
+	}
+	
 }
