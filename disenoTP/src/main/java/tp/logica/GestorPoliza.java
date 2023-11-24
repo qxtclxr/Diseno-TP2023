@@ -1,11 +1,11 @@
 package tp.logica;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javafx.util.Pair;
 import tp.app.App;
 import tp.dao.*;
 import tp.dto.*;
@@ -54,30 +54,57 @@ public class GestorPoliza {
 		
 		FactorCaracteristicoDTO factores = dto.getFactores();
 		
-		poliza.setPorcMedidaSeguridad(factores.getPorcentajeMedida());
+		PorcentajeMedidaDeSeguridadDAO medidaDao = new PorcentajeMedidaDeSeguridadDAO();
+		//CheckedFunction.wrap(): Hace catch de la Exception y la relanza como RuntimeException.
+		//De lo contrario la funcion lambda tendra un error de compilacion
+		poliza.setPorcMedidaSeguridad(factores.getPorcentajeMedida().entrySet().stream().
+				map(pair -> pair.getKey()).
+				map(CheckedFunction.wrap(id -> medidaDao.getById(id).
+						orElseThrow(()->new ObjetoNoEncontradoException()))).
+				collect(Collectors.toList()));
 		
-		poliza.setPorcCobertura(factores.getPorcentajeCobertura());
+		PorcentajeCoberturaDAO coberDao = new PorcentajeCoberturaDAO();
+		poliza.setPorcCobertura(coberDao.getById(factores.getPorcentajeCobertura().getKey()).
+				orElseThrow(()->new ObjetoNoEncontradoException()));
 		
-		poliza.setFactorRiesgoLoc(factores.getPorcentajeRiesgoLocalidad());
+		PorcentajeRiesgoLocalidadDAO riesgoDao = new PorcentajeRiesgoLocalidadDAO();
+		poliza.setFactorRiesgoLoc(riesgoDao.getById(factores.getPorcentajeRiesgoLocalidad().getKey()).
+				orElseThrow(()->new ObjetoNoEncontradoException()));
 		
-		poliza.setPorcDescuentoPorU(factores.getDescuentoPorUnidad());
+		PorcentajeDescPorUnidadDAO descPorUnidadDao = new PorcentajeDescPorUnidadDAO();
+		poliza.setPorcDescuentoPorU(descPorUnidadDao.getById(factores.getDescuentoPorUnidad().getKey()).
+				orElseThrow(()->new ObjetoNoEncontradoException()));
 		
-		poliza.setPorcCantSiniestros(factores.getPorcentajeSiniestros());
+		PorcentajeCantSiniestrosDAO siniesDao = new PorcentajeCantSiniestrosDAO();
 		
-		poliza.setPorcKMRealizados(factores.getPorcentajeKm());
+		poliza.setPorcCantSiniestros(siniesDao.getById(factores.getPorcentajeSiniestros().getKey()).
+				orElseThrow(()->new ObjetoNoEncontradoException()));
 		
-		poliza.setValorDerechosDeEmision(factores.getDerechosDeEmision());
+		PorcentajeKMRealizadosDAO kmDao = new PorcentajeKMRealizadosDAO();
+		poliza.setPorcKMRealizados(kmDao.getById(factores.getPorcentajeKm().getKey()).
+				orElseThrow(()->new ObjetoNoEncontradoException()));
 		
-		poliza.setPorcAjustePorHijo(factores.getPorcentajeHijos());
+		ValorDerechosDeEmisionDAO derechosDao = new ValorDerechosDeEmisionDAO();
+		poliza.setValorDerechosDeEmision(derechosDao.getById(factores.getDerechosDeEmision().getKey()).
+				orElseThrow(()-> new ObjetoNoEncontradoException()));
 		
-		poliza.setPorcEstRobo(factores.getPorcentajeEstadisticaRobo());
+		PorcentajeAjusteHijosDAO ajusteHijosDao = new PorcentajeAjusteHijosDAO();
+		
+		poliza.setPorcAjustePorHijo(ajusteHijosDao.getById(factores.getPorcentajeHijos().getKey()).
+				orElseThrow(()-> new ObjetoNoEncontradoException()));
+		
+		PorcentajeEstadisticaRoboDAO estadRoboDao = new PorcentajeEstadisticaRoboDAO();
+		
+		poliza.setPorcEstRobo(estadRoboDao.getById(factores.getPorcentajeEstadisticaRobo().getKey()).
+				orElseThrow(()->new ObjetoNoEncontradoException()));
 		
 		poliza.setModificaciones(new ArrayList<ModificacionPoliza>());
 		
 		poliza.setNroPoliza(generarNroPoliza(dto));
 		
-		UsuarioDAO d=new UsuarioDAO();
-		poliza.setProductorAsociado(d.getById(App.getUsuarioLogeado().getIdUsuario()).get());
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		poliza.setProductorAsociado(usuarioDao.getById(App.getUsuarioLogeado().getIdUsuario()).
+				orElseThrow(()->new ObjetoNoEncontradoException()));
 		
 		return poliza;
 	}
@@ -114,18 +141,19 @@ public class GestorPoliza {
 	
 	public static float calcularPremio(PolizaDTO dto) {
 		FactorCaracteristicoDTO factores = dto.getFactores();
-		float porcentaje = 0;
+		float porcentaje = 0F;
 		//PorcentajeCobertura esta en base anual, y la poliza es semestral, por lo que el porcentaje se divide entre 2
-		porcentaje += factores.getPorcentajeCobertura().getValorNumerico() / 2 ;
-		porcentaje += factores.getPorcentajeRiesgoLocalidad().getValorNumerico();
-		porcentaje += factores.getPorcentajeEstadisticaRobo().getValorNumerico();
-		porcentaje += factores.getPorcentajeKm().getValorNumerico();
-		porcentaje += factores.getPorcentajeSiniestros().getValorNumerico();
-		porcentaje += factores.getPorcentajeHijos().getValorNumerico() * dto.getHijosDeclarados().size();
-		for(PorcentajeMedidaDeSeguridad porc : factores.getPorcentajeMedida()) {
-			porcentaje += porc.getValorNumerico();
-		}
-		float derechosEmision = factores.getDerechosDeEmision().getValorNumerico();
+		porcentaje += factores.getPorcentajeCobertura().getValue() / 2 ;
+		porcentaje += factores.getPorcentajeRiesgoLocalidad().getValue();
+		porcentaje += factores.getPorcentajeEstadisticaRobo().getValue();
+		porcentaje += factores.getPorcentajeKm().getValue();
+		porcentaje += factores.getPorcentajeSiniestros().getValue();
+		porcentaje += factores.getPorcentajeHijos().getValue() * dto.getHijosDeclarados().size();
+		//Se suma el porcentaje de cada medida, y esa suma se suma al porcentaje total
+		porcentaje += factores.getPorcentajeMedida().entrySet().stream().
+				map(pair -> pair.getValue()).
+				reduce(0F,(a,b)->a+b);
+		float derechosEmision = factores.getDerechosDeEmision().getValue();
 		float premio = dto.getSumaAsegurada() * (porcentaje/100) + derechosEmision;
 		return premio;
 	}
@@ -133,7 +161,7 @@ public class GestorPoliza {
 	public static float calcularDescuentos(PolizaDTO dto) {
 		FactorCaracteristicoDTO factores = dto.getFactores();
 		float porcentaje = 0;
-		porcentaje += factores.getDescuentoPorUnidad().getValorNumerico();
+		porcentaje += factores.getDescuentoPorUnidad().getValue();
 		//Este porcentaje esta en base anual, y la poliza es semestral, por lo que el porcentaje se divide entre 2
 		porcentaje += factores.getBonificacionTipoPoliza() / 2;
 		return porcentaje;
@@ -141,20 +169,42 @@ public class GestorPoliza {
 	
 	public static FactorCaracteristicoDTO getFactoresCaracteristicos(PolizaDTO dto) throws ObjetoNoEncontradoException {
 		FactorCaracteristicoDTO factores = new FactorCaracteristicoDTO();
-		factores.setPorcentajeCobertura(GestorCobertura.getPorcentajeCoberturaActual(dto.getCobertura()));
-		factores.setPorcentajeRiesgoLocalidad(GestorLocalizacion.getPorcentajeRiesgoLocalidadActual(dto.getLocalidad()));
-		factores.setPorcentajeEstadisticaRobo(GestorVehiculo.getPorcentajeEstadisticaRoboActual(dto.getVehiculo().getModelo()));
-		factores.setPorcentajeKm(GestorRangoKMRealizados.getPorcentajeKMRealizadosActual(dto.getKmRealizados()));
-		factores.setPorcentajeSiniestros(GestorRangoCantSiniestros.getPorcentajeCantSiniestrosActual(dto.getCantidadSiniestros()));
-		factores.setPorcentajeHijos(GestorAjusteHijos.getPorcentajeAjusteHijosActual());
+		
+		PorcentajeCobertura cobertura = GestorCobertura.getPorcentajeCoberturaActual(dto.getCobertura());
+		factores.setPorcentajeCobertura(new Pair<>(cobertura.getIdPorcentajeCobertura(),cobertura.getValorNumerico()));
+		
+		PorcentajeRiesgoLocalidad riesgoLocal = GestorLocalizacion.getPorcentajeRiesgoLocalidadActual(dto.getLocalidad());
+		factores.setPorcentajeRiesgoLocalidad(new Pair<>(riesgoLocal.getIdFactorRiesgoLocalidad(),riesgoLocal.getValorNumerico()));
+		
+		PorcentajeEstadisticaRobo estadRobo = GestorVehiculo.getPorcentajeEstadisticaRoboActual(dto.getVehiculo().getModelo());
+		factores.setPorcentajeEstadisticaRobo(new Pair<>(estadRobo.getIdPorcEstadRobo(),estadRobo.getValorNumerico()));
+		
+		PorcentajeKMRealizados rangoKm = GestorRangoKMRealizados.getPorcentajeKMRealizadosActual(dto.getKmRealizados());
+		factores.setPorcentajeKm(new Pair<>(rangoKm.getIdPorcentajeKMRealizados(),rangoKm.getValorNumerico()));
+		
+		PorcentajeCantSiniestros siniestros = GestorRangoCantSiniestros.getPorcentajeCantSiniestrosActual(dto.getCantidadSiniestros());		
+		factores.setPorcentajeSiniestros(new Pair<>(siniestros.getIdPorcCantSin(),siniestros.getValorNumerico()));
+		
+		PorcentajeAjusteHijos hijos = GestorAjusteHijos.getPorcentajeAjusteHijosActual();
+		factores.setPorcentajeHijos(new Pair<>(hijos.getIdPorcentajeAjusteHijos(),hijos.getValorNumerico()));
+		
 		//CheckedFunction.wrap(): Hace catch de la Exception y la relanza como RuntimeException.
 		//De lo contrario la funcion lambda tendra un error de compilacion
 		factores.setPorcentajeMedida(dto.getMedidas().stream().
 				map(CheckedFunction.wrap(GestorMedidaDeSeguridad::getPorcentajeMedidaDeSeguridadActual)).
-				toList());
-		factores.setDerechosDeEmision(GestorDerechosDeEmision.getDerechosDeEmisionActual());
-		factores.setDescuentoPorUnidad(GestorDescuentoPorUnidad.getDescuentoPorUnidadByCliente(dto.getCliente()));
+				collect(Collectors.toMap(
+						PorcentajeMedidaDeSeguridad::getIdPorcentajeMedidaDeSeguridad,
+						PorcentajeMedidaDeSeguridad::getValorNumerico))
+				);
+		
+		ValorDerechosDeEmision derechos = GestorDerechosDeEmision.getDerechosDeEmisionActual();
+		factores.setDerechosDeEmision(new Pair<>(derechos.getIdValorDerechosDeEmision(),derechos.getValorNumerico()));
+		
+		PorcentajeDescPorUnidad descPorUnidad = GestorDescuentoPorUnidad.getDescuentoPorUnidadByCliente(dto.getCliente());
+		factores.setDescuentoPorUnidad(new Pair<>(descPorUnidad.getIdPorcentajeDescPorUnidad(),descPorUnidad.getValorNumerico()));
+		
 		factores.setBonificacionTipoPoliza(FacadeSistemaFinanciero.getBonificacionPorTipoPoliza(dto.getTipoPoliza()));
+		
 		return factores;
 	}
 	

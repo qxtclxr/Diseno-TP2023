@@ -62,7 +62,6 @@ public class BuscarClienteController implements Initializable {
 	    
 	    @FXML
 	   private void confirmarCliqueado(ActionEvent event) throws IOException, ObjetoNoEncontradoException {
-	    	
 	    	//Mockup
 	    	//ClienteDTO seleccionado = GestorCliente.getClienteDTO(GestorCliente.getByNroCliente("123456789")) ;
 	    	
