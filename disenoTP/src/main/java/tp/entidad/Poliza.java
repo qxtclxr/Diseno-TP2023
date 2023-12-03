@@ -110,14 +110,14 @@ public class Poliza {
 	@ManyToMany(fetch= FetchType.EAGER,cascade = {CascadeType.MERGE})
 	private List<PorcentajeMedidaDeSeguridad> porcMedidaSeguridad;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="idModificacionPoliza",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ModificacionPoliza> modificaciones;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="porCobertura", referencedColumnName="idPorcentajeCobertura", foreignKey= @ForeignKey(name="FK_Por_cobertura_Poliza"))
 	private PorcentajeCobertura porcCobertura;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="idHijoDeclarado", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HijoDeclarado> hijosDeclarados;
 	
 	//ver Como embeberlo

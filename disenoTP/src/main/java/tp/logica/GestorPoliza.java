@@ -40,6 +40,7 @@ public class GestorPoliza {
 		poliza.setVehiculoAsegurado(vehiculo);
 		
 		List<HijoDeclarado> hijosDeclarados = GestorHijoDeclarado.crearHijosDeclarados(dto.getHijosDeclarados());
+		hijosDeclarados.stream().forEach(hijo-> hijo.setPolizaAsociada(poliza));
 		poliza.setHijosDeclarados(hijosDeclarados);
 		
 		List<Cuota> cuotas = GestorCuota.crearCuotas(dto.getCuotas());

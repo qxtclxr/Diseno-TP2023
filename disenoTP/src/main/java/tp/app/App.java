@@ -26,7 +26,7 @@ public class App extends Application {
     	EntityManagerUtil.createEntityManagerFactory(); 
       
     	//IMPORTANTE: Solo descomentar esto para poblar la base de datos.
-    	//Poblador.poblar();
+    	Poblador.poblar();
     	
     	launch();
     }

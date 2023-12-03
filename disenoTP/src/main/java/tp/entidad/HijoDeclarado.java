@@ -28,6 +28,11 @@ public class HijoDeclarado {
 	
 	@Column(nullable=false)
 	private LocalDate fechaNacimiento;
+	//cambio para generacion de tablas
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_poliza",referencedColumnName="idPoliza" ,foreignKey= @ForeignKey(name ="POLIZA_EN_HIJO_FK"))
+	private Poliza polizaAsociada;
+	
 	
 	public HijoDeclarado() {
 		super();
@@ -89,6 +94,15 @@ public class HijoDeclarado {
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
+	public Poliza getPolizaAsociada() {
+		return polizaAsociada;
+	}
+
+	public void setPolizaAsociada(Poliza polizaAsociada) {
+		this.polizaAsociada = polizaAsociada;
+	}
+	
 	
 	
 	

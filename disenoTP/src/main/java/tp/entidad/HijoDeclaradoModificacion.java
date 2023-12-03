@@ -42,6 +42,10 @@ public class HijoDeclaradoModificacion {
 	public int hashCode() {
 		return Objects.hash(idHijoDeclaradoModificacion);
 	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_poliza_mod",referencedColumnName="idModificacionPoliza" ,foreignKey= @ForeignKey(name ="MOD_POLIZA_HIJO_FK"))
+	private ModificacionPoliza polizaAsociadaModificacion;
+	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -110,6 +114,15 @@ public class HijoDeclaradoModificacion {
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
+	public ModificacionPoliza getPolizaAsociadaModificacion() {
+		return polizaAsociadaModificacion;
+	}
+
+	public void setPolizaAsociadaModificacion(ModificacionPoliza polizaAsociadaModificacion) {
+		this.polizaAsociadaModificacion = polizaAsociadaModificacion;
+	}
+	
 	
 	
 }

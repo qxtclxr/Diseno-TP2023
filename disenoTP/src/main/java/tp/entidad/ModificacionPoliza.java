@@ -50,12 +50,17 @@ public class ModificacionPoliza {
 	@JoinColumn(name="porCoberturaModificada", referencedColumnName="idPorcentajeCobertura", foreignKey= @ForeignKey(name="FK_Por_cobertura_mod"))
 	private PorcentajeCobertura porcCoberturaModificada;
 	
-	@OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch= FetchType.LAZY,mappedBy="idHijoDeclaradoModificacion", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<HijoDeclaradoModificacion> hijosDeclaradosModificados;
 	
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="idUsuario", referencedColumnName="idUsuario",foreignKey= @ForeignKey(name="FK_usuario_en_modificacion"))
 	private Usuario modificadoPor;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_poliza",referencedColumnName="idPoliza" ,foreignKey= @ForeignKey(name ="POLIZA_EN_MOD_FK"))
+	private Poliza polizaAsociada;
+	
 	
 	
 	@PrePersist
@@ -204,6 +209,15 @@ public class ModificacionPoliza {
 	public void setPorcentajeModificado(PorcentajeCantSiniestros porcentajeModificado) {
 		this.porcentajeModificado = porcentajeModificado;
 	}
+
+	public Poliza getPolizaAsociada() {
+		return polizaAsociada;
+	}
+
+	public void setPolizaAsociada(Poliza polizaAsociada) {
+		this.polizaAsociada = polizaAsociada;
+	}
+	
 	
 	
 }
