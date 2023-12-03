@@ -110,13 +110,12 @@
             <VBox fx:id="coberturasBox" layoutX="14.0" layoutY="345.0" prefHeight="200.0" prefWidth="400.0" spacing="10.0" />
             <DatePicker fx:id="fechaInicioVigencia" layoutX="440.0" layoutY="345.0" prefHeight="20.0" prefWidth="400.0" />
             <ComboBox fx:id="tipoPago" layoutX="866.0" layoutY="345.0" prefWidth="400.0" />
-            <Label fx:id="errorTipoCobertura" layoutX="22.0" layoutY="550.0" text="El campo esta incompleto" textFill="RED" visible="false" />
-            <Label layoutX="440.0" layoutY="383.0" prefHeight="49.0" prefWidth="235.0" wrapText="true" />
-            <Label fx:id="errorFechaInicioVigencia1" layoutX="440.0" layoutY="391.0" text="La fecha debe encontrarse entre:" textFill="RED" visible="false" />
-            <Label fx:id="errorFechaInicioVigencia2" layoutX="440.0" layoutY="408.0" text="-El mes actual" textFill="RED" visible="false" />
-            <Label fx:id="errorFechaInicioVigencia3" layoutX="440.0" layoutY="424.0" text="-Un mes luego del mes actual" textFill="RED" visible="false" />
-            <Label fx:id="errorTipoPago" layoutX="866.0" layoutY="391.0" text="El campo esta incompleto" textFill="RED" visible="false" />
-            <Label fx:id="errorMayor5anios" layoutX="22.0" layoutY="567.0" text="Los vehiculos mayores a 5 años solo pueden acceder a Responsabilidad Civil" textFill="RED" visible="false" />
+            <Label fx:id="errorTipoCobertura" layoutX="14.0" layoutY="500.0" text="El campo esta incompleto" textFill="RED" visible="false" />
+            <Label fx:id="errorFechaInicioVigencia1" layoutX="440.0" layoutY="375.0" text="La fecha debe encontrarse entre:" textFill="RED" visible="false" />
+            <Label fx:id="errorFechaInicioVigencia2" layoutX="440.0" layoutY="392.0" text="-El mes actual" textFill="RED" visible="false" />
+            <Label fx:id="errorFechaInicioVigencia3" layoutX="440.0" layoutY="408.0" text="-Un mes luego del mes actual" textFill="RED" visible="false" />
+            <Label fx:id="errorTipoPago" layoutX="866.0" layoutY="375.0" text="El campo esta incompleto" textFill="RED" visible="false" />
+            <Label fx:id="errorMayor5anios" layoutX="14.0" layoutY="500.0" text="Los vehiculos mayores a 5 años solo pueden acceder a Responsabilidad Civil" textFill="RED" visible="false" />
             <HBox layoutX="14.0" layoutY="145.0" prefHeight="50.0" prefWidth="1252.0" style="-fx-border-color: gray; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-color: white;">
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: gray;" HBox.hgrow="ALWAYS">

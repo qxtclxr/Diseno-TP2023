@@ -18,11 +18,10 @@ public class IngresoSistemaController {
 	private Button ingresoProductorButton;
 	
 	@FXML
-	void ingresoProductorCliqueado(ActionEvent evento) throws IOException{
+	void ingresoProductorCliqueado() throws IOException{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Login.fxml"));
 		AnchorPane login = loader.load();
 		App.switchScreenTo(login);
 	}
-	
 }

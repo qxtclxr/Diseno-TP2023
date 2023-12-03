@@ -23,6 +23,7 @@ import tp.dto.*;
 import tp.entidad.Poliza;
 import tp.exception.AutoMuyViejoParaCoberturaElegidaException;
 import tp.exception.DatosObligatoriosAusentesException;
+import tp.exception.FechaNacimientoHijoInvalidaException;
 import tp.exception.ObjetoNoEncontradoException;
 import tp.exception.ValoresParaVehiculoExistentesException;
 import tp.logica.GestorPoliza;
@@ -83,33 +84,15 @@ public class AltaPolizaConfirmarController {
 	}
 	
 	@FXML
-	public void confirmarCliqueado() throws IOException{
+	public void confirmarCliqueado(){
 		try {
 			GestorPoliza.altaPoliza(poliza);
-			
 			this.alertaPolizaGuardada();
 			this.volverMenuPrincipal();
-			
-			/*
-			PolizaDAO dao = new PolizaDAO();
-			System.out.println("Poliza persistida!");
-			dao.getAll().stream().forEach(p -> System.out.println(p.getCuotasAsociadas()));
-			ClienteDAO daocli = new ClienteDAO();
-			daocli.getAll().stream().forEach(c -> System.out.println(c.getPolizas()));
-			*/
-		} catch (DatosObligatoriosAusentesException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ValoresParaVehiculoExistentesException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (AutoMuyViejoParaCoberturaElegidaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ObjetoNoEncontradoException e) {
-			// TODO Auto-generated catch block
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	private void volverMenuPrincipal() throws IOException {
@@ -148,6 +131,7 @@ public class AltaPolizaConfirmarController {
 	    Stage modalStage = new Stage();
 	    modalStage.initModality(Modality.APPLICATION_MODAL);
 	    modalStage.setTitle("Ver Cuotas");
+	    modalStage.setResizable(false);
 
 	    // Configurar el formulario en la nueva ventana modal
 	    Scene scene = new Scene(form);
